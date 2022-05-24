@@ -1,82 +1,114 @@
-import Head from 'next/head'
+import React, {useRef, useState} from 'react';
+import {Canvas, useFrame} from '@react-three/fiber';
+import {PerspectiveCamera, OrbitControls} from '@react-three/drei';
+import {Head} from "next/document";
+import {Vector3} from 'three';
+import {useLoader} from '@react-three/fiber'
+import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
+import {useGLTF} from "@react-three/drei";
+
+
+function Model(props: any) {
+    const group = useRef();
+    const {nodes, materials} = useGLTF("/suzanne.gltf");
+
+    return (
+        <group ref={group} {...props} dispose={null}>
+            <mesh
+                castShadow
+                receiveShadow
+                // @ts-ignore
+                geometry={nodes.Suzanne.geometry}
+                // @ts-ignore
+                material={nodes.Suzanne.material}
+                position={[0, 0.19, -0.04]}
+            />
+        </group>
+    );
+}
+
+useGLTF.preload("/suzanne.gltf");
+
+
+function Box(props: any) {
+    const mesh = useRef(null)
+    const [hovered, setHover] = useState(false)
+    const [active, setActive] = useState(false)
+    useFrame((state, delta) => {
+        // @ts-ignore
+        mesh.current.rotation.x += 0.5 * delta;
+    })
+    return (
+        <mesh
+            {...props}
+            ref={mesh}
+            scale={active ? 2 : 1}
+            onClick={(event) => setActive(!active)}
+            onPointerOver={(event) => setHover(true)}
+            onPointerOut={(event) => setHover(false)}>
+            <boxGeometry args={[1, 1, 1]}/>
+            <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'}/>
+        </mesh>
+    )
+}
+
 
 export default function Home() {
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
+    return (
+        <div>
 
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
+            <Canvas>
+                <OrbitControls makeDefault position={new Vector3(0, 0, 5)}/>
+                <ambientLight/>
+                <pointLight position={[10, 10, 10]}/>
 
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
+                <Box position={[-2.2, -2, 0]}/>
+                <Model/>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+            </Canvas>
+
+
+            <nav>
+
+                <p>brev.al</p>
+
+                <ul>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Project</li>
+                    <li>Resume</li>
+                    <li>Social</li>
+                </ul>
+            </nav>
+
+
+            <section>
+
+                <p>Hi !</p>
+                <h1>I'm Bréval Le Floch</h1>
+                <h2>A developper</h2>
+
+
+                {/*// Figure here*/}
+
+            </section>
+
+
+            <section>
+                <p>Let me introduce myself</p>
+
+
+                <p>I'm a french studend living Nantes, I have a few dreams and I loved computering the moment I touched
+                    my first pc at 4yo </p>
+                <p>You know, their is a lot of things to learn and understand in the universe, and for me, computering
+                    is just like another universe opening to us, with every thig to explore</p>
+            </section>
+
+
         </div>
-      </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="ml-2 h-4" />
-        </a>
-      </footer>
-    </div>
-  )
+    )
 }
+
