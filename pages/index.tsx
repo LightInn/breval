@@ -1,79 +1,49 @@
-import React, {useRef, useState} from 'react';
-import {Canvas, useFrame} from '@react-three/fiber';
-import {PerspectiveCamera, OrbitControls} from '@react-three/drei';
-import {Head} from "next/document";
+import React, {Suspense} from 'react';
+import {Canvas} from '@react-three/fiber';
+import {OrbitControls} from '@react-three/drei';
 import {Vector3} from 'three';
-import {useLoader} from '@react-three/fiber'
-import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
-import {useGLTF} from "@react-three/drei";
-
-
-function Model(props: any) {
-    const group = useRef();
-    const {nodes, materials} = useGLTF("/suzanne.gltf");
-
-    return (
-        <group ref={group} {...props} dispose={null}>
-            <mesh
-                castShadow
-                receiveShadow
-                // @ts-ignore
-                geometry={nodes.Suzanne.geometry}
-                // @ts-ignore
-                material={nodes.Suzanne.material}
-                position={[0, 0.19, -0.04]}
-            />
-        </group>
-    );
-}
-
-useGLTF.preload("/suzanne.gltf");
-
-
-function Box(props: any) {
-    const mesh = useRef(null)
-    const [hovered, setHover] = useState(false)
-    const [active, setActive] = useState(false)
-    useFrame((state, delta) => {
-        // @ts-ignore
-        mesh.current.rotation.x += 0.5 * delta;
-    })
-    return (
-        <mesh
-            {...props}
-            ref={mesh}
-            scale={active ? 2 : 1}
-            onClick={(event) => setActive(!active)}
-            onPointerOver={(event) => setHover(true)}
-            onPointerOut={(event) => setHover(false)}>
-            <boxGeometry args={[1, 1, 1]}/>
-            <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'}/>
-        </mesh>
-    )
-}
+import {Me} from '../components/Me';
+import {Headers} from "next/dist/server/web/spec-compliant/headers";
+import Head from "next/head";
 
 
 export default function Home() {
-
-
     return (
-        <div>
-
-            <Canvas>
-                <OrbitControls makeDefault position={new Vector3(0, 0, 5)}/>
-                <ambientLight/>
-                <pointLight position={[10, 10, 10]}/>
-
-                <Box position={[-2.2, -2, 0]}/>
-                <Model/>
 
 
-            </Canvas>
+        <div className="font-varela-round">
 
+            <Head>
+
+                <title>Bréval LE FLOCH | Dév </title>
+
+
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+
+                {/*@ts-ignore*/}
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
+                <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+                      rel="stylesheet"/>
+
+            </Head>
+
+
+            <div style={{width: "50vw", height: "50vh"}} className="bg-red-500">
+                {/*<Canvas>*/}
+                {/*    < OrbitControls makeDefault position={new Vector3(0, 0, 5)}/>*/}
+                {/*    <ambientLight/>*/}
+                {/*    <pointLight position={[10, 10, 10]}/>*/}
+
+                {/*    <Suspense fallback={null}>*/}
+                {/*        <Me/>*/}
+                {/*    </Suspense>*/}
+
+                {/*</Canvas>*/}
+            </div>
 
             <nav>
 
-                <p>brev.al</p>
+                <p className="bg-red-500 ">brev.al</p>
 
                 <ul>
                     <li>Home</li>
