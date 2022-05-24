@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ea3beb4-a7bf-4985-b943-d4e08211afd4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/Me.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Me.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/moi.gltf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Me.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
+    <list id="bbd14061-2eef-4fb5-9c79-26be91d9d2dd" name="Changes by andyq" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,15 +40,20 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Breval Nouveau/Sync/Projects/WebSite/breval/public",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/home/brlef/Sync/Projects/WebSite/breval/node_modules/typescript/lib"
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\Breval Nouveau\\Sync\\Projects\\WebSite\\breval\\node_modules\\prettier",
+    "ts.external.directory.path": "C:\\Users\\Breval Nouveau\\Sync\\Projects\\WebSite\\breval\\node_modules\\typescript\\lib"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Breval Nouveau\Sync\Projects\WebSite\breval\public" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public" />
     </key>
@@ -71,7 +80,8 @@
       <updated>1644242999978</updated>
       <workItem from="1644243001145" duration="4492000" />
       <workItem from="1644409655471" duration="2534000" />
-      <workItem from="1653381699761" duration="7049000" />
+      <workItem from="1653381699761" duration="7211000" />
+      <workItem from="1653402670746" duration="4176000" />
     </task>
     <servers />
   </component>
