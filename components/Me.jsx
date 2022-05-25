@@ -9,7 +9,7 @@ export default function Model(props) {
   const [active, setActive] = useState(false)
   useFrame((state, delta) => {
     // @ts-ignore
-    mesh.current.rotation.y += 0.05 * delta
+    // mesh.current.rotation.y += 0.05 * delta
   })
 
   const { nodes, materials } = useGLTF('/moi.gltf')

@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, PresentationControls } from '@react-three/drei'
 import { Vector3 } from 'three'
 import Me  from '../components/Me'
 import { Headers } from 'next/dist/server/web/spec-compliant/headers'
@@ -32,8 +32,8 @@ export default function Home() {
         className='fixed top-0 left-0 w-screen h-[40px] xl:h-[80px] z-50 flex flex-row xl:flex-row justify-between items-center px-4 xl:px-20 mt-8 xl:mt-0'>
 
         <a href='/' className='w-8 h-8 xl:w-10 xl:h-10'>
-          <img src='https://andy-cinquin.fr/themes/andycinquin/assets/Ressources/icons/logov2.svg'
-               alt='Logo Cinquin Andy Signature' />
+          <img src='/logo.png'
+               alt='Logo Bréval Le Floch Signature' />
         </a>
         <a href='/contact' className='hidden text-sm button-animated smoke font-body xl:block text-white'>
           <div><span>C</span><span>O</span><span>N</span><span>T</span><span>A</span><span>C</span><span>T</span></div>
@@ -144,31 +144,51 @@ export default function Home() {
 
       </nav>
       <div className='flex relative justify-center items-center w-screen h-screen'>
-        <h1 className='z-20 text-3xl text-sky-50 font-semibold tracking-widest uppercase xl:text-8xl'>
-          BRÉVAL(ito) LE FLOCH(ito)</h1>
+        <h1 className='z-20 text-3xl text-slate-50 font-semibold tracking-widest uppercase xl:text-8xl' id='title-landing'>
+          BRÉVAL LE FlOCH
+        </h1>
         <div
-          className='flex absolute top-1/2 left-1/2 z-10 justify-center items-center w-3/5 transform -translate-x-1/2 -translate-y-1/2'>
+          className='flex absolute top-1/2 left-1/2 z-10 justify-center items-center transform -translate-x-1/2 -translate-y-1/2'>
 
 
-          <div className='bg-red-500 p-0 m-0 h-[60vh] w-[60vw]'>
+          <div className='bg-red-500 bg-opacity-[10%] p-0 m-0 h-[100vh] w-[100vw] max-w-[100vw] overflow-x-hidden clear-both'>
             <Canvas>
-              < OrbitControls makeDefault position={new Vector3(0, 0, 5)} />
-              <ambientLight />
-              <pointLight position={[10, 10, 10]} />
+              <PresentationControls
 
+                global={false} // Spin globally or by dragging the model
+                cursor={true} // Whether to toggle cursor style on drag
+                snap={true} // Snap-back to center (can also be a spring config)
+                speed={1} // Speed factor
+                zoom={1} // Zoom factor when half the polar-max is reached
+                rotation={[0, 0, 0]} // Default rotation
+                polar={[0, Math.PI / 2]} // Vertical limits
+                azimuth={[-Math.PI / 2, Math.PI / 2]} // Horizontal limits
+                config={{ mass: 1, tension: 50, friction: 26 }} // Spring config
+              >
+              <ambientLight />
               <Suspense fallback={null}>
                 <Me />
               </Suspense>
-
+              </PresentationControls>
             </Canvas>
+
+
+
+            {/*<Canvas>*/}
+            {/*  < OrbitControls makeDefault position={new Vector3(0, 5, 5)} enableZoom={false} />*/}
+            {/*  <ambientLight />*/}
+            {/*  <pointLight position={[10, 10, 10]} />*/}
+            {/*  <Suspense fallback={null}>*/}
+            {/*    <Me />*/}
+            {/*  </Suspense>*/}
+            {/*</Canvas>*/}
           </div>
-
-
         </div>
 
         <div
-          className='flex absolute right-0 bottom-0 flex-col gap-8 justify-evenly items-center p-4 mb-14 xl:mb-0 xl:p-20 xl:gap-10'>
+          className='flex absolute right-0 bottom-0 flex-col gap-8 justify-evenly items-center p-4 mb-14 xl:mb-0 xl:p-20 xl:gap-10 z-20'>
 
+          {/* todo changer reséaux sociaux */}
           <a className='text-slate-300 hover:text-slate-50'
              href='https://www.facebook.com/Cinquin.Andy.Developpeur.Freelance' rel='noopener nofollow noreferrer'
              target='_blank'>
@@ -178,6 +198,7 @@ export default function Home() {
             </svg>
           </a>
 
+          {/* todo changer reséaux sociaux */}
           <a className='text-slate-300 hover:text-slate-50' href='https://www.instagram.com/cinquin.andy/'
              rel='noopener nofollow noreferrer' target='_blank'>
             <svg className='w-6 h-6 xl:w-8 xl:h-8' viewBox='0 0 24 24' fill='currentColor'>
@@ -189,6 +210,7 @@ export default function Home() {
             </svg>
           </a>
 
+          {/* todo changer reséaux sociaux */}
           <a className='text-slate-300 hover:text-slate-50' href='https://www.linkedin.com/in/andy-cinquin/'
              rel='noopener nofollow noreferrer' target='_blank'>
             <svg className='w-6 h-6 xl:w-8 xl:h-8' viewBox='0 0 24 24' fill='currentColor'>
@@ -200,6 +222,7 @@ export default function Home() {
             </svg>
           </a>
 
+          {/* todo changer reséaux sociaux */}
           <a className='text-slate-300 hover:text-slate-50' href='https://github.com/CinquinAndy/'
              rel='noopener nofollow noreferrer' target='_blank'>
             <svg className='w-6 h-6 xl:w-8 xl:h-8' viewBox='0 0 24 24' fill='currentColor'>
