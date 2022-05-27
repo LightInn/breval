@@ -8,8 +8,8 @@ export function MeModel(props) {
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   useFrame((state, delta) => {
-    mesh.current.rotation.y += 0.01 * delta
-    mesh.current.rotation.x = 0.5
+    mesh.current.rotation.y += 0.03 * delta
+    mesh.current.rotation.x = 0.35
   })
 
   const { nodes, materials } = useGLTF('/moi.gltf')

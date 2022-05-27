@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Me.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Me.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/moi.gltf" beforeDir="false" afterPath="$PROJECT_DIR$/public/moi.gltf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
     </list>
     <list id="bbd14061-2eef-4fb5-9c79-26be91d9d2dd" name="Changes by andyq" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +81,7 @@
       <workItem from="1653409384892" duration="510000" />
       <workItem from="1653469498662" duration="1165000" />
       <workItem from="1653470786007" duration="1071000" />
-      <workItem from="1653607795205" duration="4477000" />
+      <workItem from="1653607795205" duration="8475000" />
     </task>
     <servers />
   </component>

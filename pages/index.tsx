@@ -154,6 +154,23 @@ export default function Home() {
 
           <div
             className='p-0 m-0 h-[100vh] w-[100vw] max-w-[100vw] overflow-x-hidden clear-both'>
+
+            <div className='area'>
+              <ul className='circles'>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+
+
             <Canvas>
               <PresentationControls
 
@@ -163,7 +180,7 @@ export default function Home() {
                 speed={1} // Speed factor
                 zoom={1} // Zoom factor when half the polar-max is reached
                 rotation={[0, 0, 0]} // Default rotation
-                polar={[0, Math.PI / 2]} // Vertical limits
+                polar={[-Math.PI / 4, Math.PI / 8]} // Vertical limits
                 azimuth={[-Math.PI / 2, Math.PI / 2]} // Horizontal limits
                 config={{ mass: 1, tension: 50, friction: 26 }} // Spring config
               >
@@ -176,6 +193,7 @@ export default function Home() {
 
               </PresentationControls>
             </Canvas>
+
 
           </div>
         </div>
@@ -235,24 +253,25 @@ export default function Home() {
           <h2
             className='text-sm tracking-wider opacity-20 origin-bottom-left -rotate-90 font-body text-sky-50 xl:text-xl'>‣
             BRÉVAL LE FLOCH </h2>
+
         </div>
+
       </div>
 
-      <nav>
 
-        <p className='bg-red-500 '>brev.al</p>
-
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Project</li>
-          <li>Resume</li>
-          <li>Social</li>
-        </ul>
-      </nav>
+      <section className='bg-slate-900 rounded-t-full h-[30px]
+      flex justify-center items-center
+      drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)] z-1'>
+        {/* @ts-ignore */}
+        <hr className='w-[50px]' />
 
 
-      <section>
+        {/*// Figure here*/}
+
+      </section>
+
+
+      <section className='bg-slate-900 h-[100vh] z-2 '>
 
         <p>Hi !</p>
         <h1>I'm Bréval Le Floch</h1>
@@ -264,7 +283,7 @@ export default function Home() {
       </section>
 
 
-      <section>
+      <section className='bg-slate-900 '>
         <p>Let me introduce myself</p>
 
 
