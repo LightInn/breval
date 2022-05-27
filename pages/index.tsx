@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, PresentationControls } from '@react-three/drei'
+import { OrbitControls, PerspectiveCamera, PresentationControls, SpotLight } from '@react-three/drei'
 import { Vector3 } from 'three'
-import Me  from '../components/Me'
+import { MeModel, LightSceneModel } from '../components/Me'
 import { Headers } from 'next/dist/server/web/spec-compliant/headers'
 import Head from 'next/head'
 
@@ -144,14 +144,16 @@ export default function Home() {
 
       </nav>
       <div className='flex relative justify-center items-center w-screen h-screen'>
-        <h1 className='z-20 text-3xl text-slate-50 font-semibold tracking-widest uppercase xl:text-8xl' id='title-landing'>
+        <h1 className='z-20 text-3xl text-slate-50 font-semibold tracking-widest uppercase xl:text-8xl'
+            id='title-landing'>
           BRÉVAL LE FlOCH
         </h1>
         <div
           className='flex absolute top-1/2 left-1/2 z-10 justify-center items-center transform -translate-x-1/2 -translate-y-1/2'>
 
 
-          <div className='bg-red-500 bg-opacity-[10%] p-0 m-0 h-[100vh] w-[100vw] max-w-[100vw] overflow-x-hidden clear-both'>
+          <div
+            className='p-0 m-0 h-[100vh] w-[100vw] max-w-[100vw] overflow-x-hidden clear-both'>
             <Canvas>
               <PresentationControls
 
@@ -165,23 +167,16 @@ export default function Home() {
                 azimuth={[-Math.PI / 2, Math.PI / 2]} // Horizontal limits
                 config={{ mass: 1, tension: 50, friction: 26 }} // Spring config
               >
-              <ambientLight />
-              <Suspense fallback={null}>
-                <Me />
-              </Suspense>
+
+
+                <Suspense fallback={null}>
+                  <MeModel scale={5} />
+                  <LightSceneModel scale={5} />
+                </Suspense>
+
               </PresentationControls>
             </Canvas>
 
-
-
-            {/*<Canvas>*/}
-            {/*  < OrbitControls makeDefault position={new Vector3(0, 5, 5)} enableZoom={false} />*/}
-            {/*  <ambientLight />*/}
-            {/*  <pointLight position={[10, 10, 10]} />*/}
-            {/*  <Suspense fallback={null}>*/}
-            {/*    <Me />*/}
-            {/*  </Suspense>*/}
-            {/*</Canvas>*/}
           </div>
         </div>
 
