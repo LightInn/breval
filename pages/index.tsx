@@ -128,15 +128,15 @@ export default function Home() {
 
       <section className='bg-slate-900 h-[100vh] z-2
       flex flex-col justify-center items-center
-      text-sky-50 text-lg'>
+      text-sky-50 text-4xl '>
 
-        <p>Let me introduce myself</p>
+        <p className="m-[150px] "> 	❝ Let me introduce myself <br/>
 
-        <p>I'm a french studend living Nantes, I have a few dreams and I loved computering the moment I touched
-          my first pc at 4yo </p>
+          I'm a french studend living Nantes, I have a few dreams and I loved computering the moment I touched
+          my first pc at 4yo <br/>
 
-        <p>You know, their is a lot of things to learn and understand in the universe, and for me, computering
-          is just like another universe opening to us, with every thig to explore</p>
+          You know, their is a lot of things to learn and understand in the universe, and for me, computering
+          is just like another universe opening to us, with every thig to explore ❞</p>
 
         {/*// Figure here*/}
 

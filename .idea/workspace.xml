@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ea3beb4-a7bf-4985-b943-d4e08211afd4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/Social.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.sync-conflict-20220524-163026-IRAKLXK.lock" beforeDir="false" />
     </list>
     <list id="bbd14061-2eef-4fb5-9c79-26be91d9d2dd" name="Changes by andyq" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +79,7 @@
       <workItem from="1653409384892" duration="510000" />
       <workItem from="1653469498662" duration="1165000" />
       <workItem from="1653470786007" duration="1071000" />
-      <workItem from="1653607795205" duration="11938000" />
+      <workItem from="1653607795205" duration="12603000" />
     </task>
     <servers />
   </component>
