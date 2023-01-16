@@ -1,4 +1,4 @@
-FROM node:14.14.0 as builder
+FROM node:16-bullseye as builder
 
 COPY package.json /tmp/package.json
 RUN cd /tmp && yarn install --ignore-engines
@@ -9,7 +9,6 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 COPY . /usr/src/app
 RUN yarn build
 ENV NODE_ENV production
-CMD ["npm","run","build"]
 ENV PORT 3000
 EXPOSE 3000
 CMD ["npm", "start"]
