@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ea3beb4-a7bf-4985-b943-d4e08211afd4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/captain-definition" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
     </list>
     <list id="bbd14061-2eef-4fb5-9c79-26be91d9d2dd" name="Changes by andyq" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,16 +34,20 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Breval Nouveau/Sync/Projects/WebSite/breval/public",
+    "last_opened_file_path": "/home/lightin/repos/breval",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "C:\\Users\\Breval Nouveau\\Sync\\Projects\\WebSite\\breval\\node_modules\\prettier",
-    "ts.external.directory.path": "C:\\Users\\Breval Nouveau\\Sync\\Projects\\WebSite\\breval\\node_modules\\typescript\\lib"
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "ts.external.directory.path": "C:\\Users\\Breval Nouveau\\Sync\\Projects\\WebSite\\breval\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -80,6 +86,8 @@
       <workItem from="1653469498662" duration="1165000" />
       <workItem from="1653470786007" duration="1071000" />
       <workItem from="1653607795205" duration="12603000" />
+      <workItem from="1673878901650" duration="1253000" />
+      <workItem from="1673880207333" duration="1267000" />
     </task>
     <servers />
   </component>
