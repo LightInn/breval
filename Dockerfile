@@ -9,6 +9,7 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 COPY . /usr/src/app
 RUN yarn build
 ENV NODE_ENV production
+CMD ["npm","run","build"]
 ENV PORT 3000
 EXPOSE 3000
 CMD ["npm", "start"]
