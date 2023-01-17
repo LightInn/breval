@@ -5,6 +5,7 @@ import { MeModel, LightSceneModel } from '../components/Me'
 import Head from 'next/head'
 import { PuffLoader } from 'react-spinners'
 import { SocialIcons } from '../components/Social'
+import 'animate.css/animate.min.css';
 
 
 export default function Home() {
@@ -35,7 +36,7 @@ export default function Home() {
           <img src='/logo.png'
                alt='Logo Bréval Le Floch Signature' />
         </a>
-        <a href='/contact' className='hidden text-sm button-animated smoke font-body xl:block text-white'>
+        <a href='mailto:breval.lefloch@gmail.com' className='hidden text-sm button-animated smoke font-body xl:block text-white'>
           <div><span>C</span><span>O</span><span>N</span><span>T</span><span>A</span><span>C</span><span>T</span></div>
         </a>
       </header>
@@ -44,7 +45,7 @@ export default function Home() {
       <div className='flex relative justify-center items-center w-screen h-screen'>
 
 
-        <h1 className='z-20 text-3xl text-slate-50 font-semibold tracking-widest uppercase xl:text-8xl'
+        <h1 className='z-20 text-3xl text-slate-50 font-semibold tracking-widest uppercase xl:text-8xl animate__fadeInDown animate__delay-1s'
             id='title-landing'>
           BRÉVAL LE FlOCH
         </h1>
@@ -130,15 +131,16 @@ export default function Home() {
       flex flex-col justify-center items-center
       text-sky-50 text-4xl '>
 
-        <p className="m-[150px] "> 	❝ Let me introduce myself <br/>
 
-          I'm a french studend living Nantes, I have a few dreams and I loved computering the moment I touched
-          my first pc at 4yo <br/>
 
-          You know, their is a lot of things to learn and understand in the universe, and for me, computering
-          is just like another universe opening to us, with every thig to explore ❞</p>
+        <h1 className="text-3xl font-medium animate__animated animate__fadeInDown">Hello, my name is Bréval Le Floch</h1>
+        <p className="text-xl m-[150px] animate__animated animate__fadeInUp">
+          and I'm a French student based in Nantes. From a young age, I've been fascinated by the endless possibilities of computers and technology. As I continue to learn and explore this ever-evolving field, I am driven by my passion for discovery and my dreams for the future.
+        </p>
 
-        {/*// Figure here*/}
+
+
+
 
       </section>
 
