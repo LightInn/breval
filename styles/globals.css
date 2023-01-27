@@ -126,48 +126,36 @@
 
 #title-landing {
     color: #fff;
-    text-shadow: -0.0075em 0.0075em 0 #f4f3f4, 0.005em 0.005em 0 #b3b2b7, 0.01em 0.01em 0 #b7b6ba,
-    0.015em 0.015em #bbbabe, 0.02em 0.02em 0 #bfbdc1, 0.025em 0.025em 0 #c3c1c5, 0.03em 0.03em 0 #c6c5c9, 0.035em 0.035em 0 #cac9cc;
-    background: linear-gradient(to right, #24243e, #141E30, #0f0c29);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    position: relative;
-    /*display:none;*/
 }
 
-#title-landing:before,
-#title-landing:after {
-    content: "BRÉVAL LE FLOCH";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    transform: translate(-50%,-50%);
+.loading {
+    animation: loading-animation 2s ease-in;
 }
 
-#title-landing:before {
-    z-index: -1;
-    text-shadow: -0.001em -0.001em 1px rgba(255, 255, 255, .15)
-}
+@keyframes loading-animation {
+    0% {
+        opacity: 0;
+        transform: rotateX(90deg) translateY(-100%);
+    }
+    25% {
+        transform: rotateX(0deg) translateY(0%);
 
-#title-landing:after {
-    z-index: -2;
-    text-shadow: 10px 10px 10px rgba(0, 0, 0, .5), 20px 20px 20px rgba(0, 0, 0, .4), 30px 30px 30px rgba(0, 0, 0, .1);
-    mix-blend-mode: multiply;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 
 .context {
     width: 100%;
     position: absolute;
-    top:50vh;
+    top: 50vh;
 
 }
 
 
-
-.circles{
+.circles {
     position: absolute;
     top: 0;
     left: 0;
@@ -176,7 +164,7 @@
     overflow: hidden;
 }
 
-.circles li{
+.circles li {
     position: absolute;
     display: block;
     list-style: none;
@@ -188,7 +176,7 @@
 
 }
 
-.circles li:nth-child(1){
+.circles li:nth-child(1) {
     left: 25%;
     width: 80px;
     height: 80px;
@@ -196,7 +184,7 @@
 }
 
 
-.circles li:nth-child(2){
+.circles li:nth-child(2) {
     left: 10%;
     width: 20px;
     height: 20px;
@@ -204,14 +192,14 @@
     animation-duration: 12s;
 }
 
-.circles li:nth-child(3){
+.circles li:nth-child(3) {
     left: 70%;
     width: 20px;
     height: 20px;
     animation-delay: 4s;
 }
 
-.circles li:nth-child(4){
+.circles li:nth-child(4) {
     left: 40%;
     width: 60px;
     height: 60px;
@@ -219,28 +207,28 @@
     animation-duration: 18s;
 }
 
-.circles li:nth-child(5){
+.circles li:nth-child(5) {
     left: 65%;
     width: 20px;
     height: 20px;
     animation-delay: 0s;
 }
 
-.circles li:nth-child(6){
+.circles li:nth-child(6) {
     left: 75%;
     width: 110px;
     height: 110px;
     animation-delay: 3s;
 }
 
-.circles li:nth-child(7){
+.circles li:nth-child(7) {
     left: 35%;
     width: 150px;
     height: 150px;
     animation-delay: 7s;
 }
 
-.circles li:nth-child(8){
+.circles li:nth-child(8) {
     left: 50%;
     width: 25px;
     height: 25px;
@@ -248,7 +236,7 @@
     animation-duration: 45s;
 }
 
-.circles li:nth-child(9){
+.circles li:nth-child(9) {
     left: 20%;
     width: 15px;
     height: 15px;
@@ -256,7 +244,7 @@
     animation-duration: 35s;
 }
 
-.circles li:nth-child(10){
+.circles li:nth-child(10) {
     left: 85%;
     width: 150px;
     height: 150px;
@@ -265,16 +253,15 @@
 }
 
 
-
 @keyframes animate {
 
-    0%{
+    0% {
         transform: translateY(0) rotate(0deg);
         opacity: 1;
         border-radius: 0;
     }
 
-    100%{
+    100% {
         transform: translateY(-1000px) rotate(720deg);
         opacity: 0;
         border-radius: 50%;

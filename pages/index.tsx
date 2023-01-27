@@ -5,14 +5,15 @@ import { MeModel, LightSceneModel } from '../components/Me'
 import Head from 'next/head'
 import { PuffLoader } from 'react-spinners'
 import { SocialIcons } from '../components/Social'
-import 'animate.css/animate.min.css';
+import 'animate.css/animate.min.css'
+import { Title } from '../components/title'
 
 
 export default function Home() {
   return (
 
 
-    <div className='font-varela-round bg-slate-800 text-Sky-50'>
+    <div className='font-varela-round bg-slate-800 text-Sky-50 snap-y snap-proximity'>
 
       <Head>
 
@@ -36,7 +37,8 @@ export default function Home() {
           <img src='/logo.png'
                alt='Logo Bréval Le Floch Signature' />
         </a>
-        <a href='mailto:breval.lefloch@gmail.com' className='hidden text-sm button-animated smoke font-body xl:block text-white'>
+        <a href='mailto:breval.lefloch@gmail.com'
+           className='hidden text-sm button-animated smoke font-body xl:block text-white'>
           <div><span>C</span><span>O</span><span>N</span><span>T</span><span>A</span><span>C</span><span>T</span></div>
         </a>
       </header>
@@ -44,12 +46,7 @@ export default function Home() {
 
       <div className='flex relative justify-center items-center w-screen h-screen'>
 
-
-        <h1 className='z-20 text-3xl text-slate-50 font-semibold tracking-widest uppercase xl:text-8xl animate__fadeInDown animate__delay-1s'
-            id='title-landing'>
-          BRÉVAL LE FlOCH
-        </h1>
-
+        <Title />
 
         <div
           className='flex absolute top-1/2 left-1/2 z-10 justify-center items-center transform -translate-x-1/2 -translate-y-1/2'>
@@ -116,7 +113,7 @@ export default function Home() {
       </div>
 
 
-      <section className='bg-slate-900 rounded-t-full h-[30px]
+      <section className='bg-slate-900 rounded-t-full h-[30px] snap-start
       flex justify-center items-center
       drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)] z-1'>
         {/* @ts-ignore */}
@@ -127,19 +124,18 @@ export default function Home() {
       </section>
 
 
-      <section className='bg-slate-900 h-[100vh] z-2
-      flex flex-col justify-center items-center
-      text-sky-50 text-4xl '>
+      <section className='bg-slate-900 h-[100vh] z-20 box-border flex-wrap w-full
+      flex flex-col justify-center items-center snap-start
+      text-sky-50  '>
 
 
-
-        <h1 className="text-3xl font-medium animate__animated animate__fadeInDown">Hello, my name is Bréval Le Floch</h1>
-        <p className="text-xl m-[150px] animate__animated animate__fadeInUp">
-          and I'm a French student based in Nantes. From a young age, I've been fascinated by the endless possibilities of computers and technology. As I continue to learn and explore this ever-evolving field, I am driven by my passion for discovery and my dreams for the future.
+        <h2 className='xl:text-3xl text-xl font-medium animate__animated animate__fadeInDown'>Hello, my name is Bréval Le
+          Floch</h2>
+        <p className='xl:text-xl text-2xs xl:m-[150px] m-8 animate__animated animate__fadeInUp'>
+          and I'm a French student based in Nantes. From a young age, I've been fascinated by the endless possibilities
+          of computers and technology. As I continue to learn and explore this ever-evolving field, I am driven by my
+          passion for discovery and my dreams for the future.
         </p>
-
-
-
 
 
       </section>
