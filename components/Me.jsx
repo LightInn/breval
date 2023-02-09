@@ -1,12 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 
 
 export function MeModel(props) {
   const mesh = useRef(null)
-  const [hovered, setHover] = useState(false)
-  const [active, setActive] = useState(false)
   useFrame((state, delta) => {
     mesh.current.rotation.y += 0.03 * delta
     mesh.current.rotation.x = 0.35
@@ -75,8 +73,6 @@ export function MeModel(props) {
 
 export function LightSceneModel(props) {
   const mesh = useRef(null)
-  const [hovered, setHover] = useState(false)
-  const [active, setActive] = useState(false)
   useFrame((state, delta) => {
 
     mesh.current.rotation.x = 0.5

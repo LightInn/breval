@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^13.1.6",
     "@react-three/drei": "9.53.0",
     "@react-three/fiber": "8.10.0",
     "@types/three": "0.148.0",
