@@ -7,7 +7,6 @@ import {SocialIcons} from '../components/Social'
 import 'animate.css/animate.min.css'
 import {Title} from '../components/title'
 import Image from "next/image";
-import Document from "next/document";
 
 
 export default function Home() {
@@ -17,8 +16,9 @@ export default function Home() {
         <div className='font-varela-round bg-slate-800 text-Sky-50 snap-y snap-proximity'>
 
             <Head>
-                <title>Bréval LE FLOCH | Dév </title>
-
+                <title>Bréval LE FLOCH | Dev </title>
+                <meta
+                    name="Portefolio of Bréval LE FLOCH, Developer specialized in the development of web and mobile applications."/>
 
                 <link rel='preconnect' href='https://fonts.googleapis.com'/>
 
@@ -72,31 +72,28 @@ export default function Home() {
                             </ul>
                         </div>
 
+                        <Suspense fallback={
+                            <div></div>
+                        }>
+                            <Canvas>
+                                <PresentationControls
 
-                        <Canvas>
-                            <PresentationControls
+                                    global={false} // Spin globally or by dragging the model
+                                    cursor={true} // Whether to toggle cursor style on drag
+                                    snap={true} // Snap-back to center (can also be a spring config)
+                                    speed={1} // Speed factor
+                                    zoom={1} // Zoom factor when half the polar-max is reached
+                                    rotation={[0, 0, 0]} // Default rotation
+                                    polar={[-Math.PI / 4, Math.PI / 8]} // Vertical limits
+                                    azimuth={[-Math.PI / 2, Math.PI / 2]} // Horizontal limits
+                                    config={{mass: 1, tension: 100, friction: 8}} // Spring config
+                                >
 
-                                global={false} // Spin globally or by dragging the model
-                                cursor={true} // Whether to toggle cursor style on drag
-                                snap={true} // Snap-back to center (can also be a spring config)
-                                speed={1} // Speed factor
-                                zoom={1} // Zoom factor when half the polar-max is reached
-                                rotation={[0, 0, 0]} // Default rotation
-                                polar={[-Math.PI / 4, Math.PI / 8]} // Vertical limits
-                                azimuth={[-Math.PI / 2, Math.PI / 2]} // Horizontal limits
-                                config={{mass: 1, tension: 100, friction: 8}} // Spring config
-                            >
-
-
-                                <Suspense fallback={
-                                    null
-                                }>
                                     <MeModel scale={5}/>
                                     <LightSceneModel scale={5}/>
-                                </Suspense>
-
-                            </PresentationControls>
-                        </Canvas>
+                                </PresentationControls>
+                            </Canvas>
+                        </Suspense>
 
                     </div>
                 </div>
