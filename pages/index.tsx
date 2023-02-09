@@ -17,8 +17,8 @@ export default function Home() {
 
             <Head>
                 <title>Bréval LE FLOCH | Dev </title>
-                <meta
-                    name="Portefolio of Bréval LE FLOCH, Developer specialized in the development of web and mobile applications."/>
+                <meta name="description"
+                      content="Portefolio of Bréval LE FLOCH, Developer specialized in the development of web and mobile applications."/>
 
                 <link rel='preconnect' href='https://fonts.googleapis.com'/>
 
