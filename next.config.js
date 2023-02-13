@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
-module.exports =  {
+module.exports = {
 
     reactStrictMode: true,
 
     i18n: {
-        locales: ["en"],
-        defaultLocale: "en",
+        locales: ["fr"],
+        defaultLocale: "fr",
     },
 }
 

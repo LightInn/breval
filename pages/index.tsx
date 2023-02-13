@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react'
 import {Canvas} from '@react-three/fiber'
 import {PresentationControls} from '@react-three/drei'
-import {MeModel, LightSceneModel} from '../components/Me'
+import {LightSceneModel, MeModel} from '../components/Me'
 import Head from 'next/head'
 import {SocialIcons} from '../components/Social'
 import 'animate.css/animate.min.css'
@@ -12,13 +12,12 @@ import Image from "next/image";
 export default function Home() {
     return (
 
-
         <div className='font-varela-round bg-slate-800 text-Sky-50 snap-y snap-proximity'>
 
             <Head>
                 <title>Bréval LE FLOCH | Dev </title>
                 <meta name="description"
-                      content="Portefolio of Bréval LE FLOCH, Developer specialized in the development of web and mobile applications."/>
+                      content="Portfolio de Bréval LE FLOCH, un développeur spécialisé dans le développement d'applications web et mobile sur Nantes."/>
 
                 <link rel='preconnect' href='https://fonts.googleapis.com'/>
 
@@ -35,7 +34,7 @@ export default function Home() {
 
                 <a href='/' className='w-8 h-8 xl:w-10 xl:h-10'>
                     <Image src='/logo.png' width={100} height={100}
-                           alt='Logo Bréval Le Floch Signature'/>
+                           alt='Logo signature de Bréval Le Floch'/>
                 </a>
                 <a href='mailto:breval.lefloch@gmail.com'
                    className='hidden text-sm button-animated smoke font-body xl:block text-white'>
@@ -128,17 +127,18 @@ export default function Home() {
       text-sky-50  '>
 
 
-                <h2 className='xl:text-3xl text-xl font-medium animate__animated animate__fadeInDown'>Hello, my name is
+                <h2 className='xl:text-3xl text-xl font-medium animate__animated animate__fadeInDown'>Bonjour, je
+                    m'appelle
                     Bréval Le
                     Floch</h2>
                 <p className='xl:text-xl text-2xs xl:m-[150px] m-8 animate__animated animate__fadeInUp'>
-                    and I'm a French student based in Nantes. From a young age, I've been fascinated by the endless
-                    possibilities
-                    of computers and technology. As I continue to learn and explore this ever-evolving field, I am
-                    driven by my
-                    passion for discovery and my dreams for the future.
+                    Je suis un étudiant français qui habite à Nantes.
+                    Dès mon plus jeune âge, j'ai été fasciné par les possibilités infinies des ordinateurs et des
+                    nouvelles technologies.
+                    Alors que je continue d'apprendre et d'explorer cet univers en constant évolution,
+                    je suis motivé par ma passion de découvrir de nouveaux mondes et leurs nouvelles règles et mes
+                    rêves."
                 </p>
-
 
             </section>
 

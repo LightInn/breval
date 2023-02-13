@@ -50,7 +50,7 @@ export function SocialIcons() {
         </svg>
       </a>
 
-      <a className='text-slate-300 hover:text-slate-50' href='https://github.com/LightIn-death'
+      <a className='text-slate-300 hover:text-slate-50' href='https://github.com/LightInn'
          rel='noopener nofollow noreferrer' target='_blank' aria-label="Github">
         <svg className='w-6 h-6 xl:w-8 xl:h-8' viewBox='0 0 24 24' fill='currentColor'>
           <path
