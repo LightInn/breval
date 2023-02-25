@@ -10,7 +10,7 @@ function classNames(...classes) {
 
 export default function Project({projects}) {
     return (
-        <div className="bg-slate-900">
+        <div className="bg-slate-900 min-h-screen">
 
             <Head>
                 <title>Bréval LE FLOCH | Projets </title>
