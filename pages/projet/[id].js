@@ -84,7 +84,7 @@ export default function ProjectDetail({project}) {
             <Head>
                 <title>Bréval LE FLOCH | Projets </title>
                 <meta name="description"
-                      content="Liste des projets de developpement realisé par Bréval LE FLOCH."/>
+                      content={project.attributes?.title + " : " + project.attributes?.short_description}/>
 
                 <link rel='preconnect' href='https://fonts.googleapis.com'/>
 
