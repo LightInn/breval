@@ -31,8 +31,8 @@ export default function Home() {
 
 
             <header
-                className='fixed top-0 left-0 w-screen h-[20px] xl:h-[40px] z-50 flex flex-row xl:flex-row justify-between items-center px-4 xl:px-20 mt-8 xl:mt-0
-                bg-slate-1000   drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)] z-1 rounded-b-[25px]'>
+                className='fixed top-0 left-0 w-screen h-[40px] xl:h-[40px] z-50 flex flex-row xl:flex-row justify-center xl:justify-between items-center px-4 xl:px-20 xl:mt-0
+                bg-slate-1000   drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)] xl:rounded-b-[25px]'>
 
                 <a href='/'
                    className='w-8 h-8 xl:w-10 xl:h-10 translate-y-2  transition-all duration-100 ease-in-out  hover:scale-150 hover:translate-y-3 '>
@@ -40,7 +40,7 @@ export default function Home() {
                            alt='Logo signature de Bréval Le Floch'/>
                 </a>
 
-                <div className="flex justify-between w-[200px]">
+                <div className="hidden xl:flex justify-between w-[200px] ">
                     <Link href="/projet"
                           className='hidden text-sm button-animated smoke font-body xl:block text-white'>
                         <div>
@@ -140,10 +140,11 @@ export default function Home() {
       text-sky-50  '>
 
 
-                <h2 className='xl:text-3xl text-xl font-medium animate__animated animate__fadeInDown'>Bonjour, je
-                    m'appelle &nbsp;
+                <h2 className='xl:text-3xl text-xl font-medium m-8 animate__animated animate__fadeInDown'>Bonjour, je
+                    m'appelle
                     <span className='text-glow-500'>
-                    Bréval Le
+                        &nbsp;
+                        Bréval Le
                     Floch
                     </span></h2>
                 <p className='xl:text-xl text-2xs xl:m-[150px] m-8 lg:max-w-screen-lg

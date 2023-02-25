@@ -96,16 +96,16 @@ export default function ProjectDetail({project}) {
 
 
             <header
-                className='fixed top-0 left-0 w-screen h-[20px] xl:h-[40px] z-50 flex flex-row xl:flex-row justify-between items-center px-4 xl:px-20 mt-8 xl:mt-0
-                bg-slate-1000   drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)] z-1 rounded-b-[20px]'>
+                className='fixed top-0 left-0 w-screen h-[40px] xl:h-[40px] z-50 flex flex-row xl:flex-row justify-center xl:justify-between items-center px-4 xl:px-20 xl:mt-0
+                bg-slate-1000   drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)] xl:rounded-b-[25px]'>
 
                 <a href='/'
-                   className='w-8 h-8 xl:w-10 xl:h-10  transition-all duration-100 ease-in-out  hover:scale-150 hover:translate-y-2 '>
+                   className='w-8 h-8 xl:w-10 xl:h-10 translate-y-2  transition-all duration-100 ease-in-out  hover:scale-150 hover:translate-y-3 '>
                     <Image src='/logo.png' width={100} height={100}
                            alt='Logo signature de Bréval Le Floch'/>
                 </a>
 
-                <div className="flex justify-between w-[200px]">
+                <div className="hidden xl:flex justify-between w-[200px] " >
                     <Link href="/projet"
                           className='hidden text-sm button-animated smoke font-body xl:block text-white'>
                         <div>
