@@ -14,16 +14,19 @@ export default function ProjectDetail({ project }) {
     <div className='bg-slate-900 text-white min-h-screen'>
 
       <Head>
+
+
         <title>Bréval LE FLOCH | {project.attributes?.title} </title>
+
         <meta name='description'
               content={project.attributes?.title + ' : ' + project.attributes?.short_description} />
-
-        <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link
           rel='canonical'
           href={'https://brev.al/projet/' + project.attributes?.title}
           key='canonical'
         />
+
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
 
         {/*@ts-ignore*/}
         <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin />
@@ -181,9 +184,12 @@ export default function ProjectDetail({ project }) {
 
 export async function getStaticProps({ params }) {
   const { id } = params
+  console.log('id building : ', id)
 
   const res = await fetch(`https://breval-api.lightin.io/api/projets?filters[title][$eq]=${id}&populate=*`)
   const data = await res.json()
+
+  console.log('data : ', data)
 
   return {
     props: {
@@ -195,7 +201,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
 
-  const res = await fetch('http://breval-api.lightin.io/api/projets?fields=title')
+  const res = await fetch('https://breval-api.lightin.io/api/projets?fields=title')
   const data = await res.json()
 
 
@@ -205,8 +211,10 @@ export async function getStaticPaths() {
     }
   ))
 
+  console.log('paths : ', paths)
+
   return {
-    paths: paths,
-    fallback: true
+    paths: [{ params: { id: 'ForMenu' } }],
+    fallback: 'blocking'
   }
 }
