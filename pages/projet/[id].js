@@ -49,7 +49,7 @@ export default function ProjectDetail({ project }) {
           <Link href='/projet'
                 className='hidden text-sm button-animated smoke font-body xl:block text-white'>
             <div>
-              <span>G</span><span>A</span><span>L</span><span>L</span><span>E</span><span>R</span><span>I</span><span>E</span>
+              <span>G</span><span>A</span><span>L</span><span>E</span><span>R</span><span>I</span><span>E</span>
             </div>
           </Link>
           <a href='mailto:breval.lefloch@gmail.com'
