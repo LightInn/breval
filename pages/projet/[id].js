@@ -184,12 +184,9 @@ export default function ProjectDetail({ project }) {
 
 export async function getStaticProps({ params }) {
   const { id } = params
-  console.log('id building : ', id)
 
   const res = await fetch(`https://breval-api.lightin.io/api/projets?filters[title][$eq]=${id}&populate=*`)
   const data = await res.json()
-
-  console.log('data : ', data)
 
   return {
     props: {
@@ -211,10 +208,8 @@ export async function getStaticPaths() {
     }
   ))
 
-  console.log('paths : ', paths)
-
   return {
-    paths: [{ params: { id: 'ForMenu' } }],
+    paths: paths,
     fallback: 'blocking'
   }
 }
