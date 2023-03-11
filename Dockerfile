@@ -1,4 +1,4 @@
-FROM node:16-bullseye as builder
+FROM node:19-bullseye as builder
 
 COPY package.json /tmp/package.json
 RUN cd /tmp && yarn install --ignore-engines --production
