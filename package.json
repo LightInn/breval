@@ -16,7 +16,7 @@
     "react-dom": "18.2.0",
     "react-responsive-carousel": "^3.2.23",
     "react-spinners": "0.13.8",
-    "sharp": "0.31.3",
+    "sharp": "0.32.0",
     "three": "0.150.1"
   },
   "devDependencies": {
