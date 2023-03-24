@@ -34,7 +34,6 @@ export default function Project({ projects }) {
       <header
         className='fixed top-0 left-0 w-screen h-[40px] z-50 flex flex-row xl:flex-row justify-center xl:justify-between items-center px-4 xl:px-20 xl:mt-0
                 bg-slate-1000   drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)] xl:rounded-b-[25px]'>
-
         <a href='/'
            className='w-8 h-8 xl:w-10 xl:h-10 translate-y-2  transition-all duration-100 ease-in-out  hover:scale-150 hover:translate-y-3 '>
           <Image src='/logo.png' width={100} height={100}
