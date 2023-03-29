@@ -8,7 +8,6 @@ import 'animate.css/animate.min.css'
 import { Title } from '../components/title'
 import Image from 'next/image'
 import Link from 'next/link'
-import { responsiveFontSizes } from '@material-ui/core'
 
 
 export default function Home() {
