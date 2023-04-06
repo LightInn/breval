@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@mui/material": "^5.0.0",
-    "@react-three/drei": "9.62.4",
+    "@react-three/drei": "9.64.0",
     "@react-three/fiber": "8.12.0",
     "@types/three": "0.150.1",
     "animate.css": "4.1.1",
