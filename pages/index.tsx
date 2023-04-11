@@ -93,7 +93,9 @@ export default function Home() {
               </div>
             </Parallax>
             <Image src={'/landing.webp'} alt={''} className={'absolute top-0 left-0 ' +
-              'object-cover opacity-50 -z-10 mix-difference bg-slate-900 2xl:hidden block'} fill={true}></Image>
+              'object-cover opacity-50 -z-10 mix-difference bg-slate-900 2xl:hidden block'} fill={true}
+                   loading='eager'
+            />
 
 
           </div>
