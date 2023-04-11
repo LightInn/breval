@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react'
+import { Navbar } from '../components/navbar'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -31,31 +32,7 @@ export default function Project({ projects }) {
       </Head>
 
 
-      <header
-        className='fixed top-0 left-0 w-screen h-[40px] z-50 flex flex-row xl:flex-row justify-center xl:justify-between items-center px-4 xl:px-20 xl:mt-0
-                bg-slate-1000   drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)] xl:rounded-b-[25px]'>
-        <a href='/'
-           className='w-8 h-8 xl:w-10 xl:h-10 translate-y-2  transition-all duration-100 ease-in-out  hover:scale-150 hover:translate-y-3 '>
-          <Image src='/logo.png' width={100} height={100}
-                 alt='Logo signature de Bréval Le Floch' />
-        </a>
-
-        <div className='hidden xl:flex justify-between w-[200px] '>
-          <Link href='/projet'
-                className='hidden text-sm button-animated smoke font-body xl:block text-white'>
-            <div>
-              <span>G</span><span>A</span><span>L</span><span>E</span><span>R</span><span>I</span><span>E</span>
-            </div>
-          </Link>
-          <a href='mailto:breval.lefloch@gmail.com'
-             className='hidden text-sm button-animated smoke font-body xl:block text-white'>
-            <div>
-              <span>C</span><span>O</span><span>N</span><span>T</span><span>A</span><span>C</span><span>T</span>
-            </div>
-          </a>
-        </div>
-
-      </header>
+      <Navbar />
 
 
       <div className='mx-auto max-w-2xl py-24 px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8 '>
