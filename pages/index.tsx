@@ -7,7 +7,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Parallax } from 'react-parallax'
 
-
 export default function Home() {
   return (
 
@@ -88,13 +87,13 @@ export default function Home() {
 
 
             <Parallax blur={{ min: -35, max: 35 }}
-                      bgImage='/landing.png'
+                      bgImage='/landing.webp'
                       bgImageAlt='the cat' strength={100}>
               <div className='h-[100vh] hidden 2xl:block'>
               </div>
             </Parallax>
-            {/*<Image src={'/landing.png'} alt={''} className={'absolute top-0 left-0 ' +*/}
-            {/*  'object-cover opacity-50 -z-10 mix-difference bg-slate-900 '} fill={true}></Image>*/}
+            <Image src={'/landing.webp'} alt={''} className={'absolute top-0 left-0 ' +
+              'object-cover opacity-50 -z-10 mix-difference bg-slate-900 2xl:hidden block'} fill={true}></Image>
 
 
           </div>
