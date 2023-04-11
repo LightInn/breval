@@ -154,7 +154,9 @@ export default function Home() {
       text-sky-50 relative z-10'>
         <div className={'absolute h-full w-full -z-10'}>
           <Image src={'/projets.png'} alt={''} className={'absolute top-0 left-0 ' +
-            'object-cover opacity-50 -z-10 mix-difference bg-slate-900 '} fill={true}></Image>
+            'object-cover opacity-50 -z-10 mix-difference bg-slate-900 '} fill={true}
+                 loading='eager'
+          />
           <div
             className={'absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black via-[#000000] to-transparent mask-image'} />
         </div>
