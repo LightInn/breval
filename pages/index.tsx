@@ -1,13 +1,11 @@
-import React, { Suspense } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { PresentationControls } from '@react-three/drei'
-import { LightSceneModel, MeModel } from '../components/Me'
+import React from 'react'
 import Head from 'next/head'
 import { SocialIcons } from '../components/Social'
 import 'animate.css/animate.min.css'
 import { Title } from '../components/title'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Parallax } from 'react-parallax'
 
 
 export default function Home() {
@@ -88,28 +86,16 @@ export default function Home() {
               </ul>
             </div>
 
-            <Suspense fallback={
-              <div></div>
-            }>
-              <Canvas>
-                <PresentationControls
 
-                  global={false} // Spin globally or by dragging the model
-                  cursor={true} // Whether to toggle cursor style on drag
-                  snap={true} // Snap-back to center (can also be a spring config)
-                  speed={1} // Speed factor
-                  zoom={1} // Zoom factor when half the polar-max is reached
-                  rotation={[0, 0, 0]} // Default rotation
-                  polar={[-Math.PI / 4, Math.PI / 8]} // Vertical limits
-                  azimuth={[-Math.PI / 2, Math.PI / 2]} // Horizontal limits
-                  config={{ mass: 1, tension: 100, friction: 8 }} // Spring config
-                >
+            <Parallax blur={{ min: -35, max: 35 }}
+                      bgImage='/landing.png'
+                      bgImageAlt='the cat' strength={100}>
+              <div className='h-[100vh] hidden 2xl:block'>
+              </div>
+            </Parallax>
+            {/*<Image src={'/landing.png'} alt={''} className={'absolute top-0 left-0 ' +*/}
+            {/*  'object-cover opacity-50 -z-10 mix-difference bg-slate-900 '} fill={true}></Image>*/}
 
-                  <MeModel scale={5} />
-                  <LightSceneModel scale={5} />
-                </PresentationControls>
-              </Canvas>
-            </Suspense>
 
           </div>
         </div>
@@ -166,7 +152,7 @@ export default function Home() {
 
       <section className=' h-[100vh] z-20 box-border flex-wrap w-full
       flex flex-col justify-center items-start snap-start
-      text-sky-50 relative bg-slate-900 z-10'>
+      text-sky-50 relative z-10'>
         <div className={'absolute h-full w-full -z-10'}>
           <Image src={'/projets.png'} alt={''} className={'absolute top-0 left-0 ' +
             'object-cover opacity-50 -z-10 mix-difference bg-slate-900 '} fill={true}></Image>
@@ -181,13 +167,14 @@ export default function Home() {
         <Link
           type='button'
           className='inline-flex items-center mx-12 lg:mx-80 my-12 px-6 py-3 border border-transparent text-black font-medium
-                    rounded-full shadow-sm text-white bg-glow-500 hover:bg-glow-600 focus:outline-none focus:ring-2
+                    rounded-full shadow-sm text-black bg-glow-500 hover:bg-glow-600 focus:outline-none focus:ring-2
                     focus:ring-offset-2 focus:ring-indigo-500'
           href={'/projet'}>
           Mes projets
         </Link>
 
       </section>
+
 
     </div>
 
