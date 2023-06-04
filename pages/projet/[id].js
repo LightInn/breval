@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Navbar } from '../../components/navbar'
+import ImageWithFallback from '../../components/ImageWithFallback'
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
@@ -94,15 +95,18 @@ export default function ProjectDetail({ project }) {
 							<h2 className="sr-only">Images</h2>
 							<div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
 								{project.attributes?.media?.data?.map((image, idx) => (
-									<img
+									<ImageWithFallback
 										key={image.id}
 										src={'https://breval-api.lightin.io' + image.attributes.url}
+										fallbackSrc="/projets.png"
+										width={image.attributes.width}
+										height={image.attributes.height}
 										alt={image.attributes.name}
 										className={classNames(
 											idx === 0
 												? 'lg:col-span-2 lg:row-span-2'
 												: 'hidden lg:block',
-											'rounded-lg'
+											'w-full rounded-lg'
 										)}
 									/>
 								))}
@@ -129,7 +133,7 @@ export default function ProjectDetail({ project }) {
 								</h2>
 
 								<div
-									className="prose prose-sm mt-4 text-gray-50"
+									className="prose prose-sm text-md mt-4 text-gray-100"
 									dangerouslySetInnerHTML={{
 										__html: project.attributes?.description,
 									}}
@@ -141,19 +145,21 @@ export default function ProjectDetail({ project }) {
 									{/* Policies */}
 
 									<h2 id="policies-heading" className="text-gray-400">
-										Autres membres de l'équipe du projet :
+										{`
+											Autres membres de l'équipe du projet :
+										`}
 									</h2>
 
 									<dl className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
 										{project.attributes?.creators?.map((creator, idx) => (
-											<a
+											<Link
 												key={idx}
 												href={'https://' + creator.site}
-												className="transition-100 rounded-lg border border-glow-600 bg-gray-900 p-6 text-center hover:bg-glow-600 hover:text-black"
+												className="transition-100 rounded-lg border border-glow-600 bg-gray-900 p-6 text-center hover:bg-gray-800 hover:text-black"
 											>
 												<dt>
 													<div
-														className="mx-auto h-6 w-6 flex-shrink-0 text-gray-400"
+														className="mx-auto text-gray-400"
 														aria-hidden="true"
 													/>
 													<span className="mt-4 text-sm font-medium">
@@ -163,7 +169,7 @@ export default function ProjectDetail({ project }) {
 												<dd className="mt-1 text-sm text-gray-500">
 													{creator.site}
 												</dd>
-											</a>
+											</Link>
 										))}
 									</dl>
 								</section>
