@@ -5,265 +5,291 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 * {
-  box-sizing: border-box;
-  font-family: 'Varela Round', sans-serif;
-  transition: opacity, z-index, color ease-in-out 0.3s;
+	box-sizing: border-box;
+	font-family: 'Varela Round', sans-serif;
+	transition: opacity, z-index, color ease-in-out 0.3s;
+}
+
+html,
+body {
+	max-width: 100vw;
+	overflow-x: hidden;
 }
 
 .button-animated {
-  --duration: 0.5s;
-  --move-hover: -4px;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transform: translateY(var(--y));
-  transition: transform var(--duration) ease, box-shadow var(--duration) ease;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: none;
+	--duration: 0.5s;
+	--move-hover: -4px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
+	transform: translateY(var(--y));
+	transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-appearance: none;
 }
 
 .button-animated div {
-  display: flex;
+	display: flex;
 }
 
 .button-animated div span {
-  display: block;
-  backface-visibility: hidden;
-  font-style: normal;
+	display: block;
+	backface-visibility: hidden;
+	font-style: normal;
 }
 
 .button-animated div span:nth-child(1) {
-  --d: 0.05s;
+	--d: 0.05s;
 }
 
 .button-animated div span:nth-child(2) {
-  --d: 0.1s;
+	--d: 0.1s;
 }
 
 .button-animated div span:nth-child(3) {
-  --d: 0.15s;
+	--d: 0.15s;
 }
 
 .button-animated div span:nth-child(4) {
-  --d: 0.2s;
+	--d: 0.2s;
 }
 
 .button-animated div span:nth-child(5) {
-  --d: 0.25s;
+	--d: 0.25s;
 }
 
 .button-animated div span:nth-child(6) {
-  --d: 0.3s;
+	--d: 0.3s;
 }
 
 .button-animated div span:nth-child(7) {
-  --d: 0.35s;
+	--d: 0.35s;
 }
 
 .button-animated div span:nth-child(8) {
-  --d: 0.4s;
+	--d: 0.4s;
 }
 
 .button-animated div span:nth-child(9) {
-  --d: 0.45s;
+	--d: 0.45s;
 }
 
 .button-animated div span:nth-child(10) {
-  --d: 0.5s;
+	--d: 0.5s;
 }
 
 .button-animated div span:nth-child(11) {
-  --d: 0.55s;
+	--d: 0.55s;
 }
 
 .button-animated:hover {
-  --y: var(--move-hover);
-  --move: -4px;
-  --shadow-active: 0 3px 1px rgba(0, 0, 0, 0.2);
+	--y: var(--move-hover);
+	--move: -4px;
+	--shadow-active: 0 3px 1px rgba(0, 0, 0, 0.2);
 }
 
 .button-animated:hover span {
-  animation: move var(--duration) linear var(--d);
+	animation: move var(--duration) linear var(--d);
 }
 
 .button-animated.smoke {
-  --move: 12px;
-  --move-y: -8px;
-  --blur: 4px;
+	--move: 12px;
+	--move-y: -8px;
+	--blur: 4px;
 }
 
 .button-animated.smoke:hover span {
-  --duration: 1s;
-  animation: smoke var(--duration) linear var(--d);
+	--duration: 1s;
+	animation: smoke var(--duration) linear var(--d);
 }
 
 @keyframes move {
-  40% {
-    transform: translateY(var(--move));
-    text-shadow: var(--shadow-active);
-  }
+	40% {
+		transform: translateY(var(--move));
+		text-shadow: var(--shadow-active);
+	}
 }
 
 @keyframes smoke {
-  45%,
-  55% {
-    filter: blur(var(--blur));
-  }
-  50%,
-  50.1% {
-    opacity: 0;
-  }
-  25%,
-  75% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(var(--move)) translateY(var(--move-y));
-  }
-  50.1% {
-    transform: translateX(calc(var(--move) * -1));
-  }
+	45%,
+	55% {
+		filter: blur(var(--blur));
+	}
+	50%,
+	50.1% {
+		opacity: 0;
+	}
+	25%,
+	75% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(var(--move)) translateY(var(--move-y));
+	}
+	50.1% {
+		transform: translateX(calc(var(--move) * -1));
+	}
 }
 
 #title-landing {
-  color: #fff;
+	color: #fff;
 }
 
 .loading {
-  animation: loading-animation 2s ease-in;
+	animation: loading-animation 2s ease-in;
 }
 
 @keyframes loading-animation {
-  0% {
-    opacity: 0;
-    transform: rotateX(90deg) translateY(-100%);
-  }
-  25% {
-    transform: rotateX(0deg) translateY(0%);
-  }
-  100% {
-    opacity: 1;
-  }
+	0% {
+		opacity: 0;
+		transform: rotateX(90deg) translateY(-100%);
+	}
+	25% {
+		transform: rotateX(0deg) translateY(0%);
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 .context {
-  width: 100%;
-  position: absolute;
-  top: 50vh;
+	width: 100%;
+	position: absolute;
+	top: 50vh;
 }
 
 .circles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 
 .circles li {
-  position: absolute;
-  display: block;
-  list-style: none;
-  width: 20px;
-  height: 20px;
-  background: rgba(29, 35, 22, 0.2);
-  animation: animate 25s linear infinite;
-  bottom: -150px;
+	position: absolute;
+	display: block;
+	list-style: none;
+	width: 20px;
+	height: 20px;
+	background: rgba(29, 35, 22, 0.2);
+	animation: animate 25s linear infinite;
+	bottom: -150px;
 }
 
 .circles li:nth-child(1) {
-  left: 25%;
-  width: 80px;
-  height: 80px;
-  animation-delay: 0s;
+	left: 25%;
+	width: 80px;
+	height: 80px;
+	animation-delay: 0s;
 }
 
 .circles li:nth-child(2) {
-  left: 10%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 2s;
-  animation-duration: 12s;
+	left: 10%;
+	width: 20px;
+	height: 20px;
+	animation-delay: 2s;
+	animation-duration: 12s;
 }
 
 .circles li:nth-child(3) {
-  left: 70%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 4s;
+	left: 70%;
+	width: 20px;
+	height: 20px;
+	animation-delay: 4s;
 }
 
 .circles li:nth-child(4) {
-  left: 40%;
-  width: 60px;
-  height: 60px;
-  animation-delay: 0s;
-  animation-duration: 18s;
+	left: 40%;
+	width: 60px;
+	height: 60px;
+	animation-delay: 0s;
+	animation-duration: 18s;
 }
 
 .circles li:nth-child(5) {
-  left: 65%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 0s;
+	left: 65%;
+	width: 20px;
+	height: 20px;
+	animation-delay: 0s;
 }
 
 .circles li:nth-child(6) {
-  left: 75%;
-  width: 110px;
-  height: 110px;
-  animation-delay: 3s;
+	left: 75%;
+	width: 110px;
+	height: 110px;
+	animation-delay: 3s;
 }
 
 .circles li:nth-child(7) {
-  left: 35%;
-  width: 150px;
-  height: 150px;
-  animation-delay: 7s;
+	left: 35%;
+	width: 150px;
+	height: 150px;
+	animation-delay: 7s;
 }
 
 .circles li:nth-child(8) {
-  left: 50%;
-  width: 25px;
-  height: 25px;
-  animation-delay: 15s;
-  animation-duration: 45s;
+	left: 50%;
+	width: 25px;
+	height: 25px;
+	animation-delay: 15s;
+	animation-duration: 45s;
 }
 
 .circles li:nth-child(9) {
-  left: 20%;
-  width: 15px;
-  height: 15px;
-  animation-delay: 2s;
-  animation-duration: 35s;
+	left: 20%;
+	width: 15px;
+	height: 15px;
+	animation-delay: 2s;
+	animation-duration: 35s;
 }
 
 .circles li:nth-child(10) {
-  left: 85%;
-  width: 150px;
-  height: 150px;
-  animation-delay: 0s;
-  animation-duration: 11s;
+	left: 85%;
+	width: 150px;
+	height: 150px;
+	animation-delay: 0s;
+	animation-duration: 11s;
 }
 
 @keyframes animate {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-    border-radius: 0;
-  }
+	0% {
+		transform: translateY(0) rotate(0deg);
+		opacity: 1;
+		border-radius: 0;
+	}
 
-  100% {
-    transform: translateY(-1000px) rotate(720deg);
-    opacity: 0;
-    border-radius: 50%;
-  }
+	100% {
+		transform: translateY(-1000px) rotate(720deg);
+		opacity: 0;
+		border-radius: 50%;
+	}
 }
 
 /* Mask image */
 .mask-image {
-  /*-webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));*/
-  mask-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 01));
+	/*-webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));*/
+	mask-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 01));
+}
+
+/* Mask image */
+.mask-image-bottom {
+	/*-webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));*/
+	mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
+
+.bg-custom {
+	background: #232526; /* fallback for old browsers */
+	background: -webkit-linear-gradient(
+		to top,
+		#414345,
+		#232526
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to top,
+		#414345,
+		#232526
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
