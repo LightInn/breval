@@ -31,7 +31,7 @@ export default function Home() {
 
       <Navbar />
 
-      <div className="relative flex h-screen w-screen items-center justify-center">
+      <div className="relative flex h-screen w-screen items-center justify-center z-20">
         <Title />
 
         <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center">
@@ -82,9 +82,9 @@ export default function Home() {
       </div>
 
       <section
-        className="z-1  flex h-[30px]
+        className="flex h-[30px] relative
       snap-start items-center justify-center
-      rounded-t-full bg-slate-900 drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)]"
+      rounded-t-full bg-slate-900 drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)] transform translate-y-[-30px] z-20"
       >
         {/* @ts-ignore */}
         <hr className="w-[50px]" />
