@@ -81,7 +81,8 @@ export default function Home() {
 			<section
 				className="relative z-20 flex
       h-[30px] translate-y-[-25px] transform
-      snap-start items-center justify-center rounded-t-full bg-slate-900 drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)]"
+      snap-start items-center justify-center
+      rounded-t-full bg-slate-900 drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)]"
 			>
 				{/* @ts-ignore */}
 				<hr className="w-[50px]" />
@@ -89,9 +90,9 @@ export default function Home() {
 				{/*// Figure here*/}
 			</section>
 			<section
-				className="relative z-30 box-border flex h-[100vh] w-full
-			-translate-y-[30px] transform flex-col flex-wrap items-center
-			justify-center bg-slate-900 text-sky-50"
+				className="relative z-30 box-border flex min-h-[100vh] w-full -translate-y-[30px]
+			transform flex-col flex-wrap items-center justify-center
+			bg-slate-900 px-4 py-20 text-sky-50 2xl:px-0"
 			>
 				<div className={'mx-auto h-full max-w-7xl'}>
 					<div
