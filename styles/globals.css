@@ -7,7 +7,10 @@
 * {
 	box-sizing: border-box;
 	font-family: 'Varela Round', sans-serif;
-	transition: opacity, z-index, color ease-in-out 0.3s;
+	transition:
+		opacity,
+		z-index,
+		color ease-in-out 0.3s;
 }
 
 html,
@@ -24,7 +27,9 @@ body {
 	cursor: pointer;
 	text-decoration: none;
 	transform: translateY(var(--y));
-	transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+	transition:
+		transform var(--duration) ease,
+		box-shadow var(--duration) ease;
 	-webkit-tap-highlight-color: transparent;
 	-webkit-appearance: none;
 }

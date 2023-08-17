@@ -101,9 +101,7 @@ export default function Project({ projects }) {
 							>
 								<div className="overflow-hidden rounded-lg">
 									<ImageWithFallback
-										src={
-											project.attributes.media.data[0]?.attributes.url
-										}
+										src={project.attributes.media.data[0]?.attributes.url}
 										fallbackSrc="/projets.png"
 										alt={project.attributes.media.data[0]?.attributes.name}
 										className="w-full object-cover object-center"
