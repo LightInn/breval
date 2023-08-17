@@ -97,7 +97,7 @@ export default function ProjectDetail({ project }) {
 								{project.attributes?.media?.data?.map((image, idx) => (
 									<ImageWithFallback
 										key={image.id}
-										src={'https://breval-api.lightin.io' + image.attributes.url}
+										src={ image.attributes.url}
 										fallbackSrc="/projets.png"
 										width={image.attributes.width}
 										height={image.attributes.height}

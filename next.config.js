@@ -1,20 +1,28 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-	reactStrictMode: true,
-	images: {
-		remotePatterns: [
+    reactStrictMode: true,
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '**.lightin.io'
+            },
 			{
 				protocol: 'https',
-				hostname: '**.lightin.io',
+				hostname: '**.andy-cinquin.fr'
 			},
 			{
-				protocol: 'http',
-				hostname: '**.lightin.io',
+				protocol: 'https',
+				hostname: '**.brev.al'
 			},
-		],
-	},
-	i18n: {
-		locales: ['fr'],
-		defaultLocale: 'fr',
-	},
+            {
+                protocol: 'http',
+                hostname: '**.lightin.io, **.andy-cinquin.fr, **.brev.al'
+            },
+        ],
+    },
+    i18n: {
+        locales: ['fr'],
+        defaultLocale: 'fr',
+    },
 }
