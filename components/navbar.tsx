@@ -20,8 +20,8 @@ export function Navbar() {
 	return (
 		<header
 			className={
-				'fixed left-0 top-0 z-50 flex h-[80px] w-screen flex-row items-center justify-center bg-slate-1000 px-4 transition-all xl:mt-0 xl:h-[60px] xl:flex-row  xl:justify-between xl:rounded-b-[25px] xl:px-20  ' +
-				(showTransparentBackground ? '2xl:bg-slate-1000/0' : '')
+				'fixed left-0 top-0 z-50 flex h-[80px] w-screen flex-row items-center justify-center bg-slate-200 px-4 transition-all xl:mt-0 xl:h-[60px] xl:flex-row  xl:justify-between xl:rounded-b-[25px] xl:px-20  ' +
+				(showTransparentBackground ? '2xl:bg-green-500/0' : '')
 			}
 		>
 			{/*drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)]*/}
@@ -40,7 +40,7 @@ export function Navbar() {
 			<div className="hidden w-[200px] justify-between xl:flex ">
 				<Link
 					href="/projet"
-					className="button-animated smoke hidden font-body text-sm text-white xl:block"
+					className="button-animated smoke hidden font-body text-sm text-slate-800 xl:block"
 				>
 					<div>
 						<span>G</span>
@@ -54,7 +54,7 @@ export function Navbar() {
 				</Link>
 				<a
 					href="mailto:breval.lefloch@gmail.com"
-					className="button-animated smoke hidden font-body text-sm text-white xl:block"
+					className="button-animated smoke hidden font-body text-sm text-slate-800 xl:block"
 				>
 					<div>
 						<span>C</span>

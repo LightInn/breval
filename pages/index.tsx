@@ -82,17 +82,17 @@ export default function Home() {
 				className="relative z-20 flex
       h-[30px] translate-y-[-25px] transform
       snap-start items-center justify-center
-      rounded-t-full bg-slate-900 drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)]"
+      rounded-t-full bg-white drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)]"
 			>
 				{/* @ts-ignore */}
-				<hr className="w-[50px]" />
+				<hr className="w-[50px] border-slate-800" />
 
 				{/*// Figure here*/}
 			</section>
 			<section
 				className="relative z-30 box-border flex min-h-[100vh] w-full -translate-y-[30px]
 			transform flex-col flex-wrap items-center justify-center
-			bg-slate-900 px-4 py-20 text-sky-50 2xl:px-0"
+			bg-white px-4 py-20 text-sky-900 2xl:px-0"
 			>
 				<div className={'mx-auto h-full max-w-7xl'}>
 					<div
@@ -121,11 +121,11 @@ export default function Home() {
 							<div className="flex h-full flex-col items-start justify-center lg:order-first lg:row-span-2">
 								<h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
 									{`Bonjour, je m'appelle `}
-									<span className="text-glow-500">
+									<span className="text-glow-600">
 										Bréval&nbsp;Le&nbsp;Floch
 									</span>
 								</h1>
-								<div className="mt-6 space-y-7 text-base text-slate-200">
+								<div className="mt-6 space-y-7 text-base text-slate-900">
 									<p>
 										{`
 											→ CTO de la start-up ForMenu, 
