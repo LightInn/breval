@@ -13,8 +13,6 @@
 		"next": "13.5.2",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
-		"react-parallax": "3.5.1",
-		"react-responsive-carousel": "3.2.23",
 		"sharp": "0.32.6"
 	},
 	"devDependencies": {

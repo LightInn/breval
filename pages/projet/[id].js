@@ -1,8 +1,6 @@
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import Image from 'next/image'
 import { Navbar } from '../../components/navbar'
 import ImageWithFallback from '../../components/ImageWithFallback'
 
@@ -42,7 +40,7 @@ export default function ProjectDetail({ project }) {
 
 			<Navbar />
 
-			<div className="pb-16 pt-6 sm:pb-24 ">
+			<div className="pb-16 pt-12 sm:pb-24 ">
 				<nav
 					aria-label="Breadcrumb"
 					className="mx-auto my-8 max-w-7xl px-4 sm:px-6 lg:px-8"
