@@ -12,7 +12,7 @@ export function Title() {
 
 	return (
 		<h1
-			className={`glitch z-20 text-3xl font-semibold uppercase tracking-widest text-slate-50 xl:text-8xl`}
+			className={`z-20 text-3xl font-semibold uppercase tracking-widest text-slate-50 xl:text-8xl`}
 			id="title-landing"
 			ref={titleRef}
 			data-text="BRÉVAL LE FlOCH"
