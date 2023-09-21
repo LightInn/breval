@@ -33,12 +33,12 @@ export function Presentation() {
 							</div>
 						</div>
 						<div className="flex h-full flex-col items-start justify-center lg:order-first lg:row-span-2">
-							<h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
+							<h3 className="text-4xl font-bold tracking-tight lg:text-5xl">
 								{`Bonjour, je m'appelle `}
 								<span className="text-green-600">
 									Bréval&nbsp;Le&nbsp;Floch
 								</span>
-							</h1>
+							</h3>
 							<div className="mt-6 space-y-7 text-base text-slate-300">
 								<p>
 									{`
