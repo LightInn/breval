@@ -6,7 +6,7 @@ export function Presentation() {
 		<section
 			className="relative z-30 box-border flex min-h-[100vh] w-full -translate-y-[25px]
 			transform flex-col flex-wrap items-center justify-center
-			bg-slate-900 px-4 text-sky-900 2xl:px-0"
+			bg-slate-900 px-4 2xl:px-0"
 		>
 			<div className={'mx-auto h-full max-w-7xl'}>
 				<div
@@ -33,7 +33,7 @@ export function Presentation() {
 							</div>
 						</div>
 						<div className="flex h-full flex-col items-start justify-center lg:order-first lg:row-span-2">
-							<h3 className="text-4xl font-bold tracking-tight lg:text-5xl">
+							<h3 className="text-4xl font-bold tracking-tight text-slate-200 lg:text-5xl">
 								{`Bonjour, je m'appelle `}
 								<span className="text-green-600">
 									Bréval&nbsp;Le&nbsp;Floch
