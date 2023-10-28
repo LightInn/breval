@@ -29,7 +29,7 @@ export function Navbar() {
 			{/* pill */}
 			<div
 				className={`md:w-max-[500px] flex h-[60px] w-[500px] flex-row items-center justify-center rounded-full
-                    bg-slate-300 px-20 opacity-90 drop-shadow-[0px_6px_23px_-2px_rgba(0,0,0,0.9)]
+                    bg-glow-500/90 px-20 opacity-90 drop-shadow-[0px_6px_23px_-2px_rgba(0,0,0,0.9)]
                     transition-all hover:opacity-100
                     ${
 											showTransparentBackground

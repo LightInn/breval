@@ -46,7 +46,7 @@ export default function ProjectDetail({ project }) {
 			<div className="pb-16 pt-12 sm:pb-24 ">
 				<nav
 					aria-label="Breadcrumb"
-					className="mx-auto my-8 max-w-7xl px-4 sm:px-6 lg:px-8"
+					className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"
 				>
 					<ol role="list" className="flex items-center space-x-4">
 						<li>

@@ -73,11 +73,10 @@ export default function Project({ projects }) {
 							{projects.map((project, projectIdx) => (
 								<Link
 									key={project.attributes.title}
-									className="relative flex h-full w-full flex-col
-                            overflow-hidden rounded-lg rounded-md border border-2 border-gray-100
-                            border-slate-1000/75 bg-gray-600 bg-opacity-30
-
-                            bg-clip-padding p-8 shadow-2xl backdrop-blur-xl backdrop-filter transition duration-150 ease-in-out hover:border-glow-600 hover:shadow-lg
+									className="relative flex h-full min-h-[500px] w-full
+                            flex-col overflow-hidden rounded-lg rounded-md border border-2
+                            border-gray-100 border-slate-1000/75 bg-gray-600 bg-opacity-30
+                            bg-clip-padding p-8 shadow-2xl backdrop-blur-xl backdrop-filter transition duration-150 ease-in-out hover:border-glow-600
 
 
                             "
@@ -90,34 +89,26 @@ export default function Project({ projects }) {
 											(projectIdx % 2 === 0
 												? '-bottom-20 -left-20 rotate-12'
 												: '-right-20 -rotate-12') +
-											' absolute z-10 transform opacity-10 invert'
+											' absolute z-10 transform opacity-10 invert '
 										}
 										width={300}
 										height={300}
 									/>
 
-									<div
-										className={
-											'flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8'
-										}
-									>
+									<div className={'lg:col-span-7 xl:col-span-8'}>
 										<div className="overflow-hidden rounded-lg">
 											<ImageWithFallback
 												src={project.attributes.media.data[0]?.attributes.url}
 												fallbackSrc="/projets.png"
 												alt={project.attributes.media.data[0]?.attributes.name}
-												className="w-full object-cover object-center"
+												className="aspect-[16/10] w-full object-cover object-center"
 												width={500}
-												height={500}
+												height={250}
 											/>
 										</div>
 									</div>
 
-									<div
-										className={
-											'z-20 mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-4'
-										}
-									>
+									<div className={'flex flex-col justify-start'}>
 										<h3 className="text-lg font-medium text-gray-50">
 											{' '}
 											{project.attributes.title}
@@ -127,7 +118,7 @@ export default function Project({ projects }) {
 											{project.attributes.short_description}
 										</p>
 										<div
-											className="my-12 inline-flex items-center rounded-full border border-transparent bg-glow-500 px-3.5 py-2 text-sm font-medium leading-4
+											className="inline-flex items-center rounded-full border border-transparent bg-glow-500 p-12 px-3.5 py-2 text-sm font-medium leading-4
                                      text-black shadow-sm hover:bg-glow-600 focus:bg-glow-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
 										>
 											En savoir plus

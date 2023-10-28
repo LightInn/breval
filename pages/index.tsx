@@ -61,19 +61,26 @@ export default function Home() {
 					/>
 				</div>
 
-				<h2 className="animate__animated animate__fadeInDown z-10 mx-12 text-xl font-medium lg:mx-80 xl:text-3xl">
-					{' '}
-					Projects Gallery
-				</h2>
-				<Link
-					type="button"
-					className="mx-12 my-12 inline-flex items-center rounded-full border border-transparent bg-glow-500 px-6 py-3 font-medium
-                    text-black shadow-sm hover:bg-glow-600 focus:outline-none focus:ring-2 focus:ring-indigo-500
-                    focus:ring-offset-2 lg:mx-80"
-					href={'/projet'}
+				<div
+					className={
+						'flex w-screen flex-col items-center justify-center gap-4 md:items-start lg:px-80'
+					}
 				>
-					My projects
-				</Link>
+					<h2 className="z-10 text-xl font-medium  xl:text-3xl">
+						Projects Gallery
+					</h2>
+					<div>
+						<Link
+							type="button"
+							className="inline-flex items-center rounded-full border border-transparent bg-glow-500 px-3 py-3  font-medium
+                    text-black shadow-sm hover:bg-glow-600 focus:outline-none focus:ring-2 focus:ring-indigo-500
+                    focus:ring-offset-2"
+							href={'/projet'}
+						>
+							My projects
+						</Link>
+					</div>
+				</div>
 			</section>
 		</div>
 	)
