@@ -108,7 +108,7 @@ export default function Project({ projects }) {
 										</div>
 									</div>
 
-									<div className={'flex flex-col justify-start'}>
+									<div className={'flex flex-col justify-start gap-4 py-4'}>
 										<h3 className="text-lg font-medium text-gray-50">
 											{' '}
 											{project.attributes.title}
@@ -118,7 +118,7 @@ export default function Project({ projects }) {
 											{project.attributes.short_description}
 										</p>
 										<div
-											className="inline-flex items-center rounded-full border border-transparent bg-glow-500 p-12 px-3.5 py-2 text-sm font-medium leading-4
+											className=" w-1/2 rounded-full border border-transparent bg-glow-500 px-8 py-2 text-sm font-medium leading-4
                                      text-black shadow-sm hover:bg-glow-600 focus:bg-glow-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
 										>
 											En savoir plus
