@@ -16,8 +16,8 @@ module.exports = {
 					1000: '#000101',
 				},
 				glow: {
-					500: '#93ffbb',
-					600: '#66ff9e',
+					500: '#ffc6d3',
+					600: '#ff99b1',
 				},
 			},
 			brightness: {

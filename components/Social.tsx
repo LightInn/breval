@@ -32,7 +32,7 @@ export function SocialIcons() {
 			{/*</a>*/}
 
 			<a
-				className="text-slate-300 hover:text-slate-50"
+				className="animated-image text-slate-300 hover:text-slate-50"
 				href="https://www.linkedin.com/in/breval-lefloch/"
 				rel="noopener nofollow noreferrer"
 				target="_blank"
@@ -50,7 +50,7 @@ export function SocialIcons() {
 			</a>
 
 			<a
-				className="text-slate-300 hover:text-slate-50"
+				className="animated-image-bg text-slate-300 hover:text-slate-50"
 				href="https://github.com/LightInn"
 				rel="noopener nofollow noreferrer"
 				target="_blank"

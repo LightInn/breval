@@ -64,10 +64,10 @@ export function Navbar() {
 						<span>G</span>
 						<span>A</span>
 						<span>L</span>
+						<span>L</span>
 						<span>E</span>
 						<span>R</span>
-						<span>I</span>
-						<span>E</span>
+						<span>Y</span>
 					</div>
 				</Link>
 				<a
