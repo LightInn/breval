@@ -1,8 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
+import { remark } from 'remark'
+import html from 'remark-html'
 import Head from 'next/head'
 import { Navbar } from '../../components/navbar'
 import ImageWithFallback from '../../components/ImageWithFallback'
+import { Layout } from '../../components/Layout'
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
@@ -130,12 +133,9 @@ export default function ProjectDetail({ project }) {
 									Description
 								</h2>
 
-								<div
-									className="prose prose-sm text-md mt-4 text-gray-100"
-									dangerouslySetInnerHTML={{
-										__html: project.attributes?.description,
-									}}
-								/>
+								<div className="prose prose-sm text-md mt-4 text-gray-100">
+									<Layout value={project.attributes?.description.toString()} />
+								</div>
 							</div>
 
 							{project.attributes?.creators && (
@@ -180,22 +180,6 @@ export default function ProjectDetail({ project }) {
 	)
 }
 
-export async function getStaticProps({ params }) {
-	const { id } = params
-
-	const res = await fetch(
-		`https://breval-api.lightin.io/api/projets?filters[title][$eq]=${id}&populate=*`
-	)
-	const data = await res.json()
-
-	return {
-		props: {
-			project: data.data[0],
-		},
-		revalidate: 3600,
-	}
-}
-
 export async function getStaticPaths() {
 	const res = await fetch(
 		'https://breval-api.lightin.io/api/projets?fields=title'
@@ -209,5 +193,44 @@ export async function getStaticPaths() {
 	return {
 		paths: paths,
 		fallback: 'blocking',
+	}
+}
+
+export async function getStaticProps({ params }) {
+	const { id } = params
+
+	const res = await fetch(
+		`https://breval-api.lightin.io/api/projets?filters[title][$eq]=${id}&populate=*`
+	)
+	const data = await res.json()
+
+	if (!data) {
+		return {
+			props: { hasError: true },
+		}
+	}
+
+	// Convert Markdown to HTML
+	const processedContent = await remark()
+		.use(html)
+		.process(data.attributes?.description)
+
+	// replace the img by Image from next
+
+	const newArticleData = {
+		...data,
+		attributes: {
+			...data.attributes,
+			content: processedContent.toString(),
+		},
+	}
+
+	console.log(newArticleData.data[0])
+
+	return {
+		props: {
+			project: newArticleData.data[0],
+		},
+		revalidate: 3600,
 	}
 }
