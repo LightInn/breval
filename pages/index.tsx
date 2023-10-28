@@ -51,12 +51,12 @@ export default function Home() {
 					/>
 					<div
 						className={
-							'mask-image absolute left-0 top-0 h-full w-full bg-gradient-to-r from-[#000101] via-[#000101] to-transparent'
+							'mask-image absolute left-0 top-0 h-full w-full bg-gradient-to-r from-[#000101] via-transparent to-transparent'
 						}
 					/>
 					<div
 						className={
-							'mask-image-bottom absolute left-0 top-0 h-full w-full bg-gradient-to-t from-[#000101] via-[#000101] to-transparent'
+							'mask-image-bottom absolute left-0 top-0 h-full w-full bg-gradient-to-t from-[#000101] via-transparent to-transparent'
 						}
 					/>
 				</div>
