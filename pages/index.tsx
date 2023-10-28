@@ -63,7 +63,7 @@ export default function Home() {
 
 				<h2 className="animate__animated animate__fadeInDown z-10 mx-12 text-xl font-medium lg:mx-80 xl:text-3xl">
 					{' '}
-					Galerie de projets
+					Projects Gallery
 				</h2>
 				<Link
 					type="button"
@@ -72,7 +72,7 @@ export default function Home() {
                     focus:ring-offset-2 lg:mx-80"
 					href={'/projet'}
 				>
-					Mes projets
+					My projects
 				</Link>
 			</section>
 		</div>

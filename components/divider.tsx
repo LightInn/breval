@@ -17,6 +17,7 @@ export function Divider({ top }: { top: boolean }) {
 			) : (
 				// bottom border thin empty arrow  divider
 				<svg
+					className="pb-8"
 					fill="#fff"
 					height="50px"
 					width="30px"

@@ -36,7 +36,7 @@ export default function Project({ projects }) {
 			<div className="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8 ">
 				<div className="mx-auto max-w-3xl text-center">
 					<h2 className="text-3xl font-bold tracking-tight text-gray-50 sm:text-4xl">
-						Mes projets
+						My projects
 					</h2>
 					<p className="mt-4 text-gray-300">
 						As a web developer, I had the opportunity to work on various
