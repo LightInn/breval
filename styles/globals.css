@@ -297,3 +297,27 @@ h1::selection {
 		text-shadow: none;
 	}
 }
+
+/*------------------ ------------------- ANIMATION --------------------------------------------------------------------------------------*/
+
+.animated-image {
+	/*	slowly rotate the image from one side to another with a "floating" effect and a smooth rotation */
+	animation: float 12s ease-in-out infinite alternate;
+}
+.animated-image-bg {
+	/*	slowly rotate the image from one side to another with a "floating" effect and a smooth rotation */
+	animation: float 12s ease-in-out infinite alternate;
+	animation-delay: 3s;
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(0px) rotate(0deg);
+	}
+	50% {
+		transform: translatey(-15px) rotate(5deg);
+	}
+	100% {
+		transform: translatey(0px) rotate(-5deg);
+	}
+}

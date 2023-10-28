@@ -20,7 +20,7 @@ export function Navbar() {
 	return (
 		<header
 			className={
-				`fixed left-0 top-0 z-50 flex h-[80px] w-screen flex-col items-center justify-center text-black transition-all
+				`fixed left-0 top-0 z-50 flex h-[60px] w-screen flex-col items-center justify-center text-black transition-all sm:h-[80px]
 				
 				`
 				// ${showTransparentBackground ? '2xl:bg-green-500/0' : ''}

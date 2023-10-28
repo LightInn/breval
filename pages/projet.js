@@ -39,9 +39,10 @@ export default function Project({ projects }) {
 						Mes projets
 					</h2>
 					<p className="mt-4 text-gray-300">
-						En tant que developpeur web, j&apos;ai eu l&apos;occasion de
-						travailler sur des projets variés. Voici une liste non exhaustive de
-						mes réalisations.
+						As a web developer, I had the opportunity to work on various
+						projects.
+						<br />
+						Here is a non-exhaustive list of my achievements.
 					</p>
 				</div>
 
