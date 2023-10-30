@@ -6,7 +6,7 @@ export function Presentation() {
 		<section
 			className="relative z-30 box-border flex min-h-[100vh] w-full -translate-y-[25px]
 			transform flex-col flex-wrap items-center justify-center
-			bg-slate-900 px-4 2xl:px-0"
+			bg-slate-900 px-4 2xl:px-0 snap-center snap-always"
 		>
 			<div className={'mx-auto h-full max-w-7xl'}>
 				<div
@@ -19,7 +19,7 @@ export function Presentation() {
 							<div className="flex max-w-xs px-2.5 lg:max-w-none">
 								<div
 									className={
-										'animated-image z-10 w-auto rotate-2 rounded-2xl bg-glow-500/0 p-10 shadow-2xl'
+										'animated-image z-10 w-auto rotate-2 rounded-2xl bg-transparent p-10 shadow-2xl bg-gradient-to-tl from-glow-500/60 to-glow-500/10'
 									}
 								>
 									<Image
@@ -32,7 +32,7 @@ export function Presentation() {
 								</div>
 								<div
 									className={
-										'animated-image-bg absolute h-[250px] w-[250px] rotate-2 rounded-2xl bg-glow-500/30 p-10 shadow-2xl'
+										'animated-image-bg absolute h-[250px] w-[250px] rotate-2 rounded-2xl bg-glow-500 p-10 shadow-2xl'
 									}
 								></div>
 							</div>

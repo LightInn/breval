@@ -13,12 +13,12 @@ export function Divider({ top }: { top: boolean }) {
 			{/* @ts-ignore */}
 
 			{top ? (
-				<hr className="w-[50px] border-slate-800" />
+				<hr className="w-[50px] border-glow-500 " />
 			) : (
 				// bottom border thin empty arrow  divider
 				<svg
 					className="pb-8"
-					fill="#fff"
+					fill="#ffc6d3"
 					height="50px"
 					width="30px"
 					version="1.1"
