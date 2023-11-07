@@ -57,7 +57,7 @@ export default function Hero() {
 			<SocialIcons />
 
 			<div className="absolute bottom-0 left-0 mb-12 flex items-center justify-center p-8 xl:mb-0 xl:p-20">
-				<h2 className="origin-bottom-left -rotate-90 font-body text-sm z-50 tracking-wider text-glow-500 opacity-80 xl:text-xl">
+				<h2 className="z-50 origin-bottom-left -rotate-90 font-body text-sm tracking-wider text-glow-500 opacity-80 xl:text-xl">
 					‣ BRÉVAL LE FLOCH{' '}
 				</h2>
 			</div>
