@@ -40,6 +40,9 @@ module.exports = {
 				30: '30deg',
 				32: '32deg',
 			},
+			backgroundImage: {
+				'sakura-tree': 'url(/sakura_tree_outline.png)',
+			},
 		},
 	},
 
