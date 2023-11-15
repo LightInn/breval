@@ -21,7 +21,7 @@
 		"special-card": "1.0.4"
 	},
 	"devDependencies": {
-		"@types/node": "20.8.10",
+		"@types/node": "20.9.0",
 		"@types/react": "18.2.34",
 		"autoprefixer": "10.4.16",
 		"eslint": "8.52.0",
