@@ -4,6 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 import { Navbar } from '../components/navbar'
 import ImageWithFallback from '../components/ImageWithFallback'
+import { HoloCard } from 'special-card'
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
@@ -88,7 +89,7 @@ export default function Project({ projects }) {
 										className={
 											(projectIdx % 2 === 0
 												? '-bottom-20 -left-20 rotate-12'
-												: '-right-20 -rotate-12') +
+												: '-bottom-20 -right-20 -rotate-12') +
 											' absolute z-10 transform opacity-10 invert '
 										}
 										width={300}
@@ -97,13 +98,14 @@ export default function Project({ projects }) {
 
 									<div className={'lg:col-span-7 xl:col-span-8'}>
 										<div className="overflow-hidden rounded-lg">
-											<ImageWithFallback
-												src={project.attributes.media.data[0]?.attributes.url}
-												fallbackSrc="/projets.png"
-												alt={project.attributes.media.data[0]?.attributes.name}
-												className="aspect-[16/10] w-full object-cover object-center"
-												width={500}
-												height={250}
+											<HoloCard
+												height={300}
+												width={520}
+												radius={8}
+												imageSrc={
+													project.attributes.media.data[0]?.attributes.url
+												}
+												imageShineSrc="https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp"
 											/>
 										</div>
 									</div>
@@ -139,6 +141,8 @@ export async function getStaticProps() {
 		'https://breval-api.lightin.io/api/projets?sort=date%3Adesc&populate=*'
 	)
 	const data = await res.json()
+
+	console.log(data)
 
 	return {
 		props: {

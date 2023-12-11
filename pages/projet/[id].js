@@ -1,11 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
-import { remark } from 'remark'
-import html from 'remark-html'
 import Head from 'next/head'
 import { Navbar } from '../../components/navbar'
 import ImageWithFallback from '../../components/ImageWithFallback'
-import { Layout } from '../../components/Layout'
+import Markdown from 'react-markdown'
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
@@ -49,11 +47,11 @@ export default function ProjectDetail({ project }) {
 					className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"
 				>
 					<ol role="list" className="flex items-center space-x-4">
-						<li>
+						<li className="list-none">
 							<div className="flex items-center">
 								<Link
 									href={'/projet'}
-									className="mr-4 text-sm font-medium text-gray-400"
+									className="mr-4 list-disc text-sm font-medium text-gray-400"
 								>
 									projets
 								</Link>
@@ -70,7 +68,7 @@ export default function ProjectDetail({ project }) {
 							</div>
 						</li>
 
-						<li className="text-sm">
+						<li className="list-none text-sm">
 							<div aria-current="page" className="font-medium text-glow-500">
 								{project.attributes?.title}
 							</div>
@@ -134,7 +132,9 @@ export default function ProjectDetail({ project }) {
 								</h2>
 
 								<div className="prose prose-sm text-md mt-4 text-gray-100">
-									<Layout value={project.attributes?.description.toString()} />
+									<Markdown>
+										{project.attributes?.description.toString()}
+									</Markdown>
 								</div>
 							</div>
 
@@ -210,26 +210,11 @@ export async function getStaticProps({ params }) {
 		}
 	}
 
-	// Convert Markdown to HTML
-	const processedContent = await remark()
-		.use(html)
-		.process(data.attributes?.description)
-
-	// replace the img by Image from next
-
-	const newArticleData = {
-		...data,
-		attributes: {
-			...data.attributes,
-			content: processedContent.toString(),
-		},
-	}
-
-	console.log(newArticleData.data[0])
+	console.log(data.data[0])
 
 	return {
 		props: {
-			project: newArticleData.data[0],
+			project: data.data[0],
 		},
 		revalidate: 3600,
 	}

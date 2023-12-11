@@ -280,12 +280,11 @@ html {
 	}
 }
 
-/* Neon effect on h2*/
+/* Neon effect */
 
-h1 {
+.neon {
 	font-family: 'Exo 2', sans-serif;
 	--neon-text-color: #ffc6d3;
-	font-size: 13rem;
 	font-weight: 200;
 	font-style: italic;
 	color: #fff;
@@ -294,11 +293,11 @@ h1 {
 	animation: flicker 1.5s infinite alternate;
 }
 
-h1::-moz-selection {
+.neon::-moz-selection {
 	color: var(--neon-text-color);
 }
 
-h1::selection {
+.neon::selection {
 	color: var(--neon-text-color);
 }
 
@@ -395,4 +394,43 @@ h1::selection {
 	100% {
 		opacity: 1;
 	}
+}
+
+/*------------------------------------- MARKDOWN BASE --------------------------------------------------------------------------------------*/
+
+h1 {
+	font-size: 2.5rem;
+	font-weight: 700;
+	line-height: 1.2;
+	margin-bottom: 1rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	font-weight: 700;
+	line-height: 1.2;
+	margin-bottom: 1rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	font-weight: 700;
+	line-height: 1.2;
+	margin-bottom: 1rem;
+}
+
+p {
+	font-size: 1rem;
+	line-height: 1.5;
+	margin-bottom: 1rem;
+}
+
+ul {
+	margin-bottom: 1rem;
+}
+
+li {
+	margin-bottom: 0.25rem;
+	/* round decoration */
+	list-style-type: disc;
 }
