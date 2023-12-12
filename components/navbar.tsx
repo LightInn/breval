@@ -19,12 +19,9 @@ export function Navbar() {
 
 	return (
 		<header
-			className={
-				`fixed left-0 top-0 z-50 flex h-[60px] w-screen flex-col items-center justify-center text-black transition-all sm:h-[80px]
-				
-				`
-				// ${showTransparentBackground ? '2xl:bg-green-500/0' : ''}
-			}
+			className={`fixed left-0 top-0 z-50 flex h-[60px] w-screen flex-col items-center justify-center text-black transition-all sm:h-[80px]
+	
+				`}
 		>
 			{/* pill */}
 			<div
@@ -34,7 +31,7 @@ export function Navbar() {
                     ${
 											showTransparentBackground
 												? ''
-												: 'h-[40px] translate-y-[-20px] rounded-t-none hover:h-[60px] hover:translate-y-[10px] hover:rounded-full'
+												: 'h-[40px] rounded-t-none hover:h-[60px] hover:rounded-full md:translate-y-[-20px] md:hover:translate-y-[10px]'
 										}
                     `}
 			>

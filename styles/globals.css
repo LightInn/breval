@@ -334,6 +334,7 @@ html {
 	/*	slowly rotate the image from one side to another with a "floating" effect and a smooth rotation */
 	animation: float 12s ease-in-out infinite alternate;
 }
+
 .animated-image-bg {
 	/*	slowly rotate the image from one side to another with a "floating" effect and a smooth rotation */
 	animation: float 12s ease-in-out infinite alternate;
@@ -357,11 +358,13 @@ html {
 	--video-width: 100vw;
 	--video-height: 100vh;
 }
+
 @media (min-aspect-ratio: 16/9) {
 	:root {
 		--video-height: 56.25vw;
 	}
 }
+
 @media (max-aspect-ratio: 16/9) {
 	:root {
 		--video-width: 177.78vh;
@@ -374,6 +377,7 @@ html {
 	width: 100vw;
 	height: 100vh;
 }
+
 .video-background iframe {
 	position: absolute;
 	top: 50%;
@@ -433,4 +437,124 @@ li {
 	margin-bottom: 0.25rem;
 	/* round decoration */
 	list-style-type: disc;
+}
+
+/*------------------------------------- custom button  --------------------------------------------------------------------------------------*/
+
+.shiny-button {
+	--border-radius: 15px;
+	--border-width: 2px;
+	appearance: none;
+	position: relative;
+	border: 0;
+	z-index: 2;
+}
+
+.shiny-button::after {
+	--m-i: linear-gradient(#000, #000);
+	--m-o: content-box, padding-box;
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	padding: var(--border-width);
+	border-radius: var(--border-radius);
+	background-image: conic-gradient(
+		#ff99b1,
+		#cc7a8d,
+		#995b69,
+		#995b69,
+		#cc7a8d,
+		#ffe343,
+		#ff99b1
+	);
+	-webkit-mask-image: var(--m-i), var(--m-i);
+	mask-image: var(--m-i), var(--m-i);
+	-webkit-mask-origin: var(--m-o);
+	mask-origin: var(--m-o);
+	-webkit-mask-clip: var(--m-o);
+	mask-composite: exclude;
+	-webkit-mask-composite: destination-out;
+	filter: hue-rotate(0);
+	animation: rotate-hue alternate 2s infinite;
+	animation-play-state: paused;
+}
+
+.shiny-button:hover::after {
+	animation-play-state: running;
+}
+
+@keyframes rotate-hue {
+	to {
+		filter: hue-rotate(1turn);
+	}
+}
+
+.shiny-button,
+.shiny-button::after {
+	box-sizing: border-box;
+}
+
+.shiny-button:active {
+	--border-width: 5px;
+}
+
+/*---------- btn 2 ----------------- */
+
+.button {
+	--color: #ff99b1;
+	padding: 0.8em 1.7em;
+	background-color: transparent;
+	border-radius: 0.3em;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	transition: 0.5s;
+	font-weight: 400;
+	font-size: 17px;
+	border: 1px solid;
+	font-family: inherit;
+	text-transform: uppercase;
+	color: #ffc6d3;
+	z-index: 1;
+}
+
+.button::before,
+.button::after {
+	content: '';
+	display: block;
+	width: 50px;
+	height: 50px;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	border-radius: 50%;
+	z-index: -1;
+	background-color: var(--color);
+	transition: 1s ease;
+}
+
+.button::before {
+	top: -1em;
+	left: -1em;
+}
+
+.button::after {
+	left: calc(100% + 1em);
+	top: calc(100% + 1em);
+}
+
+.button:hover::before,
+.button:hover::after {
+	height: 410px;
+	width: 410px;
+}
+
+.button:hover {
+	color: rgb(10, 25, 30);
+}
+
+.button:active {
+	filter: brightness(0.8);
 }

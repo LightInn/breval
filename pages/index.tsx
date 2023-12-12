@@ -72,7 +72,7 @@ export default function Home() {
 					<div>
 						<Link
 							type="button"
-							className="inline-flex items-center rounded-full border border-transparent bg-glow-500 px-3 py-3  font-medium
+							className="button inline-flex items-center rounded-full border border-transparent bg-glow-500 px-3 py-3  font-medium
                     text-black shadow-sm hover:bg-glow-600 focus:outline-none focus:ring-2 focus:ring-indigo-500
                     focus:ring-offset-2"
 							href={'/projet'}

@@ -90,7 +90,7 @@ export default function Project({ projects }) {
 											(projectIdx % 2 === 0
 												? '-bottom-20 -left-20 rotate-12'
 												: '-bottom-20 -right-20 -rotate-12') +
-											' absolute z-10 transform opacity-10 invert '
+											' absolute  transform opacity-10 invert '
 										}
 										width={300}
 										height={300}
@@ -99,8 +99,8 @@ export default function Project({ projects }) {
 									<div className={'lg:col-span-7 xl:col-span-8'}>
 										<div className="overflow-hidden rounded-lg">
 											<HoloCard
-												height={300}
-												width={520}
+												height={200}
+												width={370}
 												radius={8}
 												imageSrc={
 													project.attributes.media.data[0]?.attributes.url
@@ -120,7 +120,7 @@ export default function Project({ projects }) {
 											{project.attributes.short_description}
 										</p>
 										<div
-											className=" w-1/2 rounded-full border border-transparent bg-glow-500 px-8 py-2 text-sm font-medium leading-4
+											className="button w-1/2 rounded-full border border-transparent bg-glow-500 px-8 py-2 text-sm font-medium leading-4
                                      text-black shadow-sm hover:bg-glow-600 focus:bg-glow-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
 										>
 											En savoir plus
@@ -147,7 +147,7 @@ export async function getStaticProps() {
 	return {
 		props: {
 			projects: data.data,
-			revalidate: 3600,
+			revalidate: 60,
 		},
 	}
 }

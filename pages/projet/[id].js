@@ -118,7 +118,7 @@ export default function ProjectDetail({ project }) {
 							{project.attributes?.url && (
 								<a
 									type="submit"
-									className="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-glow-500 px-8 py-3 text-base font-medium text-black hover:bg-glow-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+									className=" button mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-glow-500 px-8 py-3 text-base font-medium text-black hover:bg-glow-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
 									href={project.attributes?.url}
 								>
 									{project.attributes?.url}
@@ -138,7 +138,7 @@ export default function ProjectDetail({ project }) {
 								</div>
 							</div>
 
-							{project.attributes?.creators && (
+							{project.attributes?.creators?.length > 0 && (
 								<section aria-labelledby="policies-heading" className="mt-10">
 									{/* Policies */}
 
@@ -153,7 +153,7 @@ export default function ProjectDetail({ project }) {
 											<Link
 												key={idx}
 												href={'https://' + creator.site}
-												className="transition-100 rounded-lg border border-glow-600 bg-gray-900 p-6 text-center hover:bg-gray-800 hover:text-black"
+												className=" shiny-button transition-100 rounded-lg border border-glow-600 bg-gray-900 p-6 text-center hover:bg-gray-800 hover:text-black "
 											>
 												<dt>
 													<div
@@ -216,6 +216,6 @@ export async function getStaticProps({ params }) {
 		props: {
 			project: data.data[0],
 		},
-		revalidate: 3600,
+		revalidate: 60,
 	}
 }
