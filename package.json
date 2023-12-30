@@ -14,7 +14,7 @@
 		"next-transpile-modules": "^10.0.1",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
-		"sharp": "0.33.0",
+		"sharp": "0.33.1",
 		"react-markdown": "9.0.1",
 		"special-card": "2.1.1"
 	},
