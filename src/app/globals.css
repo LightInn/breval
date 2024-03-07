@@ -1,17 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 * {
-  font-family: 'Varela Round', sans-serif;
+  font-family: "Varela Round", sans-serif;
   transition:
-          opacity,
-          z-index,
-          color ease-in-out 0.3s;
+    opacity,
+    z-index,
+    color ease-in-out 0.3s;
 }
 
 body {
@@ -56,9 +55,9 @@ html {
   cursor: pointer;
   text-decoration: none;
   transition:
-          transform var(--duration) ease,
-          box-shadow var(--duration) ease,
-          all 0.3s ease;
+    transform var(--duration) ease,
+    box-shadow var(--duration) ease,
+    all 0.3s ease;
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: none;
 }
@@ -284,7 +283,7 @@ html {
 /* Neon effect */
 
 .neon {
-  font-family: 'Exo 2', sans-serif;
+  font-family: "Exo 2", sans-serif;
   --neon-text-color: #ffc6d3;
   font-weight: 200;
   font-style: italic;
@@ -313,13 +312,13 @@ html {
   56%,
   100% {
     text-shadow:
-            -0.2rem -0.2rem 1rem #fff,
-            0.2rem 0.2rem 1rem #fff,
-            0 0 2rem var(--neon-text-color),
-            0 0 4rem var(--neon-text-color),
-            0 0 6rem var(--neon-text-color),
-            0 0 8rem var(--neon-text-color),
-            0 0 10rem var(--neon-text-color);
+      -0.2rem -0.2rem 1rem #fff,
+      0.2rem 0.2rem 1rem #fff,
+      0 0 2rem var(--neon-text-color),
+      0 0 4rem var(--neon-text-color),
+      0 0 6rem var(--neon-text-color),
+      0 0 8rem var(--neon-text-color),
+      0 0 10rem var(--neon-text-color);
   }
 
   20%,
@@ -454,7 +453,7 @@ li {
 .shiny-button::after {
   --m-i: linear-gradient(#000, #000);
   --m-o: content-box, padding-box;
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -463,13 +462,13 @@ li {
   padding: var(--border-width);
   border-radius: var(--border-radius);
   background-image: conic-gradient(
-          #ff99b1,
-          #cc7a8d,
-          #995b69,
-          #995b69,
-          #cc7a8d,
-          #ffe343,
-          #ff99b1
+    #ff99b1,
+    #cc7a8d,
+    #995b69,
+    #995b69,
+    #cc7a8d,
+    #ffe343,
+    #ff99b1
   );
   -webkit-mask-image: var(--m-i), var(--m-i);
   mask-image: var(--m-i), var(--m-i);
@@ -524,7 +523,7 @@ li {
 
 .button::before,
 .button::after {
-  content: '';
+  content: "";
   display: block;
   width: 50px;
   height: 50px;
@@ -560,19 +559,19 @@ li {
   filter: brightness(0.8);
 }
 
-
-html{
+html {
   scroll-behavior: smooth;
 }
 
-h1>a>.icon.icon-link:before,
-h2>a>.icon.icon-link:before,
-h3>a>.icon.icon-link:before{
+h1 > a > .icon.icon-link:before,
+h2 > a > .icon.icon-link:before,
+h3 > a > .icon.icon-link:before {
   content: "#";
   font-size: 0.8rem;
 }
 
-h2 > a, h3>a {
+h2 > a,
+h3 > a {
   text-decoration: none !important;
 }
 
@@ -592,45 +591,44 @@ code > [data-line]::before {
   color: gray;
 }
 
-code[data-line-numbers-max-digits='2'] > [data-line]::before {
+code[data-line-numbers-max-digits="2"] > [data-line]::before {
   width: 2rem;
 }
 
-code[data-line-numbers-max-digits='3'] > [data-line]::before {
+code[data-line-numbers-max-digits="3"] > [data-line]::before {
   width: 3rem;
 }
 
-[data-highlighted-line]{
-  background-color: rgba(255,255,255,0.1) !important;
+[data-highlighted-line] {
+  background-color: rgba(255, 255, 255, 0.1) !important;
   padding: 2px;
   padding-left: 0;
   padding-right: 4px;
   border-radius: 2px;
-  border-left: 2px solid #7B00D3;
+  border-left: 2px solid #7b00d3;
 }
 
-[data-highlighted-chars]{
-  background-color: rgba(255,255,255,0.2) !important;
+[data-highlighted-chars] {
+  background-color: rgba(255, 255, 255, 0.2) !important;
   padding: 2px;
   border-radius: 2px;
 }
 
-
-[data-rehype-pretty-code-fragment]{
+[data-rehype-pretty-code-fragment] {
   position: relative;
 }
 
-[data-rehype-pretty-code-title]{
+[data-rehype-pretty-code-title] {
   position: absolute;
   right: 0;
-  background-color: #7B00D3;
+  background-color: #7b00d3;
   color: #fff;
   padding: 4px 8px;
   font-size: 1rem;
   border-end-start-radius: 4px;
 }
 
-[data-rehype-pretty-code-caption]{
+[data-rehype-pretty-code-caption] {
   position: absolute;
   top: 100%;
   width: 100%;
@@ -638,5 +636,3 @@ code[data-line-numbers-max-digits='3'] > [data-line]::before {
   font-size: 1rem;
   color: #747474;
 }
-
-
