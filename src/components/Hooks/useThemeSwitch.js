@@ -43,10 +43,8 @@ export function useThemeSwitch() {
   }, []);
 
   useEffect(() => {
-    toggleTheme(mode)
-  }, [mode])
-  
+    toggleTheme(mode);
+  }, [mode]);
 
-
-  return [mode, setMode]
+  return [mode, setMode];
 }
