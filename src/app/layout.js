@@ -1,8 +1,6 @@
-import {Inter} from "next/font/google";
 import "../styles/globals.css";
 import Script from "next/script";
 
-const inter = Inter({subsets: ["latin"]});
 
 export const metadata = {
     title: "Bréval LE FLOCH | Portfolio",
