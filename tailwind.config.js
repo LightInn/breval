@@ -23,7 +23,7 @@ module.exports = {
           600: "#ff99b1",
         },
         light: "#f4faf7",
-        accent: "#ff4d73",
+        accent: "#ff99b1",
         gray: "#706262",
       },
       brightness: {

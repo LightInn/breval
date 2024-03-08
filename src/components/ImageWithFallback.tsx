@@ -11,8 +11,8 @@ function ImageWithFallback(props: any) {
       {...rest}
       src={imgSrc}
       alt={"Image"}
-      onError={() => {
-        console.log("error");
+      onError={(e) => {
+        console.error(e);
         setImgSrc(fallbackSrc);
       }}
     />
