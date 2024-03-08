@@ -1,17 +1,39 @@
-import { Inter } from "next/font/google";
+import {Inter} from "next/font/google";
 import "../styles/globals.css";
+import Script from "next/script";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({subsets: ["latin"]});
 
 export const metadata = {
-  title: "Bréval LE FLOCH | Portfolio",
-  description: "Bréval LE FLOCH | Portfolio | Développeur web",
+    title: "Bréval LE FLOCH | Portfolio",
+    description: "Bréval LE FLOCH | Portfolio | Développeur web",
 };
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-  );
+export default function RootLayout({children}) {
+    return (
+        <html lang="en">
+        <Script async src="https://umami.wadefade.fr/script.js"
+                strategy="afterInteractive"
+                data-website-id="c9b88026-3f0e-49e7-a564-38547c9d60a5"></Script>
+        {/*Google tag (gtag.js)*/}
+        <Script
+            strategy="afterInteractive"
+            src="https://www.googletagmanager.com/gtag/js?id=G-455V2M6DD1"
+        />
+        <Script
+            id="google-analytics"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+                __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+                   
+              gtag('config', 'G-455V2M6DD1');
+              `,
+            }}
+        />
+        <body className={inter.className}>{children}</body>
+        </html>
+    );
 }
