@@ -145,7 +145,7 @@ export default async function ProjectDetail({ params }) {
 
                   <h2 id="policies-heading" className="text-gray-400">
                     {`
-											Autres membres de l'équipe du projet :
+											Other team's members for this project :
 										`}
                   </h2>
 
@@ -154,7 +154,7 @@ export default async function ProjectDetail({ params }) {
                       <Link
                         key={idx}
                         href={"https://" + creator.site}
-                        className=" shiny-button transition-100 rounded-lg border border-glow-600 bg-gray-900 p-6 text-center hover:bg-gray-800 hover:text-black "
+                        className=" shiny-button transition-100 rounded-lg border border-glow-600 bg-gray-900 p-6 text-center hover:bg-gray-800 hover:text-black no-underline"
                       >
                         <dt>
                           <div

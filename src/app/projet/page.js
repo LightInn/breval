@@ -106,7 +106,7 @@ export default async function Project() {
                                     </div>
 
                                     <div className={"flex flex-col justify-start gap-4 py-4"}>
-                                        <h3 className="text-lg font-medium text-gray-50">
+                                        <h3 className="text-lg font-medium text-light">
                                             {" "}
                                             {project.attributes.title}
                                         </h3>
