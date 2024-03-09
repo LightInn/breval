@@ -1,14 +1,26 @@
-FROM node:21-bullseye as builder
+FROM node:20-slim AS base
 
-COPY package.json /tmp/package.json
-RUN cd /tmp && pnpm install
-RUN mkdir -p /usr/src/app && cp -a /tmp/node_modules /usr/src/app/
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+COPY . /app
+WORKDIR /app
 
-WORKDIR /usr/src/app
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
-COPY . /usr/src/app
-RUN pnpm build
+
+FROM base AS prod-deps
+RUN pnpm install --prod --frozen-lockfile
+
+
+FROM base AS build
+RUN pnpm install --frozen-lockfile
+RUN pnpm run build
+
+
+FROM base
+COPY --from=prod-deps /app/node_modules /app/node_modules
+COPY --from=build /app/dist /app/dist
+ENV PATH /app/node_modules/.bin:$PATH
 ENV NODE_ENV production
 ENV PORT 3000
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD [ "pnpm", "start" ]
