@@ -11,6 +11,9 @@ dependencies:
   github-slugger:
     specifier: ^2.0.0
     version: 2.0.0
+  highlight.js:
+    specifier: 11.9.0
+    version: 11.9.0
   markdown-it:
     specifier: ^14.0.0
     version: 14.0.0
@@ -48,8 +51,8 @@ dependencies:
     specifier: ^0.33.2
     version: 0.33.2
   special-card:
-    specifier: ^2.1.1
-    version: 2.1.1(react-dom@18.2.0)(react@18.2.0)
+    specifier: 2.1.2
+    version: 2.1.2(react-dom@18.2.0)(react@18.2.0)
   strapi-sdk-js:
     specifier: ^2.3.3
     version: 2.3.3
@@ -2723,6 +2726,14 @@ packages:
       "@types/hast": 3.0.4
     dev: false
 
+  /highlight.js@11.9.0:
+    resolution:
+      {
+        integrity: sha512-fJ7cW7fQGCYAkgv4CPfwFHrfd/cLS4Hau96JuJ+ZTOWhjnhoeN1ub1tFmALm/+lW5z4WCAuAV9bm05AP0mS6Gw==,
+      }
+    engines: { node: ">=12.0.0" }
+    dev: false
+
   /html-url-attributes@3.0.0:
     resolution:
       {
@@ -4761,10 +4772,10 @@ packages:
       }
     dev: false
 
-  /special-card@2.1.1(react-dom@18.2.0)(react@18.2.0):
+  /special-card@2.1.2(react-dom@18.2.0)(react@18.2.0):
     resolution:
       {
-        integrity: sha512-lffR/rBHhmygm5nt9Id3bybfozzq30IdqfKl57Ym10uNJqWrPsJp5A9x1zBn+x5rs4bKqko67aI8CrWHS9WYdQ==,
+        integrity: sha512-IMZ5MDHHyg4F6OhalldwNWVTWSBho/Vy0aIdK75rQSuQzjjEAZ3hZDLnCXmUkE7m8Aw2cRU3+0KiNqCkMTs2xA==,
       }
     peerDependencies:
       react: ^18.2.0

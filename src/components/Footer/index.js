@@ -16,9 +16,14 @@ const Footer = () => {
         </Link>
         <div className="text-center">
           Made with &hearts; by{" "}
-          <a href="https://brev.al" className="underline" target="_blank">
+          <Link
+            href="/"
+            className="underline"
+            target="_blank"
+            aria-label="Going back to main page"
+          >
             Bréval LE FLOCH
-          </a>
+          </Link>
           ; Design by{" "}
           <a
             href="https://devdreaming.com"

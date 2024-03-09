@@ -38,15 +38,15 @@ export default function Hero() {
           />
 
           <iframe
+            title={"landing page background video"}
             className={
-              "absolute left-0 top-0 h-full w-full object-cover object-center " +
+              "absolute left-0 top-0 h-full w-full object-cover object-center border-0 " +
               "mix-difference animate-video -z-10 block bg-slate-900 object-cover opacity-75"
             }
             id="topHeroVideo"
             src="https://player.vimeo.com/video/879007060?background=1"
             width="1920"
             height="1080"
-            frameBorder="0"
             allow="autoplay"
             data-ready="true"
             allowFullScreen

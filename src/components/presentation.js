@@ -30,6 +30,7 @@ export default function Presentation() {
                     backgroundImage={"/developer_character.png"}
                     titleImage={"/developer_character_title.png"}
                     hoverImage={"/developer_character_hover.png"}
+                    alt={"Developer character"}
                   />
                 </div>
                 <div

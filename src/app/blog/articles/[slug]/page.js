@@ -8,6 +8,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Head from "next/head";
 import React from "react";
+import Highlight from "/src/components/Highlight";
 
 export async function generateStaticParams() {
   const allBlogs = await getAllBlogs();
@@ -175,6 +176,7 @@ export default async function BlogPage({ params }) {
             </details>
           </div>
           <RenderMdx blog={blog} />
+          <Highlight />
         </div>
       </article>
     </>

@@ -3,6 +3,12 @@ import getAllBlogs from "../../services/blog.services";
 import HomeCoverSection from "../../components/Home/HomeCoverSection";
 import FeaturedPosts from "../../components/Home/FeaturedPosts";
 
+export const metadata = {
+  title: "Bréval LE FLOCH | My Blog",
+  description:
+    "In this blog, I share my thoughts, my projects, my experiences and my knowledge about web and mobile development !",
+};
+
 export default async function Home() {
   const allBlogs = await getAllBlogs();
 

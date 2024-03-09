@@ -26,8 +26,9 @@
     "react-markdown": "^9.0.1",
     "remarkable": "^2.0.1",
     "sharp": "^0.33.2",
-    "special-card": "^2.1.1",
-    "strapi-sdk-js": "^2.3.3"
+    "special-card": "2.1.2",
+    "strapi-sdk-js": "^2.3.3",
+    "highlight.js": "11.9.0"
   },
   "devDependencies": {
     "@types/node": "20.11.25",

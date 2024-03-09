@@ -14,10 +14,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
+        <link rel="preconnect" href="https://i.vimeocdn.com" />
+        <link rel="preconnect" href="https://f.vimeocdn.com" />
+        <link rel="preconnect" href="https://player-telemetry.vimeo.com" />
+        <link rel="preconnect" href="https://fresnel.vimeocdn.com" />
+        <link rel="preconnect" href="https://www.gstatic.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+
         <link rel="canonical" href="https://brev.al/projet" key="canonical" />
         <link rel="canonical" href="https://brev.al/blog" key="canonical" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+
         <link
           href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
           rel="stylesheet"

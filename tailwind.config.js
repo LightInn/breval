@@ -47,7 +47,7 @@ module.exports = {
         32: "32deg",
       },
       backgroundImage: {
-        "sakura-tree": "url(/sakura_tree_outline.png)",
+        "sakura-tree": "url(/sakura_tree_outline.webp)",
       },
 
       fontFamily: {
