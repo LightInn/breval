@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/navbar";
@@ -11,23 +10,6 @@ import Presentation from "../components/presentation";
 export default function Home() {
   return (
     <div className="text-Sky-50 snap-y snap-proximity bg-slate-1000 font-varela-round">
-      <Head>
-        <title>Bréval LE FLOCH | Dev </title>
-        <meta
-          name="description"
-          content="Portfolio de Bréval LE FLOCH, un développeur spécialisé dans le développement d'applications web et mobile sur Nantes."
-        />
-
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="canonical" href="https://brev.al/projet" key="canonical" />
-
-        {/*@ts-ignore*/}
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
       <Navbar />
       <Hero />
       <Divider top={true} />

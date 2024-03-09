@@ -1,11 +1,9 @@
-import PocketBase from "pocketbase";
 import Strapi from "strapi-sdk-js";
 
 // function getAllBlog
 
 async function getAllBlogs() {
- const strapi = new Strapi({ url: "https://breval-api.lightin.io" });
-
+  const strapi = new Strapi({ url: "https://breval-api.lightin.io" });
 
   const blo = await strapi.find("blogs", { populate: "image" });
 
@@ -20,8 +18,6 @@ async function getAllBlogs() {
       publishedAt: data.attributes.publishedAt,
     };
   });
-
-  // console.log(bloa);
 
   return bloa;
 }

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 // @ts-ignore
 import { PopCard } from "special-card";

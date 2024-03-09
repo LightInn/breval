@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import Markdown from "react-markdown";
 import markdownIt from "markdown-it";
 import markdownItTocAndAnchor from "markdown-it-toc-and-anchor";
 
@@ -30,19 +29,22 @@ const RenderMdx = ({ blog }) => {
 
     "
     >
-
-
       {/*<Markdown>{blog.content}</Markdown>*/}
-      <div className="text-container" dangerouslySetInnerHTML={{__html:markdownIt({
-          html: true,
-          linkify: true,
-          typographer: true,
-        })
+      <div
+        className="text-container"
+        dangerouslySetInnerHTML={{
+          __html: markdownIt({
+            html: true,
+            linkify: true,
+            typographer: true,
+          })
             .use(markdownItTocAndAnchor, {
-                anchorLinkSymbol: "",
-                toc: false,
+              anchorLinkSymbol: "",
+              toc: false,
             })
-            .render(blog.content)}}/>
+            .render(blog.content),
+        }}
+      />
     </div>
   );
 };

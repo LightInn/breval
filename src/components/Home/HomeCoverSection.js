@@ -31,7 +31,10 @@ const HomeCoverSection = ({ blogs }) => {
             link={`/blog/categories/${slug(blog.tags[0])}`}
             name={blog.tags[0]}
           />
-          <Link href={"/blog/articles/" + blog.url} className="mt-6 no-underline">
+          <Link
+            href={"/blog/articles/" + blog.url}
+            className="mt-6 no-underline"
+          >
             <h1 className="font-bold capitalize text-lg sm:text-xl md:text-3xl lg:text-4xl">
               <span
                 className="bg-gradient-to-r from-accent to-accent bg-[length:0px_6px]

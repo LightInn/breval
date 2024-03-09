@@ -5,7 +5,10 @@ import LogoA from "/public/logo.png";
 
 const Logo = () => {
   return (
-    <Link href="/" className="flex items-center text-dark no-underline">
+    <Link
+      href="/"
+      className="items-center text-dark no-underline hidden xl:flex"
+    >
       <div className=" w-12 md:w-16 overflow-hidden mr-2 md:mr-4">
         <Image
           src={LogoA}

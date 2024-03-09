@@ -4,14 +4,15 @@ import Head from "next/head";
 import Navbar from "../../../components/navbar";
 import ImageWithFallback from "../../../components/ImageWithFallback";
 import Markdown from "react-markdown";
-import {format, parseISO} from "date-fns";
+import { format, parseISO } from "date-fns";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default async function ProjectDetail({ params }) {
-  const project = await getProject(params);
+  const { id } = params;
+  const project = await getProject(id);
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       <Head>
@@ -86,7 +87,7 @@ export default async function ProjectDetail({ params }) {
                   {project.attributes?.title}
                 </h1>
                 <p className="text-sm font-medium text-gray-500">
-                  {format(parseISO( project.attributes?.date), "LLLL d, yyyy")}
+                  {format(parseISO(project.attributes?.date), "LLLL d, yyyy")}
                 </p>
               </div>
             </div>
@@ -182,24 +183,20 @@ export default async function ProjectDetail({ params }) {
   );
 }
 
-async function generateStaticParams() {
+export async function generateStaticParams() {
   const res = await fetch(
     "https://breval-api.lightin.io/api/projets?fields=title",
   );
   const data = await res.json();
 
-  const paths = data.data.map((project) => ({
-    params: { id: project.attributes.title },
-  }));
+  const paths = data.data.map((project) => ({ id: project.attributes.title }));
 
   return paths;
 }
 
-async function getProject(params) {
-  const { id } = params;
-
+async function getProject(title) {
   const res = await fetch(
-    `https://breval-api.lightin.io/api/projets?filters[title][$eq]=${id}&populate=*`,
+    `https://breval-api.lightin.io/api/projets?filters[title][$eq]=${title}&populate=*`,
   );
   const data = await res.json();
 
@@ -208,7 +205,6 @@ async function getProject(params) {
       props: { hasError: true },
     };
   }
-
 
   return data.data[0];
 }

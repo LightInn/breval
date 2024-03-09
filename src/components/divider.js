@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Divider({ top }: { top: boolean }) {
+export default function Divider({ top }) {
   return (
     <section
       className={`relative z-30 flex
