@@ -12,7 +12,9 @@ export default function RootLayout({children}) {
         <html lang="en">
         <Script async src="https://umami.wadefade.fr/script.js"
                 strategy="afterInteractive"
-                data-website-id="c9b88026-3f0e-49e7-a564-38547c9d60a5"></Script>
+                data-website-id="c9b88026-3f0e-49e7-a564-38547c9d60a5"
+                data-domains={'brev.al'}
+        ></Script>
         {/*Google tag (gtag.js)*/}
         <Script
             strategy="afterInteractive"
