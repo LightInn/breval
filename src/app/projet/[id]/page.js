@@ -4,6 +4,7 @@ import Head from "next/head";
 import Navbar from "../../../components/navbar";
 import ImageWithFallback from "../../../components/ImageWithFallback";
 import Markdown from "react-markdown";
+import {format, parseISO} from "date-fns";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -85,7 +86,7 @@ export default async function ProjectDetail({ params }) {
                   {project.attributes?.title}
                 </h1>
                 <p className="text-sm font-medium text-gray-500">
-                  {project.attributes?.date}
+                  {format(parseISO( project.attributes?.date), "LLLL d, yyyy")}
                 </p>
               </div>
             </div>

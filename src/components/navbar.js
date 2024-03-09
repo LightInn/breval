@@ -40,7 +40,7 @@ export default function Navbar() {
           href="/"
           className={`m-0 flex w-20 origin-center 
                      items-center justify-center rounded-full p-0 transition-all
-                     duration-100  ease-in-out hover:w-24 md:h-full md:w-16`}
+                     duration-100  ease-in-out hover:w-24 md:h-full md:w-16 no-underline`}
         >
           <Image
             src="/logo.png"
@@ -54,7 +54,7 @@ export default function Navbar() {
           href="/projet"
           className={`button-animated  smoke m-0 hidden origin-center items-center justify-center 
                      rounded-full p-0 transition-all duration-100 
-                     ease-in-out hover:w-32 md:flex md:h-full md:w-24
+                     ease-in-out hover:w-32 md:flex md:h-full md:w-24 no-underline
                      `}
           // ${showTransparentBackground ? '' : 'md:w-0  hover:w-32'}
         >
@@ -72,7 +72,7 @@ export default function Navbar() {
           href="/blog"
           className={`button-animated  smoke m-0 hidden origin-center items-center justify-center 
                      rounded-full p-0 transition-all duration-100 
-                     ease-in-out hover:w-32 md:flex md:h-full md:w-24
+                     ease-in-out hover:w-32 md:flex md:h-full md:w-24 no-underline
                      `}
           // ${showTransparentBackground ? '' : 'md:w-0  hover:w-32'}
         >

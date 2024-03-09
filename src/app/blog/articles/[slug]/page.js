@@ -36,9 +36,11 @@ export async function generateMetadata({params}) {
     const authors = blog?.author ? [blog.author] : siteMetadata.author;
 
     return {
-        title: blog.title, description: blog.description, openGraph: {
+        title: blog.title,
+        description: blog.describe,
+        openGraph: {
             title: blog.title,
-            description: blog.description,
+            description: blog.describe,
             url: siteMetadata.siteUrl + blog.url,
             siteName: siteMetadata.title,
             locale: "en_US",
@@ -48,7 +50,7 @@ export async function generateMetadata({params}) {
             images: ogImages,
             authors: authors.length > 0 ? authors : [siteMetadata.author],
         }, twitter: {
-            card: "summary_large_image", title: blog.title, description: blog.description, images: ogImages,
+            card: "summary_large_image", title: blog.title, description: blog.describe, images: ogImages,
         },
     };
 }
@@ -116,7 +118,8 @@ export default async function BlogPage({params}) {
             <BlogDetails blog={blog} slug={params.slug}/>
 
             <div className="grid grid-cols-12  gap-y-8 lg:gap-8 sxl:gap-16 mt-8 px-5 md:px-10">
-                <div className="col-span-12  lg:col-span-2  ">
+                {/* sticky div */}
+                <div className="col-span-12  lg:col-span-2 sticky top-0">
                     <details
                         className="border-[1px] border-solid border-dark text-dark rounded-lg p-4 sticky top-6 max-h-[80vh] overflow-hidden overflow-y-auto"
                         open

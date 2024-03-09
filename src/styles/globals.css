@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic);
 
 @tailwind base;
 @tailwind components;
@@ -629,4 +630,41 @@ a:not(.no-underline):not(.anchor) {
     background-size: 100% 1.5px;
     background-position: 0 100%;
     background-image: linear-gradient(to right, #ffc6d3, #ff99b1);
+}
+
+blockquote{
+    font-size: 1.4em;
+    width:100%;
+    margin-top: 5px;
+    margin-bottom: 50px;
+    font-family:Open Sans;
+    font-style:italic;
+    color: #1a1a1a;
+    padding:1.2em 20px 0.5em 75px;
+    border-left:8px solid #ff99b1 ;
+    line-height:1.6;
+    position: relative;
+    background:#EDEDED;
+}
+
+blockquote::before{
+    font-family:Arial;
+    content: "\201C";
+    color:#ff99b1;
+    font-size:4em;
+    position: absolute;
+    left: 10px;
+    top:-10px;
+}
+
+blockquote::after{
+    content: '';
+}
+
+blockquote span{
+    display:block;
+    color:#333333;
+    font-style: normal;
+    font-weight: bold;
+    margin-top:1em;
 }
