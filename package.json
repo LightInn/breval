@@ -8,7 +8,7 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install",
+    "husky": "husky install",
     "prettier": "prettier --write ."
   },
   "dependencies": {
