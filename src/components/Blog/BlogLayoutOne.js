@@ -15,13 +15,13 @@ const BlogLayoutOne = ({ blog }) => {
       <Image
         src={blog.image}
         alt={blog.title}
-        width={1792}
-        height={1024}
+        width={1920}
+        height={1080}
         className="w-full h-full object-center object-cover rounded-xl group-hover:scale-105 transition-all ease duration-300"
-        sizes="(max-width: 1180px) 100vw, 50vw"
+        sizes="(max-width: 1920px) 100vw, 55vw"
       />
 
-      <div className="w-full absolute bottom-0 p-4 xs:p-6 sm:p-10 z-20">
+      <div className="w-full h-full absolute bottom-0 p-4 xs:p-6 sm:p-10 z-20">
         <Tag
           link={`/blog/categories/${slug(blog.tags[0])}`}
           name={blog.tags[0]}
