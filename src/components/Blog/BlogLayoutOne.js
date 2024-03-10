@@ -8,7 +8,7 @@ const BlogLayoutOne = ({ blog }) => {
   return (
     <div className="group inline-block overflow-hidden rounded-xl">
       <div
-        className="absolute top-0 left-0 bottom-0 right-0 h-full
+        className="absolute top-0 left-0 bottom-0 right-0
             bg-gradient-to-b from-transparent from-0% to-dark/90 rounded-xl z-10
             "
       />
@@ -17,7 +17,7 @@ const BlogLayoutOne = ({ blog }) => {
         alt={blog.title}
         width={1920}
         height={1080}
-        className="w-full h-full object-center object-cover rounded-xl group-hover:scale-105 transition-all ease duration-300"
+        className="w-full object-center object-cover rounded-xl group-hover:scale-105 transition-all ease duration-300"
         sizes="(max-width: 1920px) 100vw, 55vw"
       />
 
