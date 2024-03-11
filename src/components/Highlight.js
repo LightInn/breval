@@ -1,10 +1,9 @@
 "use client";
 import hljs from "highlight.js";
 import "highlight.js/styles/panda-syntax-dark.min.css";
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 export default function Highlight() {
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       hljs.highlightAll();

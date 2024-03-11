@@ -108,7 +108,7 @@ export default async function BlogPage({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <article>
-        <div className="mb-8 text-center relative w-full h-[70vh] bg-dark">
+        <div className="mb-8 text-center relative w-full h-[70vh] ">
           <div className="w-full z-10 flex flex-col items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <Tag
               name={blog.tags[0]}
@@ -119,7 +119,7 @@ export default async function BlogPage({ params }) {
               {blog.title}
             </h1>
           </div>
-          <div className="absolute top-0 left-0 right-0 bottom-0 h-full bg-dark/60 " />
+          <div className="absolute top-0 left-0 right-0 bottom-0 h-full" />
           <Image
             src={blog.image}
             alt={blog.title}
@@ -135,45 +135,30 @@ export default async function BlogPage({ params }) {
         <div className="grid grid-cols-12  gap-y-8 lg:gap-8 sxl:gap-16 mt-8 px-5 md:px-10">
           {/* sticky div */}
           <div className="col-span-12  lg:col-span-2 sticky top-0">
-            <details
-              className="border-[1px] border-solid border-dark text-dark rounded-lg p-4 sticky top-6 max-h-[80vh] overflow-hidden overflow-y-auto"
-              open
-            >
-              <summary className="text-lg font-semibold capitalize cursor-pointer">
-                Table Of Content
-              </summary>
-              <ul className="mt-4 font-in text-base">
-                {/*<div*/}
-                {/*    className="text-container"*/}
-                {/*    dangerouslySetInnerHTML={{*/}
-                {/*        __html: Remarkable()*/}
-                {/*            .use(toc.plugin()) // <= register the plugin*/}
-                {/*            .render(blog.content)*/}
-                {/*    }}*/}
-                {/*/>*/}
-                Not available for now
-              </ul>
-            </details>
-
-            <details
-              className="border-[1px] my-8 border-solid border-dark text-dark rounded-lg p-4 sticky top-6 max-h-[80vh] overflow-hidden overflow-y-auto"
-              open
-            >
-              <summary className="text-lg font-semibold capitalize cursor-pointer">
-                Similar Articles
-              </summary>
-              <ul className="mt-4 font-in text-base">
-                {/*<div*/}
-                {/*    className="text-container"*/}
-                {/*    dangerouslySetInnerHTML={{*/}
-                {/*        __html: Remarkable()*/}
-                {/*            .use(toc.plugin()) // <= register the plugin*/}
-                {/*            .render(blog.content)*/}
-                {/*    }}*/}
-                {/*/>*/}
-                Not available for now
-              </ul>
-            </details>
+            {/* -------------------------------------------------------------------  TOC ! -----------------------------------------------------------------------------------------------------------------------  */}
+            {/*<details*/}
+            {/*  className="border-[1px] border-solid border-dark text-dark rounded-lg p-4 sticky top-6 max-h-[80vh] overflow-hidden overflow-y-auto"*/}
+            {/*  open*/}
+            {/*>*/}
+            {/*  <summary className="text-lg font-semibold capitalize cursor-pointer">*/}
+            {/*    Table Of Content*/}
+            {/*  </summary>*/}
+            {/*  <ul className="mt-4 font-in text-base">*/}
+            {/*    Not available for now*/}
+            {/*  </ul>*/}
+            {/*</details>*/}
+            {/* -------------------------------------------------------------------  SIMILAR ARTICLES ! -----------------------------------------------------------------------------------------------------------------------  */}
+            {/*<details*/}
+            {/*  className="border-[1px] my-8 border-solid border-dark text-dark rounded-lg p-4 sticky top-6 max-h-[80vh] overflow-hidden overflow-y-auto"*/}
+            {/*  open*/}
+            {/*>*/}
+            {/*  <summary className="text-lg font-semibold capitalize cursor-pointer">*/}
+            {/*    Similar Articles*/}
+            {/*  </summary>*/}
+            {/*  <ul className="mt-4 font-in text-base">*/}
+            {/*    Not available for now*/}
+            {/*  </ul>*/}
+            {/*</details>*/}
           </div>
           <RenderMdx blog={blog} />
           <Highlight />

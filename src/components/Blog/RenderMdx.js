@@ -5,17 +5,20 @@ import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
 const mdxComponents = {
-    Image,
+  Image,
 };
 
-const RenderMdx = ({blog}) => {
-    // const MDXContent = useMDXComponent(blog.body.code)
+const RenderMdx = ({ blog }) => {
+  // const MDXContent = useMDXComponent(blog.body.code)
 
-    return (
-        <div id="mdx-content" className="col-span-12  lg:col-span-8 font-in prose sm:prose-base md:prose-lg max-w-max">
-            <Markdown rehypePlugins={[rehypeRaw]}>{blog.content}</Markdown>
-        </div>
-    );
+  return (
+    <div
+      id="mdx-content"
+      className="col-span-12  lg:col-span-8 font-in prose sm:prose-base md:prose-lg max-w-max"
+    >
+      <Markdown rehypePlugins={[rehypeRaw]}>{blog.content}</Markdown>
+    </div>
+  );
 };
 
 export default RenderMdx;

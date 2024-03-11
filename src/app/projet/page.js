@@ -118,7 +118,7 @@ export default async function Project() {
                       className="button w-1/2 rounded-full border border-transparent bg-glow-500 px-8 py-2 text-sm font-medium leading-4
                                      text-black shadow-sm hover:bg-glow-600 focus:bg-glow-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
                     >
-                      En savoir plus
+                      Access it
                     </div>
                   </div>
                 </Link>

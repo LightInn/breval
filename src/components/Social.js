@@ -37,6 +37,8 @@ export function SocialIcons() {
         rel="noopener nofollow noreferrer"
         target="_blank"
         aria-label="Linkedin"
+        data-umami-event="social button"
+        data-umami-event-social="linkedin"
       >
         <svg
           className="h-6 w-6 xl:h-8 xl:w-8"
@@ -55,6 +57,8 @@ export function SocialIcons() {
         rel="noopener nofollow noreferrer"
         target="_blank"
         aria-label="Github"
+        data-umami-event="social button"
+        data-umami-event-social="github"
       >
         <svg
           className="h-6 w-6 xl:h-8 xl:w-8"

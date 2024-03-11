@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="my-32 w-full flex justify-center font-mr">
+    <main className="my-32 w-full bg-accent  flex justify-center font-mr">
       <div className="relative flex flex-col items-center justify-center">
         <h1
           className={`inline-block text-dark
@@ -18,7 +18,7 @@ export default function NotFound() {
         </h2>
         <Link
           href="/"
-          className="self-center mt-8 inline-block rounded-lg border-2 border-solid bg-dark px-4 py-2
+          className="self-center mt-8 inline-block rounded-lg border-2 border-solid  px-4 py-2
         font-semibold text-light hover:border-dark hover:bg-light hover:text-dark
         "
         >

@@ -123,6 +123,8 @@ export default async function ProjectDetail({ params }) {
                   type="submit"
                   className=" button mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-glow-500 px-8 py-3 text-base font-medium text-black hover:bg-glow-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   href={project.attributes?.url}
+                  data-umami-event="project link"
+                  data-umami-event-url={project.attributes?.url}
                 >
                   {project.attributes?.url}
                 </a>
@@ -155,6 +157,8 @@ export default async function ProjectDetail({ params }) {
                     {project.attributes?.creators?.map((creator, idx) => (
                       <Link
                         key={idx}
+                        data-umami-event="creator link"
+                        data-umami-event-site={creator.site}
                         href={"https://" + creator.site}
                         className=" shiny-button transition-100 rounded-lg border border-glow-600 bg-gray-900 p-6 text-center hover:bg-gray-800 hover:text-black no-underline"
                       >
