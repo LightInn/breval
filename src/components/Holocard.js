@@ -10,7 +10,7 @@ export default function Holocard({ height, width, radius, imageSrc }) {
         width={width}
         radius={radius}
         imageSrc={imageSrc}
-        imageShineSrc="https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp"
+        imageshinesrc="https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp"
       />
     </>
   );

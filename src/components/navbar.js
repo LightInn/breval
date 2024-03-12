@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 flex w-screen flex-col items-center justify-center text-black transition-all md:h-[80px] backdrop-blur-md`}
+      className={`fixed left-0 top-0 z-50 flex w-screen flex-col items-center justify-center text-black transition-all md:h-[80px] backdrop-blur-md md:backdrop-filter-none`}
     >
       {/* pill */}
       <div
@@ -130,42 +130,42 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded="false"
           >
-            <span class="absolute -inset-0.5"></span>
+            <span className="absolute -inset-0.5"></span>
 
-            <span class="sr-only">Open main menu</span>
+            <span className="sr-only">Open main menu</span>
 
             <svg
               x-description="Icon when menu is closed."
-              class={"block h-6 w-6" + (isMobileOpen ? " hidden" : "")}
+              className={"block h-6 w-6" + (isMobileOpen ? " hidden" : "")}
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               aria-hidden="true"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
               ></path>
             </svg>
 
             <svg
               x-description="Icon when menu is open."
-              class={"h-6 w-6" + (isMobileOpen ? " block" : " hidden")}
+              className={"h-6 w-6" + (isMobileOpen ? " block" : " hidden")}
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               aria-hidden="true"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M6 18L18 6M6 6l12 12"
               ></path>
             </svg>
@@ -174,7 +174,7 @@ export default function Navbar() {
 
         <div className={" h-screen " + (isMobileOpen ? "block" : "hidden")}>
           <div
-            class={"px-2 pt-2 pb-3 space-y-1"}
+            className={"px-2 pt-2 pb-3 space-y-1"}
             id="mobile-menu"
             aria-expanded="false"
           >

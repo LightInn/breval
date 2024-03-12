@@ -81,7 +81,6 @@ export default async function Project() {
                   <Image
                     src={"/abstract_shape.svg"}
                     alt={"abstract shape"}
-                    imageShineSrc="https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp"
                     className={
                       (projectIdx % 2 === 0
                         ? "-bottom-20 -left-20 rotate-12"
