@@ -8,7 +8,7 @@ export const revalidate = 60;
 export const metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
   title: {
-    template: `%s | ${siteMetadata.title}`,
+    template: `%s | Blog & News`,
     default: siteMetadata.title, // a default is required when creating a template
   },
   description: siteMetadata.description,
