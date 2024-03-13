@@ -14,7 +14,7 @@ const insights = [
 export default function AboutLayout({ children }) {
     return (
         <main className="w-full bg-white flex flex-col items-center justify-between">
-            <InsightRoll insights={insights} />
+            {/*<InsightRoll insights={insights} />*/}
             {children}
         </main>
     );

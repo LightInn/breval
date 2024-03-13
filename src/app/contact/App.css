@@ -1,3 +1,7 @@
+* {
+    transition: all 0.2s;
+}
+
 body {
 
     /*--primary: #D9559D;*/
@@ -11,7 +15,6 @@ body {
     /*--secondary-dark: #206E8C;*/
 
 overflow-x: hidden;
-
 }
 
 

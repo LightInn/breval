@@ -12,6 +12,7 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
+    "@rive-app/react-canvas": "^4.8.3",
     "date-fns": "^3.3.1",
     "github-slugger": "^2.0.0",
     "highlight.js": "11.9.0",
