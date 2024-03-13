@@ -1,0 +1,156 @@
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  padding: 0 10% 0 10%;
+
+}
+
+
+.title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 25px;
+
+  /* DarkVibrant */
+  color: var(--primary-dark);
+}
+
+.subtitle {
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 47px;
+  color: var(--secondary);
+}
+
+
+.skillsContent {
+  display: flex;
+}
+
+.leftPart {
+  margin-right: 150px;
+}
+
+.rightPanelPart {
+  margin-left: 150px;
+}
+
+.skillSets {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 500px;
+}
+
+
+.skill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  padding: 8px 15px;
+  background-color: var(--primary);
+  border-radius: 50px;
+  color: var(--primary-light);
+
+}
+
+.skill:hover {
+
+  background-color: var(--primary-light);
+  border: solid 1px var(--primary);
+  border-radius: 25px;
+  color: var(--primary);
+
+
+}
+
+
+
+
+.skillValues {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+}
+
+
+.value {
+
+  width: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5px;
+  padding: 15px;
+  background-color: var(--primary-dark);
+
+  color: var(--primary-dark);
+
+  //opacity: 0.4;
+  border-radius: 8px;
+}
+
+
+.valueImg {
+  height: 50px;
+
+  svg {
+
+    max-height: 50px;
+    max-width: 50px;
+    fill: var(--primary-light);
+  }
+
+}
+
+.valueText {
+  display: none;
+  margin-left: 20px;
+  color: var(--primary-light);
+  opacity: 1;
+
+}
+
+.value:hover > .valueText {
+  display: block;
+}
+
+.rightPanel {
+  margin-left: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.button {
+  margin: 75px;
+  background-color: var(--primary);
+  color: var(--primary-light);
+  font-size: 20px;
+  padding: 15px;
+  width: 75%;
+  height: 90px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+
+
+}
+
+.button:hover {
+
+  background-color: var(--primary-light);
+  color: var(--primary);
+  border-radius: 16px;
+  border: 3px solid var(--primary);
+
+}

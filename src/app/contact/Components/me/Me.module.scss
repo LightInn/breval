@@ -1,0 +1,150 @@
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  padding: 0 10% 0 10%;
+
+}
+
+
+.avatar {
+
+  border-radius: 50%;
+  background-color: black;
+
+  width: 380px;
+  height: 380px;
+  object-fit: cover;
+
+}
+
+.title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 25px;
+
+  /* DarkVibrant */
+  color: var(--primary-dark);
+}
+
+.desc {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+
+  /* DarkMuted */
+  color: var(--secondary-dark);
+}
+
+
+.rightPanel {
+  margin-left: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.button {
+  margin: 75px;
+  background-color: var(--primary);
+  color: var(--primary-light);
+  font-size: 20px;
+  padding: 15px;
+  width: 75%;
+  height: 90px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+
+
+}
+
+.button:hover {
+
+  background-color: var(--primary-light);
+  color: var(--primary);
+  border-radius: 16px;
+  border: 3px solid var(--primary);
+
+}
+
+// --------------------------------------------------------------------------------------------------
+
+@media (max-width: 1325px) {
+
+  .bg {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    z-index: 0;
+    background-color: var(--primary-light);
+    background: var(--bg-img) center no-repeat;
+    background-size: cover;
+    filter: blur(8px);
+    opacity: 0.5;
+  }
+
+
+  .avatar {
+
+    border-radius: 50%;
+    background-color: black;
+
+    width: 35vh;
+    height: 35vh;
+    object-fit: cover;
+  }
+
+  .content {
+    margin-top: 60px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+  }
+
+
+  .text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+
+  .title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 200%;
+    line-height: 0;
+
+    /* DarkVibrant */
+    color: var(--primary-dark);
+  }
+
+  .desc {
+    text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 120%;
+
+    /* DarkMuted */
+    color: var(--secondary-dark);
+  }
+
+
+  .colorBox {
+    display: none;
+  }
+
+
+}
