@@ -34,7 +34,7 @@
     "strapi-sdk-js": "^2.3.3"
   },
   "devDependencies": {
-    "@types/node": "20.11.28",
+    "@types/node": "20.11.29",
     "@types/react": "18.2.64",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
