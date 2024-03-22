@@ -18,7 +18,7 @@ export default function Avatar() {
     const updateValues = ({size, scroll, mouse, position, orientation, devicePixelRatio}) => {
         if (mouse.changed) {
             // do something related to mouse position or velocity
-            console.log(mouse)
+            // console.log(mouse)
 
             // calculate the distance from the center of the page in percentage
             const x = (mouse.x - window.innerWidth / 2) / window.innerWidth * 100;
