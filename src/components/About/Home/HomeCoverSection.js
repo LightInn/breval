@@ -2,7 +2,7 @@ import { sortBlogs } from "/src/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Tag from "../Elements/Tag";
+import Tag from "../../Elements/Tag";
 import { slug } from "github-slugger";
 
 const HomeCoverSection = ({ blogs }) => {

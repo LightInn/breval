@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 import Navbar from "../../components/navbar";
-import Holocard from "../../components/Holocard";
+import Holocard from "../../components/Home/Holocard";
 
 export default async function Project() {
   const projects = await getProject();

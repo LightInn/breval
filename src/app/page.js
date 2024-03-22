@@ -3,9 +3,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/navbar";
-import Hero from "../components/hero";
-import Divider from "../components/divider";
-import Presentation from "../components/presentation";
+import Hero from "../components/Home/hero";
+import Divider from "../components/Home/divider";
+import Presentation from "../components/Home/presentation";
 
 export default function Home() {
   return (

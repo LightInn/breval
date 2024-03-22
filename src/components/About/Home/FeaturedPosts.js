@@ -1,6 +1,6 @@
 import { sortBlogs } from "/src/utils";
 import React from "react";
-import BlogLayoutOne from "../Blog/BlogLayoutOne";
+import BlogLayoutOne from "../../Blog/BlogLayoutOne";
 import BlogLayoutTwo from "@/components/Blog/BlogLayoutTwo";
 
 const FeaturedPosts = ({ blogs }) => {
