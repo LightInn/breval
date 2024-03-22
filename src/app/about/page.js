@@ -44,20 +44,11 @@ export default function About() {
 
     }`;
 
-
-    const {rive, RiveComponent} = useRive({
-        src: 'alien_spider.riv', stateMachines: "State Machine 1", autoplay: false,
-
-    });
-
-    const highlightCanada = useStateMachineInput(rive, "stateMachine", "canada");
-
-
     return (<div className="w-full">
 
 
         <AppStyle/>
-        <Navbar/>
+        <Navbar />
 
         <div className="">
 

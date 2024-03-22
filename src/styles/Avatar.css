@@ -28,11 +28,15 @@
     fill: var(--vibrant-dark);
 }
 
+#Mia {
+    opacity: 0;
+}
+
 /*------------------------------------  DYNAMIC ------------------------------------------------------*/
 
 * {
 
-    transition: all 0.2s;
+    transition: all 0.2s ease-out;
 }
 
 /* cool size change and ghost hover effect */
@@ -54,20 +58,20 @@
 }
 
 
-/* full avatar slowly moving up and down */
-#avatar {
-    animation: avatar 3s infinite alternate;
-    transition: none;
-}
+/*!* full avatar slowly moving up and down *!*/
+/*#avatar {*/
+/*    animation: avatar 3s infinite alternate;*/
+/*    transition: none;*/
+/*}*/
 
-@keyframes avatar {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-15px);
-    }
-}
+/*@keyframes avatar {*/
+/*    0% {*/
+/*        transform: translateY(0);*/
+/*    }*/
+/*    100% {*/
+/*        transform: translateY(-15px);*/
+/*    }*/
+/*}*/
 
 
 #veste {
@@ -90,81 +94,17 @@
         transform: translateY(30px);
     }
 }
-
-
-/*  -------------------------------------- OTHER thing in about page  --------------------------------------------   */
-
-
-.message-bulle {
-
-    transform: translatey(0px);
-    animation: float 5s ease-in-out infinite;
-
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 3px;
-    font-size: 15px;
-    color: black;
-    background-color: var(--vibrant-light);
-    padding: 50px;
-    border-radius: 11px;
-    position: relative;
-    box-shadow: 20px 20px var(--muted-dark);
-    font-family: "Baloo 2", cursive;
-    /*// border: 1px solid $color-green;*/
+.dizzy {
+    animation: dizzyMia 3s ease-in;
+    transition: none;
 }
 
-
-.message-bulle:after {
-    transform: translatey(0px);
-    animation: float2 5s ease-in-out infinite;
-    content: ".";
-    font-weight: bold;
-    /*// -webkit-text-stroke: 0.5px $color-green;*/
-    -webkit-text-fill-color: var(--vibrant-light);
-    /*// border: 1px solid $color-green;*/
-    text-shadow: 22px 22px var(--muted-dark);
-    text-align: right;
-    font-size: 55px;
-    width: 55px;
-    height: 11px;
-    line-height: 30px;
-    border-radius: 11px;
-    background-color: var(--vibrant-light);
-    position: absolute;
-    display: block;
-    bottom: -30px;
-    right: 0;
-    box-shadow: 22px 22px var(--muted-dark);
-    z-index: -2;
-}
-
-@keyframes float {
+@keyframes dizzyMia {
     0% {
-        transform: translatey(0px);
-    }
-    50% {
-        transform: translatey(-15px);
+       opacity: 0;
     }
     100% {
-        transform: translatey(0px);
+        opacity: 1;
     }
 }
 
-@keyframes float2 {
-    0% {
-        line-height: 30px;
-        transform: translatey(0px);
-    }
-    55% {
-        transform: translatey(-15px);
-    }
-    60% {
-        line-height: 10px;
-    }
-    100% {
-        line-height: 20px;
-        transform: translatey(0px);
-    }
-}

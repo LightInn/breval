@@ -49,7 +49,7 @@ const SkillList = [
 const Skills = () => {
     return (
         <section
-            className="m-20 flex flex-col items-center w-full p-8 bg-gradient-to-r from-dynamic-muted-light to-dynamic-muted overflow-hidden">
+            className="md:ml-20 flex flex-col items-center w-full p-8 bg-gradient-to-r from-dynamic-muted-light to-dynamic-muted overflow-hidden">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-black mb-4">
                 Skills & Technologies
             </h2>
