@@ -44,6 +44,7 @@ export default function Avatar() {
             document.getElementById("eyeL").style.transform = `translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`;
             document.getElementById("eyR").style.transform = `translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`;
             document.getElementById("eyL").style.transform = `translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`;
+            document.getElementById("avatar").style.transform = `translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`;
 
 
             // glasses
@@ -109,7 +110,7 @@ export default function Avatar() {
           {/*/>*/}
 
 
-          <svg width="687" height="834" viewBox="0 0 687 834" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="max-w-[50vw] max-h-[80vh] overflow-visible"  viewBox="0 0 687 834" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="avatar">
                   <path id="neck"
                         d="M269 396V363.5V354L268 343L267 328.5L269 323L281.5 316L357 299.5L430 316V338.5V349L429 366.5V384.5L430 407L432.5 421L436.5 427.5L446.5 437.5L458.5 442.5L448 471.5L405.5 504.5L351.5 516.5L299 500L258 471.5L262.5 450L267 419.5L269 396Z"

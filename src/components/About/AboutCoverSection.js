@@ -27,7 +27,7 @@ const AboutCoverSection = ({background = null}) => {
 
                 </div>
 
-                <Avatar/>
+                 <Avatar/>
 
             </div>
         </section>
