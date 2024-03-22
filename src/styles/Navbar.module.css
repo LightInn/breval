@@ -1,34 +1,24 @@
-
 .navBackground {
-
-
   position: fixed;
   display: flex;
-
   text-align: center;
-  background-color: var(--secondary-dark);
+  background-color: var(--muted-dark);
   height: 120%;
   width: 80px;
   z-index: 5;
-
-
 }
 
-
 .nav {
-  margin-top: 0;
-  padding-left: 0;
   position: fixed;
   display: flex;
   flex-direction: column;
   align-items: baseline;
   text-align: center;
-  background-color: var(--secondary-dark);
+  background-color: var(--muted-dark);
   height: 100%;
   width: 80px;
   z-index: 5;
 }
-
 
 .navBackground:hover {
   width: 250px;
@@ -38,38 +28,24 @@
   box-shadow: 2px 3px 24px 0px rgba(0, 0, 0, 0.75);
 }
 
-
 .navBackground:hover > .nav {
   padding: 50px 10px;
   transform: rotate(-6deg);
-
-
 }
 
 .logo {
-
-
   height: 50px;
   width: 80px;
-
 }
-
 
 .bitimeSVG {
   height: 100%;
   width: 100%;
 }
 
-
-.bitime {
-  fill: var(--primary-light);
-
-}
-
 .navElement {
   display: flex;
 }
-
 
 .navElement:hover {
   vertical-align: middle;
@@ -77,7 +53,7 @@
   justify-content: center;
   cursor: pointer;
   display: flex;
-  border: 1px solid var(--primary-light);
+  border: 1px solid var(--vibrant-light);
   padding: 0 25px;
 }
 
@@ -86,9 +62,8 @@
   display: none;
   justify-content: center;
   align-items: center;
-  color: var(--primary-light);
+  color: var(--vibrant-light);
   opacity: 0;
-
 }
 
 .navBackground:hover .content {
@@ -96,48 +71,101 @@
   opacity: 1;
 }
 
-
 .navBackground:hover .fbContainer {
-
   animation-name: navSquareInit;
   animation-iteration-count: 1;
   animation-direction: normal;
   animation-duration: 0.5s;
-
-
-  .fb {
-    display: flex;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    vertical-align: center;
-    z-index: 5;
-    background: var(--secondary-dark);
-    color: var(--secondary-dark);
-    -webkit-box-shadow: 2px 3px 24px 0 rgba(0, 0, 0, 0.40);
-    -moz-box-shadow: 2px 3px 24px 0 rgba(0, 0, 0, 0.40);
-    box-shadow: 2px 3px 24px 0 rgba(0, 0, 0, 0.40);
-  }
 }
-
+.navBackground:hover .fbContainer .fb {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: center;
+  z-index: 5;
+  background: var(--muted-dark);
+  color: var(--muted-dark);
+  -webkit-box-shadow: 2px 3px 24px 0 rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 2px 3px 24px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 3px 24px 0 rgba(0, 0, 0, 0.4);
+}
 
 .fb {
   display: none;
 }
 
+.floatingBox1 {
+  transform: rotate(13deg);
+  animation-name: navSquare;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 14s;
+}
 
-@for $i from 1 through 9 {
+.floatingBox2 {
+  transform: rotate(11deg);
+  animation-name: navSquare;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 13s;
+}
 
-  .floatingBox#{$i} {
-    transform: rotate(random(180)+deg);
-    animation-name: navSquare;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-duration: random(12)+6+s;
-  }
+.floatingBox3 {
+  transform: rotate(16deg);
+  animation-name: navSquare;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 11s;
+}
 
+.floatingBox4 {
+  transform: rotate(97deg);
+  animation-name: navSquare;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 8s;
+}
 
+.floatingBox5 {
+  transform: rotate(108deg);
+  animation-name: navSquare;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 7s;
+}
+
+.floatingBox6 {
+  transform: rotate(157deg);
+  animation-name: navSquare;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 11s;
+}
+
+.floatingBox7 {
+  transform: rotate(78deg);
+  animation-name: navSquare;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 16s;
+}
+
+.floatingBox8 {
+  transform: rotate(118deg);
+  animation-name: navSquare;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 16s;
+}
+
+.floatingBox9 {
+  transform: rotate(117deg);
+  animation-name: navSquare;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 14s;
 }
 
 .floatingBox1 {
@@ -145,16 +173,13 @@
   top: 100px;
   width: 50px;
   height: 50px;
-
 }
-
 
 .floatingBox2 {
   left: 600px;
   top: 300px;
   width: 100px;
   height: 100px;
-
 }
 
 .floatingBox3 {
@@ -165,14 +190,11 @@
 }
 
 .floatingBox4 {
-
-
   left: 700px;
   top: 100px;
   width: 80px;
   height: 80px;
 }
-
 
 .floatingBox5 {
   left: 1000px;
@@ -180,7 +202,6 @@
   width: 40px;
   height: 40px;
 }
-
 
 .floatingBox6 {
   left: 800px;
@@ -194,16 +215,13 @@
   top: 300px;
   width: 200px;
   height: 200px;
-
 }
-
 
 .floatingBox8 {
   left: 1000px;
   top: 600px;
   width: 150px;
   height: 150px;
-
 }
 
 .floatingBox9 {
@@ -211,9 +229,7 @@
   top: 100px;
   width: 30px;
   height: 30px;
-
 }
-
 
 @keyframes navSquareInit {
   from {
@@ -223,28 +239,19 @@
     transform: scale(1) translate(0);
   }
 }
-
-
 @keyframes navSquare {
-
   from {
     transform: scale(0.9);
   }
   to {
-    transform: scale(1) rotate(random(360)+deg);
+    transform: scale(1) rotate(162deg);
   }
 }
-
-
-//---------------------------------------------------------------------------
 @media (max-width: 1325px) {
-
-
   .navBackground {
     height: 50px;
     width: 120%;
   }
-
 
   .nav {
     flex-direction: row;
@@ -252,7 +259,6 @@
     width: 100%;
     justify-content: flex-end;
   }
-
 
   .navBackground:hover {
     width: 100%;
@@ -262,7 +268,6 @@
     box-shadow: 2px 3px 24px 0px rgba(0, 0, 0, 0.75);
   }
 
-
   .navBackground:hover > .nav {
     padding: 0;
     transform: rotate(0deg);
@@ -270,14 +275,12 @@
   }
 
   .bitime {
-    fill: var(--primary-light);
-
+    fill: var(--vibrant-light);
   }
 
   .navElement {
     display: flex;
   }
-
 
   .navElement:hover {
     vertical-align: middle;
@@ -285,7 +288,7 @@
     justify-content: center;
     cursor: pointer;
     display: flex;
-    border: 1px solid var(--primary-light);
+    border: 1px solid var(--vibrant-light);
     padding: 0 25px;
   }
 
@@ -294,9 +297,8 @@
     display: none;
     justify-content: center;
     align-items: center;
-    color: var(--primary-light);
+    color: var(--vibrant-light);
     opacity: 0;
-
   }
 
   .navBackground:hover .content {
@@ -304,37 +306,30 @@
     opacity: 1;
   }
 
-
   .navBackground:hover .fbContainer {
-
     animation-name: navSquareInit;
     animation-iteration-count: 1;
     animation-direction: normal;
     animation-duration: 0.5s;
-
-
-    .fb {
-      display: none;
-      position: absolute;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      vertical-align: center;
-      z-index: 5;
-      background: var(--secondary-dark);
-      color: var(--secondary-dark);
-      -webkit-box-shadow: 2px 3px 24px 0 rgba(0, 0, 0, 0.40);
-      -moz-box-shadow: 2px 3px 24px 0 rgba(0, 0, 0, 0.40);
-      box-shadow: 2px 3px 24px 0 rgba(0, 0, 0, 0.40);
-    }
   }
-
+  .navBackground:hover .fbContainer .fb {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    vertical-align: center;
+    z-index: 5;
+    background: var(--muted-dark);
+    color: var(--muted-dark);
+    -webkit-box-shadow: 2px 3px 24px 0 rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 2px 3px 24px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 3px 24px 0 rgba(0, 0, 0, 0.4);
+  }
 
   .fb {
     display: none;
   }
-
-
 }
 
-
+/*# sourceMappingURL=Navbar.module.css.map */

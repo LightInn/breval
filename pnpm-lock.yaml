@@ -80,6 +80,9 @@ dependencies:
   styled-components:
     specifier: ^6.1.8
     version: 6.1.8(react-dom@18.2.0)(react@18.2.0)
+  tornis:
+    specifier: ^0.3.6
+    version: 0.3.6
 
 devDependencies:
   '@types/node':
@@ -8549,6 +8552,10 @@ packages:
     dependencies:
       '@tokenizer/token': 0.3.0
       ieee754: 1.2.1
+    dev: false
+
+  /tornis@0.3.6:
+    resolution: {integrity: sha512-aYVmnoP/TCVM3bNyQAFYXTp2ccdNRWCOexh+UvUOAWejfyprhKy7iQczw7bWnJywNmmabWEb/0qwEK89BNSn9Q==}
     dev: false
 
   /tr46@0.0.3:
