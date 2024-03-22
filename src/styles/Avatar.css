@@ -1,37 +1,38 @@
 #particles > circle {
-  fill: #fff;
-  stroke: #000;
-  stroke-width: 0.5;
+    fill: #fff;
+    stroke: #000;
+    stroke-width: 0.5;
 }
 
-#neck, #face {
-  fill: var(--vibrant-light);
+#neck, #face, #earR, #earL {
+    fill: var(--vibrant-light);
 }
 
 #neckShadow, #mouth2Shadow, #noseShadow, #eyeShadow, #faceShadow, #earRShadow > path, #earRShadow_2 > path {
-  fill: var(--muted);
+    fill: var(--muted);
 }
 
-#earR, #earL {
-  fill: var(--muted-light);
+#particles > circle, #shineL, #shineR {
+    fill: var(--muted-light);
 }
 
-#hair, #bear, #veste, #mustache > path, #eayleachR, #eayleachL {
-  fill: var(--muted-dark);
+#hair, #bear, #veste, #vesteParticles > circle, #mustache > path, #eayleachR, #eayleachL {
+    fill: var(--muted-dark);
 }
 
 #tshirt, #glasses > path {
-  fill: var(--vibrant);
+    fill: var(--vibrant);
 }
 
 #mouth2, #pupilleR, #pupilleL, #eyR, #eyL, #noseHole > path {
-  fill: var(--vibrant-dark);
+    fill: var(--vibrant-dark);
 }
 
 /*------------------------------------  DYNAMIC ------------------------------------------------------*/
 
-#avatar > * {
+* {
 
+    transition: all 0.2s;
 }
 
 /* cool size change and ghost hover effect */
@@ -65,5 +66,105 @@
     }
     100% {
         transform: translateY(-15px);
+    }
+}
+
+
+#veste {
+    fill-opacity: 1;
+}
+
+/* cool size change and ghost hover effect */
+#vesteParticles > circle {
+    animation: vesteParticles 3s infinite alternate;
+    transition: none;
+}
+
+/*  animation should shange the circle size slowly while transform y slowly  */
+@keyframes vesteParticles {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        r: 60px;
+        transform: translateY(30px);
+    }
+}
+
+
+/*  -------------------------------------- OTHER thing in about page  --------------------------------------------   */
+
+
+.message-bulle {
+
+    transform: translatey(0px);
+    animation: float 5s ease-in-out infinite;
+
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 15px;
+    color: black;
+    background-color: var(--vibrant-light);
+    padding: 50px;
+    border-radius: 11px;
+    position: relative;
+    box-shadow: 20px 20px var(--muted-dark);
+    font-family: "Baloo 2", cursive;
+    /*// border: 1px solid $color-green;*/
+}
+
+
+.message-bulle:after {
+    transform: translatey(0px);
+    animation: float2 5s ease-in-out infinite;
+    content: ".";
+    font-weight: bold;
+    /*// -webkit-text-stroke: 0.5px $color-green;*/
+    -webkit-text-fill-color: var(--vibrant-light);
+    /*// border: 1px solid $color-green;*/
+    text-shadow: 22px 22px var(--muted-dark);
+    text-align: right;
+    font-size: 55px;
+    width: 55px;
+    height: 11px;
+    line-height: 30px;
+    border-radius: 11px;
+    background-color: var(--vibrant-light);
+    position: absolute;
+    display: block;
+    bottom: -30px;
+    right: 0;
+    box-shadow: 22px 22px var(--muted-dark);
+    z-index: -2;
+}
+
+@keyframes float {
+    0% {
+        transform: translatey(0px);
+    }
+    50% {
+        transform: translatey(-15px);
+    }
+    100% {
+        transform: translatey(0px);
+    }
+}
+
+@keyframes float2 {
+    0% {
+        line-height: 30px;
+        transform: translatey(0px);
+    }
+    55% {
+        transform: translatey(-15px);
+    }
+    60% {
+        line-height: 10px;
+    }
+    100% {
+        line-height: 20px;
+        transform: translatey(0px);
     }
 }

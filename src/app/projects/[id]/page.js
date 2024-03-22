@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Navbar from "../../../components/navbar";
-import ImageWithFallback from "../../../components/ImageWithFallback";
+import ImageWithFallback from "../../../components/Home/ImageWithFallback";
 import Markdown from "react-markdown";
 import { format, parseISO } from "date-fns";
 

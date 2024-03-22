@@ -50,7 +50,7 @@ export default function Navbar() {
         </Link>
 
         <Link
-          href="/projet"
+          href="/projects"
           className={`button-animated  smoke m-0 origin-center items-center justify-center 
                      rounded-full p-0 transition-all duration-100 
                      ease-in-out hover:w-32 flex h-full w-24 no-underline
@@ -58,13 +58,14 @@ export default function Navbar() {
           // ${showTransparentBackground ? '' : 'md:w-0  hover:w-32'}
         >
           <div>
-            <span>G</span>
-            <span>A</span>
-            <span>L</span>
-            <span>L</span>
-            <span>E</span>
+            <span>P</span>
             <span>R</span>
-            <span>Y</span>
+            <span>O</span>
+            <span>J</span>
+            <span>E</span>
+            <span>C</span>
+            <span>T</span>
+            <span>S</span>
           </div>
         </Link>
         <Link
@@ -82,23 +83,21 @@ export default function Navbar() {
             <span>G</span>
           </div>
         </Link>
-        <a
-          href="mailto:breval.lefloch@gmail.com"
+        <Link
+          href="/about"
           className={`button-animated  smoke m-0 origin-center items-center justify-center 
                      rounded-full p-0 transition-all duration-100 
                      ease-in-out flex h-full w-24 hover:w-32
                      `}
         >
           <div>
-            <span>C</span>
-            <span>O</span>
-            <span>N</span>
-            <span>T</span>
             <span>A</span>
-            <span>C</span>
+            <span>B</span>
+            <span>O</span>
+            <span>U</span>
             <span>T</span>
           </div>
-        </a>
+        </Link>
       </div>
 
       {/* Mobile view under md*/}
@@ -114,7 +113,7 @@ export default function Navbar() {
           }
         >
           <Link
-            href="/"
+            href="/public"
             className={`m-0 flex origin-center 
                      items-center justify-center rounded-full p-0 transition-all
                      duration-100  ease-in-out h-full w-16 no-underline`}
@@ -179,7 +178,7 @@ export default function Navbar() {
             aria-expanded="false"
           >
             <Link
-              href="/"
+              href="/public"
               className={
                 "bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
               }

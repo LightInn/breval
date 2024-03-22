@@ -1,8 +1,8 @@
 import getAllBlogs from "../../services/blog.services";
 // import {allBlogs}       from '../../.contentlayer/generated/Blog/_index.mjs';
-import HomeCoverSection from "../../components/Home/HomeCoverSection";
-import FeaturedPosts from "../../components/Home/FeaturedPosts";
-import RecentPosts from "@/components/Home/RecentPosts";
+import HomeCoverSection from "@/components/About/Home/HomeCoverSection";
+import FeaturedPosts from "@/components/About/Home/FeaturedPosts";
+import RecentPosts from "@/components/About/Home/RecentPosts";
 
 export const metadata = {
   title: "Bréval LE FLOCH | My Blog",

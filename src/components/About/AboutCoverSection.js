@@ -1,7 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import profileCharacter from "../../../public/avatar.svg";
-import Avatar from "/src/components/animated/Avatar";
+import Avatar from "/src/components/About/Avatar";
+import {SocialIcons} from "@/components/Home/Social";
+import {GithubIcon,DribbbleIcon,MoonIcon,SunIcon,LinkedinIcon,TwitterIcon} from "@/components/Icons";
 
 const AboutCoverSection = ({background = null}) => {
     return (
@@ -10,24 +12,33 @@ const AboutCoverSection = ({background = null}) => {
             <div className="p-20 w-full h-full flex justify-center items-center backdrop-blur-lg">
 
 
-                <div className="flex flex-col w-1/2 p-8  bg-pink-500">
+                <div className="flex flex-col items-end w-1/4">
 
 
-                    <h2 className="font-bold capitalize text-4xl xs:text-5xl sxl:text-6xl  text-center lg:text-left">
-                        Dream Big, Work Hard, Achieve More!
+                    <h2 className="font-bold capitalize text-4xl md:text-6xl  text-center lg:text-right  md:bg-white/30 md:rounded-2xl md:p-6 message-bulle">
+                        Hi, I&apos;m <br/>
+                        <bold>Bréval</bold>
+                        .
                     </h2>
-                    <p className="font-medium capitalize mt-4 text-base">
-                        This Mantra Drives My Work As A Passionate Freelancer. I Blend
-                        Innovative Technology With Timeless Design For Captivating Digital
-                        Experiences. Inspired By Nature And Literature, I&apos;m A Perpetual
-                        Learner Embracing Challenges. With Each Project, I Aim To Leave A
-                        Lasting Impact—One Pixel At A Time.
+                    <p className="font-medium capitalize md:text-2xl text-right  md:bg-white/30 md:rounded-2xl md:p-20 md:mt-8 message-bulle">
+                        I&apos;m a creative developer <br/>
+                        from France, Loire Atlantique.
                     </p>
 
 
+                    <div className="bg-red-500 w-full h-full mt-20 rounded-2xl p-8 hidden">
+                        <GithubIcon className="w-[30px]"/>
+                        <DribbbleIcon className="w-[30px]"/>
+                        <MoonIcon className="w-[30px]"/>
+                        <SunIcon className="w-[30px]"/>
+                        <LinkedinIcon className="w-[30px]"/>
+                        <TwitterIcon className="w-[30px]"/>
+
+                    </div>
+
                 </div>
 
-                 <Avatar/>
+                <Avatar/>
 
             </div>
         </section>
