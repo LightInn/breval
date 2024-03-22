@@ -1,6 +1,5 @@
 .navBackground {
   position: fixed;
-  display: flex;
   text-align: center;
   background-color: var(--muted-dark);
   height: 120%;
@@ -247,7 +246,7 @@
     transform: scale(1) rotate(162deg);
   }
 }
-@media (max-width: 1325px) {
+@media (max-width: 625px) {
   .navBackground {
     height: 50px;
     width: 120%;
