@@ -25,6 +25,8 @@ module.exports = {
         light: "#f4faf7",
         accent: "#ff99b1",
         gray: "#706262",
+        "dynamic-primary": "var(--vibrant)",
+        "dynamic-secondary": "var(--muted)",
       },
       brightness: {
         10: ".10",
@@ -48,6 +50,7 @@ module.exports = {
       },
       backgroundImage: {
         "sakura-tree": "url(/sakura_tree_outline.webp)",
+        "dynamic-bg": "var(--bg-img)",
       },
 
       fontFamily: {

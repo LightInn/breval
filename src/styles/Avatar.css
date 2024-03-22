@@ -1,0 +1,69 @@
+#particles > circle {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: 0.5;
+}
+
+#neck, #face {
+  fill: var(--vibrant-light);
+}
+
+#neckShadow, #mouth2Shadow, #noseShadow, #eyeShadow, #faceShadow, #earRShadow > path, #earRShadow_2 > path {
+  fill: var(--muted);
+}
+
+#earR, #earL {
+  fill: var(--muted-light);
+}
+
+#hair, #bear, #veste, #mustache > path, #eayleachR, #eayleachL {
+  fill: var(--muted-dark);
+}
+
+#tshirt, #glasses > path {
+  fill: var(--vibrant);
+}
+
+#mouth2, #pupilleR, #pupilleL, #eyR, #eyL, #noseHole > path {
+  fill: var(--vibrant-dark);
+}
+
+/*------------------------------------  DYNAMIC ------------------------------------------------------*/
+
+#avatar > * {
+
+}
+
+/* cool size change and ghost hover effect */
+#particles > circle {
+    animation: particle 3s infinite alternate;
+    transition: none;
+}
+
+/*  animation should shange the circle size slowly while transform y slowly  */
+@keyframes particle {
+    0% {
+        r: 3px;
+        transform: translateY(0);
+    }
+    100% {
+
+        transform: translateY(-15px);
+    }
+}
+
+
+/* full avatar slowly moving up and down */
+#avatar {
+    animation: avatar 3s infinite alternate;
+    transition: none;
+}
+
+@keyframes avatar {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-15px);
+    }
+}
