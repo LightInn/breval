@@ -7,14 +7,12 @@ import { slug } from "github-slugger";
 const BlogDetails = ({ blog, slug: blogSlug }) => {
   return (
     <div className="px-2 md:px-10 bg-accent text-dark py-2 flex items-center justify-around flex-wrap text-lg sm:text-xl font-medium mx-5  md:mx-10 rounded-lg">
-
-        <address className="author">
-          By{" "}
-          <a rel="author" href="/">
-            Bréval LE FLOCH
-          </a>
-        </address>
-
+      <address className="author">
+        By{" "}
+        <a rel="author" href="/">
+          Bréval LE FLOCH
+        </a>
+      </address>
 
       <p className="m-3 max-w-full overflow-hidden">
         {blog.tags.length > 1 &&

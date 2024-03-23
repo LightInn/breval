@@ -1,24 +1,21 @@
 * {
-    transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 body {
+  /*--vibrant: #D9559D;*/
+  /*--muted: #0396A6;*/
 
-    /*--vibrant: #D9559D;*/
-    /*--muted: #0396A6;*/
+  /*--vibrant-light: #ffe845;*/
+  /*--muted-light: #61BEE2;*/
 
-    /*--vibrant-light: #ffe845;*/
-    /*--muted-light: #61BEE2;*/
+  /*--vibrant-dark: #F23E2E;*/
+  /*--muted-dark: #206E8C;*/
 
-
-    /*--vibrant-dark: #F23E2E;*/
-    /*--muted-dark: #206E8C;*/
-
-overflow-x: hidden;
+  overflow-x: hidden;
 }
 
-
 li {
-    text-decoration: none;
-    list-style: none;
+  text-decoration: none;
+  list-style: none;
 }
