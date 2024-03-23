@@ -715,7 +715,7 @@ blockquote span {
         font-size: 15px;
         color: black;
         background-color: var(--vibrant-light);
-        padding: 50px;
+        /*padding: 50px;*/
         border-radius: 11px;
         position: relative;
         box-shadow: 20px 20px var(--muted-dark);
@@ -723,31 +723,33 @@ blockquote span {
         /*// border: 1px solid $color-green;*/
     }
 
+    .message-bulle:after {
+        transform: translatey(0px);
+        animation: float2 5s ease-in-out infinite;
+        content: ".";
+        font-weight: bold;
+        /*// -webkit-text-stroke: 0.5px $color-green;*/
+        -webkit-text-fill-color: var(--vibrant-light);
+        /*// border: 1px solid $color-green;*/
+        text-shadow: 22px 22px var(--muted-dark);
+        text-align: right;
+        font-size: 55px;
+        width: 55px;
+        height: 11px;
+        line-height: 30px;
+        border-radius: 11px;
+        background-color: var(--vibrant-light);
+        position: absolute;
+        display: block;
+        bottom: -30px;
+        right: 0;
+        box-shadow: 22px 22px var(--muted-dark);
+        z-index: -2;
+    }
+
 }
 
-.message-bulle:after {
-    transform: translatey(0px);
-    animation: float2 5s ease-in-out infinite;
-    content: ".";
-    font-weight: bold;
-    /*// -webkit-text-stroke: 0.5px $color-green;*/
-    -webkit-text-fill-color: var(--vibrant-light);
-    /*// border: 1px solid $color-green;*/
-    text-shadow: 22px 22px var(--muted-dark);
-    text-align: right;
-    font-size: 55px;
-    width: 55px;
-    height: 11px;
-    line-height: 30px;
-    border-radius: 11px;
-    background-color: var(--vibrant-light);
-    position: absolute;
-    display: block;
-    bottom: -30px;
-    right: 0;
-    box-shadow: 22px 22px var(--muted-dark);
-    z-index: -2;
-}
+
 
 @keyframes float {
     0% {

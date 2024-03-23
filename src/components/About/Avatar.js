@@ -76,9 +76,9 @@ export default function Avatar() {
 
                 setTimeout(function () {
                     dizzyCount = dizzyCount <= 0 ? 0 : dizzyCount - 1;
-                }, 500)
-                if (dizzyCount > 5) {
-                    dizzyCount = 4
+                }, 800)
+                if (dizzyCount > 4) {
+                    dizzyCount = 3
                     document.getElementById("Mia").classList.add("dizzy")
                     setTimeout(function () {
                         document.getElementById("Mia").classList.remove("dizzy")
