@@ -178,7 +178,7 @@ export default function Navbar() {
             aria-expanded="false"
           >
             <Link
-              href="/public"
+              href="/"
               className={
                 "bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
               }
@@ -186,12 +186,12 @@ export default function Navbar() {
               Home
             </Link>
             <Link
-              href="/projet"
+              href="/projects"
               className={
                 "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               }
             >
-              Projet
+              Projects
             </Link>
             <Link
               href="/blog"
@@ -201,12 +201,12 @@ export default function Navbar() {
             >
               Blog
             </Link>
-            {/*<Link*/}
-            {/*    href="/contact"*/}
-            {/*    className={"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}*/}
-            {/*>*/}
-            {/*    Contact*/}
-            {/*</Link>*/}
+            <Link
+                href="/about"
+                className={"text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"}
+            >
+                About
+            </Link>
           </div>
         </div>
       </div>
