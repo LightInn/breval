@@ -1,8 +1,8 @@
 "use client";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "/src/styles/Avatar.css";
 
-import {watchViewport,} from "tornis";
+import { watchViewport } from "tornis";
 
 export default function Avatar() {
   var veloPos = 1;

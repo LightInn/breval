@@ -4,7 +4,7 @@ import Head from "next/head";
 import Navbar from "../../../components/navbar";
 import ImageWithFallback from "../../../components/Home/ImageWithFallback";
 import Markdown from "react-markdown";
-import {format, parseISO} from "date-fns";
+import { format, parseISO } from "date-fns";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");

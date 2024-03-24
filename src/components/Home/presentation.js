@@ -1,6 +1,6 @@
 import React from "react";
 // @ts-ignore
-import {PopCard} from "special-card";
+import { PopCard } from "special-card";
 
 export default function Presentation() {
   return (

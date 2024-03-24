@@ -1,5 +1,5 @@
 "use client";
-import {HoloCard} from "special-card";
+import { HoloCard } from "special-card";
 import React from "react";
 
 export default function Holocard({ height, width, radius, imageSrc }) {

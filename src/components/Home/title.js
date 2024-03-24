@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export function Title() {
   const [isLoading, setIsLoading] = useState(true);
