@@ -1,4 +1,4 @@
-import { slug } from "github-slugger";
+import {slug} from "github-slugger";
 import React from "react";
 import Category from "./Category";
 

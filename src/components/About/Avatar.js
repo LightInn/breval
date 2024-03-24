@@ -1,15 +1,8 @@
 "use client";
-import React, { useEffect } from "react";
-import Image from "next/image";
-import profileCharacter from "../../../public/avatar.svg";
+import React, {useEffect} from "react";
 import "/src/styles/Avatar.css";
 
-import {
-  watchViewport,
-  unwatchViewport,
-  getViewportState,
-  recalibrateOrientation,
-} from "tornis";
+import {watchViewport,} from "tornis";
 
 export default function Avatar() {
   var veloPos = 1;

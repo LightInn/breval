@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
 export function useThemeSwitch() {
   const preferDarkQuery = "(prefers-color-schema:dark)";

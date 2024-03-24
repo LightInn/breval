@@ -2,7 +2,7 @@ import React from "react";
 import Tag from "../Elements/Tag";
 import Link from "next/link";
 import Image from "next/image";
-import { slug } from "github-slugger";
+import {slug} from "github-slugger";
 
 const BlogLayoutOne = ({ blog }) => {
   return (

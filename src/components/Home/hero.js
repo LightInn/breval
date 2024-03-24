@@ -1,6 +1,6 @@
-import { Title } from "./title";
+import {Title} from "./title";
 import Image from "next/image";
-import { SocialIcons } from "./Social";
+import {SocialIcons} from "./Social";
 import React from "react";
 
 export default function Hero() {

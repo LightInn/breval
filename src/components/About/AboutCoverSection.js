@@ -1,15 +1,8 @@
 import Image from "next/image";
 import React from "react";
-import profileCharacter from "../../../public/avatar.svg";
 import Avatar from "/src/components/About/Avatar";
-import { SocialIcons } from "@/components/Home/Social";
-import {
-  GithubIcon,
-  DiscordIcon,
-  LinkedinIcon,
-  TwitterIcon,
-  EmailIcon,
-} from "@/components/Icons";
+import {SocialIcons} from "@/components/Home/Social";
+import {DiscordIcon, EmailIcon, GithubIcon, LinkedinIcon, TwitterIcon,} from "@/components/Icons";
 import AvatarSVG from "/public/avatar.svg";
 import Link from "next/link";
 

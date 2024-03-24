@@ -1,7 +1,7 @@
 "use client";
 import Logo from "./Logo";
-import { useThemeSwitch } from "../Hooks/useThemeSwitch";
-import { useState } from "react";
+import {useThemeSwitch} from "../Hooks/useThemeSwitch";
+import {useState} from "react";
 import Navbar from "/src/components/navbar";
 
 const Header = () => {

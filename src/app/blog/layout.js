@@ -1,4 +1,4 @@
-import { cx } from "/src/utils";
+import {cx} from "/src/utils";
 import Header from "/src/components/Header";
 import siteMetadata from "../../utils/siteMetaData";
 import Footer from "/src/components/Footer";

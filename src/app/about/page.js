@@ -1,14 +1,12 @@
 "use client";
 import "./App.css";
 import Navbar from "../../components/About/Navbar";
-import React, { useEffect, useState } from "react";
-import { usePalette } from "react-palette";
-import { createGlobalStyle } from "styled-components";
+import React, {useEffect, useState} from "react";
+import {usePalette} from "react-palette";
+import {createGlobalStyle} from "styled-components";
 import AboutCoverSection from "@/components/About/AboutCoverSection";
-import Link from "next/link";
 import Skills from "@/components/About/Skills";
-import { useRive, useStateMachineInput } from "@rive-app/react-canvas";
-import { Playground } from "@/components/About/Playground";
+import {Playground} from "@/components/About/Playground";
 
 export default function About() {
   const bibiliothecqueDImage = [
