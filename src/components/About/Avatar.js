@@ -95,7 +95,7 @@ export default function Avatar() {
         if (dizzyCount > 4) {
           dizzyCount = 3;
           document.getElementById("Mia").classList.add("dizzy");
-          umami.track('dizzy')
+          umami.track("dizzy");
           setTimeout(function () {
             document.getElementById("Mia").classList.remove("dizzy");
           }, 4000);
@@ -106,7 +106,7 @@ export default function Avatar() {
 
   useEffect(() => {
     watchViewport(updateValues);
-  },[]);
+  }, []);
 
   return (
     <>
