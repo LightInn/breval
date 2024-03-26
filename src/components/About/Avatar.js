@@ -95,6 +95,7 @@ export default function Avatar() {
         if (dizzyCount > 4) {
           dizzyCount = 3;
           document.getElementById("Mia").classList.add("dizzy");
+          umami.track('dizzy')
           setTimeout(function () {
             document.getElementById("Mia").classList.remove("dizzy");
           }, 4000);
@@ -105,7 +106,7 @@ export default function Avatar() {
 
   useEffect(() => {
     watchViewport(updateValues);
-  }, []);
+  },[]);
 
   return (
     <>
@@ -119,7 +120,7 @@ export default function Avatar() {
 
       {/* check if minimum motion activer */}
       <svg
-        className="max-w-[50vw] max-h-[80vh] overflow-visible motion-reduce:hidden hidden md:block"
+        className="max-w-[50vw] max-h-[80vh] overflow-visible motion-reduce:hidden "
         viewBox="0 0 687 834"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

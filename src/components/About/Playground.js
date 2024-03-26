@@ -45,14 +45,15 @@ export function Playground({image = "/dynamic/0.webp"}) {
                         </div>
                     </div>
 
-                    <p className="text-xl font-semibold text-black">Based on Image</p>
-                    <Image src={image} height={1080 / 3} width={1920 / 3} className="rounded-2xl"/>
+                    <p className="text-xl font-semibold text-black md:hidden">Based on Image</p>
+                    <Image src={image} height={1080 / 3} width={1920 / 3} className="rounded-2xl md:ml-20" alt="image of a landscape to generate the theme" />
                 </div>
             </div>
 
         <button
             className="mt-5 px-6 py-3 bg-dynamic-vibrant font-bold rounded-full shadow-lg transition-colors duration-300 ease-in-out hover:bg-dynamic-vibrant-dark hover:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
                 onClick={() => window.location.reload()}
+            data-umami-event="reload"
             >
                 Reload Page
             </button>
