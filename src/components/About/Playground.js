@@ -19,23 +19,23 @@ export function Playground({ image = "/dynamic/0.webp" , setReload = null}) {
         <p className="text-xl font-semibold text-black">Actual Theme</p>
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-2">
-          <div className="grid grid-cols-3 gap-4">
-            <div className="aspect-square w-36 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-vibrant-light">
+          <div className="grid grid-cols-3 gap-4 w-1/2">
+            <div className="aspect-square w-full max-w-52 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-vibrant-light">
               Vibrant Light
             </div>
-            <div className="aspect-square w-36 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-vibrant">
+            <div className="aspect-square w-full max-w-52 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-vibrant">
               Vibrant
             </div>
-            <div className="aspect-square w-36 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-vibrant-dark">
+            <div className="aspect-square w-full max-w-52 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-vibrant-dark">
               Vibrant Dark
             </div>
-            <div className="aspect-square w-36 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-muted-light">
+            <div className="aspect-square w-full max-w-52 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-muted-light">
               Muted Light
             </div>
-            <div className="aspect-square w-36 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-muted">
+            <div className="aspect-square w-full max-w-52 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-muted">
               Muted
             </div>
-            <div className="aspect-square w-36 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-muted-dark">
+            <div className="aspect-square w-full max-w-52 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-muted-dark">
               Muted Dark
             </div>
           </div>
