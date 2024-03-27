@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import NavbarOfficial from "@/components/navbar";
 import Image from "next/image";
+import rgbDataURL from "@/services/dataurl.services";
 
 function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -95,6 +96,8 @@ function Navbar() {
                 src="/logo.png"
                 width={100}
                 height={100}
+                placeholder="blur"
+                blurDataURL={rgbDataURL(231, 183, 202)}
                 alt="Logo signature de Bréval Le Floch"
               />
             </Link>

@@ -6,6 +6,7 @@ import Navbar from "../components/navbar";
 import Hero from "../components/Home/hero";
 import Divider from "../components/Home/divider";
 import Presentation from "../components/Home/presentation";
+import rgbDataURL from "@/services/dataurl.services";
 
 export default function Home() {
   return (
@@ -29,7 +30,9 @@ export default function Home() {
               "mix-difference -z-10 bg-slate-1000 object-cover opacity-50 "
             }
             fill={true}
-            loading="eager"
+            placeholder="blur"
+            blurDataURL={rgbDataURL(231, 183, 202)}
+            loading="lazy"
           />
           <div
             className={

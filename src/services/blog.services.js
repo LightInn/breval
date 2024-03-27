@@ -19,6 +19,8 @@ async function getAllBlogs() {
     };
   });
 
+  // console.log(bloa)
+
   return bloa;
 }
 

@@ -4,19 +4,21 @@ import Image from "next/image";
 import React from "react";
 import Navbar from "../../components/navbar";
 import Holocard from "../../components/Home/Holocard";
+import rgbDataURL from "@/services/dataurl.services";
 
 export default async function Project() {
     const projects = await getProject();
     return (
-        <>
+        <section className="bg-black">
             <Image
                 src={"/projets-gallery.png"}
                 alt={"project gallery background image "}
                 width={1920}
                 height={1080}
+                loading={"eager"}
                 quality={90}
                 className={
-                    "mix-difference fixed left-0 top-0 h-screen w-screen object-cover object-center"
+                    "mix-difference fixed left-0 top-0 h-screen w-screen object-cover object-center opacity-20"
                 }
             ></Image>
             <div
@@ -71,8 +73,8 @@ export default async function Project() {
                                     key={project.attributes.title}
                                     className="relative flex h-full min-h-[500px] w-full
                             flex-col overflow-hidden rounded-lg rounded-md border border-2
-                            border-gray-100 border-slate-1000/75 bg-gray-600 bg-opacity-30
-                            bg-clip-padding p-8 shadow-2xl backdrop-blur-xl backdrop-filter transition duration-150 ease-in-out hover:border-glow-600
+                           border-slate-950 bg-accent bg-opacity-30 hover:bg-opacity-40
+                             p-8 shadow-2xl backdrop-blur-xl backdrop-filter transition duration-150 ease-in-out hover:border-glow-600
 
 
                             "
@@ -81,6 +83,8 @@ export default async function Project() {
                                     <Image
                                         src={"/abstract_shape.svg"}
                                         alt={"abstract shape"}
+                                        placeholder="blur"
+                                        blurDataURL={rgbDataURL(231, 183, 202)}
                                         className={
                                             (projectIdx % 2 === 0
                                                 ? "-bottom-20 -left-20 rotate-12"
@@ -94,7 +98,7 @@ export default async function Project() {
                                     <div className={"lg:col-span-7 xl:col-span-8"}>
                                         <div className="overflow-hidden rounded-lg">
                                             <Holocard
-                                                height={200}
+                                                height={300}
                                                 width={370}
                                                 radius={8}
                                                 imageSrc={
@@ -126,7 +130,7 @@ export default async function Project() {
                     </div>
                 </div>
             </div>
-        </>
+        </section>
     );
 }
 

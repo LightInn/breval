@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import LogoA from "/public/logo.png";
+import rgbDataURL from "@/services/dataurl.services";
 // import profileImg from "../../../public/profile-img.png"
 
 const Logo = () => {
@@ -14,6 +15,8 @@ const Logo = () => {
           src={LogoA}
           alt="Bréval Le Floch logo"
           className="w-full h-auto rounded-full"
+          placeholder="blur"
+          blurDataURL={rgbDataURL(231, 183, 202)}
           sizes="20vw"
           priority
         />

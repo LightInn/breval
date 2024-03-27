@@ -3,6 +3,7 @@ import Tag from "../Elements/Tag";
 import Link from "next/link";
 import Image from "next/image";
 import { slug } from "github-slugger";
+import rgbDataURL from "@/services/dataurl.services";
 
 const BlogLayoutOne = ({ blog }) => {
   return (
@@ -17,6 +18,8 @@ const BlogLayoutOne = ({ blog }) => {
         alt={blog.title}
         width={1920}
         height={1080}
+        placeholder="blur"
+        blurDataURL={rgbDataURL(231, 183, 202)}
         className="w-full object-center object-cover rounded-xl group-hover:scale-105 transition-all ease duration-300"
         sizes="(max-width: 1920px) 100vw, 55vw"
       />

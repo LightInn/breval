@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import rgbDataURL from "@/services/dataurl.services";
 
 const BlogLayoutTwo = ({ blog }) => {
   return (
@@ -15,6 +16,8 @@ const BlogLayoutTwo = ({ blog }) => {
           alt={blog.title}
           width={1792}
           height={1024}
+          placeholder="blur"
+          blurDataURL={rgbDataURL(231, 183, 202)}
           className="aspect-square w-full h-full object-cover object-center group-hover:scale-105 transition-all ease duration-300"
           sizes="(max-width: 640px) 100vw,(max-width: 1024px) 50vw, 33vw"
         />

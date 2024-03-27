@@ -9,6 +9,7 @@ import { notFound } from "next/navigation";
 import Head from "next/head";
 import React from "react";
 import Highlight from "/src/components/Highlight";
+import rgbDataURL from "@/services/dataurl.services";
 
 export async function generateStaticParams() {
   const allBlogs = await getAllBlogs();
@@ -130,6 +131,8 @@ export default async function BlogPage({ params }) {
             alt={blog.title}
             width={1792}
             height={1024}
+            placeholder="blur"
+            blurDataURL={rgbDataURL(231, 183, 202)}
             className="aspect-video w-full h-full object-cover object-center"
             priority
             sizes="100vw"

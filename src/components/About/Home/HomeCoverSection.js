@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import Tag from "../../Elements/Tag";
 import { slug } from "github-slugger";
+import rgbDataURL from "@/services/dataurl.services";
 
 const HomeCoverSection = ({ blogs }) => {
   const sortedBlogs = sortBlogs(blogs);
@@ -21,6 +22,8 @@ const HomeCoverSection = ({ blogs }) => {
           src={blog.image}
           alt={blog.title}
           fill
+          placeholder="blur"
+          blurDataURL={rgbDataURL(231, 183, 202)}
           className="w-full h-full object-center object-cover rounded-3xl"
           sizes="100vw"
           priority

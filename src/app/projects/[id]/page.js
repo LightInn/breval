@@ -5,6 +5,7 @@ import Navbar from "../../../components/navbar";
 import ImageWithFallback from "../../../components/Home/ImageWithFallback";
 import Markdown from "react-markdown";
 import { format, parseISO } from "date-fns";
+import rgbDataURL from "@/services/dataurl.services";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -104,6 +105,8 @@ export default async function ProjectDetail({ params }) {
                     width={image.attributes.width}
                     height={image.attributes.height}
                     alt={image.attributes.name}
+                    placeholder="blur"
+                    blurDataURL={rgbDataURL(231, 183, 202)}
                     className={classNames(
                       idx === 0
                         ? "lg:col-span-2 lg:row-span-2"

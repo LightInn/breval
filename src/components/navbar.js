@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, {useEffect, useState} from "react";
+import rgbDataURL from "@/services/dataurl.services";
 
 export default function Navbar() {
     const [showTransparentBackground, setShowTransparentBackground] = useState(true);
@@ -37,6 +38,8 @@ export default function Navbar() {
                     src="/logo.png"
                     width={100}
                     height={100}
+                    placeholder="blur"
+                    blurDataURL={rgbDataURL(231, 183, 202)}
                     alt="Logo signature de Bréval Le Floch"
                 />
             </Link>
@@ -90,9 +93,11 @@ export default function Navbar() {
                     <span>T</span>
                 </div>
                 <badge
-                    className="ml-1 rounded-full p-1 text-xs">
+                    className="ml-1 rounded-full overflow-visible text-xs relative w-4 h-4 ">
+                    <span
+                        className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                     <svg fill="accent"
-                         className="w-4 h-4"
+                         className="absolute inline-flex h-full w-full rounded-full"
                          version="1.2" baseProfile="tiny" id="Layer_1"
                          xmlns="http://www.w3.org/2000/svg"
                          viewBox="-1077 923 256 256">

@@ -2,6 +2,7 @@ import { Title } from "./title";
 import Image from "next/image";
 import { SocialIcons } from "./Social";
 import React from "react";
+import rgbDataURL from "@/services/dataurl.services";
 
 export default function Hero() {
   return (
@@ -32,9 +33,11 @@ export default function Hero() {
               "absolute left-0 top-0 blur-md  " +
               "mix-difference -z-10 block bg-slate-900 object-cover opacity-75  "
             }
+            loading="eager"
+            placeholder="blur"
+            blurDataURL={rgbDataURL(231, 183, 202)}
             quality={10}
             fill={true}
-            loading="eager"
           />
 
           <iframe
