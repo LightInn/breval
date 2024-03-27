@@ -90,8 +90,8 @@ export default function Navbar() {
                     <span>T</span>
                 </div>
                 <badge
-                    className="ml-1  bg-pink-500 text-white rounded-full p-1 text-xs">
-                    <svg fill="#fff"
+                    className="ml-1 rounded-full p-1 text-xs">
+                    <svg fill="accent"
                          className="w-4 h-4"
                          version="1.2" baseProfile="tiny" id="Layer_1"
                          xmlns="http://www.w3.org/2000/svg"
