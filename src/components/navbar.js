@@ -116,7 +116,7 @@ export default function Navbar() {
                 className={"flex h-[60px] bg-accent/60 justify-between items-center px-4"}
             >
                 <Link
-                    href="/public"
+                    href="/"
                     className={`m-0 flex origin-center 
                      items-center justify-center rounded-full p-0 transition-all
                      duration-100  ease-in-out h-full w-16 no-underline`}
