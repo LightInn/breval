@@ -76,7 +76,7 @@ export default async function Project() {
 
 
                             "
-                  href={"/projet/" + project.attributes.title}
+                  href={"/projects/" + project.attributes.title}
                 >
                   <Image
                     src={"/abstract_shape.svg"}
