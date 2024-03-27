@@ -121,7 +121,7 @@ export default function Avatar() {
       {/* check if minimum motion activer */}
       <svg
         className="max-w-[50vw] max-h-[80vh] overflow-visible motion-reduce:hidden "
-        viewBox="0 0 687 834"
+        viewBox="0 0 687 900"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >

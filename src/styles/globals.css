@@ -17,12 +17,10 @@
 body {
   scroll-snap-type: y mandatory;
   box-sizing: border-box;
-  display: inline-block;
   width: 100vw;
   max-width: 100vw;
   clear: both;
   overflow-x: hidden;
-  background-color: black;
 }
 
 html {
@@ -719,7 +717,6 @@ blockquote span {
     border-radius: 11px;
     position: relative;
     box-shadow: 20px 20px var(--muted-dark);
-    font-family: "Baloo 2", cursive;
     /*// border: 1px solid $color-green;*/
   }
 

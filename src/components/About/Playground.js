@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
-export function Playground({ image = "/dynamic/0.webp" }) {
+export function Playground({ image = "/dynamic/0.webp" , setReload = null}) {
   return (
-    <div className="flex flex-col items-center justify-center w-full space-y-12 py-4 ">
-      <div className="text-center p-5 bg-dynamic-vibrant-light rounded-lg shadow-xl">
+    <div className="flex flex-col md:ml-20 px-8 items-center justify-center w-full min-h-screen space-y-12 py-4 ">
+      <div className="text-center p-4 bg-dynamic-vibrant-light rounded-lg shadow-xl">
         <p className="text-lg font-bold text-gray-800">
           Everything looks oddly colored here, doesn&apos;t it?
         </p>
@@ -18,7 +18,7 @@ export function Playground({ image = "/dynamic/0.webp" }) {
       <div className="p-4">
         <p className="text-xl font-semibold text-black">Actual Theme</p>
 
-        <div className="flex flex-col md:flex-row justify-center items-center gap-4">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-2">
           <div className="grid grid-cols-3 gap-4">
             <div className="aspect-square w-36 flex justify-center items-center rounded-lg text-white text-sm font-medium shadow-md transition-all duration-300 ease-in-out transform hover:scale-110 bg-dynamic-vibrant-light">
               Vibrant Light
@@ -55,7 +55,7 @@ export function Playground({ image = "/dynamic/0.webp" }) {
 
       <button
         className="mt-5 px-6 py-3 bg-dynamic-vibrant font-bold rounded-full shadow-lg transition-colors duration-300 ease-in-out hover:bg-dynamic-vibrant-dark hover:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
-        onClick={() => window.location.reload()}
+        onClick={() => setReload(Math.random())}
         data-umami-event="reload"
       >
         Reload Page

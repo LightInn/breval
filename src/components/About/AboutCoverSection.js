@@ -12,11 +12,12 @@ import {
 import AvatarSVG from "/public/avatar.svg";
 import Link from "next/link";
 import AvatarMobile from "@/components/About/AvatarMobile";
+import {ReloadCTA} from "@/components/About/ReloadCTA";
 
-const AboutCoverSection = ({ background = null }) => {
+const AboutCoverSection = ({ background = null , setReload = null}) => {
   return (
-    <section className="w-screen h-screen border-b-2 border-solid border-dark flex flex-col md:flex-row items-center justify-center text-dark bg-dynamic-bg bg-cover ">
-      <div className="p-20 w-full h-full flex flex-col-reverse justify-center md:flex-row md:justify-evenly gap-4 items-center backdrop-blur-lg">
+    <section className="w-screen h-screen flex flex-col md:flex-row items-center justify-center text-dark bg-dynamic-bg bg-cover overflow-visible ">
+      <div className="p-20 w-full h-full flex flex-col-reverse justify-center md:flex-row md:justify-evenly gap-4 items-center backdrop-blur-lg overflow-visible">
         <div className="flex flex-col justify-center items-center md:items-end w-full md:w-1/4 ">
           <h2 className="font-bold capitalize text-white text-4xl md:text-6xl  text-center lg:text-right  md:bg-white/30 md:rounded-2xl md:p-6 md:message-bulle ">
             Hi, I&apos;m <br />
@@ -98,7 +99,7 @@ const AboutCoverSection = ({ background = null }) => {
           </div>
 
           <div className="hidden md:block">
-            <SocialIcons />
+            <ReloadCTA setReload={setReload}/>
           </div>
         </div>
         <div className=" md:block w-full max-w-[35vw] h-full max-h-[35vh] 2xl:max-h-[80vh] overflow-visible">

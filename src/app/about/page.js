@@ -42,13 +42,15 @@ export default function About() {
 
   const [color, setColor] = useState("");
 
+  const [reload, setReload] = useState(0);
+
   useEffect(() => {
     setUrl(
       bibiliothecqueDImage[
         Math.floor(Math.random() * bibiliothecqueDImage.length)
       ],
     );
-  }, []);
+  }, [reload]);
 
   const { data } = usePalette(imgeUrl);
   const AppStyle = createGlobalStyle`html {
@@ -72,9 +74,9 @@ export default function About() {
       <Navbar />
 
       <div className="">
-        <AboutCoverSection />
+        <AboutCoverSection setReload={setReload}  />
 
-        <Playground image={imgeUrl} />
+        <Playground image={imgeUrl} setReload={setReload} />
 
         <Skills />
       </div>
