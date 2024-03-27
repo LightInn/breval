@@ -44,6 +44,7 @@
 
 .navElement {
   display: flex;
+  border: 0 solid var(--vibrant-light);
 }
 
 .navElement:hover {
