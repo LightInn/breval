@@ -36,9 +36,8 @@ export function ReloadCTA({setReload = null}) {
             onClick={() => setReload(Math.random())}
             rel="noopener nofollow noreferrer"
 
-            aria-label="Linkedin"
-            data-umami-event="social button"
-            data-umami-event-social="linkedin"
+            aria-label="Reload"
+            data-umami-event="reload floating"
         >
             <svg viewBox="0 0 512 512" id="svg2793"
                  className="w-8 h-8 xl:w-10 xl:h-10"
