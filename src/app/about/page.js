@@ -74,7 +74,7 @@ export default function About() {
       <Navbar />
 
       <div className="">
-        <AboutCoverSection setReload={setReload}  />
+        <AboutCoverSection setReload={setReload} />
 
         <Playground image={imgeUrl} setReload={setReload} />
 

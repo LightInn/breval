@@ -12,9 +12,9 @@ import {
 import AvatarSVG from "/public/avatar.svg";
 import Link from "next/link";
 import AvatarMobile from "@/components/About/AvatarMobile";
-import {ReloadCTA} from "@/components/About/ReloadCTA";
+import { ReloadCTA } from "@/components/About/ReloadCTA";
 
-const AboutCoverSection = ({ background = null , setReload = null}) => {
+const AboutCoverSection = ({ background = null, setReload = null }) => {
   return (
     <section className="w-screen h-screen flex flex-col md:flex-row items-center justify-center text-dark bg-dynamic-bg bg-cover overflow-visible ">
       <div className="p-20 w-full h-full flex flex-col-reverse justify-center xl:flex-row xl:justify-evenly gap-4 items-center backdrop-blur-lg overflow-visible">
@@ -99,7 +99,7 @@ const AboutCoverSection = ({ background = null , setReload = null}) => {
           </div>
 
           <div className="hidden md:block">
-            <ReloadCTA setReload={setReload}/>
+            <ReloadCTA setReload={setReload} />
           </div>
         </div>
         <div className="w-full max-w-[35vw] h-full max-h-[35vh] 2xl:max-h-[80vh] overflow-visible">

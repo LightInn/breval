@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-export function Playground({ image = "/dynamic/0.webp" , setReload = null}) {
+export function Playground({ image = "/dynamic/0.webp", setReload = null }) {
   return (
     <div className="flex flex-col md:ml-20 px-8 items-center justify-center w-full min-h-screen space-y-12 py-4 ">
       <div className="text-center p-4 bg-dynamic-vibrant-light rounded-lg shadow-xl">
