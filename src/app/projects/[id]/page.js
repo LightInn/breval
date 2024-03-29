@@ -54,7 +54,7 @@ export default async function ProjectDetail({ params }) {
             <li className="list-none">
               <div className="flex items-center">
                 <Link
-                  href={"/projet"}
+                  href={"/projects"}
                   className="mr-4 list-disc text-sm font-medium text-gray-400"
                 >
                   projets
