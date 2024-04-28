@@ -16,7 +16,7 @@ dependencies:
     version: 11.9.0
   next:
     specifier: 14.2.3
-    version: 14.2.3(react-dom@18.2.0)(react@18.2.0)(sass@1.74.1)
+    version: 14.2.3(react-dom@18.2.0)(react@18.2.0)(sass@1.75.0)
   next-sitemap:
     specifier: ^4.2.3
     version: 4.2.3(next@14.2.3)
@@ -43,7 +43,7 @@ dependencies:
     version: 3.0.1
   sass:
     specifier: ^1.71.1
-    version: 1.74.1
+    version: 1.75.0
   sharp:
     specifier: ^0.33.2
     version: 0.33.3
@@ -3129,10 +3129,10 @@ packages:
       '@next/env': 13.5.6
       fast-glob: 3.3.2
       minimist: 1.2.8
-      next: 14.2.3(react-dom@18.2.0)(react@18.2.0)(sass@1.74.1)
+      next: 14.2.3(react-dom@18.2.0)(react@18.2.0)(sass@1.75.0)
     dev: false
 
-  /next@14.2.3(react-dom@18.2.0)(react@18.2.0)(sass@1.74.1):
+  /next@14.2.3(react-dom@18.2.0)(react@18.2.0)(sass@1.75.0):
     resolution: {integrity: sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -3158,7 +3158,7 @@ packages:
       postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      sass: 1.74.1
+      sass: 1.75.0
       styled-jsx: 5.1.1(react@18.2.0)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.2.3
@@ -3760,8 +3760,8 @@ packages:
       is-regex: 1.1.4
     dev: true
 
-  /sass@1.74.1:
-    resolution: {integrity: sha512-w0Z9p/rWZWelb88ISOLyvqTWGmtmu2QJICqDBGyNnfG4OUnPX9BBjjYIXUpXCMOOg5MQWNpqzt876la1fsTvUA==}
+  /sass@1.75.0:
+    resolution: {integrity: sha512-ShMYi3WkrDWxExyxSZPst4/okE9ts46xZmJDSawJQrnte7M1V9fScVB+uNXOVKRBt0PggHOwoZcn8mYX4trnBw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
