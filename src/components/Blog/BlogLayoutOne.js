@@ -1,48 +1,44 @@
-import React from "react";
-import Tag from "../Elements/Tag";
-import Link from "next/link";
-import Image from "next/image";
-import { slug } from "github-slugger";
-import rgbDataURL from "@/services/dataurl.services";
+import React from 'react'
+
+import { slug } from 'github-slugger'
+import Image from 'next/image'
+import Link from 'next/link'
+
+import rgbDataURL from '@/services/dataurl.services'
+
+import Tag from '../Elements/Tag'
 
 const BlogLayoutOne = ({ blog }) => {
-  return (
-    <div className="group inline-block overflow-hidden rounded-xl">
-      <div
-        className="absolute top-0 left-0 bottom-0 right-0
-            bg-gradient-to-b from-transparent from-0% to-dark/90 rounded-xl z-10
-            "
-      />
-      <Image
-        src={blog.image}
-        alt={blog.title}
-        width={1920}
-        height={1080}
-        placeholder="blur"
-        blurDataURL={rgbDataURL(231, 183, 202)}
-        className="w-full object-center object-cover rounded-xl group-hover:scale-105 transition-all ease duration-300"
-        sizes="(max-width: 1920px) 100vw, 55vw"
-      />
+	return (
+		<div className="group inline-block overflow-hidden rounded-xl">
+			<div className="to-dark/90 absolute bottom-0 left-0 right-0 top-0 z-10 rounded-xl bg-gradient-to-b from-transparent from-0%" />
+			<Image
+				alt={blog.title}
+				blurDataURL={rgbDataURL(231, 183, 202)}
+				className="ease w-full rounded-xl object-cover object-center transition-all duration-300 group-hover:scale-105"
+				height={1080}
+				placeholder="blur"
+				sizes="(max-width: 1920px) 100vw, 55vw"
+				src={blog.image}
+				width={1920}
+			/>
 
-      <div className="w-full h-full absolute bottom-0 p-4 xs:p-6 sm:p-10 z-20">
-        <Tag
-          link={`/blog/categories/${slug(blog.tags[0])}`}
-          name={blog.tags[0]}
-          className="px-6 text-xs  sm:text-sm py-1 sm:py-2 !border "
-        />
-        <Link href={"/blog/articles/" + blog.url} className="mt-6 no-underline">
-          <h2 className="font-bold capitalize text-sm xs:text-base sm:text-xl md:text-2xl text-light mt-2 sm:mt-4">
-            <span
-              className="bg-gradient-to-r from-accent to-accent bg-[length:0px_6px]
-                group-hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 "
-            >
-              {blog.title}
-            </span>
-          </h2>
-        </Link>
-      </div>
-    </div>
-  );
-};
+			<div className="absolute bottom-0 z-20 h-full w-full p-4 xs:p-6 sm:p-10">
+				<Tag
+					className="!border px-6 py-1 text-xs sm:py-2 sm:text-sm"
+					link={`/blog/categories/${slug(blog.tags[0])}`}
+					name={blog.tags[0]}
+				/>
+				<Link className="mt-6 no-underline" href={'/blog/articles/' + blog.url}>
+					<h2 className="mt-2 text-sm font-bold capitalize text-light xs:text-base sm:mt-4 sm:text-xl md:text-2xl">
+						<span className="bg-gradient-to-r from-accent to-accent bg-[length:0px_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[length:100%_6px]">
+							{blog.title}
+						</span>
+					</h2>
+				</Link>
+			</div>
+		</div>
+	)
+}
 
-export default BlogLayoutOne;
+export default BlogLayoutOne

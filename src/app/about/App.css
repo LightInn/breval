@@ -1,42 +1,42 @@
 * {
-  /*--vibrant: #D9559D;*/
-  /*--muted: #0396A6;*/
+	/*--vibrant: ;*/
+	/*--muted: ;*/
 
-  /*--vibrant-light: #ffe845;*/
-  /*--muted-light: #61BEE2;*/
+	/*--vibrant-light: ;*/
+	/*--muted-light: ;*/
 
-  /*--vibrant-dark: #F23E2E;*/
-  /*--muted-dark: #206E8C;*/
-  transition: all 0.2s;
+	/*--vibrant-dark: ;*/
+	/*--muted-dark: ;*/
+	transition: all 0.2s;
 }
 
 body::-webkit-scrollbar {
-  width: 14px;
+	width: 14px;
 }
 
 body::-webkit-scrollbar-track {
-  background: var(--muted);
-  border-radius: 3px;
+	background: var(--muted);
+	border-radius: 3px;
 }
 
 body::-webkit-scrollbar-thumb {
-  background: var(--vibrant);
-  border-radius: 3px;
+	background: var(--vibrant);
+	border-radius: 3px;
 }
 
-@supports not selector(::-webkit-scrollbar) {
-  body {
-    scrollbar-color: var(--vibrant) var(--muted);
-    scrollbar-width: 14px;
-    overflow-x: hidden;
-  }
-}
+/*@supports not selector(::-webkit-scrollbar) {*/
+/*  body {*/
+/*    scrollbar-color: var(--vibrant) var(--muted);*/
+/*    scrollbar-width: auto;*/
+/*    overflow-x: hidden;*/
+/*  }*/
+/*}*/
 
 body {
-  overflow-x: hidden;
+	overflow-x: hidden;
 }
 
 li {
-  text-decoration: none;
-  list-style: none;
+	text-decoration: none;
+	list-style: none;
 }

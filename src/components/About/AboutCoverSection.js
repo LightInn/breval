@@ -1,113 +1,112 @@
-import Image from "next/image";
-import React from "react";
-import Avatar from "/src/components/About/Avatar";
-import { SocialIcons } from "@/components/Home/Social";
+import React from 'react'
+
+import Link from 'next/link'
+
 import {
-  DiscordIcon,
-  EmailIcon,
-  GithubIcon,
-  LinkedinIcon,
-  TwitterIcon,
-} from "@/components/Icons";
-import AvatarSVG from "/public/avatar.svg";
-import Link from "next/link";
-import AvatarMobile from "@/components/About/AvatarMobile";
-import { ReloadCTA } from "@/components/About/ReloadCTA";
+	DiscordIcon,
+	EmailIcon,
+	GithubIcon,
+	LinkedinIcon,
+	TwitterIcon,
+} from '@/components/Icons'
+import { ReloadCTA } from '@/components/About/ReloadCTA'
+
+import Avatar from '/src/components/About/Avatar'
 
 const AboutCoverSection = ({ background = null, setReload = null }) => {
-  return (
-    <section className="w-screen h-screen flex flex-col md:flex-row items-center justify-center text-dark bg-dynamic-bg bg-cover overflow-visible ">
-      <div className="p-20 w-full h-full flex flex-col-reverse justify-center xl:flex-row xl:justify-evenly gap-4 items-center backdrop-blur-lg overflow-visible">
-        <div className="flex flex-col justify-center items-center md:items-end w-full md:w-1/4 ">
-          <h2 className="font-bold capitalize text-white text-4xl md:text-6xl  text-center lg:text-right  md:bg-white/30 md:rounded-2xl md:p-6 md:message-bulle ">
-            Hi, I&apos;m <br />
-            <bold>Bréval</bold>.
-          </h2>
-          <p className="font-medium capitalize md:text-2xl md:text-right  md:bg-white/30 md:rounded-2xl md:p-20 md:mt-8 md:message-bulle text-white">
-            I&apos;m a creative developer <br />
-            from France, Loire Atlantique.
-          </p>
+	return (
+		<section className="text-dark flex h-screen w-screen flex-col items-center justify-center overflow-visible bg-dynamic-bg bg-cover md:flex-row">
+			<div className="flex h-full w-full flex-col-reverse items-center justify-center gap-4 overflow-visible p-20 backdrop-blur-lg xl:flex-row xl:justify-evenly">
+				<div className="flex w-full flex-col items-center justify-center md:w-1/4 md:items-end">
+					<h2 className="md:message-bulle text-center text-4xl font-bold capitalize text-white md:rounded-2xl md:bg-white/30 md:p-6 md:text-6xl lg:text-right">
+						Hi, I&apos;m <br />
+						<bold>Bréval</bold>.
+					</h2>
+					<p className="md:message-bulle font-medium capitalize text-white md:mt-8 md:rounded-2xl md:bg-white/30 md:p-20 md:text-right md:text-2xl">
+						I&apos;m a creative developer <br />
+						from France, Loire Atlantique.
+					</p>
 
-          <div className="flex w-full h-full gap-2 mt-20 p-2 ">
-            <Link
-              href="https://github.com/LightInn/"
-              className="w-full h-full delay-500"
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Github"
-              title="Github"
-              data-umami-event="about social"
-              data-umami-event-social="Github"
-            >
-              <GithubIcon className="w-[30px] rounded-2xl bg-dynamic-vibrant-light hover:bg-dynamic-muted-light p-2 md:message-bulle" />
-              {/*<DribbbleIcon*/}
-              {/*    className="w-[30px] rounded-2xl bg-dynamic-vibrant-light hover:bg-dynamic-muted-light p-2 md:message-bulle"/>*/}
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/breval-lefloch/"
-              className="w-full h-full"
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Linkedin"
-              title="Linkedin"
-              data-umami-event="about social"
-              data-umami-event-social="Linkedin"
-            >
-              <LinkedinIcon className="w-[30px] rounded-2xl bg-dynamic-vibrant-light hover:bg-dynamic-muted-light p-2 md:message-bulle" />
-            </Link>
-            <Link
-              href="https://twitter.com/Unknow429523025"
-              className="w-full h-full"
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Twitter"
-              title="Twitter"
-              data-umami-event="about social"
-              data-umami-event-social="Twitter"
-            >
-              <TwitterIcon className="w-[30px] rounded-2xl bg-dynamic-vibrant-light hover:bg-dynamic-muted-light p-2 md:message-bulle" />
-            </Link>
-            <Link
-              href="mailto:breval.lefloch@gmail.com"
-              className="w-full h-full"
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Email"
-              title="Email"
-              data-umami-event="about social"
-              data-umami-event-social="Email"
-            >
-              <EmailIcon className="w-[30px] rounded-2xl bg-dynamic-vibrant-light hover:bg-dynamic-muted-light p-2 md:message-bulle" />
-            </Link>
-            <Link
-              href="https://discordapp.com/users/232064075553701888"
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Discord"
-              title="Discord"
-              className="w-full h-full"
-              data-umami-event="about social"
-              data-umami-event-social="Discord"
-            >
-              <DiscordIcon className="w-[30px] rounded-2xl bg-dynamic-vibrant-light hover:bg-dynamic-muted-light p-2 md:message-bulle" />
-            </Link>
-            {/*Email*/}
-            {/*Tel*/}
-            {/*discord*/}
-            {/*twitter*/}
-            {/*insta*/}
-          </div>
+					<div className="mt-20 flex h-full w-full gap-2 p-2">
+						<Link
+							aria-label="Github"
+							className="h-full w-full delay-500"
+							data-umami-event="about social"
+							data-umami-event-social="Github"
+							href="https://github.com/LightInn/"
+							rel="noreferrer noopener"
+							target="_blank"
+							title="Github"
+						>
+							<GithubIcon className="md:message-bulle w-[30px] rounded-2xl bg-dynamic-vibrant-light p-2 hover:bg-dynamic-muted-light" />
+							{/*<DribbbleIcon*/}
+							{/*    className="w-[30px] rounded-2xl bg-dynamic-vibrant-light hover:bg-dynamic-muted-light p-2 md:message-bulle"/>*/}
+						</Link>
+						<Link
+							aria-label="Linkedin"
+							className="h-full w-full"
+							data-umami-event="about social"
+							data-umami-event-social="Linkedin"
+							href="https://www.linkedin.com/in/breval-lefloch/"
+							rel="noreferrer noopener"
+							target="_blank"
+							title="Linkedin"
+						>
+							<LinkedinIcon className="md:message-bulle w-[30px] rounded-2xl bg-dynamic-vibrant-light p-2 hover:bg-dynamic-muted-light" />
+						</Link>
+						<Link
+							aria-label="Twitter"
+							className="h-full w-full"
+							data-umami-event="about social"
+							data-umami-event-social="Twitter"
+							href="https://twitter.com/Unknow429523025"
+							rel="noreferrer noopener"
+							target="_blank"
+							title="Twitter"
+						>
+							<TwitterIcon className="md:message-bulle w-[30px] rounded-2xl bg-dynamic-vibrant-light p-2 hover:bg-dynamic-muted-light" />
+						</Link>
+						<Link
+							aria-label="Email"
+							className="h-full w-full"
+							data-umami-event="about social"
+							data-umami-event-social="Email"
+							href="mailto:breval.lefloch@gmail.com"
+							rel="noreferrer noopener"
+							target="_blank"
+							title="Email"
+						>
+							<EmailIcon className="md:message-bulle w-[30px] rounded-2xl bg-dynamic-vibrant-light p-2 hover:bg-dynamic-muted-light" />
+						</Link>
+						<Link
+							aria-label="Discord"
+							className="h-full w-full"
+							data-umami-event="about social"
+							data-umami-event-social="Discord"
+							href="https://discordapp.com/users/232064075553701888"
+							rel="noreferrer noopener"
+							target="_blank"
+							title="Discord"
+						>
+							<DiscordIcon className="md:message-bulle w-[30px] rounded-2xl bg-dynamic-vibrant-light p-2 hover:bg-dynamic-muted-light" />
+						</Link>
+						{/*Email*/}
+						{/*Tel*/}
+						{/*discord*/}
+						{/*twitter*/}
+						{/*insta*/}
+					</div>
 
-          <div className="hidden md:block">
-            <ReloadCTA setReload={setReload} />
-          </div>
-        </div>
-        <div className="w-full max-w-[35vw] h-full max-h-[35vh] 2xl:max-h-[80vh] overflow-visible">
-          <Avatar />
-        </div>
-      </div>
-    </section>
-  );
-};
+					<div className="hidden md:block">
+						<ReloadCTA setReload={setReload} />
+					</div>
+				</div>
+				<div className="h-full max-h-[35vh] w-full max-w-[35vw] overflow-visible 2xl:max-h-[80vh]">
+					<Avatar />
+				</div>
+			</div>
+		</section>
+	)
+}
 
-export default AboutCoverSection;
+export default AboutCoverSection

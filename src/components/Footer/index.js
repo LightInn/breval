@@ -1,41 +1,42 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react'
+
+import Link from 'next/link'
 
 const Footer = () => {
-  return (
-    <footer className="rounded-t-2xl bg-accent mt-8 flex flex-col items-center text-black z-20">
-      <div className="w-full  mt-4 md:mt-8 relative font-medium border-t border-solid border-light py-2 md:py-6 px-8 flex flex-col md:flex-row items-center justify-between">
-        <span className="text-center">
-          &copy;2024 brev.al All rights reserved.
-        </span>
-        <Link
-          href="/sitemap.xml"
-          className="text-center underline my-4 md:my-0 hidden md:block"
-        >
-          sitemap.xml
-        </Link>
-        <div className="text-center hidden md:block">
-          Made with &hearts; by{" "}
-          <Link
-            href="/"
-            className="underline"
-            target="_blank"
-            aria-label="Going back to main page"
-          >
-            Bréval LE FLOCH
-          </Link>
-          ; Design by{" "}
-          <a
-            href="https://devdreaming.com"
-            className="underline"
-            target="_blank"
-          >
-            CodeBucks
-          </a>
-        </div>
-      </div>
-    </footer>
-  );
-};
+	return (
+		<footer className="z-20 mt-8 flex flex-col items-center rounded-t-2xl bg-accent text-black">
+			<div className="relative mt-4 flex w-full flex-col items-center justify-between border-t border-solid border-light px-8 py-2 font-medium md:mt-8 md:flex-row md:py-6">
+				<span className="text-center">
+					&copy;2024 brev.al All rights reserved.
+				</span>
+				<Link
+					className="my-4 hidden text-center underline md:my-0 md:block"
+					href="/sitemap.xml"
+				>
+					sitemap.xml
+				</Link>
+				<div className="hidden text-center md:block">
+					Made with &hearts; by{' '}
+					<Link
+						aria-label="Going back to main page"
+						className="underline"
+						href="/"
+						target="_blank"
+					>
+						Bréval LE FLOCH
+					</Link>
+					; Design by{' '}
+					<a
+						className="underline"
+						href="https://devdreaming.com"
+						target="_blank"
+					>
+						CodeBucks
+					</a>
+				</div>
+			</div>
+		</footer>
+	)
+}
 
-export default Footer;
+export default Footer

@@ -1,238 +1,194 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import rgbDataURL from "@/services/dataurl.services";
+'use client'
+import React, { useEffect, useState } from 'react'
+
+import Image from 'next/image'
+import Link from 'next/link'
+
+import rgbDataURL from '@/services/dataurl.services'
 
 export default function Navbar() {
-  const [showTransparentBackground, setShowTransparentBackground] =
-    useState(true);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
+	const [showTransparentBackground, setShowTransparentBackground] =
+		useState(true)
+	const [isMobileOpen, setIsMobileOpen] = useState(false)
 
-  function handleNav(e) {
-    // @ts-ignore
-    e.target.scrollingElement.scrollTop > 0
-      ? setShowTransparentBackground(false)
-      : setShowTransparentBackground(true);
-  }
+	function handleNav(e) {
+		// @ts-ignore
+		e.target.scrollingElement.scrollTop > 0
+			? setShowTransparentBackground(false)
+			: setShowTransparentBackground(true)
+	}
 
-  useEffect(() => {
-    window.addEventListener("scroll", (e) => handleNav(e));
-  }, []);
+	useEffect(() => {
+		window.addEventListener('scroll', e => handleNav(e))
+	}, [])
 
-  return (
-    <header
-      className={`fixed left-0 top-0 z-50 flex w-screen flex-col items-center justify-center text-black transition-all md:h-[80px] backdrop-blur-md md:backdrop-filter-none`}
-    >
-      {/* pill */}
-      <div
-        className={`hidden md:flex w-max-[500px] h-[60px] w-[500px] flex-row items-center justify-center rounded-full
-                    bg-glow-500/90 px-20 opacity-90 backdrop-blur-xl drop-shadow-[0px_6px_23px_-2px_rgba(0,0,0,0.9)]
-                    transition-all hover:opacity-100 
-                    ${showTransparentBackground ? "" : "h-[40px] rounded-t-none hover:h-[60px] hover:rounded-full translate-y-[-20px] hover:translate-y-[10px]"}
-                    `}
-      >
-        <Link
-          href="/"
-          className={`m-0 flex origin-center 
-                     items-center justify-center rounded-full p-0 transition-all
-                     duration-100  ease-in-out hover:w-24 h-full w-16 no-underline`}
-        >
-          <Image
-            src="/logo.png"
-            width={100}
-            height={100}
-            placeholder="blur"
-            blurDataURL={rgbDataURL(231, 183, 202)}
-            alt="Logo signature de Bréval Le Floch"
-          />
-        </Link>
+	return (
+		<header
+			className={`fixed left-0 top-0 z-50 flex w-screen flex-col items-center justify-center text-black backdrop-blur-md transition-all md:h-[80px] md:backdrop-filter-none`}
+		>
+			{/* pill */}
+			<div
+				className={`w-max-[500px] hidden h-[60px] w-[500px] flex-row items-center justify-center rounded-full bg-glow-500/90 px-20 opacity-90 drop-shadow-[0px_6px_23px_-2px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-all hover:opacity-100 md:flex ${showTransparentBackground ? '' : 'h-[40px] translate-y-[-20px] rounded-t-none hover:h-[60px] hover:translate-y-[10px] hover:rounded-full'} `}
+			>
+				<Link
+					className={`m-0 flex h-full w-16 origin-center items-center justify-center rounded-full p-0 no-underline transition-all duration-100 ease-in-out hover:w-24`}
+					href="/"
+				>
+					<Image
+						alt="Logo signature de Bréval Le Floch"
+						blurDataURL={rgbDataURL(231, 183, 202)}
+						height={100}
+						placeholder="blur"
+						src="/logo.png"
+						width={100}
+					/>
+				</Link>
 
-        <Link
-          href="/projects"
-          className={`button-animated  smoke m-0 origin-center items-center justify-center 
-                     rounded-full p-0 transition-all duration-100 
-                     ease-in-out hover:w-32 flex h-full w-24 no-underline
-                     `}
-          // ${showTransparentBackground ? '' : 'md:w-0  hover:w-32'}
-        >
-          <div>
-            <span>P</span>
-            <span>R</span>
-            <span>O</span>
-            <span>J</span>
-            <span>E</span>
-            <span>C</span>
-            <span>T</span>
-            <span>S</span>
-          </div>
-        </Link>
-        <Link
-          href="/blog"
-          className={`button-animated  smoke m-0 hidden origin-center items-center justify-center 
-                     rounded-full p-0 transition-all duration-100 
-                     ease-in-out hover:w-32 md:flex h-full w-24 no-underline
-                     `}
-          // ${showTransparentBackground ? '' : 'md:w-0  hover:w-32'}
-        >
-          <div>
-            <span>B</span>
-            <span>L</span>
-            <span>O</span>
-            <span>G</span>
-          </div>
-        </Link>
-        <Link
-          href="/about"
-          className={`button-animated  smoke m-0 origin-center items-center justify-center 
-                     rounded-full p-0 transition-all duration-100 
-                     ease-in-out flex h-full w-24 hover:w-32
-                     `}
-        >
-          <div>
-            <span>A</span>
-            <span>B</span>
-            <span>O</span>
-            <span>U</span>
-            <span>T</span>
-          </div>
-          <badge className="ml-1 rounded-full overflow-visible text-xs relative w-4 h-4 ">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <svg
-              fill="accent"
-              className="absolute inline-flex h-full w-full rounded-full"
-              version="1.2"
-              baseProfile="tiny"
-              id="Layer_1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="-1077 923 256 256"
-            >
-              <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></g>
-              <g id="SVGRepo_iconCarrier">
-                <path d="M-830.9,1123.5l-76.3-114.4v-60.7h9c6.6,0,12.1-5.4,12.1-12.1v0c0-6.6-5.4-12.1-12.1-12.1h-101.5c-6.6,0-12.1,5.4-12.1,12.1 v0c0,6.6,5.4,12.1,12.1,12.1h9v60.7l-76.3,114.4c-4.5,5.7-7.2,12.9-7.2,20.7c0,18.4,15,33.4,33.4,33.4h183.9 c18.4,0,33.4-14.9,33.4-33.4C-823.7,1136.4-826.4,1129.2-830.9,1123.5z M-1007.4,1097.4l-41.6,60.7c-4.6-2.8-7.7-8-7.7-14 c0-3.4,1-6.6,2.8-9.2l80-119.8v-66.7h43.4l0,11.8h-26.7v14.7h26.7l0,22.3h-26.7v14.7h26.7l0,22.3h-26.7v14.7h26.7l0,22.3h-26.7v14.7 h26.7l0,11.5H-1007.4z"></path>
-              </g>
-            </svg>
-          </badge>
-        </Link>
-      </div>
+				<Link
+					className={`button-animated smoke m-0 flex h-full w-24 origin-center items-center justify-center rounded-full p-0 no-underline transition-all duration-100 ease-in-out hover:w-32`}
+					href="/projects"
+					// ${showTransparentBackground ? '' : 'md:w-0  hover:w-32'}
+				>
+					<div>
+						<span>W</span>
+						<span>O</span>
+						<span>R</span>
+						<span>K</span>
+					</div>
+				</Link>
+				<Link
+					className={`button-animated smoke m-0 hidden h-full w-24 origin-center items-center justify-center rounded-full p-0 no-underline transition-all duration-100 ease-in-out hover:w-32 md:flex`}
+					href="/blog"
+					// ${showTransparentBackground ? '' : 'md:w-0  hover:w-32'}
+				>
+					<div>
+						<span>B</span>
+						<span>L</span>
+						<span>O</span>
+						<span>G</span>
+					</div>
+				</Link>
+				<Link
+					className={`button-animated smoke m-0 flex h-full w-24 origin-center items-center justify-center rounded-full p-0 transition-all duration-100 ease-in-out hover:w-32`}
+					href="/about"
+				>
+					<div>
+						<span>M</span>
+						<span>E</span>
+					</div>
+				</Link>
+			</div>
 
-      {/* Mobile view under md*/}
-      <div
-        className={
-          "flex flex-col md:hidden  w-full " +
-          (isMobileOpen ? "bg-accent/60" : "")
-        }
-      >
-        <div
-          className={
-            "flex h-[60px] bg-accent/60 justify-between items-center px-4"
-          }
-        >
-          <Link
-            href="/"
-            className={`m-0 flex origin-center 
-                     items-center justify-center rounded-full p-0 transition-all
-                     duration-100  ease-in-out h-full w-16 no-underline`}
-          >
-            <Image
-              src="/logo.png"
-              width={100}
-              height={100}
-              alt="Logo signature de Bréval Le Floch"
-            />
-          </Link>
+			{/* Mobile view under md*/}
+			<div
+				className={
+					'flex w-full flex-col md:hidden ' +
+					(isMobileOpen ? 'bg-accent/60' : '')
+				}
+			>
+				<div
+					className={
+						'flex h-[60px] items-center justify-between bg-accent/60 px-4'
+					}
+				>
+					<Link
+						className={`m-0 flex h-full w-16 origin-center items-center justify-center rounded-full p-0 no-underline transition-all duration-100 ease-in-out`}
+						href="/"
+					>
+						<Image
+							alt="Logo signature de Bréval Le Floch"
+							height={100}
+							src="/logo.png"
+							width={100}
+						/>
+					</Link>
 
-          <button
-            type="button"
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-          >
-            <span className="absolute -inset-0.5"></span>
+					<button
+						aria-controls="mobile-menu"
+						aria-expanded="false"
+						className="text-gray-400 hover:bg-gray-700 relative inline-flex items-center justify-center rounded-md p-2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+						onClick={() => setIsMobileOpen(!isMobileOpen)}
+						type="button"
+					>
+						<span className="absolute -inset-0.5"></span>
 
-            <span className="sr-only">Open main menu</span>
+						<span className="sr-only">Open main menu</span>
 
-            <svg
-              x-description="Icon when menu is closed."
-              className={"block h-6 w-6" + (isMobileOpen ? " hidden" : "")}
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              ></path>
-            </svg>
+						<svg
+							aria-hidden="true"
+							className={'block h-6 w-6' + (isMobileOpen ? 'hidden' : '')}
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="1.5"
+							viewBox="0 0 24 24"
+							x-description="Icon when menu is closed."
+						>
+							<path
+								d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							></path>
+						</svg>
 
-            <svg
-              x-description="Icon when menu is open."
-              className={"h-6 w-6" + (isMobileOpen ? " block" : " hidden")}
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
-            </svg>
-          </button>
-        </div>
+						<svg
+							aria-hidden="true"
+							className={'h-6 w-6' + (isMobileOpen ? 'block' : 'hidden')}
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="1.5"
+							viewBox="0 0 24 24"
+							x-description="Icon when menu is open."
+						>
+							<path
+								d="M6 18L18 6M6 6l12 12"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							></path>
+						</svg>
+					</button>
+				</div>
 
-        <div className={" h-screen " + (isMobileOpen ? "block" : "hidden")}>
-          <div
-            className={"px-2 pt-2 pb-3 space-y-1"}
-            id="mobile-menu"
-            aria-expanded="false"
-          >
-            <Link
-              href="/"
-              className={
-                "bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-              }
-            >
-              Home
-            </Link>
-            <Link
-              href="/projects"
-              className={
-                "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              }
-            >
-              Projects
-            </Link>
-            <Link
-              href="/blog"
-              className={
-                "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              }
-            >
-              Blog
-            </Link>
-            <Link
-              href="/about"
-              className={
-                "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              }
-            >
-              About
-            </Link>
-          </div>
-        </div>
-      </div>
-    </header>
-  );
+				<div className={'h-screen ' + (isMobileOpen ? 'block' : 'hidden')}>
+					<div
+						aria-expanded="false"
+						className={'space-y-1 px-2 pb-3 pt-2'}
+						id="mobile-menu"
+					>
+						<Link
+							className={
+								'bg-gray-900 block rounded-md px-3 py-2 text-base font-medium text-white'
+							}
+							href="/"
+						>
+							Home
+						</Link>
+						<Link
+							className={
+								'text-gray-300 hover:bg-gray-700 block rounded-md px-3 py-2 text-base font-medium hover:text-white'
+							}
+							href="/projects"
+						>
+							Projects
+						</Link>
+						<Link
+							className={
+								'text-gray-300 hover:bg-gray-700 block rounded-md px-3 py-2 text-base font-medium hover:text-white'
+							}
+							href="/blog"
+						>
+							Blog
+						</Link>
+						<Link
+							className={
+								'text-gray-300 hover:bg-gray-700 block rounded-md px-3 py-2 text-base font-medium hover:text-white'
+							}
+							href="/about"
+						>
+							About
+						</Link>
+					</div>
+				</div>
+			</div>
+		</header>
+	)
 }

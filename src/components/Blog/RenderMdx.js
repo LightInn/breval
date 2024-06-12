@@ -1,27 +1,28 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import Markdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
-import remarkMdx from "remark-mdx";
+'use client'
+import Markdown from 'react-markdown'
+import React from 'react'
+
+import rehypeRaw from 'rehype-raw'
+import remarkMdx from 'remark-mdx'
+import Image from 'next/image'
 
 const mdxComponents = {
-  Image,
-};
+	Image,
+}
 
 const RenderMdx = ({ blog }) => {
-  // const MDXContent = useMDXComponent(blog.body.code)
+	// const MDXContent = useMDXComponent(blog.body.code)
 
-  return (
-    <div
-      id="mdx-content"
-      className="col-span-12  lg:col-span-8 font-in prose sm:prose-base md:prose-lg max-w-max"
-    >
-      <Markdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkMdx]}>
-        {blog.content}
-      </Markdown>
-    </div>
-  );
-};
+	return (
+		<div
+			className="prose sm:prose-base md:prose-lg col-span-12 max-w-max font-in lg:col-span-8"
+			id="mdx-content"
+		>
+			<Markdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkMdx]}>
+				{blog.content}
+			</Markdown>
+		</div>
+	)
+}
 
-export default RenderMdx;
+export default RenderMdx

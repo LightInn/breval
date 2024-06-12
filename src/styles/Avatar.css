@@ -1,14 +1,14 @@
 #particles > circle {
-  fill: #fff;
-  stroke: #000;
-  stroke-width: 0.5;
+	fill: #fff;
+	stroke: #000;
+	stroke-width: 0.5;
 }
 
 #neck,
 #face,
 #earR,
 #earL {
-  fill: var(--vibrant-light);
+	fill: var(--vibrant-light);
 }
 
 #neckShadow,
@@ -18,13 +18,13 @@
 #faceShadow,
 #earRShadow > path,
 #earRShadow_2 > path {
-  fill: var(--muted);
+	fill: var(--muted);
 }
 
 #particles > circle,
 #shineL,
 #shineR {
-  fill: var(--muted-light);
+	fill: var(--muted-light);
 }
 
 #hair,
@@ -34,12 +34,12 @@
 #mustache > path,
 #eayleachR,
 #eayleachL {
-  fill: var(--muted-dark);
+	fill: var(--muted-dark);
 }
 
 #tshirt,
 #glasses > path {
-  fill: var(--vibrant);
+	fill: var(--vibrant);
 }
 
 #mouth2,
@@ -48,34 +48,34 @@
 #eyR,
 #eyL,
 #noseHole > path {
-  fill: var(--vibrant-dark);
+	fill: var(--vibrant-dark);
 }
 
 #Mia {
-  opacity: 0;
+	opacity: 0;
 }
 
 /*------------------------------------  DYNAMIC ------------------------------------------------------*/
 
 * {
-  transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
 }
 
 /* cool size change and ghost hover effect */
 #particles > circle {
-  animation: particle 3s infinite alternate;
-  transition: none;
+	animation: particle 3s infinite alternate;
+	transition: none;
 }
 
 /*  animation should shange the circle size slowly while transform y slowly  */
 @keyframes particle {
-  0% {
-    r: 3px;
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-15px);
-  }
+	0% {
+		r: 3px;
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-15px);
+	}
 }
 
 /*!* full avatar slowly moving up and down *!*/
@@ -94,35 +94,35 @@
 /*}*/
 
 #veste {
-  fill-opacity: 1;
+	fill-opacity: 1;
 }
 
 /* cool size change and ghost hover effect */
 #vesteParticles > circle {
-  animation: vesteParticles 3s infinite alternate;
-  transition: none;
+	animation: vesteParticles 3s infinite alternate;
+	transition: none;
 }
 
 /*  animation should shange the circle size slowly while transform y slowly  */
 @keyframes vesteParticles {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    r: 60px;
-    transform: translateY(30px);
-  }
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		r: 60px;
+		transform: translateY(30px);
+	}
 }
 .dizzy {
-  animation: dizzyMia 3s ease-in;
-  transition: none;
+	animation: dizzyMia 3s ease-in;
+	transition: none;
 }
 
 @keyframes dizzyMia {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

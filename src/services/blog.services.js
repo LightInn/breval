@@ -1,27 +1,27 @@
-import Strapi from "strapi-sdk-js";
+import Strapi from 'strapi-sdk-js'
 
 // function getAllBlog
 
 async function getAllBlogs() {
-  const strapi = new Strapi({ url: "https://breval-api.lightin.io" });
+	const strapi = new Strapi({ url: 'https://breval-api.lightin.io' })
 
-  const blo = await strapi.find("blogs", { populate: "image" });
+	const blo = await strapi.find('blogs', { populate: 'image' })
 
-  const bloa = blo.data.map((data) => {
-    return {
-      title: data.attributes.title,
-      describe: data.attributes.describe,
-      content: data.attributes.content,
-      image: data.attributes.image.data?.attributes.url ?? "",
-      url: data.attributes.url,
-      tags: data.attributes.tags,
-      publishedAt: data.attributes.publishedAt,
-    };
-  });
+	const bloa = blo.data.map(data => {
+		return {
+			image: data.attributes.image.data?.attributes.url ?? '',
+			publishedAt: data.attributes.publishedAt,
+			describe: data.attributes.describe,
+			content: data.attributes.content,
+			title: data.attributes.title,
+			tags: data.attributes.tags,
+			url: data.attributes.url,
+		}
+	})
 
-  // console.log(bloa)
+	// console.log(bloa)
 
-  return bloa;
+	return bloa
 }
 
-export default getAllBlogs;
+export default getAllBlogs

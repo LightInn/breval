@@ -1,17 +1,18 @@
-"use client";
-import { HoloCard } from "special-card";
-import React from "react";
+'use client'
+import React from 'react'
 
-export default function Holocard({ height, width, radius, imageSrc }) {
-  return (
-    <>
-      <HoloCard
-        height={height}
-        width={width}
-        radius={radius}
-        imageSrc={imageSrc}
-        imageshinesrc="https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp"
-      />
-    </>
-  );
+import { HoloCard } from 'special-card'
+
+export default function Holocard({ imageSrc, height, radius, width }) {
+	return (
+		<>
+			<HoloCard
+				height={height}
+				imageSrc={imageSrc}
+				imageshinesrc="https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp"
+				radius={radius}
+				width={width}
+			/>
+		</>
+	)
 }

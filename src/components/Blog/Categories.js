@@ -1,20 +1,22 @@
-import { slug } from "github-slugger";
-import React from "react";
-import Category from "./Category";
+import React from 'react'
 
-const Categories = ({ categories, currentSlug }) => {
-  return (
-    <div className=" px-0 md:px-10 sxl:px-20 mt-10 border-t-2 text-dark border-b-2 border-solid border-dark py-4 flex items-start flex-wrap font-medium mx-5 md:mx-10">
-      {categories.map((cat) => (
-        <Category
-          key={cat}
-          link={`/blog/categories/${cat}`}
-          name={cat}
-          active={currentSlug === slug(cat)}
-        />
-      ))}
-    </div>
-  );
-};
+import { slug } from 'github-slugger'
 
-export default Categories;
+import Category from './Category'
+
+const Categories = ({ currentSlug, categories }) => {
+	return (
+		<div className="text-dark border-dark mx-5 mt-10 flex flex-wrap items-start border-b-2 border-t-2 border-solid px-0 py-4 font-medium md:mx-10 md:px-10 sxl:px-20">
+			{categories.map(cat => (
+				<Category
+					active={currentSlug === slug(cat)}
+					key={cat}
+					link={`/blog/categories/${cat}`}
+					name={cat}
+				/>
+			))}
+		</div>
+	)
+}
+
+export default Categories

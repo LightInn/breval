@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
 
 jobs:
   build-and-deploy:
@@ -12,13 +12,13 @@ jobs:
       - uses: a7ul/tar-action@v1.2.0
         with:
           command: c
-          cwd: "./"
+          cwd: './'
           files: .
           outPath: deploy.tar
 
       - name: Deploy App to CapRover
         uses: caprover/deploy-from-github@v1.1.2
         with:
-          server: "${{ secrets.CAPROVER_SERVER }}"
-          app: "${{ secrets.APP_NAME }}"
-          token: "${{ secrets.APP_TOKEN }}"
+          server: '${{ secrets.CAPROVER_SERVER }}'
+          app: '${{ secrets.APP_NAME }}'
+          token: '${{ secrets.APP_TOKEN }}'
