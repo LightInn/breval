@@ -28,7 +28,7 @@
 		"sharp": "0.33.4",
 		"special-card": "2.1.3",
 		"strapi-sdk-js": "2.3.3",
-		"styled-components": "6.1.11",
+		"styled-components": "6.1.12",
 		"tornis": "0.3.6"
 	},
 	"devDependencies": {
