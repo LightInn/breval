@@ -32,7 +32,7 @@
 		"tornis": "0.3.6"
 	},
 	"devDependencies": {
-		"autoprefixer": "10.4.19",
+		"autoprefixer": "10.4.20",
 		"eslint": "9.9.0",
 		"eslint-config-next": "14.2.5",
 		"eslint-config-prettier": "9.1.0",
