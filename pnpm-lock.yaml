@@ -19,10 +19,10 @@ importers:
         version: 11.10.0
       next:
         specifier: 15.0.0
-        version: 15.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3)
+        version: 15.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.4)
       next-sitemap:
         specifier: 4.2.3
-        version: 4.2.3(next@15.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3))
+        version: 4.2.3(next@15.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.4))
       react:
         specifier: '18'
         version: 18.3.1
@@ -42,8 +42,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0
       sass:
-        specifier: 1.80.3
-        version: 1.80.3
+        specifier: 1.80.4
+        version: 1.80.4
       sharp:
         specifier: 0.33.5
         version: 0.33.5
@@ -2323,8 +2323,8 @@ packages:
     resolution: {integrity: sha512-CdASjNJPvRa7roO6Ra/gLYBTzYzzPyyBXxIMdGW3USQLyjWEls2RgW5UBTXaQVp+OrpeCK3bLem8smtmheoRuw==}
     engines: {node: '>= 0.4'}
 
-  sass@1.80.3:
-    resolution: {integrity: sha512-ptDWyVmDMVielpz/oWy3YP3nfs7LpJTHIJZboMVs8GEC9eUmtZTZhMHlTW98wY4aEorDfjN38+Wr/XjskFWcfA==}
+  sass@1.80.4:
+    resolution: {integrity: sha512-rhMQ2tSF5CsuuspvC94nPM9rToiAFw2h3JTrLlgmNw1MH79v8Cr3DH6KF6o6r+8oofY3iYVPUf66KzC8yuVN1w==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -4889,15 +4889,15 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next-sitemap@4.2.3(next@15.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3)):
+  next-sitemap@4.2.3(next@15.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.4)):
     dependencies:
       '@corex/deepmerge': 4.0.43
       '@next/env': 13.5.6
       fast-glob: 3.3.2
       minimist: 1.2.8
-      next: 15.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3)
+      next: 15.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.4)
 
-  next@15.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.3):
+  next@15.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.4):
     dependencies:
       '@next/env': 15.0.0
       '@swc/counter': 0.1.3
@@ -4917,7 +4917,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 15.0.0
       '@next/swc-win32-arm64-msvc': 15.0.0
       '@next/swc-win32-x64-msvc': 15.0.0
-      sass: 1.80.3
+      sass: 1.80.4
       sharp: 0.33.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -5285,7 +5285,7 @@ snapshots:
       es-errors: 1.3.0
       is-regex: 1.1.4
 
-  sass@1.80.3:
+  sass@1.80.4:
     dependencies:
       '@parcel/watcher': 2.4.1
       chokidar: 4.0.0
