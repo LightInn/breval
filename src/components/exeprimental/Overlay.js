@@ -7,25 +7,29 @@ import {useEffect, useState} from "react";
 export function Overlay({cameraRef}) {
 
 
-    const [step, setStep] = useState(0)
+    const [step, setStep] = useState(1)
 
 
     const data = useScroll()
 
     console.log("test", cameraRef)
 
+    const bird = {
+        x: 1.3, y: 15.7, z: -2.6
+    }
+
 
     useEffect(() => {
 
         // switch (step) for camera position
         if (cameraRef && step === 1) {
-            cameraRef.current?.setLookAt(1,2,3, 0, 0, 0, true)
+            cameraRef.current?.setLookAt(-4.11, 13, 9, bird.x, bird.y, bird.z, true)
         }
         if (cameraRef && step === 2) {
-            cameraRef.current?.setLookAt(4,5,6, 0, 0, 0, true)
+            cameraRef.current?.setLookAt(-37, 26, 67, bird.x, bird.y, bird.z, true)
         }
         if (cameraRef && step === 3) {
-            cameraRef.current?.setLookAt(7,8,9, 0, 0, 0, true)
+            cameraRef.current?.setLookAt(7, 8, 9, bird.x, bird.y, bird.z, true)
         }
 
 
@@ -44,11 +48,14 @@ export function Overlay({cameraRef}) {
         const b = data.range(1 / 2, 1 / 2)
 
         // udapte step
-        if (a >= 1 && step < 1) {
+        if ((a >= 0.5 && step < 1) || (b < 0.5 && step > 1)) {
             setStep(1)
         }
-        if (b >= 1 && step < 2) {
+        if ((a >= 0.5 && step < 2) || (b < 0.5 && step > 2)) {
             setStep(2)
+        }
+        if ((b >= 0.5 && step < 3) || (b < 0.5 && step > 3)) {
+            setStep(3)
         }
 
         console.log(step)
