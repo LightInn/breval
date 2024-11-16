@@ -32,7 +32,10 @@ const test =  getProject('Demo Project').sheet('Demo Sheet')
 
   useFrame(() => {
 
-    test.sequence('Scroll').update(scroll.offset)
+    // test.sequence('Scroll').update(scroll.offset)
+
+
+
 
 
   })

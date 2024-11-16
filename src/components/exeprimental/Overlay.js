@@ -2,10 +2,34 @@
 
 import {Scroll, useScroll} from "@react-three/drei";
 import {useFrame} from "@react-three/fiber";
+import {useEffect, useState} from "react";
 
-export function Overlay() {
+export function Overlay({cameraRef}) {
 
- const   data = useScroll()
+
+    const [step, setStep] = useState(0)
+
+
+    const data = useScroll()
+
+    console.log("test", cameraRef)
+
+
+    useEffect(() => {
+
+        // switch (step) for camera position
+        if (cameraRef && step === 1) {
+            cameraRef.current?.setLookAt(1,2,3, 0, 0, 0, true)
+        }
+        if (cameraRef && step === 2) {
+            cameraRef.current?.setLookAt(4,5,6, 0, 0, 0, true)
+        }
+        if (cameraRef && step === 3) {
+            cameraRef.current?.setLookAt(7,8,9, 0, 0, 0, true)
+        }
+
+
+    }, [step]);
 
 
     useFrame(() => {
@@ -19,44 +43,33 @@ export function Overlay() {
         // and reach 1 when it reaches 2 / 3rds.
         const b = data.range(1 / 2, 1 / 2)
 
+        // udapte step
+        if (a >= 1 && step < 1) {
+            setStep(1)
+        }
+        if (b >= 1 && step < 2) {
+            setStep(2)
+        }
 
-        // Same as above but with a margin of 0.1 on both ends
-        const c = data.range(1 / 2, 1 / 2, 0.1)
-
-
-
-        // Will move between 0-1-0 for the selected range
-        const d = data.curve(1 / 2, 1 / 2)
-        // Same as above, but with a margin of 0.1 on both ends
-        const e = data.curve(1 / 3, 1 / 3, 0.1)
-
-
-
-        // Returns true if the offset is in range and false if it isn't
-        const f = data.visible(1 / 2, 1 / 2)
-        // The visible function can also receive a margin
-        const g = data.visible(2 / 3, 1 / 3, 0.1)
-
-        console.log( a,d,f)
+        console.log(step)
+        console.log(a, b)
 
     })
 
-    return (
-        <Scroll html>
+    return (<Scroll html>
 
-            {/* 3 section h screen */}
-            <section className="h-screen bg-blue-500">
-                <h1>Section 1</h1>
-            </section>
+        {/* 3 section h screen */}
+        <section className="h-screen bg-blue-500">
+            <h1>Section 1</h1>
+        </section>
 
-            <section className="h-screen bg-red-500">
-                <h1>Section 2</h1>
-            </section>
-            <section className="h-screen bg-green-500">
-                <h1>Section 3</h1>
-            </section>
+        <section className="h-screen bg-red-500">
+            <h1>Section 2</h1>
+        </section>
+        <section className="h-screen bg-green-500">
+            <h1>Section 3</h1>
+        </section>
 
 
-        </Scroll>
-    )
+    </Scroll>)
 }
