@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import {CameraControls, ScrollControls, useGLTF} from "@react-three/drei";
+import {CameraControls, Environment, ScrollControls, useGLTF} from "@react-three/drei";
 import { getProject } from "@theatre/core";
 import {PerspectiveCamera, SheetProvider} from "@theatre/r3f";
 import studio from "@theatre/studio";
@@ -49,10 +49,11 @@ export function ThreeScene() {
             <Canvas
             >
                 <SheetProvider sheet={demoSheet}>
+                    <Environment preset="dawn"  backgroundBlurriness={0.5} />
                     <CameraControls ref={cameraControlRef} enableZoom={false} />
                     <PerspectiveCamera theatreKey={"Camera "} makeDefault={true}/>
-                    <ambientLight />
-                    <pointLight position={[10, 10, 10]} />
+                    {/*<ambientLight />*/}
+
 
                     <ScrollControls pages={3}>
                         <Overlay  cameraRef={cameraControlRef}/>
