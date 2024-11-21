@@ -1,105 +1,98 @@
 "use client";
-import * as THREE from 'three';
-import {Canvas, useFrame} from '@react-three/fiber';
-import {
-    Billboard,
-    Html,
-    MeshPortalMaterial,
-    OrbitControls,
-    Preload,
-    Stars,
-    Octahedron,
-    PresentationControls
-} from '@react-three/drei';
-import {useRef, useState} from 'react';
-import {Model} from "@/components/exeprimental/Crow_fly";
-import {red} from "next/dist/lib/picocolors";
+import * as THREE from "three";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Html, Preload } from "@react-three/drei";
+import { useRef, useState } from "react";
+import { Model } from "@/components/exeprimental/Crow_fly";
 
 export default function App() {
-    return (<Canvas camera={{fov: 75, position: [0, 0, 5]}} style={{height: '100vh'}}>
-            <color attach="background" args={['#1e293b']}/>
-            <ambientLight intensity={0.5}/>
-            <pointLight position={[10, 10, 10]}/>
-          <PresentationControls>
-            {/* Cube avec portail */}
-            <CubeWithPortal position={[0, 0, 0]}/>
-          </PresentationControls>
-
-            <Preload all/>
-        </Canvas>);
+    return (
+        <Canvas camera={{ fov: 75, position: [0, 0, 10] }} style={{ height: "100vh" }}>
+            <color attach="background" args={["#1e293b"]} />
+            <ambientLight intensity={0.5} />
+            <AnimatedScene />
+            <Preload all />
+        </Canvas>
+    );
 }
 
-function CubeWithPortal({position}) {
-
-
-    const portalRef = useRef();
-    const [hovered, setHovered] = useState(false);
+function AnimatedScene() {
+    const modelRef = useRef();
+    const fadeRef = useRef();
+    const [animationComplete, setAnimationComplete] = useState(false);
 
     useFrame((state, delta) => {
-        if (portalRef.current) {
-            portalRef.current.blend = hovered ? 1 : 0;
+        if (modelRef.current) {
+            // Animate model position and scale
+            modelRef.current.position.x += delta * 5; // Move right
+            modelRef.current.position.y += delta * 2; // Move up
+            modelRef.current.scale.x += delta;
+            modelRef.current.scale.y += delta;
+            modelRef.current.scale.z += delta;
+
+            // Detect when animation completes
+            if (modelRef.current.scale.x >= 20) {
+                setAnimationComplete(true);
+            }
+        }
+
+        if (fadeRef.current) {
+            // Fade to black after the animation
+            fadeRef.current.material.opacity = THREE.MathUtils.lerp(
+                fadeRef.current.material.opacity,
+                animationComplete ? 1 : 0,
+                delta
+            );
         }
     });
 
-    const bg = "#1e293b";
-
-    return (<group position={position}>
-            {/* Cube avec MeshPortalMaterial */}
-            {/*<Stars fade={true}/>*/}
-            <color attach="background" args={[bg]}/>
-            <mesh
-                // onPointerOver={() => setHovered(true)}
-                onPointerOut={() => setHovered(false)}
-                scale={[2, 2, 2]}
-            >
-                <Model/>
-                <color attach="background" args={[bg]}/>
-
-                <MeshPortalMaterial ref={portalRef} side={THREE.DoubleSide} attach="material">
-                    {/* Arrière-plan du portail */}
-
-                    <color attach="background" args={[bg]}/>
-                    {/* Contenu dans le portail */}
-
-                    <Billboard>
-
-                        {/*<Octahedron scale={2} />*/}
-
-                        <Html transform position={[0, 0, -5]} occlude={"blending"} style={{background: "#000"}}>
-                            <div
-                                style={{
-                                    width: '100vw',
-                                    height: '100vh',
-                                    background: '#1e3a8a',
-                                    borderRadius: '10px',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    color: 'white',
-                                    textAlign: 'center',
-                                    padding: '10px',
-                                }}
-                            >
-                                <h1>Contenu secret</h1>
-                                <p>Cliquez pour explorer davantage !</p>
-                                <button
-                                    style={{
-                                        padding: '10px 20px',
-                                        border: 'none',
-                                        borderRadius: '5px',
-                                        background: '#f97316',
-                                        color: 'white',
-                                        cursor: 'pointer',
-                                    }}
-                                    onClick={() => alert('Vous avez cliqué !')}
-                                >
-                                    Découvrir
-                                </button>
-                            </div>
-                        </Html>
-                    </Billboard>
-                </MeshPortalMaterial>
+    return (
+        <>
+            {/* Animated Model */}
+            <mesh ref={modelRef}>
+                <Model />
             </mesh>
-        </group>);
+
+            {/* Fade to black */}
+            <mesh ref={fadeRef}>
+                <planeGeometry args={[100, 100]} />
+                <meshBasicMaterial color="black" transparent opacity={0} />
+            </mesh>
+
+            {/* HTML Content */}
+            {animationComplete && (
+                <Html fullscreen>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            height: "100vh",
+                            background: "rgba(0,0,0,0.8)",
+                            color: "white",
+                            textAlign: "center",
+                        }}
+                    >
+                        <div>
+                            <h1>Bienvenue</h1>
+                            <p>Le voyage commence ici.</p>
+                            <button
+                                style={{
+                                    padding: "10px 20px",
+                                    border: "none",
+                                    borderRadius: "5px",
+                                    background: "#f97316",
+                                    color: "white",
+                                    cursor: "pointer",
+                                }}
+                                onClick={() => alert("Exploration commencée !")}
+                            >
+                                Découvrir
+                            </button>
+                        </div>
+                    </div>
+                </Html>
+            )}
+        </>
+    );
 }

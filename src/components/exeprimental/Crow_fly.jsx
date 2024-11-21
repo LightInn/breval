@@ -8,7 +8,7 @@ import {Html, MeshPortalMaterial, useGLTF} from '@react-three/drei'
 import * as THREE from "three";
 
 export function Model(props) {
-    const { nodes, materials } = useGLTF('/crow_fly.glb')
+    const { nodes, materials } = useGLTF('/3D/crow_fly.glb')
     return (
         <group {...props} dispose={null}>
             <mesh
@@ -458,5 +458,5 @@ export function Model(props) {
     )
 }
 
-useGLTF.preload('/crow_fly.glb')
+useGLTF.preload('/3D/crow_fly.glb')
 

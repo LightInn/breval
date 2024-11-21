@@ -1,16 +1,13 @@
 "use client"
 
-import {MeshPortalMaterial, Scroll, useCursor, useScroll} from "@react-three/drei";
-import {easing, geometry} from 'maath'
+import {Scroll, useScroll} from "@react-three/drei";
+import {geometry} from 'maath'
 import {extend, useFrame} from '@react-three/fiber'
 
-import * as THREE from "three";
-
-import React, { useEffect, useRef, useState } from 'react'
-import { motion, useScroll as uS, useTransform } from 'framer-motion'
-import { ArrowDownCircle, ExternalLink, Github } from 'lucide-react'
-import Link from 'next/link'
+import React, {useEffect, useState} from 'react'
+import {motion} from 'framer-motion'
 import AnimatedTitle from "@/components/exeprimental/Sectiona";
+import ProjectsSection from "@/components/exeprimental/ProjectsSection";
 
 const regular = import('@pmndrs/assets/fonts/inter_regular.woff')
 const medium = import('@pmndrs/assets/fonts/inter_medium.woff')
@@ -89,6 +86,17 @@ export function Overlay({cameraRef}) {
     const width = 1;
     const height = 1.61803398875;
 
+    const [projects, setProjects] = useState(null)
+    useEffect(() => {
+        getProject().then(data => {
+
+            setProjects(data)
+            console.log(data)
+
+        })
+    }, [])
+
+
     // return null;
     return (<Scroll html>
 
@@ -97,7 +105,7 @@ export function Overlay({cameraRef}) {
                 <div className="flex items-center h-full px-4">
                     {/* Conteneur du texte */}
                     <div
-                        className="max-w-2xl w-full bg-white/20 backdrop-blur-lg rounded-md p-6 md:py-8 md:px-12 mx-auto md:mx-0 md:ml-16">
+                        className="max-w-4xl w-full bg-white/20 backdrop-blur-lg rounded-md p-6 md:py-8 md:px-12 mx-auto md:mx-0 md:ml-16">
                         <motion.div
                             initial={{opacity: 0}}
                             animate={{opacity: 1}}
@@ -117,47 +125,17 @@ export function Overlay({cameraRef}) {
                         </motion.div>
                     </div>
                 </div>
-
-
-                <section className="h-screen w-screen relative">
-
-
-                    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-
-                    </div>
-
-
-                </section>
             </section>
             <section className="h-screen w-screen relative ">
                 <div className="flex items-center h-full px-4">
                     {/* Conteneur du texte */}
                     <div
                         className="max-w-2xl w-full bg-white/20 backdrop-blur-lg rounded-md p-6 md:py-8 md:px-12 mx-auto md:mx-0 md:mr-16 md:ml-auto">
-                        <h1 className="text-gray-50 text-3xl font-bold tracking-tight sm:text-4xl">
-                            Here is a list of my featured projects
-                        </h1>
-                        <p className="text-gray-300 mt-4">
-                            These are the last or biggest projects I have worked on.
-                        </p>
-
-                        <div className="grid grid-cols-1 gap-4 mt-8">
-                            <div
-                                className="flex flex-col md:flex-row md:items-center md:justify-between bg-white/20 p-4 rounded-md">
-                                <div className="flex items-center">
-                                    <img src="https://via.placeholder.com/150" alt="project"
-                                         className="w-20 h-20 rounded-md"/>
-                                    <div className="ml-4">
-                                        <h2 className="text-gray-50 font-bold text-xl">Project 1</h2>
-                                        <p className="text-gray-300">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, alias.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
 
 
-                        </div>
+                        <ProjectsSection/>
+
+
                     </div>
                 </div>
             </section>
@@ -214,7 +192,6 @@ export function Overlay({cameraRef}) {
             </section>
 
 
-
         </>
 
 
@@ -224,6 +201,8 @@ export function Overlay({cameraRef}) {
 async function getProject() {
     const res = await fetch('https://breval-api.lightin.io/api/projets?sort=date%3Adesc&populate=*')
     const data = await res.json()
+    console.log(data)
+
 
     return data.data
 }
