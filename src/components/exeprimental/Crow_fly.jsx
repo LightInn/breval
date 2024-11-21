@@ -12,167 +12,205 @@ export function Model(props) {
     return (
         <group {...props} dispose={null}>
             <mesh
-                castShadow
-                receiveShadow
+                // castShadow
+                // receiveShadow
                 geometry={nodes.body.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[1.73, -0.228, 0.053]}
                 rotation={[-0.028, 0, -0.725]}
                 scale={0.881}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[1.063, 0.049, -3.42]}
                 rotation={[0.044, -0.681, 0]}
                 scale={[0.191, 0.057, 0.191]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_002.geometry}
                 // material={materials.crow}
+                // material alfpha
+                // material-alpha={0.1}
                 position={[1.204, 0.108, -3.987]}
                 rotation={[0.064, -0.873, 0]}
                 scale={[0.149, 0.044, 0.149]}
-            />
+            >
+                <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.wing.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[2.387, -0.004, -0.925]}
                 rotation={[0.003, 0.019, 0]}
                 scale={[0.347, 0.095, 0.627]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_003.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[1.557, 0.186, -4.394]}
                 rotation={[0.09, -1.032, 0]}
                 scale={[0.168, 0.05, 0.168]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_004.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[1.832, 0.283, -4.879]}
                 rotation={[0.11, -1.179, 0]}
                 scale={[0.133, 0.04, 0.133]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_005.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[2.188, 0.361, -5.099]}
                 rotation={[0.129, -1.275, 0]}
                 scale={[0.12, 0.036, 0.12]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
-                castShadow
-                receiveShadow
+                // castShadow
+                // receiveShadow
                 geometry={nodes.feather_010.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[3.807, 0.264, -4.032]}
                 rotation={[-2.988, -0.947, -Math.PI]}
                 scale={[0.051, 0.015, 0.051]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_011.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[0.696, 0.017, -3.066]}
                 rotation={[0.023, -0.491, 0]}
                 scale={[0.152, 0.045, 0.152]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_012.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[0.437, -0.003, -2.658]}
                 rotation={[0.005, -0.3, -0.001]}
                 scale={[0.157, 0.047, 0.157]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_013.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[0.231, -0.041, -2.234]}
                 rotation={[-0.027, -0.15, -0.008]}
                 scale={[0.142, 0.042, 0.142]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_014.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[0.11, -0.069, -1.809]}
                 rotation={[-0.065, -0.034, -0.017]}
                 scale={[0.142, 0.042, 0.142]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_015.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[-0.014, -0.071, -1.404]}
                 rotation={[-0.108, 0.036, -0.029]}
                 scale={[0.113, 0.034, 0.113]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_016.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[-0.039, -0.033, -0.949]}
                 rotation={[-0.148, 0.158, -0.044]}
                 scale={[0.13, 0.039, 0.13]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_009.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[3.999, 0.536, -5.25]}
                 rotation={[-2.96, -1.057, -Math.PI]}
                 scale={[0.085, 0.025, 0.085]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_008.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[3.803, 0.629, -5.992]}
                 rotation={[-2.972, -1.119, -Math.PI]}
                 scale={[0.085, 0.025, 0.085]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_007.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[3.185, 0.603, -6.259]}
                 rotation={[-2.99, -1.334, -Math.PI]}
                 scale={[0.085, 0.025, 0.085]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.feather_006.geometry}
-                material={materials.crow}
+                // material={materials.crow}
                 position={[2.616, 0.535, -6.368]}
                 rotation={[-3.01, -1.48, Math.PI]}
                 scale={[0.085, 0.025, 0.085]}
-            />
+            >
+                    <MeshPortalMaterial    blur={0.5} side={THREE.DoubleSide} worldUnits={true}/>
+            </mesh>
             <mesh
                 castShadow
                 receiveShadow

@@ -1,10 +1,12 @@
 import React, {Suspense} from 'react'
 import {ThreeScene} from "@/components/exeprimental/ThreeScene";
+import Navbar from "@/components/navbar";
 
 export default async function Project() {
 
     return (
         <section className="bg-white">
+            <Navbar/>
 
             <Suspense fallback={<FallbackTest/>}>
                 <div className="h-screen">
