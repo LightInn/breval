@@ -101,6 +101,9 @@ importers:
       three:
         specifier: 0.170.0
         version: 0.170.0
+      three-stdlib:
+        specifier: ^2.34.0
+        version: 2.34.0(three@0.170.0)
       tornis:
         specifier: 0.3.6
         version: 0.3.6

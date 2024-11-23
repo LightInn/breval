@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html, Preload } from "@react-three/drei";
 import { useRef, useState } from "react";
-import { Model } from "@/components/exeprimental/Crow_fly";
+import { FlyingCrow } from "@/components/exeprimental/Crow_fly";
 
 export default function App() {
     return (
@@ -69,7 +69,7 @@ function AnimationSequence() {
         <>
             {/* Animated Model */}
             <mesh ref={modelRef} position={startPosition} rotation={startRotation}>
-                <Model />
+                <FlyingCrow />
             </mesh>
 
             {/* Fade to black */}

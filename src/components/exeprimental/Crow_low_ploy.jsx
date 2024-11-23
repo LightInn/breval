@@ -5,55 +5,62 @@ Files: .\public\crow_low_ploy.glb [805.12KB] > C:\Users\breva\Desktop\repos\brev
 */
 
 import React, {useEffect} from 'react'
-import {useFrame, useGraph} from '@react-three/fiber'
-import {useGLTF, useAnimations, useScroll} from '@react-three/drei'
-import { SkeletonUtils } from 'three-stdlib'
-import {getProject} from "@theatre/core";
+import {useGraph} from '@react-three/fiber'
+import {useAnimations, useGLTF} from '@react-three/drei'
+import {SkeletonUtils} from 'three-stdlib'
 
-export function Crow(props) {
-  const group = React.useRef()
-  const { scene, animations } = useGLTF('/crow_low_ploy-transformed.glb')
-  const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
-  const { nodes, materials } = useGraph(clone)
-  const { actions } = useAnimations(animations, group)
+export function Crow({step}, props) {
+    const group = React.useRef()
+    const {scene, animations} = useGLTF('/3D/crow_low_ploy-transformed.glb')
+    const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
+    const {nodes, materials} = useGraph(clone)
+    const {actions} = useAnimations(animations, group)
 
-  useEffect(() => {
+
+    useEffect(() => {
         console.log(actions)
+        actions.idle.play()
+        console.log(materials)
+    })
 
-    actions.idle.play()
-  }
-  )
+    useEffect(() => {
+
+        if (step === 1) {
+
+            actions.idle.paused = false
+            actions.idle.play()
+                materials.PaletteMaterial001.transparent = true;
+            materials.PaletteMaterial001.opacity = 1;
+        }
+        if (step === 2) {
+            actions.idle.paused = true
+            // Rendre la scène transparente
+            materials.PaletteMaterial001.transparent = true;
+            materials.PaletteMaterial001.opacity = 0.5; // Ajuste selon la transparence souhaitée
+        }
+        if (step === 3) {
+            actions.idle.paused = true
+            // Rendre la scène transparente
+            materials.PaletteMaterial001.transparent = true;
+            materials.PaletteMaterial001.opacity = 0.1; //
+        }
+
+    }, [step]);
 
 
-
-// const test =  getProject('Demo Project').sheet('Demo Sheet')
-
-  const scroll = useScroll()
-
-  useFrame(() => {
-
-    // test.sequence('Scroll').update(scroll.offset)
-
-
-
-
-
-  })
-
-
-  return (
-      <group ref={group} {...props} dispose={null}>
-        <group name="Scene">
-          <group name="ArmatureBird" position={[-1.664, 13.726, -2.339]} rotation={[0, -0.921, 0]}>
-            <primitive object={nodes.center_bone} />
-            <primitive object={nodes.legR1_bone} />
-            <primitive object={nodes.legL1_bone} />
-            <skinnedMesh name="bird" geometry={nodes.bird.geometry} material={materials.PaletteMaterial001} skeleton={nodes.bird.skeleton} />
-          </group>
-          <mesh name="grass" geometry={nodes.grass.geometry} material={materials.PaletteMaterial001} position={[0, -2.604, 0]} />
-        </group>
-      </group>
-  )
+    return (<group ref={group} {...props} dispose={null}>
+            <group name="Scene">
+                <group name="ArmatureBird" position={[-1.664, 13.726, -2.339]} rotation={[0, -0.921, 0]}>
+                    <primitive object={nodes.center_bone}/>
+                    <primitive object={nodes.legR1_bone}/>
+                    <primitive object={nodes.legL1_bone}/>
+                    <skinnedMesh name="bird" geometry={nodes.bird.geometry} material={materials.PaletteMaterial001}
+                                 skeleton={nodes.bird.skeleton}/>
+                </group>
+                <mesh name="grass" geometry={nodes.grass.geometry} material={materials.PaletteMaterial001}
+                      position={[0, -2.604, 0]}/>
+            </group>
+        </group>)
 }
 
-useGLTF.preload('/crow_low_ploy-transformed.glb')
+useGLTF.preload('/3D/crow_low_ploy-transformed.glb')

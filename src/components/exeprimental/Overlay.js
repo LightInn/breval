@@ -8,53 +8,18 @@ import React, {useEffect, useState} from 'react'
 import {motion} from 'framer-motion'
 import AnimatedTitle from "@/components/exeprimental/Sectiona";
 import ProjectsSection from "@/components/exeprimental/ProjectsSection";
+import AnimatedAllProjects from "@/components/exeprimental/AnimatedAllProjects";
 
 const regular = import('@pmndrs/assets/fonts/inter_regular.woff')
 const medium = import('@pmndrs/assets/fonts/inter_medium.woff')
 
 
-extend(geometry)
 
 
-export function Overlay({cameraRef}) {
+export function Overlay({step,setStep}) {
 
     // const projects = await getProject()
-    const [step, setStep] = useState(0)
-
-
     const data = useScroll()
-
-    console.log("test", cameraRef)
-
-    const bird = {
-        x: 1.3, y: 15.7, z: -2.6
-    }
-
-    const farView = {
-        x: 6.8, y: 15.5, z: -2.5
-    }
-
-    const sideView = {
-        x: 50, y: 15, z: -3
-    }
-
-
-    useEffect(() => {
-
-        // switch (step) for camera position
-        if (cameraRef && step === 1) {
-            cameraRef.current?.setLookAt(2.5, 16.2, -18.5, farView.x, farView.y, farView.z, true)
-        }
-        if (cameraRef && step === 2) {
-            cameraRef.current?.setLookAt(43, 17, 120, sideView.x, sideView.y, sideView.z, true)
-        }
-        if (cameraRef && step === 3) {
-            cameraRef.current?.setLookAt(30, -50, -30, bird.x, bird.y, bird.z, true)
-        }
-
-
-    }, [step]);
-
 
     useFrame(() => {
         // data.offset = current scroll position, between 0 and 1, dampened
@@ -76,6 +41,7 @@ export function Overlay({cameraRef}) {
         }
         if ((c >= 0.5 && step < 3) || (c < 0.5 && step > 3)) {
             setStep(3)
+            data.offset = 0
         }
 
         // console.log(step)
@@ -141,54 +107,7 @@ export function Overlay({cameraRef}) {
             </section>
 
             <section className="h-screen w-screen relative ">
-                <div className="flex flex-col items-center h-full px-4">
-                    {/* Conteneur du texte */}
-                    <div
-                        className="max-w-2xl w-full bg-white/20 backdrop-blur-lg rounded-md p-6 md:py-8 md:px-12 mx-auto text-center">
-                        <h1 className="text-gray-50 text-3xl font-bold tracking-tight sm:text-4xl">
-                            All my projects
-                        </h1>
-                        <p className="text-gray-300 mt-4">
-                            Here is the list of all the projects I have worked on, along with the timeline.
-                        </p>
-                    </div>
-
-                    {/* Timeline */}
-                    <div className="mt-12 w-full max-w-4xl">
-                        <div className="relative border-l border-gray-300">
-                            {/* Exemple de projets à mapper */}
-                            <div className="mb-8 ml-6">
-                                <div
-                                    className="absolute -left-3 w-6 h-6 bg-gray-50 rounded-full border-2 border-green-400"></div>
-                                <div className="bg-white/20 backdrop-blur-lg p-4 rounded-md">
-                                    <h2 className="text-gray-50 font-bold text-xl">Project 1</h2>
-                                    <p className="text-gray-300 text-sm mt-2">Description of the project goes here.</p>
-                                    <span className="text-gray-400 text-xs">January 2023</span>
-                                </div>
-                            </div>
-
-                            <div className="mb-8 ml-6">
-                                <div
-                                    className="absolute -left-3 w-6 h-6 bg-gray-50 rounded-full border-2 border-green-400"></div>
-                                <div className="bg-white/20 backdrop-blur-lg p-4 rounded-md">
-                                    <h2 className="text-gray-50 font-bold text-xl">Project 2</h2>
-                                    <p className="text-gray-300 text-sm mt-2">Description of another project.</p>
-                                    <span className="text-gray-400 text-xs">March 2023</span>
-                                </div>
-                            </div>
-
-                            <div className="mb-8 ml-6">
-                                <div
-                                    className="absolute -left-3 w-6 h-6 bg-gray-50 rounded-full border-2 border-green-400"></div>
-                                <div className="bg-white/20 backdrop-blur-lg p-4 rounded-md">
-                                    <h2 className="text-gray-50 font-bold text-xl">Project 3</h2>
-                                    <p className="text-gray-300 text-sm mt-2">Another detailed description.</p>
-                                    <span className="text-gray-400 text-xs">June 2023</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               <AnimatedAllProjects step={step}/>
             </section>
 
 

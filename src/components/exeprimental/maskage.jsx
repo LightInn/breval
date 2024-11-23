@@ -1,6 +1,6 @@
 "use client"
 import {useTexture} from "@react-three/drei";
-import {Model} from "@/components/exeprimental/Crow_fly";
+import {FlyingCrow} from "@/components/exeprimental/Crow_fly";
 import {useRef} from "react";
 
 export function Scene() {
@@ -31,7 +31,7 @@ function MaskedCrow() {
 
     return (
         <group>
-            <Model />
+            <FlyingCrow />
             {/* Ajout d'un masque à chaque plume */}
             <mesh ref={maskRef} position={[1, 0, 0]}>
                 <sphereGeometry args={[0.5, 32, 32]} />
