@@ -8,7 +8,7 @@ import AnimatedAllProjects from "@/components/exeprimental/AnimatedAllProjects";
 
 export default function App() {
     return (
-        <section className="h-screen w-screen relative  bg-blue-300">
+        <section className="h-screen w-screen relative ">
             <AnimatedAllProjects step={3}/>
         </section>
     );
