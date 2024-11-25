@@ -24,6 +24,10 @@ const nextConfig = {
 				hostname: 'cdn.discordapp.com',
 				pathname: '/**',
 			},
+			{
+				protocol: 'https',
+				hostname: 'cdn.midjourney.com',
+			},
 		],
 	},
 	i18n: {

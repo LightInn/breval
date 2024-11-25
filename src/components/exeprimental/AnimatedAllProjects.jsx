@@ -1,89 +1,159 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import "@/styles/styule.css"
+import React, {useEffect, useState} from 'react';
+import {motion} from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function AnimatedAllProjects({ step }) {
-    const [showCircle, setShowCircle] = useState(false);
+
+// Liste des projets (à remplacer par vos vrais projets)
+const projects = [
+    {
+        id: '1',
+        name: 'Projet Sakura',
+        description: 'Une application de suivi de la floraison des cerisiers',
+        imageUrl: '/dynamic/0.webp',
+        link: '/projects/sakura'
+    },
+    {
+        id: '2',
+        name: 'Tokyo Nights',
+        description: 'Un jeu vidéo d\'aventure nocturne à Tokyo',
+        imageUrl: '/dynamic/1.webp',
+        link: '/projects/tokyo-nights'
+    },
+    {
+        id: '3',
+        name: 'Sushi Master',
+        description: 'Une plateforme d\'apprentissage pour devenir maître sushi',
+        imageUrl: '/dynamic/2.webp',
+        link: '/projects/sushi-master'
+    },
+    {
+        id: '4',
+        name: 'Zen Garden',
+        description: 'Une application de méditation inspirée des jardins japonais',
+        imageUrl: '/dynamic/3.webp',
+        link: '/projects/zen-garden'
+    },
+    {
+        id: '5',
+        name: 'Kanji Quest',
+        description: 'Un jeu éducatif pour apprendre les kanjis',
+        imageUrl: '/dynamic/4.webp',
+        link: '/projects/kanji-quest'
+    },
+    // Ajoutez d'autres projets ici
+];
+
+
+const CardHover = {
+    rest: {opacity: 0, y: 20, ease: "easeOut", duration: 0.2, type: "tween"},
+    hover: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.4,
+            type: "tween",
+            ease: "easeIn",
+        },
+    },
+};
+
+const AnimatedAllProjects = ({step}) => {
+    const [isVisible, setIsVisible] = useState(false);
     const [showProjects, setShowProjects] = useState(false);
 
     useEffect(() => {
+        console.log(step, isVisible, showProjects)
         if (step === 3) {
-            setShowCircle(false); // Réinitialiser l'animation si besoin
-            setShowProjects(false);
-
-            // Délai pour afficher le cercle après 1 seconde
-            const circleTimeout = setTimeout(() => {
-                setShowCircle(true);
-            }, 1000);
-
-            // Délai supplémentaire pour afficher les projets après le cercle
-            const projectsTimeout = setTimeout(() => {
-                setShowProjects(true);
-            }, 2000);
-
-            return () => {
-                clearTimeout(circleTimeout);
-                clearTimeout(projectsTimeout);
-            };
+            setTimeout(() => {
+                setIsVisible(true);
+                setTimeout(() => {
+                    setShowProjects(true);
+                }, 800); // Durée de l'animation de l'effet d'encre
+            }, 1000); // Délai avant le démarrage de l'animation
         } else {
-            setShowCircle(false);
+            setIsVisible(false);
             setShowProjects(false);
         }
     }, [step]);
 
     return (
-        <div className="h-screen w-screen relative overflow-hidden">
-            <AnimatePresence>
-                {step === 3 && showCircle && (
-                    <motion.div
-                        className="absolute bg-black rounded-full"
-                        initial={{
-                            width: 0,
-                            height: 0,
-                            left: "50%",
-                            top: "50%",
-                            opacity: 1,
-                        }}
-                        animate={{
-                            width: "200vw",
-                            height: "200vw",
-                            left: "-50vw",
-                            top: "-50vw",
-                        }}
-                        exit={{ opacity: 0 }}
-                        transition={{
-                            duration: 1.2,
-                            ease: "easeInOut",
-                        }}
-                    />
-                )}
-            </AnimatePresence>
+        <div className="relative w-screen h-screen overflow-scroll">
+            {/* Section d'animation locale */}
+
+            {/* Animation d'encre */}
+            {isVisible && (
+
+                <div className="bg-layer absolute left-0 top-0 w-full h-full bg-red-200 "></div>
+
+
+            )}
 
             {showProjects && (
                 <motion.div
-                    className="absolute inset-0 flex items-center justify-center bg-black text-white"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    transition={{duration: 0.8}}
+                    className="absolute inset-0 flex items-center justify-center t-lauyer "
                 >
-                    <ProjectsGrid />
                 </motion.div>
             )}
-        </div>
-    );
-}
 
-function ProjectsGrid() {
-    return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto p-8">
-            {/* Exemple de projets statiques */}
-            {Array.from({ length: 9 }).map((_, i) => (
-                <div
-                    key={i}
-                    className="bg-gray-800 p-6 rounded-lg shadow-lg text-center"
-                >
-                    Project {i + 1}
+
+            {showProjects && (
+                <div className="px-8 t-lauyer text-[#e4dcca]">
+                    <motion.h1
+                        initial={{opacity: 0, y: -50}}
+                        animate={{opacity: 1, y: 0}}
+                        transition={{duration: 0.8}}
+                        className="text-4xl font-bold text-pink-200 text-center mb-12 z-50"
+                    >
+                        Mes Projets
+                    </motion.h1>
+
+                    <motion.div
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        transition={{duration: 0.8, delay: 0.2}}
+                        className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6"
+                    >
+                        {projects.map((project) => (
+                            <Link href={project.link} key={project.id}>
+                                <motion.div
+                                    whileHover={{scale: 1.05}}
+                                    className="relative overflow-hidden rounded-lg shadow-lg mb-4 cursor-pointer transform transition duration-300 ease-in-out group"
+                                >
+                                    <Image
+                                        src={project.imageUrl}
+                                        alt={project.name}
+                                        width={400}
+                                        height={300}
+                                        className="w-full h-auto object-cover transition-all duration-300 group-hover:blur-sm group-hover:opacity-60"
+                                    />
+                                    <div
+                                        className="absolute inset-0 p-4 flex flex-col justify-between bg-gradient-to-t from-black/70 to-transparent transition-opacity duration-300">
+                                        <h2 className="text-xl font-bold text-white">{project.name}</h2>
+                                        <div
+
+                                            className="description text-white text-sm opacity-0 translate-y-[20px] transition-all duration-300"
+                                        >
+                                            {project.description}
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </Link>
+                        ))}
+                    </motion.div>
+
                 </div>
-            ))}
+
+            )}
+
+
         </div>
+
     );
-}
+};
+
+export default AnimatedAllProjects;

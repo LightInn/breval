@@ -41,9 +41,10 @@ export function Overlay({step,setStep}) {
         }
         if ((c >= 0.5 && step < 3) || (c < 0.5 && step > 3)) {
             setStep(3)
-            data.offset = 0
+            data.el.scrollTop = data.el.scrollTopMax
         }
 
+        // console.log(data)
         // console.log(step)
         // console.log(b, c)
 
@@ -106,7 +107,7 @@ export function Overlay({step,setStep}) {
                 </div>
             </section>
 
-            <section className="h-screen w-screen relative ">
+            <section className="min-h-screen w-screen relative ">
                <AnimatedAllProjects step={step}/>
             </section>
 
