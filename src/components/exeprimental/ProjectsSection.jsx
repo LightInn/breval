@@ -5,7 +5,7 @@ import MovingLogo from './MovingLogo';
 import { Code, Database, Globe, Smartphone } from 'lucide-react';
 
 const projects = [
-  { id: 1, title: 'E-commerce Platform', category: 'Web Development', description: 'A full-stack e-commerce solution with real-time inventory management.' },
+  { id: 1, title: 'ForVoyez', category: 'SaaS', description: 'A full-stack e-commerce solution with real-time inventory management.' },
   { id: 2, title: 'Mobile Fitness App', category: 'Mobile Development', description: 'An iOS and Android app for tracking workouts and nutrition.' },
   { id: 3, title: 'Data Visualization Dashboard', category: 'Data Science', description: 'Interactive dashboard for visualizing complex datasets.' },
   { id: 4, title: 'API Integration Service', category: 'Backend Development', description: 'Microservice for integrating multiple third-party APIs.' },

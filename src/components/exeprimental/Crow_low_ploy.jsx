@@ -29,14 +29,16 @@ export function Crow({step}, props) {
 
             actions.idle.paused = false
             actions.idle.play()
+            actions.wind.paused = false
+            actions.wind.play()
                 materials.PaletteMaterial001.transparent = true;
             materials.PaletteMaterial001.opacity = 1;
         }
         if (step === 2) {
-            actions.idle.paused = true
+            // actions.idle.paused = true
             // Rendre la scène transparente
             materials.PaletteMaterial001.transparent = true;
-            materials.PaletteMaterial001.opacity = 0.5; // Ajuste selon la transparence souhaitée
+            materials.PaletteMaterial001.opacity = 1; // Ajuste selon la transparence souhaitée
         }
         if (step === 3) {
             actions.idle.paused = true
@@ -49,18 +51,30 @@ export function Crow({step}, props) {
 
 
     return (<group ref={group} {...props} dispose={null}>
-            <group name="Scene">
-                <group name="ArmatureBird" position={[-1.664, 13.726, -2.339]} rotation={[0, -0.921, 0]}>
-                    <primitive object={nodes.center_bone}/>
-                    <primitive object={nodes.legR1_bone}/>
-                    <primitive object={nodes.legL1_bone}/>
-                    <skinnedMesh name="bird" geometry={nodes.bird.geometry} material={materials.PaletteMaterial001}
-                                 skeleton={nodes.bird.skeleton}/>
-                </group>
-                <mesh name="grass" geometry={nodes.grass.geometry} material={materials.PaletteMaterial001}
-                      position={[0, -2.604, 0]}/>
+        <group name="Scene">
+            <group name="ArmatureBird" position={[-1.843, 13.465, -3.064]} scale={[1, 0.971, 1]}>
+                <primitive object={nodes.center_bone}/>
+                <primitive object={nodes.legR1_bone}/>
+                <primitive object={nodes.legL1_bone}/>
             </group>
-        </group>)
+            <group name="leaf_a" position={[0, 24, 0]} scale={9.5}>
+                <primitive object={nodes.Bone}/>
+                <primitive object={nodes.Bone001}/>
+                <primitive object={nodes.Bone002}/>
+                <primitive object={nodes.Bone003}/>
+                <primitive object={nodes.Bone004}/>
+                <primitive object={nodes.Bone005}/>
+                <primitive object={nodes.Bone006}/>
+                <primitive object={nodes.Bone007}/>
+            </group>
+            <mesh name="grass" geometry={nodes.grass.geometry} material={materials.PaletteMaterial001}
+                  position={[0, -2.604, 0]}/>
+            <skinnedMesh name="bird" geometry={nodes.bird.geometry} material={materials.PaletteMaterial001}
+                         skeleton={nodes.bird.skeleton} position={[-1.843, 13.465, -3.064]} scale={[1, 0.971, 1]}/>
+            <skinnedMesh name="leafsc" geometry={nodes.leafsc.geometry} material={materials.PaletteMaterial001}
+                         skeleton={nodes.leafsc.skeleton} position={[0, 24, 0]} scale={9.5}/>
+        </group>
+    </group>)
 }
 
 useGLTF.preload('/3D/crow_low_ploy-transformed.glb')

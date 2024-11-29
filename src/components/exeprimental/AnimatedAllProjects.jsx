@@ -58,8 +58,17 @@ const AnimatedAllProjects = ({ step }) => {
                     initial={{opacity: 0}}
                     animate={{opacity: 1}}
                     transition={{duration: 0.8}}
-                    className=" w-screen  t-lauyer text-[#e4dcca]"
+                    className=" w-screen  t-lauyer text-[#e4dcca] flex flex-col justify-center items-center"
                 >
+
+
+                    <h2 className="mt-24 p-4">
+                        Take a look at what I've done before
+                    </h2>
+
+
+
+
 
                     <div className="min-h-screen p-8">
                         <motion.div
