@@ -31,7 +31,7 @@ export default function Home() {
 						fill={true}
 						loading="lazy"
 						placeholder="blur"
-						src={'/projets.png'}
+						src={'/home/projets.png'}
 					/>
 					<div
 						className={

@@ -40,7 +40,7 @@ export default function Hero() {
 						loading="eager"
 						placeholder="blur"
 						quality={10}
-						src={'/blured_video.png'}
+						src={'/home/blured_video.png'}
 					/>
 
 					<iframe

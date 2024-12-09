@@ -22,11 +22,11 @@ export default function Presentation() {
 								>
 									<PopCard
 										alt={'Developer character'}
-										backgroundImage={'/developer_character.png'}
+										backgroundImage={'/home/developer_character.png'}
 										className={'rounded-2xl'}
 										height={500}
-										hoverImage={'/developer_character_hover.png'}
-										titleImage={'/developer_character_title.png'}
+										hoverImage={'/home/developer_character_hover.png'}
+										titleImage={'/home/developer_character_title.png'}
 										width={300}
 									/>
 								</div>
