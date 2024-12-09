@@ -44,7 +44,7 @@ export function Crow({step}, props) {
             actions.idle.paused = true
             // Rendre la scène transparente
             materials.PaletteMaterial001.transparent = true;
-            materials.PaletteMaterial001.opacity = 0.1; //
+            materials.PaletteMaterial001.opacity = 0; //
         }
 
     }, [step]);

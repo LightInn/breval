@@ -68,10 +68,10 @@ export function FlyingCrow({step, test}, props) {
             materials.crow.opacity = 1;
 
 
-            // then blend color to black after 1 second
-            setTimeout(() => {
-                materials.crow.color = "black";
-            }, 1000)
+            // // then blend color to black after 1 second
+            // setTimeout(() => {
+            //     materials.crow.color = "black";
+            // }, 1000)
 
         } else {
             // step 0, 1 or 2

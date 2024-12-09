@@ -32,7 +32,7 @@ const AnimatedAllProjects = ({ step }) => {
                 setTimeout(() => {
                     setShowProjects(true);
                 }, 1000);
-            }, 1000);
+            }, 10);
         } else {
             setIsVisible(false);
             setShowProjects(false);

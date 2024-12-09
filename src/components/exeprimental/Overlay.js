@@ -9,6 +9,8 @@ import {motion} from 'framer-motion'
 import AnimatedTitle from "@/components/exeprimental/Sectiona";
 import ProjectsSection from "@/components/exeprimental/ProjectsSection";
 import AnimatedAllProjects from "@/components/exeprimental/AnimatedAllProjects";
+import MovingLogo from "@/components/exeprimental/MovingLogo";
+import {Code, Database, Globe, Smartphone} from "lucide-react";
 
 const regular = import('@pmndrs/assets/fonts/inter_regular.woff')
 const medium = import('@pmndrs/assets/fonts/inter_medium.woff')
@@ -36,15 +38,17 @@ export function Overlay({step,setStep}) {
         if (b <= 0.5 && step !== 1) {
             setStep(1)
         }
-        if ((b >= 0.8 && step < 2) || (c < 0.5 && step > 2)) {
+        if ((b >= 0.5 && step < 2) || (c < 0.2 && step > 2)) {
             setStep(2)
         }
-        if ((c >= 0.5 && step < 3) || (c < 0.5 && step > 3)) {
+        // if ((c >= 0.5 && step < 3) || (c < 0.5 && step > 3)) {
+        if ((c >= 0.2 && step < 3) || (c < 0.5 && step > 3)) {
             setStep(3)
-            data.el.scrollTop = data.el.scrollTopMax
+            // data.el.scrollTop = data.el.scrollTopMax
+            data.el.scrollTop = 99999999
         }
 
-        // console.log(data)
+        console.log(data)
         // console.log(step)
         // console.log(b, c)
 
@@ -68,6 +72,10 @@ export function Overlay({step,setStep}) {
     return (<Scroll html>
 
         <>
+            <MovingLogo icon={<Code size={24} />} />
+            <MovingLogo icon={<Database size={24} />} />
+            <MovingLogo icon={<Globe size={24} />} />
+            <MovingLogo icon={<Smartphone size={24} />} />
             <section className="h-screen w-screen relative">
                 <div className="flex items-center h-full px-4">
                     {/* Conteneur du texte */}
@@ -97,15 +105,18 @@ export function Overlay({step,setStep}) {
                 <div className="flex items-center h-full px-4">
                     {/* Conteneur du texte */}
                     <div
-                        className="max-w-2xl w-full bg-white/20 backdrop-blur-lg rounded-md p-6 md:py-8 md:px-12 mx-auto md:mx-0 md:mr-16 md:ml-auto">
+                        className="overflow-hidden md:max-w-[75%] xl:max-w-[50%] w-full backdrop-blur-lg rounded-3xl md:py-4 md:px-12 mx-auto md:mx-0 md:mr-16 md:ml-auto">
 
 
-                        <ProjectsSection/>
+                        <ProjectsSection step={step} />
 
 
                     </div>
                 </div>
             </section>
+
+
+
 
             <section className="min-h-screen w-screen relative ">
                <AnimatedAllProjects step={step}/>
