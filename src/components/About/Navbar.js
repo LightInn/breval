@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import rgbDataURL from '@/services/dataurl.services'
-import NavbarOfficial from '@/components/navbar'
 
 import css from '/src/styles/Navbar.module.css'
 
