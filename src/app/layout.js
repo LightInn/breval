@@ -3,7 +3,7 @@ import React from 'react'
 import Script from 'next/script'
 import Head from 'next/head'
 
-import '../styles/globals.css'
+import '@/styles/globals.css'
 
 export const metadata = {
 	description:
@@ -39,6 +39,13 @@ export default function RootLayout({ children }) {
 				src="https://umami.wadefade.fr/script.js"
 				strategy="afterInteractive"
 			></Script>
+
+			{/*/!*	 tailwind cdn *!/*/}
+			{/*<Script*/}
+			{/*	src="https://cdn.tailwindcss.com"*/}
+			{/*	strategy="afterInteractive"*/}
+			{/*></Script>*/}
+
 			{/*Google tag (gtag.js)*/}
 			<Script
 				src="https://www.googletagmanager.com/gtag/js?id=G-455V2M6DD1"
