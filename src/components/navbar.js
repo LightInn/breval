@@ -50,10 +50,14 @@ export default function Navbar() {
 					// ${showTransparentBackground ? '' : 'md:w-0  hover:w-32'}
 				>
 					<div>
-						<span>W</span>
-						<span>O</span>
+						<span>P</span>
 						<span>R</span>
-						<span>K</span>
+						<span>O</span>
+						<span>J</span>
+						<span>E</span>
+						<span>C</span>
+						<span>T</span>
+						<span>S</span>
 					</div>
 				</Link>
 				<Link
@@ -73,8 +77,11 @@ export default function Navbar() {
 					href="/about"
 				>
 					<div>
-						<span>M</span>
-						<span>E</span>
+						<span>A</span>
+						<span>B</span>
+						<span>O</span>
+						<span>U</span>
+						<span>T</span>
 					</div>
 				</Link>
 			</div>
