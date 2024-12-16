@@ -59,18 +59,18 @@ export default function About() {
 	const { data } = usePalette(imgeUrl)
 	const AppStyle = createGlobalStyle`html {
 
-    --bg-img: url(${imgeUrl});
+        --bg-img: url(${imgeUrl});
 
-    --vibrant: ${data.vibrant};
-    --muted: ${data.muted};
+        --vibrant: ${data.vibrant};
+        --muted: ${data.muted};
 
-    --vibrant-light: ${data.lightVibrant};
-    --muted-light: ${data.lightMuted};
+        --vibrant-light: ${data.lightVibrant};
+        --muted-light: ${data.lightMuted};
 
-    --vibrant-dark: ${data.darkVibrant};
-    --muted-dark: ${data.darkMuted};
+        --vibrant-dark: ${data.darkVibrant};
+        --muted-dark: ${data.darkMuted};
 
-  }`
+    }`
 
 	return (
 		<div className="w-full">
