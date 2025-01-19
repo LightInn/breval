@@ -38,7 +38,7 @@
 		"strapi-sdk-js": "2.3.3",
 		"styled-components": "6.1.14",
 		"tailwind-merge": "2.6.0",
-		"three-stdlib": "2.35.7",
+		"three-stdlib": "2.35.11",
 		"tornis": "0.3.6"
 	},
 	"devDependencies": {
