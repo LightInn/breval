@@ -84,8 +84,8 @@ importers:
         specifier: 2.6.0
         version: 2.6.0
       three-stdlib:
-        specifier: 2.35.11
-        version: 2.35.11(three@0.171.0)
+        specifier: 2.35.12
+        version: 2.35.12(three@0.171.0)
       tornis:
         specifier: 0.3.6
         version: 0.3.6
@@ -2818,8 +2818,8 @@ packages:
     peerDependencies:
       three: '>= 0.151.0'
 
-  three-stdlib@2.35.11:
-    resolution: {integrity: sha512-3uiPrrfrkjWpNhoLsqsPUjUAlJX/2QjnUb3sDumrXL1sucama4sUMOVAGaTFX+Ooo/5cA0IaZJIUnfdN37PMIg==}
+  three-stdlib@2.35.12:
+    resolution: {integrity: sha512-3Mb3U7gtf1orCb6j2BBcc8BJsBVoCYUjFtwaq9KM8I7ippz4o9G+aDQdT5AF8Sg5FXXZfnPPccP6ufsP8bgG3g==}
     peerDependencies:
       three: '>=0.128.0'
 
@@ -3525,7 +3525,7 @@ snapshots:
       suspend-react: 0.1.3(react@19.0.0)
       three: 0.171.0
       three-mesh-bvh: 0.7.8(three@0.171.0)
-      three-stdlib: 2.35.11(three@0.171.0)
+      three-stdlib: 2.35.12(three@0.171.0)
       troika-three-text: 0.52.2(three@0.171.0)
       tunnel-rat: 0.1.2(@types/react@19.0.1)(react@19.0.0)
       utility-types: 3.11.0
@@ -6235,7 +6235,7 @@ snapshots:
     dependencies:
       three: 0.171.0
 
-  three-stdlib@2.35.11(three@0.171.0):
+  three-stdlib@2.35.12(three@0.171.0):
     dependencies:
       '@types/draco3d': 1.4.10
       '@types/offscreencanvas': 2019.7.3
