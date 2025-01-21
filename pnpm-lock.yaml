@@ -12,8 +12,8 @@ importers:
         specifier: 1.7.0
         version: 1.7.0
       '@react-three/drei':
-        specifier: 9.121.2
-        version: 9.121.2(@react-three/fiber@8.17.12(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.171.0))(@types/react@19.0.1)(@types/three@0.171.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.171.0)(use-sync-external-store@1.2.2(react@19.0.0))
+        specifier: 9.121.3
+        version: 9.121.3(@react-three/fiber@8.17.12(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.171.0))(@types/react@19.0.1)(@types/three@0.171.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.171.0)(use-sync-external-store@1.2.2(react@19.0.0))
       '@react-three/fiber':
         specifier: 8.17.12
         version: 8.17.12(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.171.0)
@@ -582,8 +582,8 @@ packages:
   '@react-spring/types@9.7.5':
     resolution: {integrity: sha512-HVj7LrZ4ReHWBimBvu2SKND3cDVUPWKLqRTmWe/fNY6o1owGOX0cAHbdPDTMelgBlVbrTKrre6lFkhqGZErK/g==}
 
-  '@react-three/drei@9.121.2':
-    resolution: {integrity: sha512-0oyd26wn8NAHrlqrr7oZJMq/x2wikJfMz59R/tGRaqLLI16rFP5M8sU/NFFgSiPuyV09b4NqMuo9oimToA9dgA==}
+  '@react-three/drei@9.121.3':
+    resolution: {integrity: sha512-5HFJWgRWUeWDcMhDyIcR/HIz00ORgKACefAtMJCEYQu51lzwgLUMfw7GMm597T2/Y+bM9tAOoHw2Po2mrjXxkg==}
     peerDependencies:
       '@react-three/fiber': ^8
       react: ^18
@@ -3503,7 +3503,7 @@ snapshots:
 
   '@react-spring/types@9.7.5': {}
 
-  '@react-three/drei@9.121.2(@react-three/fiber@8.17.12(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.171.0))(@types/react@19.0.1)(@types/three@0.171.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.171.0)(use-sync-external-store@1.2.2(react@19.0.0))':
+  '@react-three/drei@9.121.3(@react-three/fiber@8.17.12(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.171.0))(@types/react@19.0.1)(@types/three@0.171.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.171.0)(use-sync-external-store@1.2.2(react@19.0.0))':
     dependencies:
       '@babel/runtime': 7.26.0
       '@mediapipe/tasks-vision': 0.10.17
