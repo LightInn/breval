@@ -14,7 +14,7 @@
 	},
 	"dependencies": {
 		"@pmndrs/assets": "1.7.0",
-		"@react-three/drei": "9.121.4",
+		"@react-three/drei": "9.121.5",
 		"@react-three/fiber": "8.17.14",
 		"class-variance-authority": "0.7.1",
 		"clsx": "2.1.1",
