@@ -23,7 +23,7 @@
 		"github-slugger": "2.0.0",
 		"highlight.js": "11.11.1",
 		"lucide-react": "0.473.0",
-		"next": "14.2.23",
+		"next": "14.2.24",
 		"next-sitemap": "4.2.3",
 		"prettier": "3.4.2",
 		"react": "19",
@@ -44,7 +44,7 @@
 	"devDependencies": {
 		"autoprefixer": "10.4.20",
 		"eslint": "9.19.0",
-		"eslint-config-next": "14.2.23",
+		"eslint-config-next": "14.2.24",
 		"eslint-config-prettier": "10.0.1",
 		"eslint-plugin-no-only-tests": "3.3.0",
 		"eslint-plugin-perfectionist": "4.9.0",
