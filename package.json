@@ -42,7 +42,7 @@
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-no-only-tests": "3.3.0",
     "eslint-plugin-perfectionist": "3.9.1",
-    "eslint-plugin-prettier": "5.2.1",
+    "eslint-plugin-prettier": "5.2.6",
     "husky": "9.1.6",
     "prettier": "3.3.3",
     "prettier-plugin-tailwindcss": "0.6.8",
