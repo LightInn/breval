@@ -4,7 +4,7 @@ import { slug } from 'github-slugger'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import rgbDataURL from '@/services/dataurl.services'
+import { rgbDataURL } from '@/services/dataurl.services'
 
 import Tag from '../Elements/Tag'
 

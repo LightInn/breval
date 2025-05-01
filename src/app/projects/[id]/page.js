@@ -5,7 +5,7 @@ import { format, parseISO } from 'date-fns'
 import Link from 'next/link'
 import Head from 'next/head'
 
-import rgbDataURL from '@/services/dataurl.services'
+import { rgbDataURL } from '@/services/dataurl.services'
 
 import ImageWithFallback from '../../../components/Home/ImageWithFallback'
 import Navbar from '../../../components/navbar'
@@ -14,10 +14,11 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
 }
 
-export default async function ProjectDetail({ params }) {
-	const { id } = params
-	const project = await getProject(id)
-	return (
+export default async function ProjectDetail(props) {
+    const params = await props.params;
+    const { id } = params
+    const project = await getProject(id)
+    return (
 		<div className="min-h-screen bg-slate-900 text-white">
 			<Head>
 				<title>Bréval LE FLOCH | {project.attributes?.title} </title>
