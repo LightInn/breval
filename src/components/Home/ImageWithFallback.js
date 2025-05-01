@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 import Image from 'next/image'
 
-import rgbDataURL from '@/services/dataurl.services'
+import { rgbDataURL  } from '@/services/dataurl.services'
 
 function ImageWithFallback(props) {
 	const { fallbackSrc, src, ...rest } = props
