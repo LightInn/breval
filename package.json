@@ -36,7 +36,7 @@
     "tornis": "0.3.6"
   },
   "devDependencies": {
-    "autoprefixer": "10.4.20",
+    "autoprefixer": "10.4.21",
     "eslint": "9.13.0",
     "eslint-config-next": "15.3.1",
     "eslint-config-prettier": "9.1.0",
