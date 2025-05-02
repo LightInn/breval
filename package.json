@@ -25,6 +25,7 @@
     "react-dom": "19.1.0",
     "react-markdown": "9.0.1",
     "react-palette": "1.0.2",
+    "react-slime-simulation": "^1.0.0",
     "rehype-raw": "7.0.0",
     "remark-mdx": "3.1.0",
     "sass": "1.80.3",

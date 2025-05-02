@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {BackgroundLines} from "@/components/ui/background-lines";
 import Navbar from "@/components/navbar";
+import SlimeSimulation from "react-slime-simulation";
 
 
 export default function ProjectClient(
@@ -29,9 +30,11 @@ export default function ProjectClient(
                 {/*    <source src="/header-bg.mp4" type="video/mp4"/>*/}
                 {/*</video>*/}
 
-                <BackgroundLines className="absolute top-0 left-0 w-full h-full object-cover opacity-30"/>
+                {/*<BackgroundLines className="absolute top-0 left-0 w-full h-full object-cover opacity-30"/>*/}
 
-
+                <div className="absolute top-0 left-0 w-full h-full object-cover opacity-60">
+                <SlimeSimulation  />
+                </div>
                 <div className="relative z-10 text-center max-w-4xl px-6">
                     <motion.h1
                         initial={{opacity: 0, y: 20}}
