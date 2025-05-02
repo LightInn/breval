@@ -11,6 +11,7 @@ module.exports = {
 			body: ['"Be Vietnam Pro"', 'sans-serif'],
 			display: ['"Noto Serif Display"', 'serif'],
 			'varela-round': ['"Varela Round"', 'sans-serif'],
+			'new-font': ['"New Font Family"', 'sans-serif'], // Pa7fa
 		},
 		extend: {
 			colors: {
@@ -22,9 +23,9 @@ module.exports = {
 					500: '#ffc6d3',
 					600: '#ff99b1',
 				},
-				light: '#f4faf7',
+				light: '#ffffff', // P2f6b
 				accent: '#ff99b1',
-				gray: '#706262',
+				gray: '#d3d3d3', // P85c2
 				'dynamic-vibrant': 'var(--vibrant)',
 				'dynamic-muted': 'var(--muted)',
 				'dynamic-vibrant-light': 'var(--vibrant-light)',

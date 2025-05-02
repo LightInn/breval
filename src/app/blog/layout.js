@@ -43,7 +43,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
 	return (
-		<div className={cx('bg-light font-mr')}>
+		<div className={cx('bg-white font-mr')}>
 			<Header />
 			{children}
 			<Footer />

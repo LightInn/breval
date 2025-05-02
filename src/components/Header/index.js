@@ -36,6 +36,12 @@ const Header = () => {
 			{/*    <a href={siteMetadata.github} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Check my profile on Github" target="_blank"><GithubIcon className="  hover:scale-125 transition-all ease duration-200 dark:fill-light" /></a>*/}
 			{/*    <a href={siteMetadata.dribbble} rel="noopener noreferrer" className="inline-block w-6 h-6 mr-4" aria-label="Check my profile on Dribbble" target="_blank"><DribbbleIcon className="hover:scale-125 transition-all ease duration-200" /></a>*/}
 			{/*</div>*/}
+			<button
+				onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
+				className="ml-4 p-2 rounded-full bg-gray-200 dark:bg-gray-800"
+			>
+				{mode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+			</button>
 		</header>
 	)
 }
