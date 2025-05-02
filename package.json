@@ -31,7 +31,7 @@
     "sass": "1.80.3",
     "sharp": "0.33.5",
     "special-card": "2.1.3",
-    "strapi-sdk-js": "2.3.4",
+    "strapi-sdk-js": "3.0.0",
     "styled-components": "6.1.13",
     "tailwind-merge": "^3.2.0",
     "tornis": "0.3.6"
