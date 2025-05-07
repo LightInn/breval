@@ -3,33 +3,49 @@ import React from 'react'
 export default function Divider({ top }) {
 	return (
 		<section
-			className={`relative z-30 flex h-[30px] translate-y-[-25px] transform snap-start items-center justify-center bg-slate-900 drop-shadow-[0px_-10px_1px_-8px_rgba(0,0,0,1)] ${
+			className={`relative z-30 flex h-[50px] -translate-y-[50px] transform snap-start items-center justify-center bg-light ${
 				top ? 'rounded-t-full' : 'rounded-b-full'
 			}`}
 		>
-			{/* @ts-ignore */}
-
 			{top ? (
-				<hr className="w-[50px] border-glow-500" />
-			) : (
-				// bottom border thin empty arrow  divider
+				// fleche haut fade-in (optionnel)
 				<svg
-					className="pb-8"
-					fill="#ffc6d3"
-					height="50px"
-					id="Layer_1"
-					version="1.1"
-					viewBox="0 0 330 330"
-					width="30px"
+					className="animate-fade-in-up"
+					fill="none"
+					height="30"
+					viewBox="0 0 24 24"
+					width="30"
 					xmlns="http://www.w3.org/2000/svg"
 				>
 					<path
-						d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393
-	c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393
-	s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
-						id="XMLID_225_"
+						d="M19 15L12 8L5 15"
+						stroke="#ff71a0"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						strokeWidth="2"
 					/>
 				</svg>
+			) : (
+				// fleche bas loop hypnotique
+				<div className="relative h-[40px]">
+					<span className="animate-scroll-down absolute left-1/2 top-0 -translate-x-1/2 opacity-60">
+						<svg
+							fill="none"
+							height="24"
+							viewBox="0 0 24 24"
+							width="24"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M5 9L12 16L19 9"
+								stroke="#ffc6d3"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
+							/>
+						</svg>
+					</span>
+				</div>
 			)}
 		</section>
 	)

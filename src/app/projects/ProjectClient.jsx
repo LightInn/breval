@@ -4,7 +4,6 @@
 
 import SlimeSimulation from 'react-slime-simulation'
 
-import { BackgroundLines } from '@/components/ui/background-lines'
 import Navbar from '@/components/navbar'
 import { motion } from 'motion/react'
 import Image from 'next/image'
@@ -12,7 +11,7 @@ import Link from 'next/link'
 
 export default function ProjectClient({ projects }) {
 	return (
-		<div className="relative min-h-screen w-full bg-neutral-900 text-white">
+		<div className="relative min-h-screen w-full bg-black text-white">
 			<Navbar />
 
 			<header className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black">
@@ -26,7 +25,7 @@ export default function ProjectClient({ projects }) {
 				{/*</video>*/}
 
 				<div className="absolute left-0 top-0 h-full w-full object-cover opacity-60">
-					<SlimeSimulation />
+					<SlimeSimulation initialAgents={50} useRandomDefaults={false} />
 				</div>
 				<div className="relative z-10 max-w-4xl px-6 text-center">
 					<motion.h1
@@ -43,44 +42,51 @@ export default function ProjectClient({ projects }) {
 				</div>
 			</header>
 
-			<main className="mx-auto max-w-7xl space-y-24 px-6 py-24">
-				{projects.map((project, i) => {
-					const data = project.attributes
-					const image = data.media.data[0]?.attributes.url
-					const even = i % 2 === 0
+			<main className="mx-auto space-y-24 rounded-t-3xl bg-light">
+				<div className={'w-max-7xl mx-auto space-y-24 px-6 py-24'}>
+					{projects.map((project, i) => {
+						const data = project.attributes
+						const image = data.media.data[0]?.attributes.url
+						const even = i % 2 === 0
 
-					return (
-						<motion.section
-							className={`flex flex-col-reverse items-center gap-16 md:grid md:grid-cols-2 ${
-								even ? '' : 'md:flex-row-reverse'
-							}`}
-							initial={{ opacity: 0, y: 30 }}
-							key={data.title}
-							transition={{ delay: i * 0.1, duration: 0.6 }}
-							viewport={{ once: true }}
-							whileInView={{ opacity: 1, y: 0 }}
-						>
-							<div className="space-y-4">
-								<h2 className="text-3xl font-bold">{data.title}</h2>
-								<p className="text-neutral-400">{data.short_description}</p>
+						return (
+							<motion.section
+								className={`flex flex-col-reverse items-center gap-16 md:grid md:grid-cols-2 ${
+									even ? '' : 'md:flex-row-reverse'
+								}`}
+								initial={{ opacity: 0, y: 30 }}
+								key={data.title}
+								transition={{ delay: i * 0.1, duration: 0.6 }}
+								viewport={{ once: true }}
+								whileInView={{ opacity: 1, y: 0 }}
+							>
+								<div className="space-y-4">
+									<h2 className="text-3xl font-bold text-glow-600">
+										{data.title}
+									</h2>
+									<p className="text-slate-800">{data.short_description}</p>
+									<Link
+										className="mt-4 inline-block rounded-full bg-accent px-6 py-2 font-medium text-black transition hover:bg-neutral-200"
+										href={`/projects/${data.title}`}
+									>
+										Explore project →
+									</Link>
+								</div>
 								<Link
-									className="mt-4 inline-block rounded-full bg-white px-6 py-2 font-medium text-black transition hover:bg-neutral-200"
+									className="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl md:h-96"
 									href={`/projects/${data.title}`}
 								>
-									Explore project →
+									<Image
+										alt={data.title}
+										className="object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+										fill
+										src={image}
+									/>
 								</Link>
-							</div>
-							<div className="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl md:h-96">
-								<Image
-									alt={data.title}
-									className="object-cover transition-transform duration-300 ease-in-out hover:scale-105"
-									fill
-									src={image}
-								/>
-							</div>
-						</motion.section>
-					)
-				})}
+							</motion.section>
+						)
+					})}
+				</div>
 			</main>
 		</div>
 	)
