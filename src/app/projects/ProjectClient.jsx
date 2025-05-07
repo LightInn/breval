@@ -8,6 +8,46 @@ import Navbar from '@/components/navbar'
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+
+function SlimeExperience() {
+	const [isLargeView, setIsLargeView] = useState(null)
+
+	const handleResize = () => {
+		if (window.innerWidth > 768) {
+			setIsLargeView(true)
+		} else {
+			setIsLargeView(false)
+		}
+	}
+
+	useEffect(() => {
+		handleResize()
+		window.addEventListener('resize', handleResize)
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
+
+	if (isLargeView === true) {
+		return <SlimeSimulation
+
+
+			reshuffleCount={1}
+			startDelay={1}
+			useRandomDefaults={false}
+		/>
+	}
+
+	return (
+		<>
+			<SlimeSimulation
+				initialAgents={85}
+				reshuffleCount={1}
+				startDelay={1}
+				useRandomDefaults={false}
+			/>
+		</>
+	)
+}
 
 export default function ProjectClient({ projects }) {
 	return (
@@ -15,17 +55,8 @@ export default function ProjectClient({ projects }) {
 			<Navbar />
 
 			<header className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black">
-				{/*<video*/}
-				{/*    autoPlay*/}
-				{/*    loop*/}
-				{/*    muted*/}
-				{/*    className="absolute top-0 left-0 w-full h-full object-cover opacity-30"*/}
-				{/*>*/}
-				{/*    <source src="/header-bg.mp4" type="video/mp4"/>*/}
-				{/*</video>*/}
-
 				<div className="absolute left-0 top-0 h-full w-full object-cover opacity-60">
-					<SlimeSimulation initialAgents={50} useRandomDefaults={false} />
+					<SlimeExperience />
 				</div>
 				<div className="relative z-10 max-w-4xl px-6 text-center">
 					<motion.h1
@@ -43,7 +74,7 @@ export default function ProjectClient({ projects }) {
 			</header>
 
 			<main className="mx-auto space-y-24 rounded-t-3xl bg-light">
-				<div className={'w-max-7xl mx-auto space-y-24 px-6 py-24'}>
+				<div className={'mx-auto max-w-7xl space-y-24 px-6 py-24'}>
 					{projects.map((project, i) => {
 						const data = project.attributes
 						const image = data.media.data[0]?.attributes.url
