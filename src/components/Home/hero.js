@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { rgbDataURL } from '@/services/dataurl.services'
 import Image from 'next/image'
+
+import { rgbDataURL } from '@/services/dataurl.services'
 
 import { SocialIcons } from './Social'
 import { Title } from './title'

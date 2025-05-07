@@ -1,13 +1,14 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
-
 import { CameraControls, Environment, ScrollControls } from '@react-three/drei'
+import React, { useEffect, useRef, useState } from 'react'
+import { Canvas, useThree } from '@react-three/fiber'
+
+import * as THREE from 'three'
+
 import { FlyingCrow } from '@/components/projects/Crow_fly'
 import { Overlay } from '@/components/projects/Overlay'
 import { Crow } from '@/components/projects/Crow_tree'
-import { Canvas, useThree } from '@react-three/fiber'
-import * as THREE from 'three'
 
 export function ThreeScene() {
 	const [step, setStep] = useState(0)

@@ -13,6 +13,16 @@ const slugify = text => {
 		.replace(/-+$/, '') // Retire les tirets en fin de chaîne
 }
 
+export async function generateMetadata(props) {
+	const params = await props.params
+	const category =
+		params.slug === 'all' ? 'web development' : params.slug.replace(/-/g, ' ')
+	return {
+		description: `Learn more about ${category} through my collection of expert blogs and tutorials`,
+		title: `${category.charAt(0).toUpperCase() + category.slice(1)} Category`,
+	}
+}
+
 export async function generateStaticParams() {
 	const allBlogs = await getAllBlogs()
 	const categories = new Set(['all'])
@@ -26,16 +36,6 @@ export async function generateStaticParams() {
 	})
 
 	return Array.from(categories).map(slug => ({ slug }))
-}
-
-export async function generateMetadata(props) {
-	const params = await props.params
-	const category =
-		params.slug === 'all' ? 'web development' : params.slug.replace(/-/g, ' ')
-	return {
-		description: `Learn more about ${category} through my collection of expert blogs and tutorials`,
-		title: `${category.charAt(0).toUpperCase() + category.slice(1)} Category`,
-	}
 }
 
 const CategoryPage = async props => {

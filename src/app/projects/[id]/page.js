@@ -1,16 +1,24 @@
 import Markdown from 'react-markdown'
 import React from 'react'
 
-import { rgbDataURL } from '@/services/dataurl.services'
 import { format, parseISO } from 'date-fns'
 import Link from 'next/link'
 import Head from 'next/head'
 
+import { rgbDataURL } from '@/services/dataurl.services'
+
 import ImageWithFallback from '../../../components/Home/ImageWithFallback'
 import Navbar from '../../../components/navbar'
 
-function classNames(...classes) {
-	return classes.filter(Boolean).join(' ')
+export async function generateStaticParams() {
+	const res = await fetch(
+		'https://breval-api.lightin.io/api/projets?fields=title'
+	)
+	const data = await res.json()
+
+	const paths = data.data.map(project => ({ id: project.attributes.title }))
+
+	return paths
 }
 
 export default async function ProjectDetail(props) {
@@ -193,15 +201,8 @@ export default async function ProjectDetail(props) {
 	)
 }
 
-export async function generateStaticParams() {
-	const res = await fetch(
-		'https://breval-api.lightin.io/api/projets?fields=title'
-	)
-	const data = await res.json()
-
-	const paths = data.data.map(project => ({ id: project.attributes.title }))
-
-	return paths
+function classNames(...classes) {
+	return classes.filter(Boolean).join(' ')
 }
 
 async function getProject(title) {

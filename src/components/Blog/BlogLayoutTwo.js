@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { rgbDataURL } from '@/services/dataurl.services'
 import { format } from 'date-fns'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { rgbDataURL } from '@/services/dataurl.services'
 
 const BlogLayoutTwo = ({ blog }) => {
 	return (

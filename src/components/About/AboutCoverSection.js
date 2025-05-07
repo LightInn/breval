@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Link from 'next/link'
+
 import {
 	DiscordIcon,
 	EmailIcon,
@@ -8,7 +10,6 @@ import {
 	TwitterIcon,
 } from '@/components/Icons'
 import { ReloadCTA } from '@/components/About/ReloadCTA'
-import Link from 'next/link'
 
 import Avatar from '/src/components/About/Avatar'
 
