@@ -28,13 +28,13 @@ function SlimeExperience() {
 	}, [])
 
 	if (isLargeView === true) {
-		return <SlimeSimulation
-
-
-			reshuffleCount={1}
-			startDelay={1}
-			useRandomDefaults={false}
-		/>
+		return (
+			<SlimeSimulation
+				reshuffleCount={1}
+				startDelay={1}
+				useRandomDefaults={false}
+			/>
+		)
 	}
 
 	return (

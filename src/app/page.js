@@ -18,7 +18,7 @@ export default function Home() {
 			<Divider top={true} />
 			<Presentation />
 			<Divider top={false} />
-			<section className="relative z-20 box-border flex h-[100vh] w-full -translate-y-[30px] transform snap-start flex-col flex-wrap items-start justify-center pb-[30px] text-sky-50">
+			<section className="relative z-20 box-border flex h-[110vh] w-full -translate-y-[80px] transform snap-start flex-col flex-wrap items-start justify-center pb-[30px] text-sky-50">
 				<div className={'absolute -z-10 h-full w-full'}>
 					<Image
 						alt={''}
