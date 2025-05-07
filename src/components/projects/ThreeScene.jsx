@@ -3,12 +3,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 import { CameraControls, Environment, ScrollControls } from '@react-three/drei'
-import { Canvas, useThree } from '@react-three/fiber'
-import * as THREE from 'three'
-
 import { FlyingCrow } from '@/components/projects/Crow_fly'
 import { Overlay } from '@/components/projects/Overlay'
 import { Crow } from '@/components/projects/Crow_tree'
+import { Canvas, useThree } from '@react-three/fiber'
+import * as THREE from 'three'
 
 export function ThreeScene() {
 	const [step, setStep] = useState(0)
@@ -16,7 +15,7 @@ export function ThreeScene() {
 	const testRef = useRef()
 
 	useEffect(() => {
-		console.log('step', step)
+		console.debug('step', step)
 	}, [step])
 
 	return (
@@ -172,7 +171,7 @@ function Rig({
 				camera.touches.three = 3
 			} else {
 				requestAnimationFrame(disableZoom)
-				console.log('no controls', controls)
+				console.debug('no controls', controls)
 			}
 		}
 		disableZoom()

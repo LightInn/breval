@@ -2,16 +2,14 @@
 
 import React, { useEffect, useState } from 'react'
 
-import { Code, Database, Globe, Smartphone } from 'lucide-react'
-import { Scroll, useScroll } from '@react-three/drei'
-import { extend, useFrame } from '@react-three/fiber'
-import { motion } from 'framer-motion'
-import { geometry } from 'maath'
-
 import FeaturedProjectsSection from '@/components/projects/FeaturedProjectsSection'
 import AllProjectSection from '@/components/projects/AllProjectSection'
+import { Code, Database, Globe, Smartphone } from 'lucide-react'
 import AnimatedTitle from '@/components/projects/TitleLetter'
 import MovingLogo from '@/components/projects/MovingLogo'
+import { Scroll, useScroll } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
+import { motion } from 'framer-motion'
 
 const regular = import('@pmndrs/assets/fonts/inter_regular.woff')
 const medium = import('@pmndrs/assets/fonts/inter_medium.woff')
@@ -45,7 +43,7 @@ export function Overlay({ setStep, step }) {
 			data.el.scrollTop = 99999999
 		}
 
-		console.log(data)
+		console.debug(data)
 		// console.log(step)
 		// console.log(b, c)
 	})
@@ -55,10 +53,14 @@ export function Overlay({ setStep, step }) {
 
 	const [projects, setProjects] = useState(null)
 	useEffect(() => {
-		getProject().then(data => {
-			setProjects(data)
-			console.log(data)
-		})
+		getProject()
+			.then(data => {
+				setProjects(data)
+				console.debug(data)
+			})
+			.catch(err => {
+				console.error('Error fetching projects:', err)
+			})
 	}, [])
 
 	// return null;
@@ -116,7 +118,7 @@ async function getProject() {
 		'https://breval-api.lightin.io/api/projets?sort=date%3Adesc&populate=*'
 	)
 	const data = await res.json()
-	console.log(data)
+	console.debug(data)
 
 	return data.data
 }

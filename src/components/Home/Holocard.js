@@ -8,8 +8,8 @@ export default function Holocard({ imageSrc, height, radius, width }) {
 		<>
 			<HoloCard
 				height={height}
-				imageSrc={imageSrc}
 				imageshinesrc="https://res.cloudinary.com/simey/image/upload/Dev/PokemonCards/illusion.webp"
+				imageSrc={imageSrc}
 				radius={radius}
 				width={width}
 			/>

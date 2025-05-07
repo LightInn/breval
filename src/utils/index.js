@@ -1,6 +1,6 @@
 import { compareDesc, parseISO } from 'date-fns'
-import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { twMerge } from 'tailwind-merge'
+import { ClassValue, clsx } from 'clsx'
 
 export const cx = (...classNames) => classNames.filter(Boolean).join(' ')
 
@@ -13,9 +13,6 @@ export const sortBlogs = blogs => {
 	})
 }
 
-
-
-
 export function cn(...inputs) {
-	return twMerge(clsx(inputs));
+	return twMerge(clsx(inputs))
 }

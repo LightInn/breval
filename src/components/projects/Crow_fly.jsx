@@ -29,9 +29,9 @@ export function FlyingCrow({ step, test }, props) {
 	// useFrame(
 	//     (state, delta) => {
 	//         // show position
-	//         console.log("position :", test.current.matrix.elements[12], test.current.matrix.elements[13], test.current.matrix.elements[14])
+	//         console.debug("position :", test.current.matrix.elements[12], test.current.matrix.elements[13], test.current.matrix.elements[14])
 	//         // show rotation
-	//         console.log("rotation :", test.current.matrix.elements[0], test.current.matrix.elements[1], test.current.matrix.elements[2])
+	//         console.debug("rotation :", test.current.matrix.elements[0], test.current.matrix.elements[1], test.current.matrix.elements[2])
 	//     }
 	// )
 
@@ -45,10 +45,10 @@ export function FlyingCrow({ step, test }, props) {
 			// lerp opacity to 1
 			materials.crow.opacity = 1
 
-			console.log('uuu', animations)
+			console.debug('uuu', animations)
 			actions.flyingCrowAction.play()
 
-			console.log('aaaa', group.current.position)
+			console.debug('aaaa', group.current.position)
 		}
 
 		if (step === 3) {

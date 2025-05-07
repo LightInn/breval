@@ -10,7 +10,7 @@ const slugify = text => {
 		.replace(/[^\w\-]+/g, '') // Retire les caractères non-alphanumériques
 		.replace(/\-\-+/g, '-') // Remplace plusieurs tirets par un seul tiret
 		.replace(/^-+/, '') // Retire les tirets en début de chaîne
-		.replace(/-+$/, ''); // Retire les tirets en fin de chaîne
+		.replace(/-+$/, '') // Retire les tirets en fin de chaîne
 }
 
 export async function generateStaticParams() {
@@ -29,35 +29,35 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(props) {
-    const params = await props.params;
-    const category =
+	const params = await props.params
+	const category =
 		params.slug === 'all' ? 'web development' : params.slug.replace(/-/g, ' ')
-    return {
+	return {
 		description: `Learn more about ${category} through my collection of expert blogs and tutorials`,
 		title: `${category.charAt(0).toUpperCase() + category.slice(1)} Category`,
 	}
 }
 
 const CategoryPage = async props => {
-    const params = await props.params;
-    const allBlogs = await getAllBlogs()
-    const allCategories = new Set(['all'])
+	const params = await props.params
+	const allBlogs = await getAllBlogs()
+	const allCategories = new Set(['all'])
 
-    allBlogs.forEach(blog => {
+	allBlogs.forEach(blog => {
 		blog.tags.forEach(tag => {
 			allCategories.add(slugify(tag))
 		})
 	})
 
-    const sortedCategories = Array.from(allCategories).sort()
+	const sortedCategories = Array.from(allCategories).sort()
 
-    const blogs = allBlogs.filter(
+	const blogs = allBlogs.filter(
 		blog =>
 			params.slug === 'all' ||
 			blog.tags.some(tag => slugify(tag) === params.slug)
 	)
 
-    return (
+	return (
 		<article className="text-dark mt-12 flex flex-col">
 			<div className="flex flex-col px-5 sm:px-10 md:px-24 sxl:px-32">
 				<h1 className="mt-6 text-2xl font-semibold md:text-4xl lg:text-5xl">
