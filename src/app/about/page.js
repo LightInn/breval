@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import { usePalette } from 'react-palette'
 
+import { createGlobalStyle } from 'styled-components'
+
 import AboutCoverSection from '@/components/About/AboutCoverSection'
 import { Playground } from '@/components/About/Playground'
-import { createGlobalStyle } from 'styled-components'
 import Skills from '@/components/About/Skills'
 
 import Navbar from '../../components/About/Navbar'

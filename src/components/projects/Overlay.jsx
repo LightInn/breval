@@ -1,15 +1,16 @@
 'use client'
 
+import { Code, Database, Globe, Smartphone } from 'lucide-react'
+import { Scroll, useScroll } from '@react-three/drei'
 import React, { useEffect, useState } from 'react'
+import { useFrame } from '@react-three/fiber'
+
+import { motion } from 'framer-motion'
 
 import FeaturedProjectsSection from '@/components/projects/FeaturedProjectsSection'
 import AllProjectSection from '@/components/projects/AllProjectSection'
-import { Code, Database, Globe, Smartphone } from 'lucide-react'
 import AnimatedTitle from '@/components/projects/TitleLetter'
 import MovingLogo from '@/components/projects/MovingLogo'
-import { Scroll, useScroll } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
-import { motion } from 'framer-motion'
 
 const regular = import('@pmndrs/assets/fonts/inter_regular.woff')
 const medium = import('@pmndrs/assets/fonts/inter_medium.woff')

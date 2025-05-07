@@ -1,12 +1,13 @@
 'use client'
 
+import { HiHome, HiOutlineBookOpen, HiUser, HiViewGrid } from 'react-icons/hi'
+import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 
-import { HiHome, HiOutlineBookOpen, HiUser, HiViewGrid } from 'react-icons/hi'
-import { rgbDataURL } from '@/services/dataurl.services'
-import { AnimatePresence, motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { rgbDataURL } from '@/services/dataurl.services'
 
 export default function Navbar() {
 	const [showTransparentBackground, setShowTransparentBackground] =

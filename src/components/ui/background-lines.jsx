@@ -1,7 +1,7 @@
 'use client'
+import { motion } from 'motion/react'
 import React from 'react'
 
-import { motion } from 'motion/react'
 import { cn } from '@/utils'
 
 export const BackgroundLines = ({ svgOptions, className, children }) => {

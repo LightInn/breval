@@ -4,10 +4,10 @@ Command: npx gltfjsx@6.5.3 .\public\crow_tree.glb --transform
 Files: .\public\crow_tree.glb [805.12KB] > C:\Users\breva\Desktop\repos\breval\crow_tree-transformed.glb [149.31KB] (81%)
 */
 
-import React, { useEffect } from 'react'
-
 import { useAnimations, useGLTF } from '@react-three/drei'
 import { useGraph } from '@react-three/fiber'
+import React, { useEffect } from 'react'
+
 import { SkeletonUtils } from 'three-stdlib'
 
 export function Crow({ step }, props) {

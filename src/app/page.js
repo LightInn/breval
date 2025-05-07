@@ -1,9 +1,10 @@
 'use client'
 import React from 'react'
 
-import { rgbDataURL } from '@/services/dataurl.services'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { rgbDataURL } from '@/services/dataurl.services'
 
 import Presentation from '../components/Home/presentation'
 import Divider from '../components/Home/divider'

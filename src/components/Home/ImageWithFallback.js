@@ -1,8 +1,9 @@
 'use client'
 import React, { useState } from 'react'
 
-import { rgbDataURL } from '@/services/dataurl.services'
 import Image from 'next/image'
+
+import { rgbDataURL } from '@/services/dataurl.services'
 
 function ImageWithFallback(props) {
 	const { fallbackSrc, src, ...rest } = props

@@ -4,50 +4,12 @@
 
 import SlimeSimulation from 'react-slime-simulation'
 import { useEffect, useState } from 'react'
-
-import Navbar from '@/components/navbar'
 import { motion } from 'motion/react'
+
 import Image from 'next/image'
 import Link from 'next/link'
 
-function SlimeExperience() {
-	const [isLargeView, setIsLargeView] = useState(null)
-
-	const handleResize = () => {
-		if (window.innerWidth > 768) {
-			setIsLargeView(true)
-		} else {
-			setIsLargeView(false)
-		}
-	}
-
-	useEffect(() => {
-		handleResize()
-		window.addEventListener('resize', handleResize)
-		return () => window.removeEventListener('resize', handleResize)
-	}, [])
-
-	if (isLargeView === true) {
-		return (
-			<SlimeSimulation
-				reshuffleCount={1}
-				startDelay={1}
-				useRandomDefaults={false}
-			/>
-		)
-	}
-
-	return (
-		<>
-			<SlimeSimulation
-				initialAgents={85}
-				reshuffleCount={1}
-				startDelay={1}
-				useRandomDefaults={false}
-			/>
-		</>
-	)
-}
+import Navbar from '@/components/navbar'
 
 export default function ProjectClient({ projects }) {
 	return (
@@ -120,5 +82,44 @@ export default function ProjectClient({ projects }) {
 				</div>
 			</main>
 		</div>
+	)
+}
+
+function SlimeExperience() {
+	const [isLargeView, setIsLargeView] = useState(null)
+
+	const handleResize = () => {
+		if (window.innerWidth > 768) {
+			setIsLargeView(true)
+		} else {
+			setIsLargeView(false)
+		}
+	}
+
+	useEffect(() => {
+		handleResize()
+		window.addEventListener('resize', handleResize)
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
+
+	if (isLargeView === true) {
+		return (
+			<SlimeSimulation
+				reshuffleCount={1}
+				startDelay={1}
+				useRandomDefaults={false}
+			/>
+		)
+	}
+
+	return (
+		<>
+			<SlimeSimulation
+				initialAgents={85}
+				reshuffleCount={1}
+				startDelay={1}
+				useRandomDefaults={false}
+			/>
+		</>
 	)
 }

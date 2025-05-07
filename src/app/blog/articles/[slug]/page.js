@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { rgbDataURL } from '@/services/dataurl.services'
 import { notFound } from 'next/navigation'
 import { slug } from 'github-slugger'
 import Image from 'next/image'
 import Head from 'next/head'
+
+import { rgbDataURL } from '@/services/dataurl.services'
 
 import BlogDetails from '/src/components/Blog/BlogDetails'
 import RenderMdx from '/src/components/Blog/RenderMdx'
@@ -12,59 +13,6 @@ import getAllBlogs from '/src/services/blog.services'
 import siteMetadata from '/src/utils/siteMetaData'
 import Highlight from '/src/components/Highlight'
 import Tag from '/src/components/Elements/Tag'
-
-export async function generateStaticParams() {
-	const allBlogs = await getAllBlogs()
-	return allBlogs.map(blog => ({ slug: blog.url }))
-}
-
-export async function generateMetadata(props) {
-	const params = await props.params
-	const allBlogs = await getAllBlogs()
-	const blog = allBlogs.find(blog => blog.url === params.slug)
-	if (!blog) {
-		return
-	}
-
-	const publishedAt = new Date(blog.publishedAt).toISOString()
-	const modifiedAt = new Date(blog.updatedAt || blog.publishedAt).toISOString()
-
-	let imageList = [siteMetadata.socialBanner]
-	if (blog.image) {
-		imageList =
-			typeof blog.image === 'string'
-				? [siteMetadata.siteUrl + blog.image]
-				: blog.image
-	}
-	const ogImages = imageList.map(img => {
-		return { url: img.includes('http') ? img : siteMetadata.siteUrl + img }
-	})
-
-	const authors = blog?.author ? [blog.author] : siteMetadata.author
-
-	return {
-		openGraph: {
-			authors: authors.length > 0 ? authors : [siteMetadata.author],
-			url: siteMetadata.siteUrl + blog.url,
-			siteName: siteMetadata.title,
-			description: blog.describe,
-			publishedTime: publishedAt,
-			modifiedTime: modifiedAt,
-			title: blog.title,
-			images: ogImages,
-			locale: 'en_US',
-			type: 'article',
-		},
-		twitter: {
-			card: 'summary_large_image',
-			description: blog.describe,
-			title: blog.title,
-			images: ogImages,
-		},
-		description: blog.describe,
-		title: blog.title,
-	}
-}
 
 export default async function BlogPage(props) {
 	const params = await props.params
@@ -191,4 +139,57 @@ export default async function BlogPage(props) {
 			</article>
 		</>
 	)
+}
+
+export async function generateMetadata(props) {
+	const params = await props.params
+	const allBlogs = await getAllBlogs()
+	const blog = allBlogs.find(blog => blog.url === params.slug)
+	if (!blog) {
+		return
+	}
+
+	const publishedAt = new Date(blog.publishedAt).toISOString()
+	const modifiedAt = new Date(blog.updatedAt || blog.publishedAt).toISOString()
+
+	let imageList = [siteMetadata.socialBanner]
+	if (blog.image) {
+		imageList =
+			typeof blog.image === 'string'
+				? [siteMetadata.siteUrl + blog.image]
+				: blog.image
+	}
+	const ogImages = imageList.map(img => {
+		return { url: img.includes('http') ? img : siteMetadata.siteUrl + img }
+	})
+
+	const authors = blog?.author ? [blog.author] : siteMetadata.author
+
+	return {
+		openGraph: {
+			authors: authors.length > 0 ? authors : [siteMetadata.author],
+			url: siteMetadata.siteUrl + blog.url,
+			siteName: siteMetadata.title,
+			description: blog.describe,
+			publishedTime: publishedAt,
+			modifiedTime: modifiedAt,
+			title: blog.title,
+			images: ogImages,
+			locale: 'en_US',
+			type: 'article',
+		},
+		twitter: {
+			card: 'summary_large_image',
+			description: blog.describe,
+			title: blog.title,
+			images: ogImages,
+		},
+		description: blog.describe,
+		title: blog.title,
+	}
+}
+
+export async function generateStaticParams() {
+	const allBlogs = await getAllBlogs()
+	return allBlogs.map(blog => ({ slug: blog.url }))
 }
