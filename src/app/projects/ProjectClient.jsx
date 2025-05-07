@@ -2,91 +2,86 @@
 
 'use client'
 
-import {motion} from 'motion/react'
+import SlimeSimulation from 'react-slime-simulation'
+
+import { BackgroundLines } from '@/components/ui/background-lines'
+import Navbar from '@/components/navbar'
+import { motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import {BackgroundLines} from "@/components/ui/background-lines";
-import Navbar from "@/components/navbar";
-import SlimeSimulation from "react-slime-simulation";
 
+export default function ProjectClient({ projects }) {
+	return (
+		<div className="relative min-h-screen w-full bg-neutral-900 text-white">
+			<Navbar />
 
-export default function ProjectClient(
-    {projects}
-) {
+			<header className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black">
+				{/*<video*/}
+				{/*    autoPlay*/}
+				{/*    loop*/}
+				{/*    muted*/}
+				{/*    className="absolute top-0 left-0 w-full h-full object-cover opacity-30"*/}
+				{/*>*/}
+				{/*    <source src="/header-bg.mp4" type="video/mp4"/>*/}
+				{/*</video>*/}
 
-    return (
-        <div className="relative min-h-screen w-full bg-neutral-900 text-white">
+				<div className="absolute left-0 top-0 h-full w-full object-cover opacity-60">
+					<SlimeSimulation />
+				</div>
+				<div className="relative z-10 max-w-4xl px-6 text-center">
+					<motion.h1
+						animate={{ opacity: 1, y: 0 }}
+						className="text-5xl font-bold leading-tight md:text-6xl"
+						initial={{ opacity: 0, y: 20 }}
+						transition={{ duration: 0.8 }}
+					>
+						Crafting bold & meaningful digital experiences.
+					</motion.h1>
+					<p className="mt-6 text-lg text-neutral-300">
+						A curated selection of my most impactful work.
+					</p>
+				</div>
+			</header>
 
+			<main className="mx-auto max-w-7xl space-y-24 px-6 py-24">
+				{projects.map((project, i) => {
+					const data = project.attributes
+					const image = data.media.data[0]?.attributes.url
+					const even = i % 2 === 0
 
-            <Navbar/>
-
-            <header className="relative h-screen w-full flex items-center justify-center bg-black overflow-hidden">
-                {/*<video*/}
-                {/*    autoPlay*/}
-                {/*    loop*/}
-                {/*    muted*/}
-                {/*    className="absolute top-0 left-0 w-full h-full object-cover opacity-30"*/}
-                {/*>*/}
-                {/*    <source src="/header-bg.mp4" type="video/mp4"/>*/}
-                {/*</video>*/}
-
-                <div className="absolute top-0 left-0 w-full h-full object-cover opacity-60">
-                <SlimeSimulation  />
-                </div>
-                <div className="relative z-10 text-center max-w-4xl px-6">
-                    <motion.h1
-                        initial={{opacity: 0, y: 20}}
-                        animate={{opacity: 1, y: 0}}
-                        transition={{duration: 0.8}}
-                        className="text-5xl md:text-6xl font-bold leading-tight"
-                    >
-                        Crafting bold & meaningful digital experiences.
-                    </motion.h1>
-                    <p className="mt-6 text-lg text-neutral-300">
-                        A curated selection of my most impactful work.
-                    </p>
-                </div>
-            </header>
-
-            <main className="px-6 py-24 max-w-7xl mx-auto space-y-24">
-                {projects.map((project, i) => {
-                    const data = project.attributes
-                    const image = data.media.data[0]?.attributes.url
-                    const even = i % 2 === 0
-
-                    return (
-                        <motion.section
-                            key={data.title}
-                            initial={{opacity: 0, y: 30}}
-                            whileInView={{opacity: 1, y: 0}}
-                            viewport={{once: true}}
-                            transition={{duration: 0.6, delay: i * 0.1}}
-                            className={`flex flex-col-reverse md:grid md:grid-cols-2 gap-16 items-center ${
-                                even ? '' : 'md:flex-row-reverse'
-                            }`}
-                        >
-                            <div className="space-y-4">
-                                <h2 className="text-3xl font-bold">{data.title}</h2>
-                                <p className="text-neutral-400">{data.short_description}</p>
-                                <Link
-                                    href={`/projects/${data.title}`}
-                                    className="inline-block mt-4 px-6 py-2 rounded-full bg-white text-black font-medium hover:bg-neutral-200 transition"
-                                >
-                                    Explore project →
-                                </Link>
-                            </div>
-                            <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-xl">
-                                <Image
-                                    src={image}
-                                    alt={data.title}
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-300 ease-in-out"
-                                />
-                            </div>
-                        </motion.section>
-                    )
-                })}
-            </main>
-        </div>
-    )
+					return (
+						<motion.section
+							className={`flex flex-col-reverse items-center gap-16 md:grid md:grid-cols-2 ${
+								even ? '' : 'md:flex-row-reverse'
+							}`}
+							initial={{ opacity: 0, y: 30 }}
+							key={data.title}
+							transition={{ delay: i * 0.1, duration: 0.6 }}
+							viewport={{ once: true }}
+							whileInView={{ opacity: 1, y: 0 }}
+						>
+							<div className="space-y-4">
+								<h2 className="text-3xl font-bold">{data.title}</h2>
+								<p className="text-neutral-400">{data.short_description}</p>
+								<Link
+									className="mt-4 inline-block rounded-full bg-white px-6 py-2 font-medium text-black transition hover:bg-neutral-200"
+									href={`/projects/${data.title}`}
+								>
+									Explore project →
+								</Link>
+							</div>
+							<div className="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl md:h-96">
+								<Image
+									alt={data.title}
+									className="object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+									fill
+									src={image}
+								/>
+							</div>
+						</motion.section>
+					)
+				})}
+			</main>
+		</div>
+	)
 }

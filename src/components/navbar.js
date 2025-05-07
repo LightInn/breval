@@ -1,10 +1,9 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 
+import { rgbDataURL } from '@/services/dataurl.services'
 import Image from 'next/image'
 import Link from 'next/link'
-
-import { rgbDataURL } from '@/services/dataurl.services'
 
 export default function Navbar() {
 	const [showTransparentBackground, setShowTransparentBackground] =

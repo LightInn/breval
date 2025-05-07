@@ -18,9 +18,9 @@ export function Crow({ step }, props) {
 	const { actions } = useAnimations(animations, group)
 
 	useEffect(() => {
-		console.log(actions)
+		console.debug(actions)
 		actions.idle.play()
-		console.log(materials)
+		console.debug(materials)
 	})
 
 	useEffect(() => {

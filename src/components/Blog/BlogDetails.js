@@ -10,9 +10,9 @@ const BlogDetails = ({ slug: blogSlug, blog }) => {
 		<div className="text-dark mx-5 flex flex-wrap items-center justify-around rounded-lg bg-accent px-2 py-2 text-lg font-medium sm:text-xl md:mx-10 md:px-10">
 			<address className="author">
 				By{' '}
-				<a href="/" rel="author">
+				<Link href="/" rel="author">
 					Bréval LE FLOCH
-				</a>
+				</Link>
 			</address>
 
 			<p className="m-3 max-w-full overflow-hidden">

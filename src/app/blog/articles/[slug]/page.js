@@ -1,11 +1,10 @@
 import React from 'react'
 
+import { rgbDataURL } from '@/services/dataurl.services'
 import { notFound } from 'next/navigation'
 import { slug } from 'github-slugger'
 import Image from 'next/image'
 import Head from 'next/head'
-
-import { rgbDataURL } from '@/services/dataurl.services'
 
 import BlogDetails from '/src/components/Blog/BlogDetails'
 import RenderMdx from '/src/components/Blog/RenderMdx'
@@ -20,30 +19,30 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(props) {
-    const params = await props.params;
-    const allBlogs = await getAllBlogs()
-    const blog = allBlogs.find(blog => blog.url === params.slug)
-    if (!blog) {
+	const params = await props.params
+	const allBlogs = await getAllBlogs()
+	const blog = allBlogs.find(blog => blog.url === params.slug)
+	if (!blog) {
 		return
 	}
 
-    const publishedAt = new Date(blog.publishedAt).toISOString()
-    const modifiedAt = new Date(blog.updatedAt || blog.publishedAt).toISOString()
+	const publishedAt = new Date(blog.publishedAt).toISOString()
+	const modifiedAt = new Date(blog.updatedAt || blog.publishedAt).toISOString()
 
-    let imageList = [siteMetadata.socialBanner]
-    if (blog.image) {
+	let imageList = [siteMetadata.socialBanner]
+	if (blog.image) {
 		imageList =
 			typeof blog.image === 'string'
 				? [siteMetadata.siteUrl + blog.image]
 				: blog.image
 	}
-    const ogImages = imageList.map(img => {
+	const ogImages = imageList.map(img => {
 		return { url: img.includes('http') ? img : siteMetadata.siteUrl + img }
 	})
 
-    const authors = blog?.author ? [blog.author] : siteMetadata.author
+	const authors = blog?.author ? [blog.author] : siteMetadata.author
 
-    return {
+	return {
 		openGraph: {
 			authors: authors.length > 0 ? authors : [siteMetadata.author],
 			url: siteMetadata.siteUrl + blog.url,
@@ -68,26 +67,26 @@ export async function generateMetadata(props) {
 }
 
 export default async function BlogPage(props) {
-    const params = await props.params;
-    const allBlogs = await getAllBlogs()
-    const blog = allBlogs.find(blog => blog.url === params.slug)
-    const similarArticles = allBlogs.filter(
+	const params = await props.params
+	const allBlogs = await getAllBlogs()
+	const blog = allBlogs.find(blog => blog.url === params.slug)
+	const similarArticles = allBlogs.filter(
 		b => b.tags.some(tag => blog.tags.includes(tag)) && b.url !== blog.url
 	)
 
-    if (!blog) {
+	if (!blog) {
 		notFound()
 	}
 
-    let imageList = [siteMetadata.socialBanner]
-    if (blog.image) {
+	let imageList = [siteMetadata.socialBanner]
+	if (blog.image) {
 		imageList =
 			typeof blog.image.filePath === 'string'
 				? [siteMetadata.siteUrl + blog.image]
 				: blog.image
 	}
 
-    const jsonLd = {
+	const jsonLd = {
 		author: [
 			{
 				name: blog?.author ? [blog.author] : siteMetadata.author,
@@ -104,7 +103,7 @@ export default async function BlogPage(props) {
 		image: imageList,
 	}
 
-    return (
+	return (
 		<>
 			<Head>
 				<link

@@ -19,7 +19,7 @@ async function getAllBlogs() {
 		}
 	})
 
-	// console.log(bloa)
+	// console.debug(bloa)
 
 	return bloa
 }
