@@ -3,12 +3,12 @@
 'use client'
 
 import SlimeSimulation from 'react-slime-simulation'
+import { useEffect, useState } from 'react'
 
 import Navbar from '@/components/navbar'
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
 
 function SlimeExperience() {
 	const [isLargeView, setIsLargeView] = useState(null)
