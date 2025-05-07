@@ -40,7 +40,9 @@ export default function Presentation() {
 						<div className="flex h-full flex-col items-start justify-center lg:order-first lg:row-span-2">
 							<h3 className="text-4xl font-bold tracking-tight text-slate-600 lg:text-5xl">
 								{`Hello, my name is `}
-								<span className="text-slate-800">Bréval&nbsp;Le&nbsp;Floch</span>
+								<span className="text-slate-800">
+									Bréval&nbsp;Le&nbsp;Floch
+								</span>
 							</h3>
 							<div className="mt-6 space-y-7 text-base font-bold text-slate-900">
 								<p>

@@ -28,7 +28,7 @@ export default function Divider({ top }) {
 			) : (
 				// fleche bas loop hypnotique
 				<div className="relative h-[40px]">
-					<span className="animate-scroll-down absolute left-1/2 top-0 -translate-x-1/2 opacity-60">
+					<span className="absolute left-1/2 top-0 -translate-x-1/2 animate-scroll-down opacity-60">
 						<svg
 							fill="none"
 							height="24"

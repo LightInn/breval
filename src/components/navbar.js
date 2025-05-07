@@ -1,7 +1,10 @@
 'use client'
-import React, { useEffect, useState } from 'react'
 
+import { useEffect, useState } from 'react'
+
+import { HiHome, HiOutlineBookOpen, HiUser, HiViewGrid } from 'react-icons/hi'
 import { rgbDataURL } from '@/services/dataurl.services'
+import { AnimatePresence, motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -19,15 +22,79 @@ export default function Navbar() {
 
 	useEffect(() => {
 		window.addEventListener('scroll', e => handleNav(e))
-	}, [])
+
+		// Close mobile menu when clicking outside
+		const handleClickOutside = e => {
+			const target = e.target
+			if (
+				isMobileOpen &&
+				!target.closest('.mobile-menu') &&
+				!target.closest('.hamburger-button')
+			) {
+				setIsMobileOpen(false)
+			}
+		}
+
+		document.addEventListener('click', handleClickOutside)
+
+		return () => {
+			window.removeEventListener('scroll', handleNav)
+			document.removeEventListener('click', handleClickOutside)
+		}
+	}, [isMobileOpen])
+
+	// Prevent scrolling when mobile menu is open
+	useEffect(() => {
+		if (isMobileOpen) {
+			// Sauvegarder la position de défilement actuelle
+			const scrollY = window.scrollY
+
+			// Appliquer directement les styles pour bloquer le scroll
+			document.body.style.position = 'fixed'
+			document.body.style.top = `-${scrollY}px`
+			document.body.style.width = '100%'
+			document.body.style.overflow = 'hidden'
+		} else {
+			// Restaurer la position de défilement et réactiver le scroll
+			const scrollY = document.body.style.top
+			document.body.style.position = ''
+			document.body.style.top = ''
+			document.body.style.width = ''
+			document.body.style.overflow = ''
+
+			// Rétablir la position de défilement
+			if (scrollY) {
+				window.scrollTo(0, Number.parseInt(scrollY || '0') * -1)
+			}
+		}
+
+		return () => {
+			// Nettoyage en cas de démontage du composant
+			document.body.style.position = ''
+			document.body.style.top = ''
+			document.body.style.width = ''
+			document.body.style.overflow = ''
+		}
+	}, [isMobileOpen])
+
+	const mobileLinks = [
+		{ label: 'Accueil', Icon: HiHome, href: '/' },
+		{ href: '/projects', label: 'Projets', Icon: HiViewGrid },
+		{ Icon: HiOutlineBookOpen, href: '/blog', label: 'Blog' },
+		{ label: 'À propos', href: '/about', Icon: HiUser },
+	]
 
 	return (
 		<header
 			className={`fixed left-0 top-0 z-50 flex w-screen flex-col items-center justify-center text-black backdrop-blur-md transition-all md:h-[80px] md:backdrop-filter-none`}
 		>
-			{/* pill */}
+			{/* Desktop pill */}
 			<div
-				className={`w-max-[500px] hidden h-[60px] w-[500px] flex-row items-center justify-center rounded-full bg-glow-500/90 px-20 opacity-90 drop-shadow-[0px_6px_23px_-2px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-all hover:opacity-100 md:flex ${showTransparentBackground ? '' : 'h-[40px] translate-y-[-20px] rounded-t-none hover:h-[60px] hover:translate-y-[10px] hover:rounded-full'} `}
+				className={`w-max-[500px] hidden h-[60px] w-[500px] flex-row items-center justify-center rounded-full bg-glow-500/90 px-20 opacity-90 drop-shadow-[0px_6px_23px_-2px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-all hover:opacity-100 md:flex ${
+					showTransparentBackground
+						? ''
+						: 'h-[40px] translate-y-[-20px] rounded-t-none hover:h-[60px] hover:translate-y-[10px] hover:rounded-full'
+				} `}
 			>
 				<Link
 					className={`m-0 flex h-full w-16 origin-center items-center justify-center rounded-full p-0 no-underline transition-all duration-100 ease-in-out hover:w-24`}
@@ -46,7 +113,6 @@ export default function Navbar() {
 				<Link
 					className={`button-animated smoke m-0 flex h-full w-24 origin-center items-center justify-center rounded-full p-0 no-underline transition-all duration-100 ease-in-out hover:w-32`}
 					href="/projects"
-					// ${showTransparentBackground ? '' : 'md:w-0  hover:w-32'}
 				>
 					<div>
 						<span>P</span>
@@ -62,7 +128,6 @@ export default function Navbar() {
 				<Link
 					className={`button-animated smoke m-0 hidden h-full w-24 origin-center items-center justify-center rounded-full p-0 no-underline transition-all duration-100 ease-in-out hover:w-32 md:flex`}
 					href="/blog"
-					// ${showTransparentBackground ? '' : 'md:w-0  hover:w-32'}
 				>
 					<div>
 						<span>B</span>
@@ -85,115 +150,97 @@ export default function Navbar() {
 				</Link>
 			</div>
 
-			{/* Mobile view under md*/}
-			<div
-				className={
-					'flex w-full flex-col md:hidden ' +
-					(isMobileOpen ? 'bg-accent/60' : '')
-				}
-			>
-				<div
-					className={
-						'flex h-[60px] items-center justify-between bg-accent/60 px-4'
-					}
+			{/* Mobile view under md */}
+			<div className="md:hidden">
+				{/* Hamburger button */}
+				<motion.button
+					aria-label="Toggle menu"
+					className="hamburger-button fixed right-4 top-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-accent/80 shadow-lg"
+					onClick={() => setIsMobileOpen(!isMobileOpen)}
+					whileTap={{ scale: 0.95 }}
 				>
-					<Link
-						className={`m-0 flex h-full w-16 origin-center items-center justify-center rounded-full p-0 no-underline transition-all duration-100 ease-in-out`}
-						href="/"
-					>
-						<Image
-							alt="Logo signature de Bréval Le Floch"
-							height={100}
-							src="/logo.png"
-							width={100}
+					<div className="relative h-5 w-5">
+						<motion.span
+							animate={{
+								rotate: isMobileOpen ? 45 : 0,
+								y: isMobileOpen ? 9 : 0,
+							}}
+							className="absolute left-0 top-0 h-[2px] w-5 rounded-full bg-white"
+							transition={{ duration: 0.2 }}
 						/>
-					</Link>
-
-					<button
-						aria-controls="mobile-menu"
-						aria-expanded="false"
-						className="text-gray-400 hover:bg-gray-700 relative inline-flex items-center justify-center rounded-md p-2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-						onClick={() => setIsMobileOpen(!isMobileOpen)}
-						type="button"
-					>
-						<span className="absolute -inset-0.5"></span>
-
-						<span className="sr-only">Open main menu</span>
-
-						<svg
-							aria-hidden="true"
-							className={'block h-6 w-6' + (isMobileOpen ? 'hidden' : '')}
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="1.5"
-							viewBox="0 0 24 24"
-							x-description="Icon when menu is closed."
-						>
-							<path
-								d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							></path>
-						</svg>
-
-						<svg
-							aria-hidden="true"
-							className={'h-6 w-6' + (isMobileOpen ? 'block' : 'hidden')}
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="1.5"
-							viewBox="0 0 24 24"
-							x-description="Icon when menu is open."
-						>
-							<path
-								d="M6 18L18 6M6 6l12 12"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							></path>
-						</svg>
-					</button>
-				</div>
-
-				<div className={'h-screen ' + (isMobileOpen ? 'block' : 'hidden')}>
-					<div
-						aria-expanded="false"
-						className={'space-y-1 px-2 pb-3 pt-2'}
-						id="mobile-menu"
-					>
-						<Link
-							className={
-								'bg-gray-900 block rounded-md px-3 py-2 text-base font-medium text-white'
-							}
-							href="/"
-						>
-							Home
-						</Link>
-						<Link
-							className={
-								'text-gray-300 hover:bg-gray-700 block rounded-md px-3 py-2 text-base font-medium hover:text-white'
-							}
-							href="/projects"
-						>
-							Projects
-						</Link>
-						<Link
-							className={
-								'text-gray-300 hover:bg-gray-700 block rounded-md px-3 py-2 text-base font-medium hover:text-white'
-							}
-							href="/blog"
-						>
-							Blog
-						</Link>
-						<Link
-							className={
-								'text-gray-300 hover:bg-gray-700 block rounded-md px-3 py-2 text-base font-medium hover:text-white'
-							}
-							href="/about"
-						>
-							About
-						</Link>
+						<motion.span
+							animate={{
+								opacity: isMobileOpen ? 0 : 1,
+							}}
+							className="absolute left-0 top-[9px] h-[2px] w-5 rounded-full bg-white"
+							transition={{ duration: 0.2 }}
+						/>
+						<motion.span
+							animate={{
+								rotate: isMobileOpen ? -45 : 0,
+								y: isMobileOpen ? -9 : 0,
+							}}
+							className="absolute bottom-0 left-0 h-[2px] w-5 rounded-full bg-white"
+							transition={{ duration: 0.2 }}
+						/>
 					</div>
-				</div>
+				</motion.button>
+
+				{/* Mobile menu drawer */}
+				<AnimatePresence>
+					{isMobileOpen && (
+						<motion.nav
+							animate={{ y: 0 }}
+							className="mobile-menu fixed inset-0 z-40 flex h-screen flex-col"
+							exit={{ y: '100%' }}
+							initial={{ y: '100%' }}
+							transition={{
+								type: 'spring',
+								stiffness: 250,
+								damping: 25,
+							}}
+						>
+							<div className="flex h-full flex-col bg-light/80 px-6 pb-8 pt-20 backdrop-blur-md">
+								{/* Logo en haut du menu */}
+								<div className="mb-8 flex justify-center">
+									<Image
+										alt="Logo signature de Bréval Le Floch"
+										blurDataURL={rgbDataURL(231, 183, 202)}
+										height={80}
+										placeholder="blur"
+										src="/logo.png"
+										width={80}
+									/>
+								</div>
+
+								<ul className="flex flex-col space-y-6">
+									{mobileLinks.map(({ label, href, Icon }) => (
+										<li className="list-none" key={href}>
+											<Link
+												className="flex items-center rounded-xl p-3 transition-colors hover:bg-white/20"
+												href={href}
+												onClick={() => setIsMobileOpen(false)}
+											>
+												<div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-slate-800">
+													<Icon size={24} />
+												</div>
+												<span className="ml-4 text-xl font-medium text-slate-800">
+													{label}
+												</span>
+											</Link>
+										</li>
+									))}
+								</ul>
+
+								<div className="mt-auto pt-8 text-center text-slate-900/70">
+									<p className="text-sm">
+										© {new Date().getFullYear()} Bréval Le Floch
+									</p>
+								</div>
+							</div>
+						</motion.nav>
+					)}
+				</AnimatePresence>
 			</div>
 		</header>
 	)
