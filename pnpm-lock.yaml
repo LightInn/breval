@@ -18,8 +18,8 @@ importers:
         specifier: 2.0.0
         version: 2.0.0
       highlight.js:
-        specifier: 11.10.0
-        version: 11.10.0
+        specifier: 11.11.1
+        version: 11.11.1
       motion:
         specifier: 12.10.1
         version: 12.10.1(@emotion/is-prop-valid@1.2.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1671,8 +1671,8 @@ packages:
   hastscript@9.0.1:
     resolution: {integrity: sha512-g7df9rMFX/SPi34tyGCyUBREQoKkapwdY/T04Qn9TDWfHhAYt4/I0gMVirzK5wEzeUqIjEB+LXC/ypb7Aqno5w==}
 
-  highlight.js@11.10.0:
-    resolution: {integrity: sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==}
+  highlight.js@11.11.1:
+    resolution: {integrity: sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==}
     engines: {node: '>=12.0.0'}
 
   html-url-attributes@3.0.1:
@@ -4828,7 +4828,7 @@ snapshots:
       property-information: 7.0.0
       space-separated-tokens: 2.0.2
 
-  highlight.js@11.10.0: {}
+  highlight.js@11.11.1: {}
 
   html-url-attributes@3.0.1: {}
 
