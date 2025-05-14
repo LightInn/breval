@@ -45,8 +45,8 @@ importers:
         specifier: 1.0.2
         version: 1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-slime-simulation:
-        specifier: 1.0.0
-        version: 1.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: 1.0.2
+        version: 1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rehype-raw:
         specifier: 7.0.0
         version: 7.0.0
@@ -2580,8 +2580,8 @@ packages:
       react: ^16.8.6
       react-dom: ^16.8.6
 
-  react-slime-simulation@1.0.0:
-    resolution: {integrity: sha512-1Y/qHrSbwYpIwUN+CPOhEdbS92SPgU6Rjy65DKVi2QCeEcHegadIrId5dSVWdbrCw1XoZGM1QoFeGU+NwBluAQ==}
+  react-slime-simulation@1.0.2:
+    resolution: {integrity: sha512-uKz8APBud4j2pjWsanVXhM8maoCZDJw/a4pZESv2zshZnD1ZJYkNdvYtBSH32tN2Lu/5bzc3Pc/0yPrFvGe/CA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -5897,7 +5897,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  react-slime-simulation@1.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  react-slime-simulation@1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
