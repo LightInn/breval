@@ -1,10 +1,10 @@
-// app/projects/page.tsx
-
 'use client'
 
 import SlimeSimulation from 'react-slime-simulation'
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
+import { Magnetic } from 'react-magnetic'
+import Blob from '@/components/Blob'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,6 +15,7 @@ export default function ProjectClient({ projects }) {
 	return (
 		<div className="relative min-h-screen w-full bg-black text-white">
 			<Navbar />
+			<Blob />
 
 			<header className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black">
 				<div className="absolute left-0 top-0 h-full w-full object-cover opacity-60">
@@ -58,12 +59,14 @@ export default function ProjectClient({ projects }) {
 										{data.title}
 									</h2>
 									<p className="text-slate-800">{data.short_description}</p>
-									<Link
-										className="mt-4 inline-block rounded-full bg-accent px-6 py-2 font-medium text-black transition hover:bg-neutral-200"
-										href={`/projects/${data.title}`}
-									>
-										Explore project →
-									</Link>
+										<Magnetic>
+											<Link
+												className="mt-4 inline-block rounded-full bg-accent px-6 py-2 font-medium text-black transition hover:bg-neutral-200"
+												href={`/projects/${data.title}`}
+											>
+												Explore project →
+											</Link>
+										</Magnetic>
 								</div>
 								<Link
 									className="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl md:h-96"
