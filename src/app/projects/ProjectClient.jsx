@@ -3,15 +3,22 @@
 import SlimeSimulation from 'react-slime-simulation'
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
-import { MagneticButton } from 'react-magnetic'
-import Blob from '@/components/Blob'
 
+import { MagneticElementsController } from '@toon.rombaut/magnetic-elements'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import Navbar from '@/components/navbar'
+import Blob from '@/components/Blob'
 
 export default function ProjectClient({ projects }) {
+	useEffect(() => {
+		const magneticElementsController = new MagneticElementsController()
+		return () => {
+			magneticElementsController.destroy()
+		}
+	}, [])
+
 	return (
 		<div className="relative min-h-screen w-full bg-black text-white">
 			<Navbar />
@@ -59,14 +66,13 @@ export default function ProjectClient({ projects }) {
 										{data.title}
 									</h2>
 									<p className="text-slate-800">{data.short_description}</p>
-										<MagneticButton>
-											<Link
-												className="mt-4 inline-block rounded-full bg-accent px-6 py-2 font-medium text-black transition hover:bg-neutral-200"
-												href={`/projects/${data.title}`}
-											>
-												Explore project →
-											</Link>
-										</MagneticButton>
+									<Link
+										className="mt-4 inline-block rounded-full bg-accent px-6 py-2 font-medium text-black transition hover:bg-neutral-200"
+										href={`/projects/${data.title}`}
+										magnetic-element
+									>
+										Explore project →
+									</Link>
 								</div>
 								<Link
 									className="relative h-64 w-full overflow-hidden rounded-2xl shadow-xl md:h-96"
