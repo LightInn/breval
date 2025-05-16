@@ -14,6 +14,7 @@
 		"prettier": "prettier --write ."
 	},
 	"dependencies": {
+		"@toon.rombaut/magnetic-elements": "^1.1.0",
 		"clsx": "2.1.1",
 		"date-fns": "4.1.0",
 		"github-slugger": "2.0.0",
@@ -38,12 +39,8 @@
 		"tornis": "0.3.6"
 	},
 	"devDependencies": {
-		"eslint-plugin-promise": "7.2.1",
-		"eslint-plugin-react-hooks": "5.2.0",
-		"eslint-plugin-woke": "1.0.1",
-		"espree": "10.3.0",
-		"@tanstack/eslint-plugin-query": "5.74.7",
 		"@next/eslint-plugin-next": "15.3.2",
+		"@tanstack/eslint-plugin-query": "5.74.7",
 		"autoprefixer": "10.4.21",
 		"eslint": "9.26.0",
 		"eslint-config-next": "15.3.2",
@@ -51,6 +48,10 @@
 		"eslint-plugin-no-only-tests": "3.3.0",
 		"eslint-plugin-perfectionist": "4.13.0",
 		"eslint-plugin-prettier": "5.4.0",
+		"eslint-plugin-promise": "7.2.1",
+		"eslint-plugin-react-hooks": "5.2.0",
+		"eslint-plugin-woke": "1.0.1",
+		"espree": "10.3.0",
 		"husky": "9.1.7",
 		"prettier": "3.5.3",
 		"prettier-plugin-tailwindcss": "0.6.11",

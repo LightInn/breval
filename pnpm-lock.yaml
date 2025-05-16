@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@toon.rombaut/magnetic-elements':
+        specifier: ^1.1.0
+        version: 1.1.0
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -590,6 +593,9 @@ packages:
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
+
+  '@toon.rombaut/magnetic-elements@1.1.0':
+    resolution: {integrity: sha512-M8lPzt2SpgEuPhg05cu7KH3d0y5FZ/E8D3dBPxNrUL8lyZp0p0g7od60yBA0p3V8G/9+NWkKYCT6k7sGZ7PMWw==}
 
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
@@ -3560,6 +3566,8 @@ snapshots:
       - typescript
 
   '@tokenizer/token@0.3.0': {}
+
+  '@toon.rombaut/magnetic-elements@1.1.0': {}
 
   '@tybys/wasm-util@0.9.0':
     dependencies:
