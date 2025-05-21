@@ -1,18 +1,11 @@
 'use client'
 import { useState } from 'react'
 
-import { useThemeSwitch } from '../Hooks/useThemeSwitch'
 import Logo from './Logo'
 
 import Navbar from '/src/components/navbar'
 
 const Header = () => {
-	const [mode, setMode] = useThemeSwitch()
-	const [click, setClick] = useState(false)
-
-	const toggle = () => {
-		setClick(!click)
-	}
 	return (
 		<header className="flex w-full items-center justify-between p-4 px-5 py-8 sm:px-10">
 			<Logo />
