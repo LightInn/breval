@@ -11,7 +11,9 @@
 		"lint": "next lint",
 		"lint:fix": "next lint --fix",
 		"husky": "husky install",
-		"prettier": "prettier --write ."
+		"prettier": "prettier --write .",
+		"test": "jest",
+		"test:watch": "jest --watch"
 	},
 	"dependencies": {
 		"clsx": "2.1.1",
@@ -38,12 +40,12 @@
 		"tornis": "0.3.6"
 	},
 	"devDependencies": {
-		"eslint-plugin-promise": "7.2.1",
-		"eslint-plugin-react-hooks": "5.2.0",
-		"eslint-plugin-woke": "1.0.1",
-		"espree": "10.3.0",
-		"@tanstack/eslint-plugin-query": "5.74.7",
+		"@babel/preset-env": "^7.27.2",
+		"@babel/preset-react": "^7.27.1",
 		"@next/eslint-plugin-next": "15.3.2",
+		"@tanstack/eslint-plugin-query": "5.74.7",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.3.0",
 		"autoprefixer": "10.4.21",
 		"eslint": "9.27.0",
 		"eslint-config-next": "15.3.2",
@@ -51,7 +53,13 @@
 		"eslint-plugin-no-only-tests": "3.3.0",
 		"eslint-plugin-perfectionist": "4.13.0",
 		"eslint-plugin-prettier": "5.4.0",
+		"eslint-plugin-promise": "7.2.1",
+		"eslint-plugin-react-hooks": "5.2.0",
+		"eslint-plugin-woke": "1.0.1",
+		"espree": "10.3.0",
 		"husky": "9.1.7",
+		"jest": "^29.7.0",
+		"jest-environment-jsdom": "^29.7.0",
 		"prettier": "3.5.3",
 		"prettier-plugin-tailwindcss": "0.6.11",
 		"tailwindcss": "3.4.17",
