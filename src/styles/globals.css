@@ -2,6 +2,26 @@
 @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic);
 
+:root {
+    --sakura-pink: #FF69B4;
+    --sakura-pink-rgb: 255, 105, 180;
+    --retro-blue: #0033A0;
+    --retro-blue-rgb: 0, 51, 160;
+    --retro-purple: #8A2BE2;
+    --neon-accent: #00FFFF;
+    --neon-accent-rgb: 0, 255, 255;
+    --dark-bg: #1A1A2E; /* Tailwind bg-slate-1000 might be this or similar */
+    --dark-bg-rgb: 26, 26, 46;
+    --light-text: #F0F0F0;
+    --font-heading: 'Exo 2', sans-serif; /* Consistent with .neon style */
+    --font-body: 'Varela Round', sans-serif;
+    --font-monospace: 'Courier New', Courier, monospace;
+
+    /* Existing variables from video section, moved here for global scope */
+    --video-width: 100vw;
+	--video-height: 100vh;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -353,19 +373,16 @@ html {
 }
 
 /*------------------ ------------------- Video --------------------------------------------------------------------------------------*/
-:root {
-	--video-width: 100vw;
-	--video-height: 100vh;
-}
+/* :root variables for video already moved to global :root */
 
 @media (min-aspect-ratio: 16/9) {
-	:root {
+	:root { /* This is a conditional override, so it's fine here */
 		--video-height: 56.25vw;
 	}
 }
 
 @media (max-aspect-ratio: 16/9) {
-	:root {
+	:root { /* This is a conditional override, so it's fine here */
 		--video-width: 177.78vh;
 	}
 }

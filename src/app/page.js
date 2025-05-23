@@ -10,6 +10,7 @@ import Presentation from '../components/Home/presentation'
 import Divider from '../components/Home/divider'
 import Hero from '../components/Home/hero'
 import Navbar from '../components/navbar'
+import Journey from '../components/Home/Journey'; // Import the Journey component
 
 export default function Home() {
 	return (
@@ -19,6 +20,7 @@ export default function Home() {
 			<Divider top={true} />
 			<Presentation />
 			<Divider top={false} />
+			{/* Projects Gallery Section - existing code */}
 			<section className="relative z-20 box-border flex h-[110vh] w-full -translate-y-[80px] transform snap-start flex-col flex-wrap items-start justify-center pb-[30px] text-sky-50">
 				<div className={'absolute -z-10 h-full w-full'}>
 					<Image
@@ -64,6 +66,10 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
+			{/* End of Projects Gallery Section */}
+
+			<Journey /> {/* Add the Journey component here */}
+
 		</div>
 	)
 }
