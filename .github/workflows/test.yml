@@ -4,10 +4,8 @@ permissions:
   contents: read
 
 on:
-  push:
-    branches: [ main, master, dev ] # Adjust branches as needed
   pull_request:
-    branches: [ main, master, dev ] # Adjust branches as needed
+    branches: [ main ] # Adjust branches as needed
 
 jobs:
   test:
@@ -16,21 +14,26 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x] # Test on multiple Node.js versions
+        node-version: [20.x]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4 # Use the latest major version or a specific one
+        with:
+          version: latest # You can specify a pnpm version, e.g., 8 or 9
+
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm' # Enable caching for pnpm
-          cache-dependency-path: '**/pnpm-lock.yaml' # Invalidate cache when dependencies change
+          cache: 'pnpm'
+          cache-dependency-path: '**/pnpm-lock.yaml'
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+      # The explicit 'npm install -g pnpm' step is no longer needed here
+      # as pnpm/action-setup handles the installation of pnpm.
 
       - name: Install dependencies
         run: pnpm install
