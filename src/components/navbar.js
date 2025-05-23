@@ -87,11 +87,11 @@ export default function Navbar() {
 
 	return (
 		<header
-			className={`fixed left-0 top-0 z-50 flex w-screen flex-col items-center justify-center text-black backdrop-blur-md transition-all md:h-[80px] md:backdrop-filter-none`}
+			className={`fixed left-0 top-0 z-50 flex w-screen flex-col items-center justify-center text-black dark:text-glow-500 backdrop-blur-md transition-all md:h-[80px] md:backdrop-filter-none`}
 		>
 			{/* Desktop pill */}
 			<div
-				className={`w-max-[500px] hidden h-[60px] w-[500px] flex-row items-center justify-center rounded-full bg-glow-500/90 px-20 opacity-90 drop-shadow-[0px_6px_23px_-2px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-all hover:opacity-100 md:flex ${
+				className={`w-max-[500px] hidden h-[60px] w-[500px] flex-row items-center justify-center rounded-full bg-glow-500/90 dark:bg-slate-700/90 px-20 opacity-90 drop-shadow-[0px_6px_23px_-2px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-all hover:opacity-100 md:flex ${
 					showTransparentBackground
 						? ''
 						: 'h-[40px] translate-y-[-20px] rounded-t-none hover:h-[60px] hover:translate-y-[10px] hover:rounded-full'
@@ -156,7 +156,7 @@ export default function Navbar() {
 				{/* Hamburger button */}
 				<motion.button
 					aria-label="Toggle menu"
-					className="hamburger-button fixed right-4 top-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-accent/80 shadow-lg"
+					className="hamburger-button fixed right-4 top-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-accent/80 dark:bg-pink-700/80 shadow-lg"
 					onClick={() => setIsMobileOpen(!isMobileOpen)}
 					whileTap={{ scale: 0.95 }}
 				>
@@ -166,14 +166,14 @@ export default function Navbar() {
 								rotate: isMobileOpen ? 45 : 0,
 								y: isMobileOpen ? 9 : 0,
 							}}
-							className="absolute left-0 top-0 h-[2px] w-5 rounded-full bg-white"
+							className="absolute left-0 top-0 h-[2px] w-5 rounded-full bg-white dark:bg-slate-100"
 							transition={{ duration: 0.2 }}
 						/>
 						<motion.span
 							animate={{
 								opacity: isMobileOpen ? 0 : 1,
 							}}
-							className="absolute left-0 top-[9px] h-[2px] w-5 rounded-full bg-white"
+							className="absolute left-0 top-[9px] h-[2px] w-5 rounded-full bg-white dark:bg-slate-100"
 							transition={{ duration: 0.2 }}
 						/>
 						<motion.span
@@ -181,7 +181,7 @@ export default function Navbar() {
 								rotate: isMobileOpen ? -45 : 0,
 								y: isMobileOpen ? -9 : 0,
 							}}
-							className="absolute bottom-0 left-0 h-[2px] w-5 rounded-full bg-white"
+							className="absolute bottom-0 left-0 h-[2px] w-5 rounded-full bg-white dark:bg-slate-100"
 							transition={{ duration: 0.2 }}
 						/>
 					</div>
@@ -201,7 +201,7 @@ export default function Navbar() {
 								damping: 25,
 							}}
 						>
-							<div className="flex h-full flex-col bg-light/80 px-6 pb-8 pt-20 backdrop-blur-md">
+							<div className="flex h-full flex-col bg-light/80 dark:bg-slate-800/90 px-6 pb-8 pt-20 backdrop-blur-md">
 								{/* Logo en haut du menu */}
 								<div className="mb-8 flex justify-center">
 									<Image
@@ -222,10 +222,10 @@ export default function Navbar() {
 												href={href}
 												onClick={() => setIsMobileOpen(false)}
 											>
-												<div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-slate-800">
+												<div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 dark:bg-slate-700/30 text-slate-800 dark:text-slate-100">
 													<Icon size={24} />
 												</div>
-												<span className="ml-4 text-xl font-medium text-slate-800">
+												<span className="ml-4 text-xl font-medium text-slate-800 dark:text-slate-100">
 													{label}
 												</span>
 											</Link>
@@ -233,7 +233,7 @@ export default function Navbar() {
 									))}
 								</ul>
 
-								<div className="mt-auto pt-8 text-center text-slate-900/70">
+								<div className="mt-auto pt-8 text-center text-slate-900/70 dark:text-slate-300/70">
 									<p className="text-sm">
 										© {new Date().getFullYear()} Bréval Le Floch
 									</p>

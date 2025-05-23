@@ -29,7 +29,7 @@ const HomeCoverSection = ({ blogs }) => {
 					src={blog.image}
 				/>
 
-				<div className="z-10 flex w-full flex-col items-start justify-center p-6 text-light sm:p-8 md:p-12 lg:w-3/4 lg:p-16">
+				<div className="z-10 flex w-full flex-col items-start justify-center p-6 text-white sm:p-8 md:p-12 lg:w-3/4 lg:p-16">
 					<Tag
 						link={`/blog/categories/${slug(blog.tags[0])}`}
 						name={blog.tags[0]}
@@ -38,7 +38,7 @@ const HomeCoverSection = ({ blogs }) => {
 						className="mt-6 no-underline"
 						href={'/blog/articles/' + blog.url}
 					>
-						<h1 className="text-lg font-bold capitalize sm:text-xl md:text-3xl lg:text-4xl">
+						<h1 className="text-lg font-bold capitalize sm:text-xl md:text-3xl lg:text-4xl font-display">
 							<span className="bg-gradient-to-r from-accent to-accent bg-[length:0px_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_6px]">
 								{blog.title}
 							</span>

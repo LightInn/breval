@@ -10,7 +10,6 @@ module.exports = {
 		fontFamily: {
 			body: ['"Be Vietnam Pro"', 'sans-serif'],
 			display: ['"Noto Serif Display"', 'serif'],
-			'varela-round': ['"Varela Round"', 'sans-serif'],
 		},
 		extend: {
 			colors: {
