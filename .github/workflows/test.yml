@@ -27,6 +27,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm' # Enable caching for pnpm
+          cache-dependency-path: '**/pnpm-lock.yaml' # Invalidate cache when dependencies change
 
       - name: Install pnpm
         run: npm install -g pnpm
