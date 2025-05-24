@@ -1,0 +1,657 @@
+/* Retro 80s Sakura Theme */
+
+/* CSS Variables */
+:root {
+    --sakura-pink: #FF69B4;
+    --sakura-pink-rgb: 255, 105, 180; /* For rgba() if needed */
+    --retro-blue: #0033A0;
+    --retro-blue-rgb: 0, 51, 160; /* For rgba() */
+    --retro-purple: #8A2BE2;
+    --neon-accent: #00FFFF;
+    --neon-accent-rgb: 0, 255, 255; /* For rgba() */
+    --dark-bg: #1A1A2E;
+    --dark-bg-rgb: 26, 26, 46; /* For rgba() */
+    --light-text: #F0F0F0;
+
+    /* Fonts */
+    --font-heading: 'Press Start 2P', cursive;
+    --font-body: 'Roboto', sans-serif;
+    --font-monospace: 'Courier New', Courier, monospace; /* For CLI style text */
+}
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap');
+
+/* Overall Page Styling */
+body {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--sakura-pink);
+}
+
+section {
+    padding: 40px 20px;
+    min-height: 90vh; /* Make sections take up a good portion of the screen */
+    /* border-bottom: 2px solid var(--neon-accent); /* Optional: separator */
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure footer is pushed down */
+}
+
+/* Hero Section */
+#hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 10vh; /* Ensure content is not at the very bottom */
+}
+
+#hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    animation: text-glow 2s ease-in-out infinite alternate;
+}
+
+#hero p {
+    font-family: var(--font-body); /* Explicitly set for hero p if needed */
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cli-cursor {
+    animation: blink 1s step-end infinite;
+    color: var(--neon-accent);
+    margin-left: 5px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes text-glow {
+  from {
+    text-shadow: 0 0 5px var(--sakura-pink), 0 0 10px var(--sakura-pink), 0 0 15px var(--sakura-pink);
+  }
+  to {
+    text-shadow: 0 0 10px var(--retro-purple), 0 0 20px var(--retro-purple), 0 0 30px var(--retro-purple);
+  }
+}
+
+.hero-visual {
+    width: 300px;
+    height: 200px;
+    background-color: rgba(var(--neon-accent-rgb), 0.1);
+    border: 2px solid var(--neon-accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-visual::before {
+    content: "Visual Placeholder";
+    font-family: var(--font-body);
+    color: var(--neon-accent);
+    opacity: 0.7;
+}
+
+/* About Section */
+#about {
+    padding: 60px 20px;
+}
+
+#about h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-content {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.about-content p {
+    font-family: var(--font-body); /* Ensure body font is used */
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.about-visual {
+    flex-basis: 300px;
+    height: 300px;
+    background-color: rgba(var(--neon-accent-rgb), 0.1);
+    border: 2px solid var(--neon-accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.about-visual::before {
+    content: "Pixel Art / Voxel";
+    font-family: var(--font-body);
+    color: var(--neon-accent);
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    #about h2 { font-size: 2.2rem; } /* Slightly larger for tablets */
+    .about-content { text-align: center; }
+    .about-visual { flex-basis: 250px; height: 250px; }
+}
+
+/* Projects Section */
+#projects {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+#projects h2 {
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+.projects-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background-color: rgba(var(--retro-blue-rgb), 0.3);
+    border: 2px solid var(--neon-accent);
+    padding: 25px;
+    border-radius: 8px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 5px 5px 0px var(--sakura-pink);
+}
+
+.project-card:hover {
+    transform: translateY(-5px) translateX(-5px);
+    box-shadow: 10px 10px 0px var(--retro-purple);
+}
+
+.project-icon-placeholder {
+    width: 100%;
+    height: 150px;
+    background-color: rgba(var(--neon-accent-rgb), 0.1);
+    border-bottom: 2px solid var(--neon-accent);
+    margin-bottom: 20px;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-icon-placeholder::before {
+    content: "Icon Placeholder";
+    font-family: var(--font-body);
+    color: var(--neon-accent);
+    opacity: 0.7;
+}
+
+.project-card h3 {
+    /* font-family is inherited from global h* */
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    font-family: var(--font-body); /* Ensure body font */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.project-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: var(--neon-accent);
+    color: var(--dark-bg);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.project-link:hover {
+    background-color: var(--sakura-pink);
+    color: var(--light-text);
+}
+
+/* Styles for Journey section will be added below this line */
+
+/* Journey / Timeline Section */
+#journey {
+    padding: 60px 20px;
+    text-align: center; /* Center the section title */
+    position: relative;
+    overflow-x: hidden; /* Prevent horizontal scroll if timeline elements are too wide before wrapping */
+}
+
+#journey h2 {
+    margin-bottom: 60px; /* More space before the timeline starts */
+    font-size: 2.5rem; /* Consistent with other section titles */
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px; /* Max width of the timeline itself */
+    margin: 0 auto; /* Center the timeline */
+    padding: 20px 0;
+}
+
+/* The central timeline bar */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px; /* Thickness of the timeline bar */
+    background-color: var(--neon-accent);
+    transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 0 5px var(--neon-accent), 0 0 10px var(--neon-accent); /* Neon glow */
+}
+
+.timeline-event {
+    position: relative;
+    margin-bottom: 50px; /* Space between events */
+    width: 50%; /* Each event takes up half the width of the timeline container */
+    padding: 25px;
+    background-color: rgba(var(--retro-blue-rgb), 0.5); /* Semi-transparent retro blue */
+    border: 2px solid var(--sakura-pink); /* Sakura pink border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(var(--sakura-pink-rgb), 0.2), /* Softer glow */
+                3px 3px 0px var(--retro-purple); /* Pixelated shadow like project cards but softer */
+    display: flex;
+    gap: 20px; /* Space between visual placeholder and content */
+    align-items: flex-start; /* Align items to the top */
+    box-sizing: border-box; /* Ensure padding and border are included in width/height */
+}
+
+/* Alternating sides for timeline events */
+.timeline-event:nth-child(odd) { /* Right side */
+    left: 50%; /* Start from the center line */
+    padding-left: 40px; /* Make space for the arrow and distance from line */
+    text-align: left;
+    /* flex-direction: row; /* Default: visual left, content right. Not needed if HTML structure is placeholder first */
+}
+
+.timeline-event:nth-child(even) { /* Left side */
+    left: 0; /* Align to the left edge of the timeline container */
+    padding-right: 40px; /* Make space for the arrow and distance from line */
+    text-align: right;
+    flex-direction: row-reverse; /* Visual on right, content on left */
+}
+
+/* Arrow pointing to the timeline bar */
+.timeline-event::after {
+    content: '';
+    position: absolute;
+    top: 30px; /* Adjust to align with visual or content center */
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.timeline-event:nth-child(odd)::after { /* Arrow for right-side events */
+    left: -15px; /* Position arrow to point left towards the line */
+    border-width: 10px 15px 10px 0; /* Triangle shape */
+    border-color: transparent var(--sakura-pink) transparent transparent;
+}
+
+.timeline-event:nth-child(even)::after { /* Arrow for left-side events */
+    right: -15px; /* Position arrow to point right towards the line */
+    border-width: 10px 0 10px 15px; /* Triangle shape */
+    border-color: transparent transparent transparent var(--sakura-pink);
+}
+
+.timeline-visual-placeholder {
+    flex-shrink: 0; /* Prevent shrinking */
+    width: 100px;
+    height: 100px;
+    background-color: rgba(var(--neon-accent-rgb), 0.05); /* Very subtle bg */
+    border: 2px dashed var(--neon-accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--neon-accent);
+    opacity: 0.7;
+    text-align: center;
+    padding: 5px; /* Padding inside the placeholder */
+}
+.timeline-visual-placeholder::before {
+    content: "SVG/3D"; /* Placeholder text directly */
+    font-family: var(--font-body);
+}
+
+
+.timeline-content {
+    flex-grow: 1; /* Allow content to take remaining space */
+}
+
+.timeline-content h4 {
+    /* font-family is inherited from global h* */
+    font-size: 1.3rem;
+    color: var(--sakura-pink); /* Ensure color if not inherited */
+    margin-bottom: 10px;
+}
+
+.timeline-content p {
+    font-family: var(--font-body); /* Ensure body font */
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    color: var(--light-text); /* Ensure text color */
+}
+
+.timeline-cli-output {
+    font-family: var(--font-monospace);
+    font-size: 0.85rem;
+    color: var(--neon-accent);
+    background-color: rgba(var(--dark-bg-rgb), 0.7); /* Darker, semi-transparent bg */
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(var(--neon-accent-rgb), 0.3);
+    display: inline-block; /* Fit content */
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 3px var(--neon-accent);
+}
+
+/* Responsive adjustments for Timeline */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px; /* Move timeline bar to the left for single column layout */
+    }
+
+    .timeline-event,
+    .timeline-event:nth-child(odd),
+    .timeline-event:nth-child(even) {
+        width: auto; /* Allow to take full width minus margin/padding */
+        left: 0; /* Reset left positioning */
+        margin-left: 40px; /* Space from the moved timeline bar */
+        margin-right: 10px; /* Some padding from the edge */
+        padding-left: 25px; /* Adjust padding */
+        padding-right: 25px;
+        text-align: left; /* All text left aligned */
+        flex-direction: column; /* Stack visual and content */
+    }
+
+    .timeline-event:nth-child(even) { /* Ensure consistent stacking for even items */
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .timeline-event::after,
+    .timeline-event:nth-child(odd)::after,
+    .timeline-event:nth-child(even)::after {
+        left: -15px; /* All arrows on the left, pointing to the bar */
+        border-width: 10px 15px 10px 0;
+        border-color: transparent var(--sakura-pink) transparent transparent;
+    }
+    
+    .timeline-visual-placeholder {
+        width: 80px; /* Adjust size for smaller screens */
+        height: 80px;
+        margin-bottom: 15px; /* Space between visual and content when stacked */
+        align-self: flex-start; /* Align to the start of the flex container */
+    }
+
+    .timeline-content h4 {
+        font-size: 1.1rem;
+    }
+    .timeline-content p {
+        font-size: 0.9rem;
+    }
+    .timeline-cli-output {
+        font-size: 0.8rem;
+    }
+}
+
+/* Additional media query for smaller mobile screens */
+@media (max-width: 480px) {
+    body {
+        line-height: 1.5; /* Adjust line height for smaller text */
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        letter-spacing: 0.5px; /* Slightly reduce letter spacing if too tight */
+    }
+
+    #hero h1 {
+        font-size: 2.2rem; /* Reduce hero title size */
+    }
+    #hero p {
+        font-size: 1rem; /* Reduce hero subtitle size */
+    }
+    .hero-visual {
+        width: 200px; /* Smaller visual for small screens */
+        height: 150px;
+    }
+
+    #about h2, #projects h2, #journey h2, #blog h2 {
+        font-size: 1.8rem; /* Further reduce section titles */
+    }
+    
+    .about-visual {
+        flex-basis: 200px; height: 200px;
+    }
+
+    .projects-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Allow cards to be a bit smaller */
+        gap: 20px;
+    }
+    .project-card {
+        padding: 20px;
+    }
+     .project-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .timeline::before {
+        left: 15px; /* Move timeline bar further left */
+    }
+    .timeline-event,
+    .timeline-event:nth-child(odd),
+    .timeline-event:nth-child(even) {
+        margin-left: 30px; /* Adjust space from bar */
+        padding: 15px;
+    }
+    .timeline-event::after {
+        left: -12px; /* Adjust arrow position */
+        border-width: 8px 12px 8px 0;
+    }
+     .timeline-visual-placeholder {
+        width: 60px;
+        height: 60px;
+    }
+    .timeline-content h4 {
+        font-size: 1rem;
+    }
+    .timeline-content p {
+        font-size: 0.85rem;
+    }
+
+    .blog-list {
+        gap: 25px;
+    }
+    .blog-post-preview {
+        padding: 20px;
+    }
+    .blog-post-preview h3 {
+        font-size: 1.4rem;
+    }
+    .view-all-posts-link {
+        font-size: 1rem;
+        padding: 8px 15px;
+    }
+}
+
+
+/* Blog Section */
+#blog {
+    padding: 60px 20px;
+    text-align: center; /* Center the section title and "View All" link */
+}
+
+#blog h2 {
+    margin-bottom: 40px;
+    font-size: 2.5rem; /* Consistent with other section titles */
+}
+
+.blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Space between blog post previews */
+    max-width: 700px; /* Optimal width for reading blog previews */
+    margin: 0 auto 40px auto; /* Center the list and add margin at the bottom */
+    text-align: left; /* Align text to the left within each preview */
+}
+
+.blog-post-preview {
+    background-color: rgba(var(--retro-blue-rgb), 0.2); /* Subtler than project cards */
+    border: 1px solid var(--retro-purple); /* Purple border */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 3px 3px 0px rgba(var(--neon-accent-rgb), 0.3); /* Neon accent shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-post-preview:hover {
+    transform: translateY(-3px) translateX(-3px);
+    box-shadow: 6px 6px 0px rgba(var(--neon-accent-rgb), 0.5);
+}
+
+.blog-post-preview h3 {
+    /* font-family is var(--font-heading) by default */
+    font-size: 1.7rem;
+    color: var(--sakura-pink);
+    margin-bottom: 10px;
+}
+
+.blog-post-preview p {
+    /* font-family is var(--font-body) by default */
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--light-text);
+    margin-bottom: 15px;
+}
+
+.blog-post-preview time {
+    display: block;
+    font-family: var(--font-monospace); /* Monospace for date, like a timestamp */
+    font-size: 0.85rem;
+    color: var(--neon-accent);
+    margin-bottom: 15px;
+}
+
+.read-more-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: var(--sakura-pink);
+    color: var(--dark-bg);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.read-more-link:hover {
+    background-color: var(--neon-accent);
+    color: var(--dark-bg);
+    transform: scale(1.05);
+}
+
+/* Preliminary styles for code and pre tags */
+code {
+    font-family: var(--font-monospace);
+    background-color: rgba(var(--dark-bg-rgb), 0.9); /* Darker background */
+    color: var(--neon-accent); /* Neon text */
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    border: 1px solid rgba(var(--neon-accent-rgb), 0.2);
+}
+
+pre {
+    font-family: var(--font-monospace);
+    background-color: rgba(var(--dark-bg-rgb), 0.95); /* Even darker for blocks */
+    color: var(--light-text); /* General text color for pre, can be overridden by syntax highlighting */
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid var(--retro-purple); /* Purple border for pre blocks */
+    overflow-x: auto; /* Allow horizontal scrolling for long code lines */
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin: 10px 0; /* Space around pre blocks */
+    box-shadow: inset 0 0 5px rgba(var(--neon-accent-rgb), 0.1);
+}
+
+pre code { /* Reset styles for code inside pre if needed, or enhance */
+    background-color: transparent; /* Code inside pre shouldn't have its own bg */
+    padding: 0;
+    border: none;
+    font-size: inherit; /* Inherit pre's font size */
+    color: inherit; /* Inherit pre's text color, or let syntax highlighter handle it */
+}
+
+.view-all-posts-container {
+    margin-top: 30px;
+}
+
+.view-all-posts-link {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--sakura-pink);
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid var(--sakura-pink);
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.view-all-posts-link:hover {
+    background-color: var(--sakura-pink);
+    color: var(--dark-bg);
+    box-shadow: 0 0 15px var(--sakura-pink);
+}

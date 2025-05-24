@@ -1,0 +1,224 @@
+/* Journey Section Styles - src/styles/Journey.module.css */
+
+/* Ensure these variables are defined in globals.css or here if scoped */
+/* For this module, we'll assume globals.css has:
+:root {
+    --sakura-pink: #FF69B4;
+    --retro-blue: #0033A0;
+    --retro-blue-rgb: 0, 51, 160;
+    --retro-purple: #8A2BE2;
+    --neon-accent: #00FFFF;
+    --neon-accent-rgb: 0, 255, 255;
+    --dark-bg: #1A1A2E;
+    --dark-bg-rgb: 26, 26, 46;
+    --light-text: #F0F0F0;
+    --font-heading: 'Press Start 2P', cursive;
+    --font-body: 'Roboto', sans-serif;
+    --font-monospace: 'Courier New', Courier, monospace;
+}
+*/
+
+.journeySection {
+    padding: 60px 20px;
+    text-align: center; /* Center the section title */
+    /* Assuming body background is already --dark-bg */
+    position: relative; /* For pseudo-elements if needed later */
+    overflow: hidden; /* Prevent visual artifacts from overflowing */
+}
+
+.journeyTitle {
+    font-family: var(--font-heading);
+    color: var(--sakura-pink);
+    font-size: 2.5rem; /* Consistent with other section titles */
+    margin-bottom: 60px; /* More space before the timeline starts */
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px; /* Max width of the timeline itself */
+    margin: 0 auto; /* Center the timeline */
+    padding: 20px 0;
+}
+
+/* The central timeline bar */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px; /* Thickness of the timeline bar */
+    background-color: var(--neon-accent);
+    transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 0 5px var(--neon-accent), 0 0 10px var(--neon-accent); /* Neon glow */
+}
+
+.timelineEvent {
+    position: relative;
+    margin-bottom: 50px; /* Space between events */
+    width: 50%;
+    padding: 25px;
+    background-color: rgba(var(--retro-blue-rgb, 0, 51, 160), 0.5); /* Semi-transparent retro blue */
+    border: 2px solid var(--sakura-pink); /* Sakura pink border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 15px rgba(var(--sakura-pink-rgb, 255, 105, 180), 0.3), /* Softer glow */
+                inset 0 0 8px rgba(var(--neon-accent-rgb, 0, 255, 255), 0.2); /* Inner neon touch */
+    display: flex;
+    gap: 20px; /* Space between visual placeholder and content */
+    align-items: flex-start; /* Align items to the top */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timelineEvent:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 25px rgba(var(--sakura-pink-rgb, 255, 105, 180), 0.5),
+                inset 0 0 10px rgba(var(--neon-accent-rgb, 0, 255, 255), 0.3);
+}
+
+
+/* Alternating sides for timeline events */
+.timelineEventOdd { /* Event on the right */
+    left: 50%; /* Start from the center line */
+    padding-left: 40px; /* Make space for the arrow and distance from line */
+    text-align: left;
+    flex-direction: row; /* Visual on left, content on right */
+}
+
+.timelineEventEven { /* Event on the left */
+    left: 0; /* Align to the left edge of the timeline container */
+    padding-right: 40px; /* Make space for the arrow and distance from line */
+    text-align: right;
+    flex-direction: row-reverse; /* Visual on right, content on left */
+}
+
+/* Arrow pointing to the timeline bar */
+.timelineEvent::after {
+    content: '';
+    position: absolute;
+    top: 30px; /* Adjust to align with visual or content center */
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.timelineEventOdd::after { /* Arrow for right-side events */
+    left: -15px; /* Position arrow to point left towards the line */
+    border-width: 10px 15px 10px 0; /* Triangle shape */
+    border-color: transparent var(--sakura-pink) transparent transparent;
+}
+
+.timelineEventEven::after { /* Arrow for left-side events */
+    right: -15px; /* Position arrow to point right towards the line */
+    border-width: 10px 0 10px 15px; /* Triangle shape */
+    border-color: transparent transparent transparent var(--sakura-pink);
+}
+
+.timelineVisualPlaceholder {
+    flex-shrink: 0; /* Prevent shrinking */
+    width: 100px; /* Adjust size as needed */
+    height: 100px;
+    background-color: rgba(var(--neon-accent-rgb, 0, 255, 255), 0.05); /* Very subtle bg */
+    border: 2px dashed var(--neon-accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--neon-accent);
+    opacity: 0.7;
+    text-align: center;
+    padding: 5px;
+}
+.timelineVisualPlaceholder::before {
+    content: "Visual Placeholder"; /* Placeholder text directly */
+    font-family: var(--font-body);
+}
+
+
+.timelineContent {
+    flex-grow: 1; /* Allow content to take remaining space */
+}
+
+.timelineContent h4 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--sakura-pink);
+    margin-bottom: 10px;
+}
+
+.timelineContent p {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    color: var(--light-text);
+}
+
+.timelineCliOutput {
+    font-family: var(--font-monospace);
+    font-size: 0.85rem;
+    color: var(--neon-accent);
+    background-color: rgba(var(--dark-bg-rgb, 26, 26, 46), 0.7); /* Darker, semi-transparent bg */
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(var(--neon-accent-rgb, 0, 255, 255), 0.3);
+    display: inline-block; /* Fit content */
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 3px var(--neon-accent);
+}
+
+/* Responsive adjustments for Timeline */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px; /* Move timeline bar to the left for single column layout */
+    }
+
+    .timelineEvent,
+    .timelineEventOdd,
+    .timelineEventEven {
+        width: auto; /* Full width minus some padding */
+        left: 0; /* Reset left positioning */
+        margin-left: 40px; /* Space from the moved timeline bar */
+        margin-right: 0;
+        padding-left: 25px; /* Adjust padding */
+        padding-right: 25px;
+        text-align: left; /* All text left aligned */
+        flex-direction: column; /* Stack visual and content */
+    }
+    
+    .timelineEventOdd {
+        flex-direction: column; /* Ensure consistent stacking */
+    }
+    .timelineEventEven {
+        flex-direction: column; /* Ensure consistent stacking */
+        text-align: left; /* Ensure text is left-aligned */
+    }
+
+
+    .timelineEvent::after,
+    .timelineEventOdd::after,
+    .timelineEventEven::after {
+        left: -15px; /* All arrows on the left, pointing to the bar */
+        border-width: 10px 15px 10px 0;
+        border-color: transparent var(--sakura-pink) transparent transparent;
+    }
+    
+    .timelineVisualPlaceholder {
+        width: 80px; /* Adjust size for smaller screens */
+        height: 80px;
+        margin-bottom: 15px; /* Space between visual and content when stacked */
+        align-self: flex-start; /* Align to the start of the flex container */
+    }
+
+    .timelineContent h4 {
+        font-size: 1.1rem;
+    }
+    .timelineContent p {
+        font-size: 0.9rem;
+    }
+    .timelineCliOutput {
+        font-size: 0.8rem;
+    }
+}
