@@ -6,16 +6,16 @@ import Image from 'next/image'
 import { rgbDataURL } from '@/services/dataurl.services'
 
 function ImageWithFallback(props) {
-	const { fallbackSrc, src, ...rest } = props
+	const { alt = 'Image', fallbackSrc, src, ...rest } = props
 	const [imgSrc, setImgSrc] = useState(src)
 
 	return (
 		<Image
 			{...rest}
-			alt={'Image'}
+			alt={alt}
 			blurDataURL={rgbDataURL(231, 183, 202)}
 			onError={e => {
-				console.error(e)
+				// console.error(e)
 				setImgSrc(fallbackSrc)
 			}}
 			placeholder="blur"

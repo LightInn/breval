@@ -81,6 +81,9 @@ importers:
       '@tanstack/eslint-plugin-query':
         specifier: 5.74.7
         version: 5.74.7(eslint@9.27.0(jiti@1.21.7))(typescript@5.8.3)
+      '@testing-library/dom':
+        specifier: ^10.4.0
+        version: 10.4.0
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
@@ -99,6 +102,9 @@ importers:
       eslint-config-prettier:
         specifier: 10.1.5
         version: 10.1.5(eslint@9.27.0(jiti@1.21.7))
+      eslint-plugin-jsx-a11y:
+        specifier: ^6.10.2
+        version: 6.10.2(eslint@9.27.0(jiti@1.21.7))
       eslint-plugin-no-only-tests:
         specifier: 3.3.0
         version: 3.3.0

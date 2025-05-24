@@ -25,8 +25,15 @@ jest.mock('@/components/Hooks/useThemeSwitch', () => ({
 
 // Mock next/image
 jest.mock('next/image', () => ({
-	default: props => {
-		return <img {...props} />
+	default: ({
+		blurDataURL,
+		placeholder,
+		priority,
+		src,
+		alt,
+		...restOfProps
+	}) => {
+		return <img alt={alt} src={src} {...restOfProps} />
 	},
 	__esModule: true,
 }))
@@ -44,5 +51,12 @@ describe('Logo Component', () => {
 		render(<Logo />)
 		const linkElement = screen.getByRole('link')
 		expect(linkElement).toHaveAttribute('href', '/')
+	})
+
+	it('renders the logo image with correct alt text', () => {
+		render(<Logo />)
+		const imageElement = screen.getByRole('img')
+		expect(imageElement).toBeInTheDocument()
+		expect(imageElement).toHaveAttribute('alt', 'Bréval Le Floch logo')
 	})
 })
