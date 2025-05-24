@@ -11,7 +11,7 @@ import Tag from '../Elements/Tag'
 const BlogLayoutOne = ({ blog }) => {
 	return (
 		<div className="group inline-block overflow-hidden rounded-xl">
-			<div className="to-dark/90 absolute bottom-0 left-0 right-0 top-0 z-10 rounded-xl bg-gradient-to-b from-transparent from-0%" />
+			<div className="absolute bottom-0 left-0 right-0 top-0 z-10 rounded-xl bg-gradient-to-b from-transparent from-0% to-black/90" />
 			<Image
 				alt={blog.title}
 				blurDataURL={rgbDataURL(231, 183, 202)}
@@ -30,7 +30,7 @@ const BlogLayoutOne = ({ blog }) => {
 					name={blog.tags[0]}
 				/>
 				<Link className="mt-6 no-underline" href={'/blog/articles/' + blog.url}>
-					<h2 className="mt-2 text-sm font-bold capitalize text-light xs:text-base sm:mt-4 sm:text-xl md:text-2xl">
+					<h2 className="mt-2 text-sm font-bold capitalize text-white xs:text-base sm:mt-4 sm:text-xl md:text-2xl font-display">
 						<span className="bg-gradient-to-r from-accent to-accent bg-[length:0px_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[length:100%_6px]">
 							{blog.title}
 						</span>

@@ -74,7 +74,7 @@ export default async function BlogPage(props) {
 									name={blog.tags[0]}
 								/>
 							</div>
-							<h1 className="relative mt-6 inline-block w-full text-center text-2xl font-semibold capitalize !leading-normal text-light md:text-3xl lg:text-5xl">
+							<h1 className="relative mt-6 inline-block w-full text-center text-2xl font-semibold capitalize !leading-normal text-white md:text-3xl lg:text-5xl font-display">
 								{blog.title}
 							</h1>
 						</div>
@@ -112,7 +112,7 @@ export default async function BlogPage(props) {
 						{/*</details>*/}
 						{/* -------------------------------------------------------------------  SIMILAR ARTICLES ! -----------------------------------------------------------------------------------------------------------------------  */}
 						<details
-							className="border-dark text-dark sticky top-6 my-8 max-h-[80vh] overflow-hidden overflow-y-auto rounded-lg border-[1px] border-solid p-4"
+							className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 sticky top-6 my-8 max-h-[80vh] overflow-hidden overflow-y-auto rounded-lg border-[1px] border-solid p-4"
 							open
 						>
 							<summary className="cursor-pointer text-lg font-semibold capitalize">
@@ -123,7 +123,7 @@ export default async function BlogPage(props) {
 								{similarArticles.map(article => (
 									<li className="mt-2" key={article.url}>
 										<a
-											className="hover:text-accent hover:underline"
+											className="hover:text-accent dark:hover:text-pink-400 hover:underline"
 											href={article.url}
 										>
 											{article.title}

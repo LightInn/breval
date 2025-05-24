@@ -23,7 +23,7 @@ export default function ProjectClient({ projects }) {
 				<div className="relative z-10 max-w-4xl px-6 text-center">
 					<motion.h1
 						animate={{ opacity: 1, y: 0 }}
-						className="text-5xl font-bold leading-tight md:text-6xl"
+						className="text-5xl font-bold leading-tight md:text-6xl font-display"
 						initial={{ opacity: 0, y: 20 }}
 						transition={{ duration: 0.8 }}
 					>
@@ -54,12 +54,12 @@ export default function ProjectClient({ projects }) {
 								whileInView={{ opacity: 1, y: 0 }}
 							>
 								<div className="space-y-4">
-									<h2 className="text-3xl font-bold text-glow-600">
+									<h2 className="text-3xl font-bold text-glow-600 font-display">
 										{data.title}
 									</h2>
 									<p className="text-slate-800">{data.short_description}</p>
 									<Link
-										className="mt-4 inline-block rounded-full bg-accent px-6 py-2 font-medium text-black transition hover:bg-neutral-200"
+										className="mt-4 inline-block rounded-full bg-accent px-6 py-2 font-medium text-black transition hover:bg-neutral-200 dark:bg-pink-600 dark:text-white dark:hover:bg-neutral-700"
 										href={`/projects/${data.title}`}
 									>
 										Explore project →

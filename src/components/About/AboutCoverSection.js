@@ -15,14 +15,14 @@ import Avatar from '/src/components/About/Avatar'
 
 const AboutCoverSection = ({ background = null, setReload = null }) => {
 	return (
-		<section className="text-dark flex h-screen w-screen flex-col items-center justify-center overflow-visible bg-dynamic-bg bg-cover md:flex-row">
+		<section className="text-slate-800 dark:text-slate-200 flex h-screen w-screen flex-col items-center justify-center overflow-visible bg-dynamic-bg bg-cover md:flex-row">
 			<div className="flex h-full w-full flex-col-reverse items-center justify-center gap-4 overflow-visible p-20 backdrop-blur-lg xl:flex-row xl:justify-evenly">
 				<div className="flex w-full flex-col items-center justify-center md:w-1/4 md:items-end">
-					<h2 className="md:message-bulle text-center text-4xl font-bold capitalize text-white md:rounded-2xl md:bg-white/30 md:p-6 md:text-6xl lg:text-right">
+					<h2 className="md:message-bulle text-center text-4xl font-bold capitalize text-gray-100 md:text-slate-800 md:rounded-2xl md:bg-white/30 md:p-6 md:text-6xl lg:text-right font-display">
 						Hi, I&apos;m <br />
 						<bold>Bréval</bold>.
 					</h2>
-					<p className="md:message-bulle font-medium capitalize text-white md:mt-8 md:rounded-2xl md:bg-white/30 md:p-20 md:text-right md:text-2xl">
+					<p className="md:message-bulle font-medium capitalize text-gray-100 md:text-slate-800 md:mt-8 md:rounded-2xl md:bg-white/30 md:p-20 md:text-right md:text-2xl">
 						I&apos;m a creative developer <br />
 						from France, Loire Atlantique.
 					</p>
