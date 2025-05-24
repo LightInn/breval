@@ -15,7 +15,6 @@ function ImageWithFallback(props) {
 			alt={alt}
 			blurDataURL={rgbDataURL(231, 183, 202)}
 			onError={e => {
-				// console.error(e)
 				setImgSrc(fallbackSrc)
 			}}
 			placeholder="blur"
