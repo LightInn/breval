@@ -5,7 +5,7 @@ permissions:
 
 on:
   pull_request:
-    branches: [ main ] # Adjust branches as needed
+    branches: [main] # Adjust branches as needed
 
 jobs:
   test:

@@ -38,9 +38,6 @@ export default function ProjectClient({ projects }) {
 			<main className="mx-auto space-y-24 rounded-t-3xl bg-light">
 				<div className={'mx-auto max-w-7xl space-y-24 px-6 py-24'}>
 					{projects.map((project, i) => {
-
-						console.log(project);
-						
 						const data = project
 						const image = data.media[0]?.url
 						const even = i % 2 === 0

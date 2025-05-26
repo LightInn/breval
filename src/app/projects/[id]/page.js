@@ -2,6 +2,7 @@ import Markdown from 'react-markdown'
 import React from 'react'
 
 import { format, parseISO } from 'date-fns'
+import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Head from 'next/head'
 
@@ -25,6 +26,15 @@ export default async function ProjectDetail(props) {
 	const params = await props.params
 	const { id } = params
 	const project = await getProject(id)
+
+	// Add proper error handling
+	if (!project) {
+		notFound()
+	}
+
+	// Ensure media is always an array and handle the structure from your API
+	const mediaArray = Array.isArray(project?.media) ? project.media : []
+
 	return (
 		<div className="min-h-screen bg-slate-900 text-white">
 			<Head>
@@ -94,9 +104,11 @@ export default async function ProjectDetail(props) {
 								<h1 className="text-xl font-medium text-glow-500">
 									{project?.title}
 								</h1>
-								<p className="text-gray-500 text-sm font-medium">
-									{format(parseISO(project?.date), 'LLLL d, yyyy')}
-								</p>
+								{project?.date && (
+									<p className="text-gray-500 text-sm font-medium">
+										{format(parseISO(project.date), 'LLLL d, yyyy')}
+									</p>
+								)}
 							</div>
 						</div>
 
@@ -104,9 +116,9 @@ export default async function ProjectDetail(props) {
 						<div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
 							<h2 className="sr-only">Images</h2>
 							<div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
-								{project?.media?.map((image, idx) => (
+								{mediaArray.map((image, idx) => (
 									<ImageWithFallback
-										alt={image.name}
+										alt={image.name || `Project image ${idx + 1}`}
 										blurDataURL={rgbDataURL(231, 183, 202)}
 										className={classNames(
 											idx === 0
@@ -147,7 +159,9 @@ export default async function ProjectDetail(props) {
 								</h2>
 
 								<div className="prose prose-sm text-md text-gray-100 mt-4">
-									<Markdown>{project?.description.toString()}</Markdown>
+									{project?.description && (
+										<Markdown>{project.description.toString()}</Markdown>
+									)}
 								</div>
 							</div>
 
@@ -157,8 +171,8 @@ export default async function ProjectDetail(props) {
 
 									<h2 className="text-gray-400" id="policies-heading">
 										{`
-											Other team's members for this project :
-										`}
+                                            Other team's members for this project :
+                                        `}
 									</h2>
 
 									<dl className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
@@ -176,7 +190,7 @@ export default async function ProjectDetail(props) {
 														className="text-gray-400 mx-auto"
 													/>
 													<span className="mt-4 text-sm font-medium">
-														{creator.name}
+														{creator.creator}
 													</span>
 												</dt>
 												<dd className="text-gray-500 mt-1 text-sm">
@@ -198,18 +212,33 @@ export default async function ProjectDetail(props) {
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
 }
-
 async function getProject(title) {
-	const res = await fetch(
-		`https://breval-api.lightin.io/api/projets?filters[title][$eq]=${title}&populate=*`
-	)
-	const data = await res.json()
+	try {
+		const res = await fetch(
+			`https://breval-api.lightin.io/api/projets?filters[title][$eq]=${title}&populate=*`,
+			{ next: { revalidate: 3600 } } // Cache for 1 hour
+		)
 
-	if (!data) {
-		return {
-			props: { hasError: true },
+		if (!res.ok) {
+			console.error(`Failed to fetch project: ${res.status}`)
+			return null
 		}
-	}
 
-	return data.data[0]
+		const data = await res.json()
+
+		if (!data?.data || data.data.length === 0) {
+			return null
+		}
+
+		const projectData = data.data[0]
+		return projectData?.attributes
+			? {
+					...projectData.attributes,
+					id: projectData.id,
+				}
+			: projectData
+	} catch (error) {
+		console.error('Error fetching project:', error)
+		return null
+	}
 }

@@ -8,7 +8,7 @@ import nextPlugin from '@next/eslint-plugin-next'
 import promisePlugin from 'eslint-plugin-promise'
 import wokePlugin from 'eslint-plugin-woke' // import tsParser from '@typescript-eslint/parser'
 import * as espree from 'espree'
-import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
 
 export default [
 	perfectionist.configs['recommended-natural'],
@@ -100,7 +100,7 @@ export default [
 			'react-hooks': reactHooksPlugin,
 			'@next/next': nextPlugin,
 			woke: wokePlugin,
-			'jsx-a11y': jsxA11yPlugin, 
+			'jsx-a11y': jsxA11yPlugin,
 		},
 		files: ['**/*.{js,jsx,mjs,cjs}'],
 	},
