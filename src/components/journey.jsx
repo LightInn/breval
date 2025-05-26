@@ -14,7 +14,7 @@ import { Card, CardContent } from '@/components/ui/card'
 
 export default function Journey() {
 	const ref = useRef(null)
-	const isInView = useInView(ref, { once: false, amount: 0.1 })
+	const isInView = useInView(ref, { once: true, amount: 0.1 })
 	const [activeIndex, setActiveIndex] = useState(null)
 
 	const item = {
