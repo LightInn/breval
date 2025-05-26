@@ -31,7 +31,7 @@ const BlogDetails = ({ slug: blogSlug, blog }) => {
 			<p className="m-3">
 				<time
 					dateTime={parseISO(blog.publishedAt)}
-					pubdate
+					pubdate="true"
 					title={format(parseISO(blog.publishedAt), 'LLLL d, yyyy, h:mm a')}
 				>
 					{format(parseISO(blog.publishedAt), 'LLLL d, yyyy, h:mm a')}

@@ -28,60 +28,65 @@ export default function Avatar() {
 
 			// eyes
 			const eyeClamp = 7
-			document.getElementById('eyeR').style.transform =
-				`translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`
-			document.getElementById('eyeL').style.transform =
-				`translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`
-			document.getElementById('eyR').style.transform =
-				`translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`
-			document.getElementById('eyL').style.transform =
-				`translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`
-			document.getElementById('avatar').style.transform =
-				`translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`
 
-			// glasses
-			const glassesClamp = 3
-			document.getElementById('glasses').style.transform =
-				`translate(${Math.min(glassesClamp, Math.max(-glassesClamp, x / changeSlowliness))}px, ${Math.min(glassesClamp, Math.max(-glassesClamp, y / changeSlowliness))}px)`
+			try {
+				document.getElementById('eyeR').style.transform =
+					`translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`
+				document.getElementById('eyeL').style.transform =
+					`translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`
+				document.getElementById('eyR').style.transform =
+					`translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`
+				document.getElementById('eyL').style.transform =
+					`translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`
+				document.getElementById('avatar').style.transform =
+					`translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`
 
-			// eyesbrows
-			const eyebrowsClamp = 2
-			document.getElementById('eayleachR').style.transform =
-				`translate(${Math.min(eyebrowsClamp, Math.max(-eyebrowsClamp, x / changeSlowliness))}px, ${Math.min(eyebrowsClamp, Math.max(-eyebrowsClamp, y / changeSlowliness))}px)`
-			document.getElementById('eayleachL').style.transform =
-				`translate(${Math.min(eyebrowsClamp, Math.max(-eyebrowsClamp, x / changeSlowliness))}px, ${Math.min(eyebrowsClamp, Math.max(-eyebrowsClamp, y / changeSlowliness))}px)`
+				// glasses
+				const glassesClamp = 3
+				document.getElementById('glasses').style.transform =
+					`translate(${Math.min(glassesClamp, Math.max(-glassesClamp, x / changeSlowliness))}px, ${Math.min(glassesClamp, Math.max(-glassesClamp, y / changeSlowliness))}px)`
 
-			// shadow
-			const shadowClamp = 2
-			document.getElementById('noseShadow').style.transform =
-				`translate(${Math.min(shadowClamp, Math.max(-shadowClamp, x / changeSlowliness))}px, ${Math.min(shadowClamp, Math.max(-shadowClamp, y / changeSlowliness))}px)`
-			document.getElementById('eyeShadow').style.transform =
-				`translate(${Math.min(shadowClamp, Math.max(-shadowClamp, x / changeSlowliness))}px, ${Math.min(shadowClamp, Math.max(-shadowClamp, y / changeSlowliness))}px)`
-			document.getElementById('faceShadow').style.transform =
-				`translate(${Math.min(shadowClamp, Math.max(-shadowClamp, x / changeSlowliness))}px, ${Math.min(shadowClamp, Math.max(-shadowClamp, y / changeSlowliness))}px)`
+				// eyesbrows
+				const eyebrowsClamp = 2
+				document.getElementById('eayleachR').style.transform =
+					`translate(${Math.min(eyebrowsClamp, Math.max(-eyebrowsClamp, x / changeSlowliness))}px, ${Math.min(eyebrowsClamp, Math.max(-eyebrowsClamp, y / changeSlowliness))}px)`
+				document.getElementById('eayleachL').style.transform =
+					`translate(${Math.min(eyebrowsClamp, Math.max(-eyebrowsClamp, x / changeSlowliness))}px, ${Math.min(eyebrowsClamp, Math.max(-eyebrowsClamp, y / changeSlowliness))}px)`
 
-			// head
-			const headClamp = 1
-			document.getElementById('head').style.transform =
-				`translate(${Math.min(headClamp, Math.max(-headClamp, x / changeSlowliness))}px, ${Math.min(headClamp, Math.max(-headClamp, y / changeSlowliness))}px)`
-			document.getElementById('head').style.transform =
-				`rotate(${Math.min(headClamp, Math.max(-headClamp, y / changeSlowliness))}deg)`
-			document.getElementById('neckShadow').style.transform =
-				`rotate(${Math.min(headClamp, Math.max(-headClamp, y / changeSlowliness))}deg)`
+				// shadow
+				const shadowClamp = 2
+				document.getElementById('noseShadow').style.transform =
+					`translate(${Math.min(shadowClamp, Math.max(-shadowClamp, x / changeSlowliness))}px, ${Math.min(shadowClamp, Math.max(-shadowClamp, y / changeSlowliness))}px)`
+				document.getElementById('eyeShadow').style.transform =
+					`translate(${Math.min(shadowClamp, Math.max(-shadowClamp, x / changeSlowliness))}px, ${Math.min(shadowClamp, Math.max(-shadowClamp, y / changeSlowliness))}px)`
+				document.getElementById('faceShadow').style.transform =
+					`translate(${Math.min(shadowClamp, Math.max(-shadowClamp, x / changeSlowliness))}px, ${Math.min(shadowClamp, Math.max(-shadowClamp, y / changeSlowliness))}px)`
 
-			// other
-			const otherClamp = 1
-			document.getElementById('mouth2').style.transform =
-				`translate(${Math.min(otherClamp, Math.max(-otherClamp, x / changeSlowliness))}px, ${Math.min(otherClamp, Math.max(-otherClamp, y / changeSlowliness))}px)`
-			document.getElementById('mouth2Shadow').style.transform =
-				`translate(${Math.min(otherClamp, Math.max(-otherClamp, x / changeSlowliness))}px, ${Math.min(otherClamp, Math.max(-otherClamp, y / changeSlowliness))}px)`
-			document.getElementById('bear').style.transform =
-				`translate(0px, ${Math.min(otherClamp, Math.max(-otherClamp, y / changeSlowliness))}px)`
-			document.getElementById('mustache').style.transform =
-				`translate(${Math.min(otherClamp, Math.max(-otherClamp, x / changeSlowliness))}px, ${Math.min(otherClamp, Math.max(-otherClamp, y / changeSlowliness))}px)`
+				// head
+				const headClamp = 1
+				document.getElementById('head').style.transform =
+					`translate(${Math.min(headClamp, Math.max(-headClamp, x / changeSlowliness))}px, ${Math.min(headClamp, Math.max(-headClamp, y / changeSlowliness))}px)`
+				document.getElementById('head').style.transform =
+					`rotate(${Math.min(headClamp, Math.max(-headClamp, y / changeSlowliness))}deg)`
+				document.getElementById('neckShadow').style.transform =
+					`rotate(${Math.min(headClamp, Math.max(-headClamp, y / changeSlowliness))}deg)`
 
-			document.getElementById('particles').style.transform =
-				`translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`
+				// other
+				const otherClamp = 1
+				document.getElementById('mouth2').style.transform =
+					`translate(${Math.min(otherClamp, Math.max(-otherClamp, x / changeSlowliness))}px, ${Math.min(otherClamp, Math.max(-otherClamp, y / changeSlowliness))}px)`
+				document.getElementById('mouth2Shadow').style.transform =
+					`translate(${Math.min(otherClamp, Math.max(-otherClamp, x / changeSlowliness))}px, ${Math.min(otherClamp, Math.max(-otherClamp, y / changeSlowliness))}px)`
+				document.getElementById('bear').style.transform =
+					`translate(0px, ${Math.min(otherClamp, Math.max(-otherClamp, y / changeSlowliness))}px)`
+				document.getElementById('mustache').style.transform =
+					`translate(${Math.min(otherClamp, Math.max(-otherClamp, x / changeSlowliness))}px, ${Math.min(otherClamp, Math.max(-otherClamp, y / changeSlowliness))}px)`
+
+				document.getElementById('particles').style.transform =
+					`translate(${Math.min(eyeClamp, Math.max(-eyeClamp, x / changeSlowliness))}px, ${Math.min(eyeClamp, Math.max(-eyeClamp, y / changeSlowliness))}px)`
+			} catch (e) {
+				console.error('Error updating avatar styles:', e)
+			}
 
 			// if high velocity for few seconds, then add a class to the avatar
 			var Vy = mouse.velocity.y
@@ -98,7 +103,11 @@ export default function Avatar() {
 					document.getElementById('Mia').classList.add('dizzy')
 					umami.track('dizzy')
 					setTimeout(function () {
-						document.getElementById('Mia').classList.remove('dizzy')
+						try {
+							document.getElementById('Mia').classList.remove('dizzy')
+						} catch (e) {
+							console.error('Error removing dizzy class:', e)
+						}
 					}, 4000)
 				}
 			}

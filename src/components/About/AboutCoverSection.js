@@ -20,7 +20,7 @@ const AboutCoverSection = ({ background = null, setReload = null }) => {
 				<div className="flex w-full flex-col items-center justify-center md:w-1/4 md:items-end">
 					<h2 className="md:message-bulle text-center text-4xl font-bold capitalize text-white md:rounded-2xl md:bg-white/30 md:p-6 md:text-6xl lg:text-right">
 						Hi, I&apos;m <br />
-						<bold>Bréval</bold>.
+						<strong>Bréval</strong>.
 					</h2>
 					<p className="md:message-bulle font-medium capitalize text-white md:mt-8 md:rounded-2xl md:bg-white/30 md:p-20 md:text-right md:text-2xl">
 						I&apos;m a creative developer <br />
