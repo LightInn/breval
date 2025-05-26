@@ -22,7 +22,6 @@ export default function Hero() {
 		<section className="relative clear-both m-0 flex h-[100vh] h-screen w-[100vw] max-w-[100vw] items-center justify-center overflow-hidden overflow-x-hidden p-0">
 			{/* Video Overlay Grid Pattern */}
 			<div className="video-overlay" />
-
 			{/* Video Background */}
 			<iframe
 				allow="autoplay"
@@ -42,7 +41,6 @@ export default function Hero() {
 				src="https://player.vimeo.com/video/879007060?background=1&autoplay=1&loop=1&muted=1"
 				title={'landing page background video'}
 			></iframe>
-
 			{/* Sakura Fall Effect */}
 			<SakuraFall />
 			{/* Background Patterns */}
@@ -62,10 +60,27 @@ export default function Hero() {
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ duration: 0.6, delay: 0.4 }}
 						className="mb-6"
+						whileHover="hover" // Add whileHover to trigger children's hover animation
 					>
-						<span className="bg-card/80 border-primary/30 text-muted-foreground pixel-corners inline-block rounded-full border px-6 py-2 text-sm font-medium backdrop-blur-md">
-							👋 Hello, I'm
-						</span>
+						<div className="bg-card/80 border-primary/30 text-muted-foreground pixel-corners inline-block rounded-full border px-6 py-2 text-sm font-medium backdrop-blur-md">
+							<motion.span
+								variants={{
+									hover: {
+										scale: [1, 1.5, 1.3, 1.5, 1],
+										rotate: [0, -15, 15, -15, 0],
+										transition: {
+											duration: 0.7,
+											ease: 'easeInOut',
+											times: [0, 0.2, 0.5, 0.8, 1],
+										},
+									},
+								}}
+								className="inline-block"
+							>
+								👋
+							</motion.span>{' '}
+							Hello, I'm
+						</div>
 					</motion.div>
 
 					{/* Main Title */}
