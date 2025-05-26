@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 	)
 	const data = await res.json()
 
-	const paths = data.data.map(project => ({ id: project.attributes.title }))
+	const paths = data.data.map(project => ({ id: project.title }))
 
 	return paths
 }
@@ -28,18 +28,14 @@ export default async function ProjectDetail(props) {
 	return (
 		<div className="min-h-screen bg-slate-900 text-white">
 			<Head>
-				<title>Bréval LE FLOCH | {project.attributes?.title} </title>
+				<title>Bréval LE FLOCH | {project?.title} </title>
 
 				<meta
-					content={
-						project.attributes?.title +
-						' : ' +
-						project.attributes?.short_description
-					}
+					content={project?.title + ' : ' + project?.short_description}
 					name="description"
 				/>
 				<link
-					href={'https://brev.al/projet/' + project.attributes?.title}
+					href={'https://brev.al/projet/' + project?.title}
 					key="canonical"
 					rel="canonical"
 				/>
@@ -85,7 +81,7 @@ export default async function ProjectDetail(props) {
 
 						<li className="list-none text-sm">
 							<div aria-current="page" className="font-medium text-glow-500">
-								{project.attributes?.title}
+								{project?.title}
 							</div>
 						</li>
 					</ol>
@@ -96,10 +92,10 @@ export default async function ProjectDetail(props) {
 						<div className="lg:col-span-5 lg:col-start-8">
 							<div className="flex justify-between">
 								<h1 className="text-xl font-medium text-glow-500">
-									{project.attributes?.title}
+									{project?.title}
 								</h1>
 								<p className="text-gray-500 text-sm font-medium">
-									{format(parseISO(project.attributes?.date), 'LLLL d, yyyy')}
+									{format(parseISO(project?.date), 'LLLL d, yyyy')}
 								</p>
 							</div>
 						</div>
@@ -108,9 +104,9 @@ export default async function ProjectDetail(props) {
 						<div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
 							<h2 className="sr-only">Images</h2>
 							<div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
-								{project.attributes?.media?.data?.map((image, idx) => (
+								{project?.media?.map((image, idx) => (
 									<ImageWithFallback
-										alt={image.attributes.name}
+										alt={image.name}
 										blurDataURL={rgbDataURL(231, 183, 202)}
 										className={classNames(
 											idx === 0
@@ -119,11 +115,11 @@ export default async function ProjectDetail(props) {
 											'w-full rounded-lg'
 										)}
 										fallbackSrc="/projets.png"
-										height={image.attributes.height}
+										height={image.height}
 										key={image.id}
 										placeholder="blur"
-										src={image.attributes.url}
-										width={image.attributes.width}
+										src={image.url}
+										width={image.width}
 									/>
 								))}
 							</div>
@@ -132,15 +128,15 @@ export default async function ProjectDetail(props) {
 						<div className="mt-2 lg:col-span-5">
 							{/* URL VIEW */}
 
-							{project.attributes?.url && (
+							{project?.url && (
 								<a
 									className="button mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-glow-500 px-8 py-3 text-base font-medium text-black hover:bg-glow-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
 									data-umami-event="project link"
-									data-umami-event-url={project.attributes?.url}
-									href={project.attributes?.url}
+									data-umami-event-url={project?.url}
+									href={project?.url}
 									type="submit"
 								>
-									{project.attributes?.url}
+									{project?.url}
 								</a>
 							)}
 
@@ -151,13 +147,11 @@ export default async function ProjectDetail(props) {
 								</h2>
 
 								<div className="prose prose-sm text-md text-gray-100 mt-4">
-									<Markdown>
-										{project.attributes?.description.toString()}
-									</Markdown>
+									<Markdown>{project?.description.toString()}</Markdown>
 								</div>
 							</div>
 
-							{project.attributes?.creators?.length > 0 && (
+							{project?.creators?.length > 0 && (
 								<section aria-labelledby="policies-heading" className="mt-10">
 									{/* Policies */}
 
@@ -168,7 +162,7 @@ export default async function ProjectDetail(props) {
 									</h2>
 
 									<dl className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-										{project.attributes?.creators?.map((creator, idx) => (
+										{project?.creators?.map((creator, idx) => (
 											<Link
 												className="shiny-button transition-100 bg-gray-900 hover:bg-gray-800 rounded-lg border border-glow-600 p-6 text-center no-underline hover:text-black"
 												data-umami-event="creator link"
