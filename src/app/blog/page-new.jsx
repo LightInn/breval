@@ -1,3 +1,4 @@
+// filepath: /home/lightin/Desktop/repos/breval/src/app/blog/page.jsx
 import { Suspense } from 'react'
 import getAllBlogs from '../../services/blog.services'
 import BlogClientNew from './BlogClientNew'

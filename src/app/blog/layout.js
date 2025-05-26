@@ -1,6 +1,5 @@
 import siteMetadata from '../../utils/siteMetaData'
 
-import Header from '/src/components/Header'
 import Footer from '/src/components/Footer'
 import { cx } from '/src/utils'
 
@@ -42,11 +41,5 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-	return (
-		<div className={cx('bg-light font-mr')}>
-			<Header />
-			{children}
-			<Footer />
-		</div>
-	)
+	return <div className={cx('bg-light font-mr')}>{children}</div>
 }
