@@ -1,102 +1,79 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
+	darkMode: ['class'],
 	content: [
-		'./src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-		'./src/components/**/*.{js,ts,jsx,tsx,mdx}',
-		'./src/app/**/*.{js,ts,jsx,tsx,mdx}',
+		'./pages/**/*.{js,jsx,ts,tsx}',
+		'./components/**/*.{js,jsx,ts,tsx}',
+		'./app/**/*.{js,jsx,ts,tsx}',
+		'./src/**/*.{js,jsx,ts,tsx}',
+		'*.{js,ts,jsx,tsx,mdx}',
 	],
-	darkMode: 'class',
+	prefix: '',
 	theme: {
-		fontFamily: {
-			body: ['"Be Vietnam Pro"', 'sans-serif'],
-			display: ['"Noto Serif Display"', 'serif'],
-			'varela-round': ['"Varela Round"', 'sans-serif'],
+		container: {
+			center: true,
+			padding: '2rem',
+			screens: {
+				'2xl': '1400px',
+			},
 		},
 		extend: {
 			colors: {
-				slate: {
-					900: '#151715',
-					1000: '#000101',
+				border: 'hsl(var(--border))',
+				input: 'hsl(var(--input))',
+				ring: 'hsl(var(--ring))',
+				background: 'hsl(var(--background))',
+				foreground: 'hsl(var(--foreground))',
+				primary: {
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))',
 				},
-				glow: {
-					100: '#ffc6cb',
-					200: '#ffc6d3',
-					300: '#ff9ba8',
-					400: '#ea8fa7',
-					500: '#ff99b1',
-					600: '#cc7a8d',
-					700: '#995b69',
-					800: '#653c46',
-					900: '#311d22',
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))',
 				},
-				light: '#e7ecea',
-				accent: '#ff99b1',
-				gray: '#706262',
-				'dynamic-vibrant': 'var(--vibrant)',
-				'dynamic-muted': 'var(--muted)',
-				'dynamic-vibrant-light': 'var(--vibrant-light)',
-				'dynamic-muted-light': 'var(--muted-light)',
-				'dynamic-vibrant-dark': 'var(--vibrant-dark)',
-				'dynamic-muted-dark': 'var(--muted-dark)',
+				destructive: {
+					DEFAULT: 'hsl(var(--destructive))',
+					foreground: 'hsl(var(--destructive-foreground))',
+				},
+				muted: {
+					DEFAULT: 'hsl(var(--muted))',
+					foreground: 'hsl(var(--muted-foreground))',
+				},
+				accent: {
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))',
+				},
+				popover: {
+					DEFAULT: 'hsl(var(--popover))',
+					foreground: 'hsl(var(--popover-foreground))',
+				},
+				card: {
+					DEFAULT: 'hsl(var(--card))',
+					foreground: 'hsl(var(--card-foreground))',
+				},
 			},
-			brightness: {
-				10: '.10',
-				25: '.25',
-			},
-			spacing: {
-				112: '28rem',
-				128: '32rem',
-			},
-			borderWidth: {
-				20: '20px',
-				40: '40px',
-			},
-			skew: {
-				17: '17deg',
-				20: '20deg',
-				24: '24deg',
-				28: '28deg',
-				30: '30deg',
-				32: '32deg',
-			},
-			backgroundImage: {
-				'sakura-tree': 'url(/sakura_tree_outline.webp)',
-				'dynamic-bg': 'var(--bg-img)',
-			},
-			fontFamily: {
-				mr: ['var(--font-mr)'],
-				in: ['var(--font-in)'],
-			},
-			animation: {
-				'scroll-down': 'scroll-down 2.5s ease-in-out infinite',
-				'fade-in-up': 'fade-in-up 1s ease-out forwards',
-				roll: 'roll 24s linear infinite',
-				bounce: 'bounce 2s infinite',
-				pulse: 'pulse 2s infinite',
+			borderRadius: {
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 2px)',
+				sm: 'calc(var(--radius) - 4px)',
 			},
 			keyframes: {
-				roll: {
-					'0%': { transform: 'translateX(100%)' },
-					'100%': { transform: 'translateX(-100%)' },
+				'accordion-down': {
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' },
 				},
-				'scroll-down': {
-					'0%': { opacity: '0', transform: 'translateY(-5px)' },
-					'50%': { opacity: '1', transform: 'translateY(5px)' },
-					'100%': { opacity: '0', transform: 'translateY(15px)' },
-				},
-				'fade-in-up': {
-					'0%': { opacity: '0', transform: 'translateY(10px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' },
+				'accordion-up': {
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' },
 				},
 			},
-			screens: {
-				sxl: '1180px',
-				// @media (min-width: 1180px){...}
-				xs: '480px',
-				// @media (min-width: 480px){...}
+			animation: {
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
 		},
 	},
-
-	plugins: [],
+	plugins: [require('tailwindcss-animate')],
 }
+
+export default config

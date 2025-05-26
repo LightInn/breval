@@ -1,247 +1,218 @@
 'use client'
 
-import { HiHome, HiOutlineBookOpen, HiUser, HiViewGrid } from 'react-icons/hi'
-import { AnimatePresence, motion } from 'motion/react'
-import { useEffect, useState } from 'react'
-
-import Image from 'next/image'
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { useTheme } from 'next-themes'
+import { Moon, Sun, Menu, X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-import { rgbDataURL } from '@/services/dataurl.services'
-
-export default function Navbar() {
-	const [showTransparentBackground, setShowTransparentBackground] =
-		useState(true)
-	const [isMobileOpen, setIsMobileOpen] = useState(false)
-
-	function handleNav(e) {
-		// @ts-ignore
-		e.target.scrollingElement.scrollTop > 0
-			? setShowTransparentBackground(false)
-			: setShowTransparentBackground(true)
-	}
+export default function Navigation() {
+	const [mounted, setMounted] = useState(false)
+	const { theme, setTheme } = useTheme()
+	const [isOpen, setIsOpen] = useState(false)
+	const pathname = usePathname()
 
 	useEffect(() => {
-		window.addEventListener('scroll', e => handleNav(e))
+		setMounted(true)
+	}, [])
 
-		// Close mobile menu when clicking outside
-		const handleClickOutside = e => {
-			const target = e.target
-			if (
-				isMobileOpen &&
-				!target.closest('.mobile-menu') &&
-				!target.closest('.hamburger-button')
-			) {
-				setIsMobileOpen(false)
-			}
-		}
+	const toggleMenu = () => setIsOpen(!isOpen)
 
-		document.addEventListener('click', handleClickOutside)
-
-		return () => {
-			window.removeEventListener('scroll', handleNav)
-			document.removeEventListener('click', handleClickOutside)
-		}
-	}, [isMobileOpen])
-
-	// Prevent scrolling when mobile menu is open
-	useEffect(() => {
-		if (isMobileOpen) {
-			// Sauvegarder la position de défilement actuelle
-			const scrollY = window.scrollY
-
-			// Appliquer directement les styles pour bloquer le scroll
-			document.body.style.position = 'fixed'
-			document.body.style.top = `-${scrollY}px`
-			document.body.style.width = '100%'
-			document.body.style.overflow = 'hidden'
-		} else {
-			// Restaurer la position de défilement et réactiver le scroll
-			const scrollY = document.body.style.top
-			document.body.style.position = ''
-			document.body.style.top = ''
-			document.body.style.width = ''
-			document.body.style.overflow = ''
-
-			// Rétablir la position de défilement
-			if (scrollY) {
-				window.scrollTo(0, Number.parseInt(scrollY || '0') * -1)
-			}
-		}
-
-		return () => {
-			// Nettoyage en cas de démontage du composant
-			document.body.style.position = ''
-			document.body.style.top = ''
-			document.body.style.width = ''
-			document.body.style.overflow = ''
-		}
-	}, [isMobileOpen])
-
-	const mobileLinks = [
-		{ label: 'Accueil', Icon: HiHome, href: '/' },
-		{ href: '/projects', label: 'Projets', Icon: HiViewGrid },
-		{ Icon: HiOutlineBookOpen, href: '/blog', label: 'Blog' },
-		{ label: 'À propos', href: '/about', Icon: HiUser },
+	const navItems = [
+		{ name: 'PROJECTS', href: '/projects' },
+		{ name: 'BLOG', href: '/blog' },
+		{ name: 'ARTIST', href: '/artist' },
+		{ name: 'ABOUT', href: '/#about' },
 	]
 
+	const isActive = path => {
+		if (path.startsWith('#')) {
+			return pathname === '/' && path === '/#about'
+		}
+		return pathname === path
+	}
+
 	return (
-		<header
-			className={`fixed left-0 top-0 z-50 flex w-screen flex-col items-center justify-center text-black backdrop-blur-md transition-all md:h-[80px] md:backdrop-filter-none`}
-		>
-			{/* Desktop pill */}
-			<div
-				className={`w-max-[500px] hidden h-[60px] w-[500px] flex-row items-center justify-center rounded-full bg-glow-500/90 px-20 opacity-90 drop-shadow-[0px_6px_23px_-2px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-all hover:opacity-100 md:flex ${
-					showTransparentBackground
-						? ''
-						: 'h-[40px] translate-y-[-20px] rounded-t-none hover:h-[60px] hover:translate-y-[10px] hover:rounded-full'
-				} `}
-			>
-				<Link
-					className={`m-0 flex h-full w-16 origin-center items-center justify-center rounded-full p-0 no-underline transition-all duration-100 ease-in-out hover:w-24`}
-					href="/"
-				>
-					<Image
-						alt="Logo signature de Bréval Le Floch"
-						blurDataURL={rgbDataURL(231, 183, 202)}
-						height={100}
-						placeholder="blur"
-						src="/logo.png"
-						width={100}
-					/>
-				</Link>
-
-				<Link
-					className={`button-animated smoke m-0 flex h-full w-24 origin-center items-center justify-center rounded-full p-0 no-underline transition-all duration-100 ease-in-out hover:w-32`}
-					href="/projects"
-				>
-					<div>
-						<span>P</span>
-						<span>R</span>
-						<span>O</span>
-						<span>J</span>
-						<span>E</span>
-						<span>C</span>
-						<span>T</span>
-						<span>S</span>
-					</div>
-				</Link>
-				<Link
-					className={`button-animated smoke m-0 hidden h-full w-24 origin-center items-center justify-center rounded-full p-0 no-underline transition-all duration-100 ease-in-out hover:w-32 md:flex`}
-					href="/blog"
-				>
-					<div>
-						<span>B</span>
-						<span>L</span>
-						<span>O</span>
-						<span>G</span>
-					</div>
-				</Link>
-				<Link
-					className={`button-animated smoke m-0 flex h-full w-24 origin-center items-center justify-center rounded-full p-0 transition-all duration-100 ease-in-out hover:w-32`}
-					href="/about"
-				>
-					<div>
-						<span>A</span>
-						<span>B</span>
-						<span>O</span>
-						<span>U</span>
-						<span>T</span>
-					</div>
-				</Link>
-			</div>
-
-			{/* Mobile view under md */}
-			<div className="md:hidden">
-				{/* Hamburger button */}
-				<motion.button
-					aria-label="Toggle menu"
-					className="hamburger-button fixed right-4 top-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-accent/80 shadow-lg"
-					onClick={() => setIsMobileOpen(!isMobileOpen)}
-					whileTap={{ scale: 0.95 }}
-				>
-					<div className="relative h-5 w-5">
-						<motion.span
-							animate={{
-								rotate: isMobileOpen ? 45 : 0,
-								y: isMobileOpen ? 9 : 0,
-							}}
-							className="absolute left-0 top-0 h-[2px] w-5 rounded-full bg-white"
-							transition={{ duration: 0.2 }}
-						/>
-						<motion.span
-							animate={{
-								opacity: isMobileOpen ? 0 : 1,
-							}}
-							className="absolute left-0 top-[9px] h-[2px] w-5 rounded-full bg-white"
-							transition={{ duration: 0.2 }}
-						/>
-						<motion.span
-							animate={{
-								rotate: isMobileOpen ? -45 : 0,
-								y: isMobileOpen ? -9 : 0,
-							}}
-							className="absolute bottom-0 left-0 h-[2px] w-5 rounded-full bg-white"
-							transition={{ duration: 0.2 }}
-						/>
-					</div>
-				</motion.button>
-
-				{/* Mobile menu drawer */}
-				<AnimatePresence>
-					{isMobileOpen && (
-						<motion.nav
-							animate={{ y: 0 }}
-							className="mobile-menu fixed inset-0 z-40 flex h-screen flex-col"
-							exit={{ y: '100%' }}
-							initial={{ y: '100%' }}
-							transition={{
-								type: 'spring',
-								stiffness: 250,
-								damping: 25,
-							}}
+		<header className="fixed top-0 z-50 w-full px-4 py-4">
+			<div className="mx-auto max-w-7xl">
+				<nav className="flex items-center justify-between">
+					<div className="flex items-center">
+						<Link
+							href="/"
+							className="text-primary magnetic-button text-2xl font-bold"
 						>
-							<div className="flex h-full flex-col bg-light/80 px-6 pb-8 pt-20 backdrop-blur-md">
-								{/* Logo en haut du menu */}
-								<div className="mb-8 flex justify-center">
-									<Image
-										alt="Logo signature de Bréval Le Floch"
-										blurDataURL={rgbDataURL(231, 183, 202)}
-										height={80}
-										placeholder="blur"
-										src="/logo.png"
-										width={80}
-									/>
+							<motion.div
+								initial={{ opacity: 0, scale: 0.8 }}
+								animate={{ opacity: 1, scale: 1 }}
+								transition={{ duration: 0.5 }}
+								className="flex items-center"
+							>
+								<div className="relative">
+									<svg
+										width="40"
+										height="40"
+										viewBox="0 0 40 40"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<rect
+											x="4"
+											y="4"
+											width="32"
+											height="32"
+											rx="8"
+											className="stroke-primary fill-primary/10"
+											strokeWidth="2"
+										/>
+										<path
+											d="M20 8L28 20L20 32L12 20L20 8Z"
+											className="fill-primary"
+										/>
+										<circle cx="20" cy="20" r="3" className="fill-background" />
+									</svg>
+									<div className="bg-primary absolute -right-1 -top-1 h-3 w-3 animate-pulse rounded-full" />
 								</div>
+								<span className="pixel-corners bg-primary/10 ml-3 hidden px-3 py-1 text-sm md:inline">
+									BLF
+								</span>
+							</motion.div>
+						</Link>
+					</div>
 
-								<ul className="flex flex-col space-y-6">
-									{mobileLinks.map(({ label, href, Icon }) => (
-										<li className="list-none" key={href}>
-											<Link
-												className="flex items-center rounded-xl p-3 transition-colors hover:bg-white/20"
-												href={href}
-												onClick={() => setIsMobileOpen(false)}
-											>
-												<div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-slate-800">
-													<Icon size={24} />
-												</div>
-												<span className="ml-4 text-xl font-medium text-slate-800">
-													{label}
-												</span>
-											</Link>
-										</li>
-									))}
-								</ul>
+					{/* Mobile menu button */}
+					<div className="md:hidden">
+						<Button
+							variant="ghost"
+							size="icon"
+							onClick={toggleMenu}
+							className="magnetic-button"
+						>
+							{isOpen ? (
+								<X className="h-6 w-6" />
+							) : (
+								<Menu className="h-6 w-6" />
+							)}
+						</Button>
+					</div>
 
-								<div className="mt-auto pt-8 text-center text-slate-900/70">
-									<p className="text-sm">
-										© {new Date().getFullYear()} Bréval Le Floch
-									</p>
-								</div>
-							</div>
-						</motion.nav>
+					{/* Desktop navigation */}
+					<motion.div
+						initial={{ y: -20, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						transition={{ duration: 0.5, delay: 0.2 }}
+						className="hidden items-center md:flex"
+					>
+						<div className="bg-card/80 border-primary/20 pixel-corners flex items-center space-x-6 rounded-full border px-6 py-3 backdrop-blur-md">
+							{navItems.map((item, index) => (
+								<motion.div
+									key={item.name}
+									initial={{ opacity: 0, y: -10 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+								>
+									<Link
+										href={item.href}
+										className={`magnetic-button rounded-full px-3 py-1 text-sm font-medium transition-all duration-300 ${
+											isActive(item.href)
+												? 'text-primary bg-primary/10 font-bold'
+												: 'hover:text-primary hover:bg-primary/5'
+										}`}
+									>
+										{item.name}
+									</Link>
+								</motion.div>
+							))}
+						</div>
+					</motion.div>
+
+					{/* Theme toggle */}
+					{mounted && (
+						<motion.div
+							initial={{ scale: 0 }}
+							animate={{ scale: 1 }}
+							transition={{ duration: 0.5, delay: 0.4 }}
+						>
+							<Button
+								variant="ghost"
+								size="icon"
+								onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+								className="magnetic-button bg-card/80 border-primary/20 pixel-corners ml-4 hidden border backdrop-blur-md md:flex"
+								aria-label="Toggle theme"
+							>
+								<motion.div
+									initial={{ rotate: 0 }}
+									animate={{ rotate: theme === 'dark' ? 180 : 0 }}
+									transition={{ duration: 0.5 }}
+								>
+									{theme === 'dark' ? (
+										<Sun className="text-primary h-5 w-5" />
+									) : (
+										<Moon className="text-primary h-5 w-5" />
+									)}
+								</motion.div>
+							</Button>
+						</motion.div>
 					)}
-				</AnimatePresence>
+				</nav>
+
+				{/* Mobile menu */}
+				{isOpen && (
+					<motion.div
+						initial={{ opacity: 0, y: -20, scale: 0.95 }}
+						animate={{ opacity: 1, y: 0, scale: 1 }}
+						exit={{ opacity: 0, y: -20, scale: 0.95 }}
+						transition={{ duration: 0.3 }}
+						className="bg-card/90 border-primary/20 pixel-corners dark:dithered-dark dithered-light mt-4 rounded-2xl border p-6 backdrop-blur-md md:hidden"
+					>
+						<div className="flex flex-col space-y-4">
+							{navItems.map((item, index) => (
+								<motion.div
+									key={item.name}
+									initial={{ opacity: 0, x: -20 }}
+									animate={{ opacity: 1, x: 0 }}
+									transition={{ duration: 0.3, delay: index * 0.1 }}
+								>
+									<Link
+										href={item.href}
+										className={`magnetic-button block rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ${
+											isActive(item.href)
+												? 'text-primary bg-primary/10 font-bold'
+												: 'hover:text-primary hover:bg-primary/5'
+										}`}
+										onClick={() => setIsOpen(false)}
+									>
+										{item.name}
+									</Link>
+								</motion.div>
+							))}
+							<div className="border-primary/20 flex items-center justify-between border-t pt-4">
+								<span className="text-muted-foreground text-xs">
+									Toggle theme
+								</span>
+								<Button
+									variant="ghost"
+									size="icon"
+									onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+									className="magnetic-button"
+								>
+									<motion.div
+										initial={{ rotate: 0 }}
+										animate={{ rotate: theme === 'dark' ? 180 : 0 }}
+										transition={{ duration: 0.5 }}
+									>
+										{theme === 'dark' ? (
+											<Sun className="h-4 w-4" />
+										) : (
+											<Moon className="h-4 w-4" />
+										)}
+									</motion.div>
+								</Button>
+							</div>
+						</div>
+					</motion.div>
+				)}
 			</div>
 		</header>
 	)
