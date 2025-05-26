@@ -13,8 +13,8 @@ import ScrollObject3D from '@/components/scroll-object-3d'
 export default function BlogClientNew({ blogs = [] }) {
 	const ref = useRef(null)
 	const featuredRef = useRef(null)
-	const isInView = useInView(ref, { once: false, amount: 0.1 })
-	const isFeaturedInView = useInView(featuredRef, { once: false, amount: 0.3 })
+	const isInView = useInView(ref, { once: true, amount: 0.1 })
+	const isFeaturedInView = useInView(featuredRef, { once: true, amount: 0.3 })
 
 	const container = {
 		hidden: { opacity: 0 },
