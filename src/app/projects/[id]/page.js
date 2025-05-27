@@ -17,7 +17,9 @@ export async function generateStaticParams() {
 	)
 	const data = await res.json()
 
-	const paths = data.data.map(project => ({ id: project.title }))
+	const paths = data.data.map(project => ({
+		id: project.title.toLowerCase().replace(/\s+/g, '-'),
+	}))
 
 	return paths
 }
@@ -71,14 +73,14 @@ export default async function ProjectDetail(props) {
 						<li className="list-none">
 							<div className="flex items-center">
 								<Link
-									className="text-gray-400 mr-4 list-disc text-sm font-medium"
+									className="mr-4 list-disc text-sm font-medium text-gray-400"
 									href={'/projects'}
 								>
 									projets
 								</Link>
 								<svg
 									aria-hidden="true"
-									className="text-gray-300 h-5 w-auto"
+									className="h-5 w-auto text-gray-300"
 									viewBox="0 0 6 20"
 								>
 									<path
@@ -90,7 +92,7 @@ export default async function ProjectDetail(props) {
 						</li>
 
 						<li className="list-none text-sm">
-							<div aria-current="page" className="font-medium text-glow-500">
+							<div aria-current="page" className="text-glow-500 font-medium">
 								{project?.title}
 							</div>
 						</li>
@@ -101,11 +103,11 @@ export default async function ProjectDetail(props) {
 					<div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
 						<div className="lg:col-span-5 lg:col-start-8">
 							<div className="flex justify-between">
-								<h1 className="text-xl font-medium text-glow-500">
+								<h1 className="text-glow-500 text-xl font-medium">
 									{project?.title}
 								</h1>
 								{project?.date && (
-									<p className="text-gray-500 text-sm font-medium">
+									<p className="text-sm font-medium text-gray-500">
 										{format(parseISO(project.date), 'LLLL d, yyyy')}
 									</p>
 								)}
@@ -142,7 +144,7 @@ export default async function ProjectDetail(props) {
 
 							{project?.url && (
 								<a
-									className="button mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-glow-500 px-8 py-3 text-base font-medium text-black hover:bg-glow-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+									className="button bg-glow-500 hover:bg-glow-600 mt-8 flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-base font-medium text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
 									data-umami-event="project link"
 									data-umami-event-url={project?.url}
 									href={project?.url}
@@ -154,11 +156,11 @@ export default async function ProjectDetail(props) {
 
 							{/* Product details */}
 							<div className="mt-10">
-								<h2 className="text-gray-400 text-sm font-medium">
+								<h2 className="text-sm font-medium text-gray-400">
 									Description
 								</h2>
 
-								<div className="prose prose-sm text-md text-gray-100 mt-4">
+								<div className="prose prose-sm text-md mt-4 text-gray-100">
 									{project?.description && (
 										<Markdown>{project.description.toString()}</Markdown>
 									)}
@@ -178,7 +180,7 @@ export default async function ProjectDetail(props) {
 									<dl className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
 										{project?.creators?.map((creator, idx) => (
 											<Link
-												className="shiny-button transition-100 bg-gray-900 hover:bg-gray-800 rounded-lg border border-glow-600 p-6 text-center no-underline hover:text-black"
+												className="shiny-button transition-100 border-glow-600 rounded-lg border bg-gray-900 p-6 text-center no-underline hover:bg-gray-800 hover:text-black"
 												data-umami-event="creator link"
 												data-umami-event-site={creator.site}
 												href={'https://' + creator.site}
@@ -187,13 +189,13 @@ export default async function ProjectDetail(props) {
 												<dt>
 													<div
 														aria-hidden="true"
-														className="text-gray-400 mx-auto"
+														className="mx-auto text-gray-400"
 													/>
 													<span className="mt-4 text-sm font-medium">
 														{creator.creator}
 													</span>
 												</dt>
-												<dd className="text-gray-500 mt-1 text-sm">
+												<dd className="mt-1 text-sm text-gray-500">
 													{creator.site}
 												</dd>
 											</Link>
