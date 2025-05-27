@@ -12,10 +12,21 @@ export default function Navigation() {
 	const [mounted, setMounted] = useState(false)
 	const { theme, setTheme } = useTheme()
 	const [isOpen, setIsOpen] = useState(false)
+	const [scrolled, setScrolled] = useState(false)
 	const pathname = usePathname()
 
 	useEffect(() => {
 		setMounted(true)
+	}, [])
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const isScrolled = window.scrollY > 10
+			setScrolled(isScrolled)
+		}
+
+		window.addEventListener('scroll', handleScroll)
+		return () => window.removeEventListener('scroll', handleScroll)
 	}, [])
 
 	const toggleMenu = () => setIsOpen(!isOpen)
@@ -33,7 +44,20 @@ export default function Navigation() {
 
 	return (
 		<header className="fixed top-0 z-50 w-full px-4 py-4">
-			<div className="mx-auto max-w-7xl">
+			{/* Background overlay with gradient that appears on scroll */}
+			<div
+				className={`absolute inset-0 transition-all duration-300 ${
+					scrolled
+						? 'bg-gradient-to-b from-background/80 to-transparent'
+						: 'bg-transparent'
+				}`}
+				style={{
+					background: scrolled
+						? 'linear-gradient(to bottom, hsl(var(--background) / 0.8) 0%, hsl(var(--background) / 0.6) 50%, transparent 100%)'
+						: 'transparent',
+				}}
+			/>
+			<div className="relative mx-auto max-w-7xl">
 				<nav className="flex items-center justify-between">
 					<div className="flex items-center">
 						<Link
