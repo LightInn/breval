@@ -43,20 +43,24 @@ export default function ProjectClientNew({ projects = [] }) {
 					featuredProjectData.short_description ||
 					featuredProjectData.description ||
 					'Description non disponible.',
-				// Assurez-vous que media existe et a au moins un élément
+				// Use main_media first, then fallback to first media item
 				image:
-					featuredProjectData.media &&
+					featuredProjectData.main_media?.url ||
+					(featuredProjectData.media &&
 					featuredProjectData.media.length > 0 &&
 					featuredProjectData.media[0].url
-						? `https://breval-api.lightin.io${featuredProjectData.media[0].url}`
-						: '/placeholder.svg?height=600&width=1200',
-				url: featuredProjectData.url, // Peut être undefined, géré dans le JSX
+						? featuredProjectData.media[0].url
+						: '/placeholder.svg?height=600&width=1200'),
+				url: featuredProjectData.url || featuredProjectData.live_url, // Support both url and live_url
 				slug: featuredProjectData.title
 					? featuredProjectData.title.toLowerCase().replace(/\s+/g, '-')
-					: '#', // Générer un slug simple
-				tags: featuredProjectData.technologies
-					? featuredProjectData.technologies.split(',').map(tech => tech.trim())
+					: '#',
+				tags: featuredProjectData.skills
+					? featuredProjectData.skills.slice(0, 5) // Limit to 5 tags for display
 					: ['Web Development'],
+				category: featuredProjectData.category || 'Other',
+				liveUrl: featuredProjectData.live_url,
+				githubUrl: featuredProjectData.url,
 			}
 		: {
 				title: 'Projet non disponible',
@@ -65,6 +69,9 @@ export default function ProjectClientNew({ projects = [] }) {
 				url: '#',
 				slug: '#',
 				tags: ['Tag par défaut'],
+				category: 'Other',
+				liveUrl: null,
+				githubUrl: null,
 			}
 
 	// Process remaining projects data to match the component structure
@@ -76,31 +83,45 @@ export default function ProjectClientNew({ projects = [] }) {
 						project.short_description ||
 						project.description ||
 						'Description non disponible.',
+					// Use main_media first, then fallback to first media item
 					image:
-						project.media && project.media.length > 0 && project.media[0].url
-							? `${project.media[0].url}`
-							: '/placeholder.svg?height=300&width=500',
-					url: project.url,
+						project.main_media?.url ||
+						(project.media && project.media.length > 0 && project.media[0].url
+							? project.media[0].url
+							: '/placeholder.svg?height=300&width=500'),
+					url: project.url || project.live_url,
 					slug: project.title
 						? project.title.toLowerCase().replace(/\s+/g, '-')
 						: '#',
-					tags: project.technologies
-						? project.technologies.split(',').map(tech => tech.trim())
+					tags: project.skills
+						? project.skills.slice(0, 3) // Limit to 3 tags for grid display
 						: ['Web Development'],
+					category: project.category || 'Other',
+					liveUrl: project.live_url,
+					githubUrl: project.url,
 				}))
 			: []
 
+	// Generate dynamic categories from projects
+	const projectCategories = Array.isArray(projects)
+		? [...new Set(projects.map(p => p.category).filter(Boolean))]
+		: []
+
 	const categories = [
 		'All Projects',
-		'Web Development',
-		'Mobile Apps',
-		'UI/UX Design',
-		'3D & Interactive',
-		'SaaS',
-	]
+		...projectCategories,
+		// Add some default categories if not present
+		...[
+			'Web Development',
+			'Mobile Apps',
+			'UI/UX Design',
+			'3D & Interactive',
+			'SaaS',
+		].filter(cat => !projectCategories.includes(cat)),
+	].slice(0, 6) // Limit to 6 categories for UI
 
 	return (
-		<main className="from-gray-950 to-gray-900 min-h-screen bg-gradient-to-b pt-20 text-white">
+		<main className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
 			<div className="relative">
 				<ScrollObject3D />
 
@@ -118,7 +139,7 @@ export default function ProjectClientNew({ projects = [] }) {
 							<h1 className="text-shadow mb-4 text-4xl font-bold md:text-6xl">
 								<span className="text-primary">Galerie</span> de Projets
 							</h1>
-							<p className="text-muted-foreground mx-auto max-w-2xl">
+							<p className="mx-auto max-w-2xl text-muted-foreground">
 								Une vitrine de mon travail créatif et de mes projets techniques.
 								Chaque projet représente un défi unique et une expérience
 								d'apprentissage dans mon parcours de développeur.
@@ -166,7 +187,7 @@ export default function ProjectClientNew({ projects = [] }) {
 								transition={{ duration: 0.7 }}
 								className="mb-16"
 							>
-								<div className="border-primary/30 bg-gray-900/60 relative overflow-hidden rounded-lg border backdrop-blur-sm">
+								<div className="relative overflow-hidden rounded-lg border border-primary/30 bg-gray-900/60 backdrop-blur-sm">
 									<div className="dithered absolute inset-0 opacity-20"></div>
 									<div className="md:flex">
 										<div className="relative h-64 md:h-auto md:w-1/2">
@@ -188,7 +209,7 @@ export default function ProjectClientNew({ projects = [] }) {
 												<h2 className="mb-4 text-2xl font-bold md:text-3xl">
 													{featuredProject.title}
 												</h2>
-												<p className="text-muted-foreground mb-6">
+												<p className="mb-6 text-muted-foreground">
 													{featuredProject.description}
 												</p>
 												<div className="mb-6 flex flex-wrap gap-2">
@@ -204,9 +225,9 @@ export default function ProjectClientNew({ projects = [] }) {
 												</div>
 											</div>
 											<div className="flex gap-4">
-												{featuredProject.url && featuredProject.url !== '#' && (
+												{featuredProject.liveUrl && (
 													<Link
-														href={featuredProject.url}
+														href={featuredProject.liveUrl}
 														target="_blank"
 														rel="noopener noreferrer"
 													>
@@ -216,6 +237,23 @@ export default function ProjectClientNew({ projects = [] }) {
 														</Button>
 													</Link>
 												)}
+												{featuredProject.githubUrl &&
+													featuredProject.githubUrl !==
+														featuredProject.liveUrl && (
+														<Link
+															href={featuredProject.githubUrl}
+															target="_blank"
+															rel="noopener noreferrer"
+														>
+															<Button
+																variant="outline"
+																className="border-primary/30 hover:bg-primary/20"
+															>
+																<ExternalLink className="mr-2 h-4 w-4" />
+																GitHub
+															</Button>
+														</Link>
+													)}
 												<Link href={`/projects/${featuredProject.slug}`}>
 													<Button
 														variant="outline"
@@ -241,22 +279,29 @@ export default function ProjectClientNew({ projects = [] }) {
 						>
 							{processedProjects.map((project, index) => (
 								<motion.div key={project.slug || index} variants={item}>
-									<Card className="border-primary/20 bg-gray-900/60 hover:border-primary/50 flex h-full flex-col overflow-hidden backdrop-blur-sm transition-all duration-300">
+									<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-900/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50">
 										<div className="relative h-48 overflow-hidden">
 											<Image
 												src={project.image}
 												alt={project.title}
 												fill
 												className="object-cover transition-transform duration-500 hover:scale-105"
-												unoptimized // Si les images viennent d'une API externe
+												unoptimized
 											/>
+											{project.category && (
+												<div className="absolute right-4 top-4">
+													<Badge className="bg-primary/80 text-white">
+														{project.category}
+													</Badge>
+												</div>
+											)}
 										</div>
 
 										<CardContent className="flex-grow pt-6">
 											<h3 className="mb-2 text-xl font-bold">
 												{project.title}
 											</h3>
-											<p className="text-muted-foreground mb-4 line-clamp-3 text-sm leading-relaxed">
+											<p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
 												{project.description}
 											</p>
 											<div className="flex flex-wrap gap-2">
@@ -285,27 +330,46 @@ export default function ProjectClientNew({ projects = [] }) {
 												<Button
 													variant="ghost"
 													size="sm"
-													className="hover:bg-primary/20 text-primary"
+													className="text-primary hover:bg-primary/20"
 												>
 													Voir Détails
 												</Button>
 											</Link>
-											{project.url && project.url !== '#' && (
-												<Link
-													href={project.url}
-													target="_blank"
-													rel="noopener noreferrer"
-												>
-													<Button
-														variant="outline"
-														size="sm"
-														className="border-primary hover:bg-primary/20"
+											<div className="flex gap-2">
+												{project.liveUrl && (
+													<Link
+														href={project.liveUrl}
+														target="_blank"
+														rel="noopener noreferrer"
 													>
-														<ExternalLink className="mr-2 h-4 w-4" />
-														Démo Live
-													</Button>
-												</Link>
-											)}
+														<Button
+															variant="outline"
+															size="sm"
+															className="border-primary hover:bg-primary/20"
+														>
+															<ExternalLink className="mr-2 h-4 w-4" />
+															Live
+														</Button>
+													</Link>
+												)}
+												{project.githubUrl &&
+													project.githubUrl !== project.liveUrl && (
+														<Link
+															href={project.githubUrl}
+															target="_blank"
+															rel="noopener noreferrer"
+														>
+															<Button
+																variant="outline"
+																size="sm"
+																className="border-primary/30 hover:bg-primary/20"
+															>
+																<ExternalLink className="mr-2 h-4 w-4" />
+																Code
+															</Button>
+														</Link>
+													)}
+											</div>
 										</CardFooter>
 									</Card>
 								</motion.div>
