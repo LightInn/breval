@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useState, useRef } from 'react' // Added useState
 import { motion, useInView } from 'framer-motion'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -12,6 +12,7 @@ import ScrollObject3D from '@/components/scroll-object-3d'
 
 export default function ProjectClientNew({ projects = [] }) {
 	// Default to empty array
+	const [selectedCategory, setSelectedCategory] = useState('All Projects') // Added state for selected category
 	const ref = useRef(null)
 	const featuredRef = useRef(null)
 	const isInView = useInView(ref, { once: false, amount: 0.1 })
@@ -120,6 +121,17 @@ export default function ProjectClientNew({ projects = [] }) {
 		].filter(cat => !projectCategories.includes(cat)),
 	].slice(0, 6) // Limit to 6 categories for UI
 
+	const handleCategoryClick = category => {
+		setSelectedCategory(category)
+	}
+
+	const filteredProjects =
+		selectedCategory === 'All Projects'
+			? processedProjects
+			: processedProjects.filter(
+					project => project.category === selectedCategory
+				)
+
 	return (
 		<main className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
 			<div className="relative">
@@ -137,12 +149,12 @@ export default function ProjectClientNew({ projects = [] }) {
 							className="mb-12 text-center"
 						>
 							<h1 className="text-shadow mb-4 text-4xl font-bold md:text-6xl">
-								<span className="text-primary">Galerie</span> de Projets
+								Project <span className="text-primary">Gallery</span>
 							</h1>
 							<p className="mx-auto max-w-2xl text-muted-foreground">
-								Une vitrine de mon travail créatif et de mes projets techniques.
-								Chaque projet représente un défi unique et une expérience
-								d'apprentissage dans mon parcours de développeur.
+								A showcase of my creative work and technical projects. Each
+								project represents a unique challenge and learning experience in
+								my developer journey.
 							</p>
 						</motion.div>
 
@@ -151,13 +163,16 @@ export default function ProjectClientNew({ projects = [] }) {
 								{categories.map((category, index) => (
 									<Button
 										key={index}
-										variant={index === 0 ? 'default' : 'outline'}
+										variant={
+											selectedCategory === category ? 'default' : 'outline'
+										} // Updated variant based on selectedCategory
 										size="sm"
 										className={
-											index === 0
+											selectedCategory === category
 												? 'bg-primary hover:bg-primary/80'
 												: 'border-primary/30 hover:bg-primary/20'
 										}
+										onClick={() => handleCategoryClick(category)} // Added onClick handler
 									>
 										{category}
 									</Button>
@@ -170,7 +185,7 @@ export default function ProjectClientNew({ projects = [] }) {
 								className="border-primary/30 hover:bg-primary/20"
 							>
 								<Filter className="mr-2 h-4 w-4" />
-								Trier
+								Sort
 							</Button>
 						</div>
 
@@ -200,7 +215,7 @@ export default function ProjectClientNew({ projects = [] }) {
 											/>
 											<div className="absolute left-4 top-4">
 												<Badge className="bg-primary text-white">
-													Projet en Vedette
+													Featured Project
 												</Badge>
 											</div>
 										</div>
@@ -233,7 +248,7 @@ export default function ProjectClientNew({ projects = [] }) {
 													>
 														<Button className="bg-primary hover:bg-primary/80">
 															<ExternalLink className="mr-2 h-4 w-4" />
-															Démo Live
+															Live Demo
 														</Button>
 													</Link>
 												)}
@@ -259,7 +274,7 @@ export default function ProjectClientNew({ projects = [] }) {
 														variant="outline"
 														className="border-primary hover:bg-primary/20"
 													>
-														Voir Détails
+														View Details
 													</Button>
 												</Link>
 											</div>
@@ -277,103 +292,108 @@ export default function ProjectClientNew({ projects = [] }) {
 							animate={isInView ? 'show' : 'hidden'}
 							className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
 						>
-							{processedProjects.map((project, index) => (
-								<motion.div key={project.slug || index} variants={item}>
-									<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-900/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50">
-										<div className="relative h-48 overflow-hidden">
-											<Image
-												src={project.image}
-												alt={project.title}
-												fill
-												className="object-cover transition-transform duration-500 hover:scale-105"
-												unoptimized
-											/>
-											{project.category && (
-												<div className="absolute right-4 top-4">
-													<Badge className="bg-primary/80 text-white">
-														{project.category}
-													</Badge>
-												</div>
-											)}
-										</div>
-
-										<CardContent className="flex-grow pt-6">
-											<h3 className="mb-2 text-xl font-bold">
-												{project.title}
-											</h3>
-											<p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-												{project.description}
-											</p>
-											<div className="flex flex-wrap gap-2">
-												{project.tags.slice(0, 3).map((tag, tagIndex) => (
-													<Badge
-														key={tagIndex}
-														variant="outline"
-														className="border-primary/30 bg-primary/10"
-													>
-														{tag}
-													</Badge>
-												))}
-												{project.tags.length > 3 && (
-													<Badge
-														variant="outline"
-														className="border-primary/30 bg-primary/10"
-													>
-														+{project.tags.length - 3}
-													</Badge>
+							{filteredProjects.map(
+								(
+									project,
+									index // Use filteredProjects
+								) => (
+									<motion.div key={project.slug || index} variants={item}>
+										<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-900/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50">
+											<div className="relative h-48 overflow-hidden">
+												<Image
+													src={project.image}
+													alt={project.title}
+													fill
+													className="object-cover transition-transform duration-500 hover:scale-105"
+													unoptimized
+												/>
+												{project.category && (
+													<div className="absolute right-4 top-4">
+														<Badge className="bg-primary/80 text-white">
+															{project.category}
+														</Badge>
+													</div>
 												)}
 											</div>
-										</CardContent>
 
-										<CardFooter className="flex items-center justify-between pt-4">
-											<Link href={`/projects/${project.slug}`}>
-												<Button
-													variant="ghost"
-													size="sm"
-													className="text-primary hover:bg-primary/20"
-												>
-													Voir Détails
-												</Button>
-											</Link>
-											<div className="flex gap-2">
-												{project.liveUrl && (
-													<Link
-														href={project.liveUrl}
-														target="_blank"
-														rel="noopener noreferrer"
-													>
-														<Button
+											<CardContent className="flex-grow pt-6">
+												<h3 className="mb-2 text-xl font-bold">
+													{project.title}
+												</h3>
+												<p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+													{project.description}
+												</p>
+												<div className="flex flex-wrap gap-2">
+													{project.tags.slice(0, 3).map((tag, tagIndex) => (
+														<Badge
+															key={tagIndex}
 															variant="outline"
-															size="sm"
-															className="border-primary hover:bg-primary/20"
+															className="border-primary/30 bg-primary/10"
 														>
-															<ExternalLink className="mr-2 h-4 w-4" />
-															Live
-														</Button>
-													</Link>
-												)}
-												{project.githubUrl &&
-													project.githubUrl !== project.liveUrl && (
+															{tag}
+														</Badge>
+													))}
+													{project.tags.length > 3 && (
+														<Badge
+															variant="outline"
+															className="border-primary/30 bg-primary/10"
+														>
+															+{project.tags.length - 3}
+														</Badge>
+													)}
+												</div>
+											</CardContent>
+
+											<CardFooter className="flex items-center justify-between pt-4">
+												<Link href={`/projects/${project.slug}`}>
+													<Button
+														variant="ghost"
+														size="sm"
+														className="text-primary hover:bg-primary/20"
+													>
+														View Details
+													</Button>
+												</Link>
+												<div className="flex gap-2">
+													{project.liveUrl && (
 														<Link
-															href={project.githubUrl}
+															href={project.liveUrl}
 															target="_blank"
 															rel="noopener noreferrer"
 														>
 															<Button
 																variant="outline"
 																size="sm"
-																className="border-primary/30 hover:bg-primary/20"
+																className="border-primary hover:bg-primary/20"
 															>
 																<ExternalLink className="mr-2 h-4 w-4" />
-																Code
+																Live
 															</Button>
 														</Link>
 													)}
-											</div>
-										</CardFooter>
-									</Card>
-								</motion.div>
-							))}
+													{project.githubUrl &&
+														project.githubUrl !== project.liveUrl && (
+															<Link
+																href={project.githubUrl}
+																target="_blank"
+																rel="noopener noreferrer"
+															>
+																<Button
+																	variant="outline"
+																	size="sm"
+																	className="border-primary/30 hover:bg-primary/20"
+																>
+																	<ExternalLink className="mr-2 h-4 w-4" />
+																	Code
+																</Button>
+															</Link>
+														)}
+												</div>
+											</CardFooter>
+										</Card>
+									</motion.div>
+								)
+							)}
 						</motion.div>
 
 						{/* Load More Button - Functionality to be implemented if needed */}
@@ -384,7 +404,7 @@ export default function ProjectClientNew({ projects = [] }) {
               className="text-center mt-12"
             >
               <Button variant="default" className="bg-primary hover:bg-primary/80">
-                Charger Plus
+                Load More
               </Button>
             </motion.div> */}
 					</div>
