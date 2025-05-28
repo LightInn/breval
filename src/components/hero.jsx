@@ -156,7 +156,7 @@ export default function Hero() {
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5, delay: 1.4 }}
-				className="absolute inset-x-0 bottom-10 z-10 flex justify-center"
+				className="absolute inset-x-0 bottom-12 z-10 z-30 flex justify-center"
 			>
 				<div className="flex flex-col items-center">
 					<p className="mb-4 text-sm text-muted-foreground">
