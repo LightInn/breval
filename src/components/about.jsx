@@ -83,16 +83,16 @@ export default function About() {
 							{roles.map((role, index) => (
 								<Card
 									key={index}
-									className="border-primary/20 bg-card/60 hover:border-primary/40 backdrop-blur-sm transition-all duration-300"
+									className="border-primary/20 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/40"
 								>
 									<CardContent className="p-4">
 										<div className="flex items-start">
-											<div className="text-primary mr-3 mt-1">{role.icon}</div>
+											<div className="mr-3 mt-1 text-primary">{role.icon}</div>
 											<p className="text-sm">
 												{role.title}{' '}
 												<a
 													href={role.url}
-													className="text-primary magnetic-button font-medium hover:underline"
+													className="magnetic-button font-medium text-primary hover:underline"
 												>
 													{role.link}
 												</a>
@@ -126,21 +126,21 @@ export default function About() {
 						<motion.div variants={item} className="flex flex-wrap gap-4">
 							<Button
 								variant="outline"
-								className="border-primary/30 hover:bg-primary/10 magnetic-button pixel-corners"
+								className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10"
 							>
 								<Github className="mr-2 h-4 w-4" />
 								GitHub
 							</Button>
 							<Button
 								variant="outline"
-								className="border-primary/30 hover:bg-primary/10 magnetic-button pixel-corners"
+								className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10"
 							>
 								<Linkedin className="mr-2 h-4 w-4" />
 								LinkedIn
 							</Button>
 							<Button
 								variant="outline"
-								className="border-primary/30 hover:bg-primary/10 magnetic-button pixel-corners"
+								className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10"
 							>
 								<ExternalLink className="mr-2 h-4 w-4" />
 								Resume
@@ -152,21 +152,21 @@ export default function About() {
 					<div className="order-1 space-y-8 lg:order-2">
 						<motion.div variants={item} className="flex justify-center">
 							<div className="relative">
-								<div className="bg-primary/20 absolute -inset-4 rounded-full blur-xl" />
-								<div className="bg-card/80 pixel-corners border-primary/30 dark:dithered-dark dithered-light relative rounded-2xl border p-3 backdrop-blur-sm">
-									<div className="bg-card/90 overflow-hidden rounded-xl p-4">
+								<div className="absolute -inset-4 rounded-full bg-primary/20 blur-xl" />
+								<div className="pixel-corners dark:dithered-dark dithered-light relative rounded-2xl border border-primary/30 bg-card/80 p-3 backdrop-blur-sm">
+									<div className="overflow-hidden rounded-xl bg-card/90 p-4">
 										<Image
-											src="/placeholder.svg?height=400&width=400"
+											src="/home/breval_long_wood.png?height=400&width=400"
 											alt="Bréval Le Floch"
 											width={400}
 											height={400}
 											className="rounded-xl"
 										/>
-										<div className="bg-card/90 border-primary/30 absolute bottom-8 left-8 right-8 rounded-lg border p-3 backdrop-blur-sm">
-											<p className="text-primary text-center text-sm font-bold">
+										<div className="absolute bottom-8 left-8 right-8 rounded-lg border border-primary/30 bg-card/90 p-3 backdrop-blur-sm">
+											<p className="text-center text-sm font-bold text-primary">
 												BRÉVAL LE FLOCH
 											</p>
-											<p className="text-muted-foreground text-center text-xs">
+											<p className="text-center text-xs text-muted-foreground">
 												Creative Developer
 											</p>
 										</div>
