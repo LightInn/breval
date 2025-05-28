@@ -665,7 +665,7 @@ export default function MyJourneySection() {
 
 						{/* Modal Content */}
 						<motion.div
-							className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-purple-500/30 bg-slate-900/95 shadow-2xl backdrop-blur-md"
+							className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-purple-500/30 bg-background shadow-2xl backdrop-blur-md"
 							initial={{ scale: 0.8, opacity: 0, y: 50 }}
 							animate={{ scale: 1, opacity: 1, y: 0 }} //
 							exit={{ scale: 0.8, opacity: 0, y: 50 }}
@@ -684,7 +684,7 @@ export default function MyJourneySection() {
 							<div className="relative max-h-[90vh] overflow-y-auto">
 								{/* Header */}
 								<motion.div
-									className="sticky top-0 z-10 flex items-center justify-between border-b border-purple-500/20 bg-slate-900/80 p-6 backdrop-blur-md md:p-8"
+									className="sticky top-0 z-10 flex items-center justify-between border-b border-purple-500/20 bg-background/80 p-6 backdrop-blur-md md:p-8"
 									initial={{ y: -50, opacity: 0 }}
 									animate={{ y: 0, opacity: 1 }}
 									transition={{ delay: 0.1 }}
@@ -711,7 +711,7 @@ export default function MyJourneySection() {
 									</div>
 									<button
 										onClick={closeModal}
-										className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-slate-800/80 text-gray-400 backdrop-blur-sm transition-all duration-200 hover:bg-slate-700 hover:text-white"
+										className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-background/80 text-gray-400 backdrop-blur-sm transition-all duration-200 hover:bg-background hover:text-white"
 										aria-label="Close modal"
 									>
 										<X className="h-6 w-6" />
@@ -748,7 +748,7 @@ export default function MyJourneySection() {
 													<MapPin className="h-5 w-5 text-purple-400" />
 													The Story
 												</h2>
-												<div className="rounded-xl border border-purple-500/20 bg-slate-800/40 p-6 backdrop-blur-sm">
+												<div className="rounded-xl border border-purple-500/20 bg-background/40 p-6 backdrop-blur-sm">
 													<p className="text-base leading-relaxed text-gray-100 md:text-lg">
 														{activeNodeData.detailedDescription}
 													</p>
@@ -796,7 +796,7 @@ export default function MyJourneySection() {
 													{activeNodeData.technologies.map((tech, index) => (
 														<motion.div
 															key={index}
-															className="rounded-lg border border-purple-500/20 bg-slate-800/60 px-4 py-3 text-center backdrop-blur-sm transition-colors hover:bg-slate-700/60"
+															className="rounded-lg border border-purple-500/20 bg-background/60 px-4 py-3 text-center backdrop-blur-sm transition-colors hover:bg-background/60"
 															initial={{ scale: 0.8, opacity: 0 }}
 															animate={{ scale: 1, opacity: 1 }}
 															transition={{ delay: 0.4 + index * 0.05 }}
@@ -811,7 +811,7 @@ export default function MyJourneySection() {
 											</div>
 
 											{/* Progress Indicator */}
-											<div className="rounded-xl border border-purple-500/20 bg-slate-800/40 p-6 backdrop-blur-sm">
+											<div className="rounded-xl border border-purple-500/20 bg-background/40 p-6 backdrop-blur-sm">
 												<h4 className="mb-4 font-semibold text-white">
 													Journey Progress
 												</h4>
@@ -861,7 +861,7 @@ export default function MyJourneySection() {
 									<div className="flex items-center justify-between">
 										<button
 											onClick={() => navigateToNode('prev')}
-											className="flex items-center gap-3 rounded-xl bg-slate-800/80 px-6 py-3 text-gray-300 backdrop-blur-sm transition-all duration-200 hover:bg-slate-700 hover:text-white"
+											className="hover:background flex items-center gap-3 rounded-xl bg-background/80 px-6 py-3 text-gray-300 backdrop-blur-sm transition-all duration-200 hover:text-white"
 											aria-label="Previous milestone"
 										>
 											<ChevronLeft className="h-5 w-5" />
@@ -888,7 +888,7 @@ export default function MyJourneySection() {
 
 										<button
 											onClick={() => navigateToNode('next')}
-											className="flex items-center gap-3 rounded-xl bg-slate-800/80 px-6 py-3 text-gray-300 backdrop-blur-sm transition-all duration-200 hover:bg-slate-700 hover:text-white"
+											className="flex items-center gap-3 rounded-xl bg-background/80 px-6 py-3 text-gray-300 backdrop-blur-sm transition-all duration-200 hover:bg-background hover:text-white"
 											aria-label="Next milestone"
 										>
 											<span className="hidden sm:inline">Next</span>
