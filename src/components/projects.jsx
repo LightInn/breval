@@ -182,7 +182,7 @@ export default function Projects() {
 										)}
 										<div className="absolute bottom-4 left-4">
 											<h3
-												className={`font-bold text-white ${project.featured ? 'text-2xl' : 'text-xl'}`}
+												className={`font-bold dark:text-white ${project.featured ? 'text-2xl' : 'text-xl'}`}
 											>
 												{project.title}
 											</h3>
