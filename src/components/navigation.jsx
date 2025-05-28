@@ -48,14 +48,9 @@ export default function Navigation() {
 			<div
 				className={`absolute inset-0 transition-all duration-300 ${
 					scrolled
-						? 'bg-gradient-to-b from-background/80 to-transparent'
-						: 'bg-transparent'
+						? 'bg-gradient-to-b from-black/70 to-transparent'
+						: 'bg-gradient-to-b from-transparent to-transparent'
 				}`}
-				style={{
-					background: scrolled
-						? 'linear-gradient(to bottom, hsl(var(--background) / 0.8) 0%, hsl(var(--background) / 0.6) 50%, transparent 100%)'
-						: 'transparent',
-				}}
 			/>
 			<div className="relative mx-auto max-w-7xl">
 				<nav className="flex items-center justify-between">
