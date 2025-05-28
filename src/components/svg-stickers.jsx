@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
+import { useMemo } from 'react'
 
 export function SvgSticker({ type, className = '', size = 'md' }) {
 	const { theme } = useTheme()
@@ -12,6 +13,21 @@ export function SvgSticker({ type, className = '', size = 'md' }) {
 		lg: 'w-20 h-20', // Reduced from w-24 h-24
 	}
 
+	// Utiliser useMemo pour que chaque sticker ait une animation unique et fixe
+	const animation = useMemo(() => {
+		const rotations = [-360, -180, -90, 90, 180, 360]
+		const delays = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+		const durations = [0.5, 0.6, 0.7, 0.8]
+		const bounces = [0.3, 0.4, 0.5, 0.6]
+
+		return {
+			rotate: rotations[Math.floor(Math.random() * rotations.length)],
+			delay: delays[Math.floor(Math.random() * delays.length)],
+			duration: durations[Math.floor(Math.random() * durations.length)],
+			bounce: bounces[Math.floor(Math.random() * bounces.length)],
+		}
+	}, [type, className]) // Dépendances pour créer une animation unique par sticker
+
 	const stickers = {
 		sakura: (
 			<svg
@@ -21,7 +37,7 @@ export function SvgSticker({ type, className = '', size = 'md' }) {
 				xmlns="http://www.w3.org/2000/svg"
 				className={sizeClasses[size]}
 			>
-				<g className="animate-sticker-bounce">
+				<g>
 					<rect
 						x="4"
 						y="4"
@@ -54,7 +70,7 @@ export function SvgSticker({ type, className = '', size = 'md' }) {
 				xmlns="http://www.w3.org/2000/svg"
 				className={sizeClasses[size]}
 			>
-				<g className="animate-sticker-bounce">
+				<g>
 					<rect
 						x="4"
 						y="4"
@@ -87,7 +103,7 @@ export function SvgSticker({ type, className = '', size = 'md' }) {
 				xmlns="http://www.w3.org/2000/svg"
 				className={sizeClasses[size]}
 			>
-				<g className="animate-sticker-bounce">
+				<g>
 					<rect
 						x="4"
 						y="4"
@@ -115,7 +131,7 @@ export function SvgSticker({ type, className = '', size = 'md' }) {
 				xmlns="http://www.w3.org/2000/svg"
 				className={sizeClasses[size]}
 			>
-				<g className="animate-sticker-bounce">
+				<g>
 					<rect
 						x="4"
 						y="4"
@@ -143,7 +159,7 @@ export function SvgSticker({ type, className = '', size = 'md' }) {
 				xmlns="http://www.w3.org/2000/svg"
 				className={sizeClasses[size]}
 			>
-				<g className="animate-sticker-bounce">
+				<g>
 					<rect
 						x="4"
 						y="4"
@@ -173,9 +189,14 @@ export function SvgSticker({ type, className = '', size = 'md' }) {
 	return (
 		<motion.div
 			className={`absolute ${className} overflow-visible`}
-			initial={{ opacity: 0, scale: 0, rotate: -180 }}
+			initial={{ opacity: 0, scale: 0, rotate: animation.rotate }}
 			whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-			transition={{ duration: 0.6, type: 'spring', bounce: 0.4 }}
+			transition={{
+				duration: animation.duration,
+				type: 'spring',
+				bounce: animation.bounce,
+				delay: animation.delay,
+			}}
 			viewport={{ once: true }}
 			// Ensure stickers are above other content
 			style={{ zIndex: 10 }}
@@ -187,9 +208,9 @@ export function SvgSticker({ type, className = '', size = 'md' }) {
 
 export function SectionDivider() {
 	return (
-		<div className="relative overflow-visible py-20">
-			{/* Ensure container has enough padding to show stickers */}
-			<div className="absolute inset-0 -mx-8 -my-8 overflow-visible">
+		<div className="relative z-20 overflow-visible py-20">
+			{/* Container avec débordement vers le haut et coins arrondis */}
+			<div className="absolute inset-0 -mx-8 -my-16 overflow-visible rounded-[150px] bg-gradient-to-b from-blue-500 via-black to-red-500">
 				<SvgSticker type="sakura" className="left-8 top-4" size="md" />
 				<SvgSticker type="mountain" className="right-16 top-8" size="lg" />
 				<SvgSticker type="star" className="bottom-4 left-1/4" size="sm" />
@@ -199,6 +220,9 @@ export function SectionDivider() {
 					size="md"
 				/>
 				<SvgSticker type="diamond" className="bottom-8 right-8" size="sm" />
+				{/* Ajout de stickers supplémentaires pour plus de richesse visuelle */}
+				<SvgSticker type="star" className="left-12 top-16" size="sm" />
+				<SvgSticker type="sakura" className="bottom-12 right-8" size="sm" />
 			</div>
 		</div>
 	)
