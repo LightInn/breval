@@ -62,7 +62,7 @@ export default function Hero() {
 						className="mb-6"
 						whileHover="hover" // Add whileHover to trigger children's hover animation
 					>
-						<div className="bg-card/80 border-primary/30 text-muted-foreground pixel-corners inline-block rounded-full border px-6 py-2 text-sm font-medium backdrop-blur-md">
+						<div className="pixel-corners inline-block rounded-full border border-primary/30 bg-card/80 px-6 py-2 text-sm font-medium text-muted-foreground backdrop-blur-md">
 							<motion.span
 								variants={{
 									hover: {
@@ -94,7 +94,7 @@ export default function Hero() {
 							BRÉVAL
 						</span>
 						<br />
-						<span className="text-primary dark:text-shadow-dark text-shadow-light">
+						<span className="dark:text-shadow-dark text-shadow-light text-primary">
 							LE FLOCH
 						</span>
 					</motion.h1>
@@ -107,8 +107,8 @@ export default function Hero() {
 						className="mb-8"
 					>
 						<div className="relative inline-block">
-							<div className="bg-primary/20 absolute inset-0 rounded-full blur-xl" />
-							<p className="border-primary/30 bg-card/60 pixel-corners relative rounded-full border px-8 py-3 text-lg backdrop-blur-sm md:text-xl">
+							<div className="absolute inset-0 rounded-full bg-primary/20 blur-xl" />
+							<p className="pixel-corners relative rounded-full border border-primary/30 bg-card/60 px-8 py-3 text-lg backdrop-blur-sm md:text-xl">
 								Creative Developer & Digital Craftsman
 							</p>
 						</div>
@@ -119,7 +119,7 @@ export default function Hero() {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8, delay: 1 }}
-						className="text-muted-foreground mx-auto mb-8 max-w-2xl text-lg"
+						className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground"
 					>
 						CTO of ForMenu, Co-founder of multiple startups, and passionate
 						about exploring the infinite possibilities of technology and
@@ -135,7 +135,7 @@ export default function Hero() {
 					>
 						<Button
 							size="lg"
-							className="magnetic-button bg-primary hover:bg-primary/90 text-primary-foreground pixel-corners rounded-full px-8 py-3"
+							className="magnetic-button pixel-corners rounded-full bg-primary px-8 py-3 text-primary-foreground hover:bg-primary/90"
 						>
 							<Play className="mr-2 h-5 w-5" />
 							View My Work
@@ -143,35 +143,36 @@ export default function Hero() {
 						<Button
 							variant="outline"
 							size="lg"
-							className="magnetic-button border-primary/30 hover:bg-primary/10 pixel-corners rounded-full px-8 py-3"
+							className="magnetic-button pixel-corners rounded-full border-primary/30 px-8 py-3 hover:bg-primary/10"
 						>
 							Get In Touch
 						</Button>
 					</motion.div>
 				</motion.div>
 			</div>
+
 			{/* Scroll Indicator */}
 			<motion.div
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5, delay: 1.4 }}
-				className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2 transform"
+				className="absolute inset-x-0 bottom-10 z-10 flex justify-center"
 			>
 				<div className="flex flex-col items-center">
-					<p className="text-muted-foreground mb-4 text-sm">
+					<p className="mb-4 text-sm text-muted-foreground">
 						Scroll to explore
 					</p>
 					<motion.div
 						animate={{ y: [0, 10, 0] }}
 						transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
-						className="border-primary/50 bg-card/30 flex h-12 w-8 justify-center rounded-full border-2 p-2 backdrop-blur-sm"
+						className="flex h-12 w-8 justify-center rounded-full border-2 border-primary/50 bg-card/30 p-2 backdrop-blur-sm"
 					>
-						<ArrowDown className="text-primary animate-bounce-slow h-4 w-4" />
+						<ArrowDown className="animate-bounce-slow h-4 w-4 text-primary" />
 					</motion.div>
 				</div>
 			</motion.div>
 			{/* Bottom Gradient */}
-			<div className="from-background z-5 absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t to-transparent" />
+			<div className="z-5 absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
 		</section>
 	)
 }
