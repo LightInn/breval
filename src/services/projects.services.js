@@ -10,7 +10,7 @@ export async function getProjects() {
 
 export async function getFeaturedProjects() {
 	const res = await fetch(
-		'https://breval-api.lightin.io/api/projets?sort=rank%3Adesc&populate=*&pagination[limit]=8',
+		'https://breval-api.lightin.io/api/projets?sort=rank%3Adesc&populate=*&pagination[limit]=4',
 		{ cache: 'default' } // Cache for 1 hour
 	)
 	const data = await res.json()
