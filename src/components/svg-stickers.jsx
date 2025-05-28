@@ -206,11 +206,24 @@ export function SvgSticker({ type, className = '', size = 'md' }) {
 	)
 }
 
-export function SectionDivider() {
+export function SectionDivider({ direction = null }) {
+	const isDown = direction === 'down'
+	const isUp = direction === 'up'
 	return (
 		<div className="relative z-20 overflow-visible py-20">
 			{/* Container avec débordement vers le haut et coins arrondis */}
-			<div className="absolute inset-0 -mx-8 -my-16 overflow-visible rounded-[150px] bg-gradient-to-b from-blue-500 via-black to-red-500">
+			<div
+				className={
+					'absolute inset-0 -mx-8 -my-16 overflow-visible rounded-[150px] bg-gradient-to-b ' +
+					(isDown
+						? ' from-transparent via-black to-black'
+						: isUp
+							? ' from-black via-black to-transparent'
+							: ' from-transparent via-transparent to-transparent')
+				}
+			>
+				{/* Effet de dégradé pour le fond */}
+
 				<SvgSticker type="sakura" className="left-8 top-4" size="md" />
 				<SvgSticker type="mountain" className="right-16 top-8" size="lg" />
 				<SvgSticker type="star" className="bottom-4 left-1/4" size="sm" />

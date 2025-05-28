@@ -510,7 +510,7 @@ export default function MyJourneySection() {
 				/>
 			)}
 
-			<div className="container relative z-10 mx-auto px-6 py-20">
+			<div className="container relative z-10 mx-auto mt-20 px-6 py-20">
 				{/* Header */}
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
