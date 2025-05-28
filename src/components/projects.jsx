@@ -21,7 +21,7 @@ export default function Projects() {
 			try {
 				setLoading(true)
 				const data = await getFeaturedProjects()
-				
+
 				// Transformer les données de l'API au format attendu par le composant
 				const transformedProjects = data.map((project, index) => {
 					// Parser les skills de différents formats possibles
@@ -38,17 +38,27 @@ export default function Projects() {
 								}
 							} catch {
 								// Si ce n'est pas du JSON, essayer de séparer par virgules
-								tags = project.skills.split(',').map(s => s.trim()).filter(Boolean).slice(0, 4)
+								tags = project.skills
+									.split(',')
+									.map(s => s.trim())
+									.filter(Boolean)
+									.slice(0, 4)
 							}
 						}
 					}
 
 					return {
 						title: project.title || 'Projet sans titre',
-						description: project.short_description || project.description || 'Description non disponible.',
+						description:
+							project.short_description ||
+							project.description ||
+							'Description non disponible.',
 						tags,
-						image: project.main_media?.url || 
-							(project.media && project.media.length > 0 ? project.media[0].url : '/placeholder.svg?height=300&width=500'),
+						image:
+							project.main_media?.url ||
+							(project.media && project.media.length > 0
+								? project.media[0].url
+								: '/placeholder.svg?height=300&width=500'),
 						github: project.url || '#',
 						demo: project.live_url || '#',
 						featured: index === 0, // Le premier projet (plus haut rank) est featured
@@ -89,24 +99,24 @@ export default function Projects() {
 	// Skeleton component pour l'état de chargement
 	const ProjectSkeleton = () => (
 		<Card className="h-full overflow-hidden border-primary/20 bg-card/60 backdrop-blur-sm">
-			<div className="relative overflow-hidden h-48">
-				<div className="h-full w-full bg-muted animate-pulse" />
+			<div className="relative h-48 overflow-hidden">
+				<div className="h-full w-full animate-pulse bg-muted" />
 			</div>
 			<CardContent className="pt-6">
 				<div className="space-y-2">
-					<div className="h-4 bg-muted animate-pulse rounded w-3/4" />
-					<div className="h-3 bg-muted animate-pulse rounded w-full" />
-					<div className="h-3 bg-muted animate-pulse rounded w-2/3" />
+					<div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
+					<div className="h-3 w-full animate-pulse rounded bg-muted" />
+					<div className="h-3 w-2/3 animate-pulse rounded bg-muted" />
 				</div>
-				<div className="flex flex-wrap gap-2 mt-4">
-					{[1, 2, 3].map((i) => (
-						<div key={i} className="h-6 w-16 bg-muted animate-pulse rounded" />
+				<div className="mt-4 flex flex-wrap gap-2">
+					{[1, 2, 3].map(i => (
+						<div key={i} className="h-6 w-16 animate-pulse rounded bg-muted" />
 					))}
 				</div>
 			</CardContent>
 			<CardFooter className="flex justify-between">
-				<div className="h-8 w-20 bg-muted animate-pulse rounded" />
-				<div className="h-8 w-24 bg-muted animate-pulse rounded" />
+				<div className="h-8 w-20 animate-pulse rounded bg-muted" />
+				<div className="h-8 w-24 animate-pulse rounded bg-muted" />
 			</CardFooter>
 		</Card>
 	)
