@@ -28,7 +28,7 @@ import {
 	Zap,
 } from 'lucide-react'
 
-// Interface JourneyNode removed
+import { useInView } from 'framer-motion'
 
 const journeyNodes = [
 	// Removed JourneyNode[] type
@@ -306,6 +306,9 @@ const journeyNodes = [
 ]
 
 export default function MyJourneySection() {
+	const ref = useRef(null)
+	const isInView = useInView(ref, { once: true, amount: 0.1 })
+
 	const [activeNode, setActiveNode] = useState(null) // Removed <string | null>
 	const [isMobile, setIsMobile] = useState(false) // Removed <boolean>
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 }) //
@@ -436,7 +439,10 @@ export default function MyJourneySection() {
 						strokeWidth="2"
 						strokeDasharray="5,5"
 						initial={{ pathLength: 0, opacity: 0 }}
-						animate={{ pathLength: 1, opacity: 0.7 }}
+						animate={{
+							pathLength: isInView ? 1 : 0,
+							opacity: isInView ? 0.7 : 0,
+						}}
 						transition={{
 							duration: shouldReduceMotion ? 0 : 2,
 							delay: shouldReduceMotion ? 0 : 1,
@@ -548,13 +554,16 @@ export default function MyJourneySection() {
 					{journeyNodes.map((node, index) => (
 						<motion.div
 							key={node.id}
-							className="group absolute -translate-x-1/2 -translate-y-1/2 transform cursor-pointer touch-manipulation"
+							className="group absolute cursor-pointer touch-manipulation"
 							style={{
-								left: `${node.position.x}%`,
-								top: `${node.position.y}%`,
+								left: `calc(${node.position.x}% - 40px)`,
+								top: `calc(${node.position.y}% - 40px)`,
 							}}
 							initial={{ opacity: 0, scale: 0 }}
-							animate={{ opacity: 1, scale: 1 }}
+							animate={{
+								opacity: isInView ? 1 : 0,
+								scale: isInView ? 1 : 0,
+							}}
 							transition={{
 								duration: shouldReduceMotion ? 0 : 0.6,
 								delay: shouldReduceMotion ? 0 : index * 0.2,
@@ -576,7 +585,9 @@ export default function MyJourneySection() {
 								}`}
 							>
 								<div className="flex h-full w-full items-center justify-center rounded-full bg-slate-900 text-white">
-									<div className="h-6 w-6 md:h-8 md:w-8">{node.icon}</div>
+									<div className="align-item flex h-6 w-6 justify-center md:h-8 md:w-8">
+										{node.icon}
+									</div>
 								</div>
 
 								{/* Pulse Animation */}
