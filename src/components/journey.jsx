@@ -458,6 +458,7 @@ export default function MyJourneySection() {
 
 	return (
 		<section
+			ref={ref}
 			className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-black"
 			aria-label="My Journey - Professional Development Timeline"
 		>
