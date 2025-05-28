@@ -79,6 +79,8 @@ export default function BlogClientNew({ blogs = [] }) {
 	// Get the first blog as featured, or use fallback
 	const featuredBlogData =
 		Array.isArray(blogs) && blogs.length > 0 ? blogs[0] : null
+
+	console.log('Featured Blog Data:', featuredBlogData)
 	const featuredPost = featuredBlogData
 		? {
 				title: featuredBlogData.title || 'Article en vedette',
@@ -87,8 +89,8 @@ export default function BlogClientNew({ blogs = [] }) {
 					featuredBlogData.publishedAt || featuredBlogData.createdAt
 				),
 				readTime: calculateReadTime(featuredBlogData.body),
-				image: featuredBlogData.media?.url
-					? `${featuredBlogData.image.url}`
+				image: featuredBlogData.image
+					? `${featuredBlogData.image}`
 					: '/placeholder.svg?height=600&width=1200',
 				tags: processTags(featuredBlogData.tags),
 				slug:
@@ -113,8 +115,8 @@ export default function BlogClientNew({ blogs = [] }) {
 					excerpt: blog.description || 'Description non disponible.',
 					date: formatDate(blog.publishedAt || blog.createdAt),
 					readTime: calculateReadTime(blog.body),
-					image: blog.image?.url
-						? `https://breval-api.lightin.io${blog.image.url}`
+					image: blog.image
+						? `${blog.image}`
 						: '/placeholder.svg?height=300&width=500',
 					tags: processTags(blog.tags),
 					slug:
@@ -133,7 +135,7 @@ export default function BlogClientNew({ blogs = [] }) {
 	]
 
 	return (
-		<main className="from-gray-950 to-gray-900 min-h-screen bg-gradient-to-b pt-20 text-white">
+		<main className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
 			<div className="relative">
 				<ScrollObject3D />
 
@@ -151,7 +153,7 @@ export default function BlogClientNew({ blogs = [] }) {
 							<h1 className="text-shadow mb-4 text-4xl font-bold md:text-6xl">
 								<span className="text-primary">Blog</span> & Réflexions
 							</h1>
-							<p className="text-muted-foreground mx-auto max-w-2xl">
+							<p className="mx-auto max-w-2xl text-muted-foreground">
 								Idées, tutoriels et réflexions sur le développement créatif,
 								l'art numérique et l'intersection de la technologie et de la
 								créativité.
@@ -188,7 +190,7 @@ export default function BlogClientNew({ blogs = [] }) {
 								transition={{ duration: 0.7 }}
 								className="mb-16"
 							>
-								<div className="border-primary/30 bg-gray-900/60 relative overflow-hidden rounded-lg border backdrop-blur-sm">
+								<div className="relative overflow-hidden rounded-lg border border-primary/30 bg-gray-900/60 backdrop-blur-sm">
 									<div className="dithered absolute inset-0 opacity-20"></div>
 									<div className="md:flex">
 										<div className="relative h-64 md:h-auto md:w-1/2">
@@ -221,12 +223,12 @@ export default function BlogClientNew({ blogs = [] }) {
 												<h2 className="mb-4 text-2xl font-bold md:text-3xl">
 													{featuredPost.title}
 												</h2>
-												<p className="text-muted-foreground mb-6">
+												<p className="mb-6 text-muted-foreground">
 													{featuredPost.excerpt}
 												</p>
 											</div>
 											<div>
-												<div className="text-muted-foreground mb-4 flex items-center text-sm">
+												<div className="mb-4 flex items-center text-sm text-muted-foreground">
 													<Calendar className="mr-2 h-4 w-4" />
 													<span>{featuredPost.date}</span>
 													<span className="mx-2">•</span>
@@ -234,7 +236,7 @@ export default function BlogClientNew({ blogs = [] }) {
 													<span>{featuredPost.readTime}</span>
 												</div>
 												<Link href={`/blog/${featuredPost.slug}`}>
-													<Button className="bg-primary hover:bg-primary/80 w-full md:w-auto">
+													<Button className="w-full bg-primary hover:bg-primary/80 md:w-auto">
 														Lire l'article
 														<ArrowRight className="ml-2 h-4 w-4" />
 													</Button>
@@ -256,7 +258,7 @@ export default function BlogClientNew({ blogs = [] }) {
 						>
 							{processedBlogs.map((post, index) => (
 								<motion.div key={post.slug || index} variants={item}>
-									<Card className="border-primary/20 bg-gray-900/60 hover:border-primary/50 flex h-full flex-col overflow-hidden backdrop-blur-sm transition-all duration-300">
+									<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-900/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50">
 										<div className="relative h-48 overflow-hidden">
 											<Image
 												src={post.image}
@@ -280,10 +282,10 @@ export default function BlogClientNew({ blogs = [] }) {
 												))}
 											</div>
 											<h3 className="mb-2 text-xl font-bold">{post.title}</h3>
-											<p className="text-muted-foreground mb-4 line-clamp-3 text-sm leading-relaxed">
+											<p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
 												{post.excerpt}
 											</p>
-											<div className="text-muted-foreground flex items-center text-sm">
+											<div className="flex items-center text-sm text-muted-foreground">
 												<Calendar className="mr-2 h-4 w-4" />
 												<span>{post.date}</span>
 												<span className="mx-2">•</span>
@@ -296,7 +298,7 @@ export default function BlogClientNew({ blogs = [] }) {
 											<Link href={`/blog/${post.slug}`} className="w-full">
 												<Button
 													variant="ghost"
-													className="hover:bg-primary/20 w-full justify-between hover:text-white"
+													className="w-full justify-between hover:bg-primary/20 hover:text-white"
 												>
 													Lire l'article
 													<ArrowRight className="ml-2 h-4 w-4" />

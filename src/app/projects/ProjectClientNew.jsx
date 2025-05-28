@@ -91,9 +91,7 @@ export default function ProjectClientNew({ projects = [] }) {
 							? project.media[0].url
 							: '/placeholder.svg?height=300&width=500'),
 					url: project.url || project.live_url,
-					slug: project.title
-						? project.title.toLowerCase().replace(/\s+/g, '-')
-						: '#',
+					slug: project.title ? project.title : '#',
 					tags: project.skills
 						? project.skills.slice(0, 3) // Limit to 3 tags for grid display
 						: ['Web Development'],
