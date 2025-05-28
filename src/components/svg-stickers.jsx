@@ -216,9 +216,9 @@ export function SectionDivider({ direction = null }) {
 				className={
 					'absolute inset-0 -mx-8 -my-16 overflow-visible rounded-[150px] bg-gradient-to-b ' +
 					(isDown
-						? ' from-transparent via-black to-black'
+						? ' from-transparent via-white to-white dark:via-black dark:to-black'
 						: isUp
-							? ' from-black via-black to-transparent'
+							? ' from-white via-white to-transparent dark:from-black dark:via-black'
 							: ' from-transparent via-transparent to-transparent')
 				}
 			>
