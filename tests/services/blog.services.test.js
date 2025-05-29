@@ -35,33 +35,31 @@ describe('Blog Services (src/services/blog.services.js)', () => {
 			const mockRawBlogData = [
 				{
 					id: 1,
-					attributes: {
-						// Strapi v4 typically wraps data in attributes
-						publishedAt: '2023-01-01T00:00:00.000Z',
-						image: { data: { attributes: { url: '/uploads/image1.jpg' } } }, // Nested structure for image
-						describe: 'Test Description 1',
-						content: 'Test Content 1',
-						title: 'Test Title 1',
-						tags: ['tag1', 'tag2'],
-						url: '/blog/test-title-1',
-					},
+
+					// Strapi v4 typically wraps data in attributes
+					publishedAt: '2023-01-01T00:00:00.000Z',
+					image: { url: '/uploads/image1.jpg' }, // Nested structure for image
+					describe: 'Test Description 1',
+					content: 'Test Content 1',
+					title: 'Test Title 1',
+					tags: ['tag1', 'tag2'],
+					url: '/blog/test-title-1',
 				},
 				{
 					id: 2,
-					attributes: {
-						publishedAt: '2023-01-02T00:00:00.000Z',
-						image: null, // Test case for missing image
-						describe: 'Test Description 2',
-						content: 'Test Content 2',
-						title: 'Test Title 2',
-						tags: ['tag3'],
-						url: '/blog/test-title-2',
-					},
+
+					publishedAt: '2023-01-02T00:00:00.000Z',
+					image: null, // Test case for missing image
+					describe: 'Test Description 2',
+					content: 'Test Content 2',
+					title: 'Test Title 2',
+					tags: ['tag3'],
+					url: '/blog/test-title-2',
 				},
 			]
 			// The service seems to expect data directly, not nested in attributes, let's adjust mock response
 			const mockServiceInputData = mockRawBlogData.map(item => ({
-				...item.attributes,
+				...item,
 				id: item.id,
 			}))
 
@@ -97,19 +95,11 @@ describe('Blog Services (src/services/blog.services.js)', () => {
 		})
 
 		test('should handle Strapi find error gracefully (e.g., return empty array or throw)', async () => {
-			// For this test, we'll assume it should return an empty array on error
-			// Modify as per actual error handling if it's different (e.g., throws error)
+			// The actual implementation catches errors and returns an empty array
 			mockStrapiFind.mockRejectedValueOnce(new Error('Strapi API error'))
 
-			// Option 1: If it's expected to catch and return empty array
-			// const blogs = await getAllBlogs();
-			// expect(blogs).toEqual([]);
-
-			// Option 2: If it's expected to throw (more common for unhandled promise rejections)
-			// For the current implementation, it seems like it would throw.
-			// Let's test that it doesn't silently fail.
-			// If the function is intended to catch errors and return [], this test needs adjustment.
-			await expect(getAllBlogs()).rejects.toThrow('Strapi API error')
+			const blogs = await getAllBlogs()
+			expect(blogs).toEqual([])
 		})
 	})
 })
