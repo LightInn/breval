@@ -59,7 +59,7 @@ export default function Navigation() {
 					<div className="flex items-center">
 						<Link
 							className="magnetic-button text-2xl font-bold text-primary"
-							href="/public"
+							href="/"
 						>
 							<motion.div
 								animate={{ opacity: 1, scale: 1 }}

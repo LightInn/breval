@@ -25,7 +25,7 @@ export default function BlogPageClient({
 	slug: pageSlug,
 }) {
 	return (
-		<div className="relative min-h-screen bg-background text-foreground">
+		<div className="relative mt-20 min-h-screen bg-background text-foreground">
 			<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-20"></div>
 
 			<Head>
@@ -93,7 +93,7 @@ export default function BlogPageClient({
 								initial={{ opacity: 0, y: 30 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.6, delay: 0.2 }}
-								className="pixel-corners flex h-full w-full flex-col justify-center gap-8 rounded-2xl border border-border bg-background/80 p-8 backdrop-blur-xl md:max-w-[70vw]"
+								className="pixel-corners flex h-1/2 w-full flex-col justify-center gap-8 rounded-2xl border border-border bg-background/80 p-8 backdrop-blur-xl md:max-w-[70vw]"
 							>
 								<div className="flex flex-wrap justify-center gap-2">
 									{blog.tags?.[0] && (

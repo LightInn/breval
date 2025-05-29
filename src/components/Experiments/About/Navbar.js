@@ -27,7 +27,7 @@ function Navbar() {
 				</div>
 
 				<ul className={css.nav}>
-					<Link className={css.navElement} href="/public">
+					<Link className={css.navElement} href="/">
 						<div className={css.logo}>
 							<svg
 								className={css.bitimeSVG}
@@ -90,7 +90,7 @@ function Navbar() {
 					>
 						<Link
 							className={`m-0 flex h-full w-16 origin-center items-center justify-center rounded-full p-0 no-underline transition-all duration-100 ease-in-out`}
-							href="/public"
+							href="/"
 						>
 							<Image
 								alt="Logo signature de Bréval Le Floch"
@@ -157,7 +157,7 @@ function Navbar() {
 								className={
 									'block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white'
 								}
-								href="/public"
+								href="/"
 							>
 								Home
 							</Link>
