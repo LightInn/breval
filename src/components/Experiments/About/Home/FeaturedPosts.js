@@ -2,7 +2,7 @@ import React from 'react'
 
 import BlogLayoutTwo from '@/components/Blog/BlogLayoutTwo'
 
-import BlogLayoutOne from '../../Blog/BlogLayoutOne'
+import BlogLayoutOne from '../../../Blog/BlogLayoutOne'
 
 import { sortBlogs } from '/src/utils'
 

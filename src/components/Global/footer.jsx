@@ -11,7 +11,7 @@ export default function Footer() {
 			<div className="container mx-auto px-4">
 				<div className="flex flex-col items-center justify-between md:flex-row">
 					<div className="mb-6 md:mb-0">
-						<Link className="text-2xl font-bold text-primary" href="/">
+						<Link className="text-2xl font-bold text-primary" href="/public">
 							<div className="flex items-center">
 								<svg
 									fill="currentColor"

@@ -1,10 +1,10 @@
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 
-import { ThemeProvider } from '@/components/theme-provider'
-import CursorBlob from '@/components/cursor-blob'
-import Navigation from '@/components/navigation'
-import Footer from '@/components/footer'
+import { ThemeProvider } from '@/components/Global/theme-provider'
+import CursorBlob from '@/components/Global/cursor-blob'
+import Navigation from '@/components/Global/navigation'
+import Footer from '@/components/Global/footer'
 
 import '../styles/globals.css'
 

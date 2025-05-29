@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 import { rgbDataURL } from '@/services/dataurl.services'
 
-import Tag from '../../Elements/Tag'
+import Tag from '../../../Elements/Tag'
 
 import { sortBlogs } from '/src/utils'
 

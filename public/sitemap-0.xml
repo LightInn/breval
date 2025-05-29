@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://brev.al</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/about</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/Aquatair</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/Artriste</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/BidCardCoin</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/EPSI EDT Scrapper</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/ForMenu</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/ForVoyez</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/My Makeup</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/Pokezilla</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/Polish Brain&apos;z</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/Portefolio V1</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/Portefolio V2</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/Rid</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/Scratch Underflow</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/projects/Spécial-Card</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/categories/all</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/articles/3d-modeling-art-crm-vs-rodin-gen1</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/articles/a-glance-at-rodin-gen1.5</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/articles/adapt-color-palette-dynamic-image-integration</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/articles/create-2d-svg-avatar-step-by-step</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/articles/highlight-code-blocks-nextjs</loc><lastmod>2025-05-26T11:45:02.393Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/articles/midjourney-character-reference</loc><lastmod>2025-05-26T11:45:02.394Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/articles/monitor-disk-usage-with-discord</loc><lastmod>2025-05-26T11:45:02.394Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/articles/monitor-ssh-connection-with-discord</loc><lastmod>2025-05-26T11:45:02.394Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/articles/oxidize-your-shell</loc><lastmod>2025-05-26T11:45:02.394Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/articles/rodin-gen-1</loc><lastmod>2025-05-26T11:45:02.394Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/articles/snapshot-and-restore-quickly-postgresql-dslr</loc><lastmod>2025-05-26T11:45:02.394Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://brev.al/blog/articles/two-sites-one-domain-caprover</loc><lastmod>2025-05-26T11:45:02.394Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/opengraph-image</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/artist</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/about</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/aquatair</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/artriste</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/bidcardcoin</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/epsi-edt-scrapper</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/formenu</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/forvoyez</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/my-makeup</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/pokezilla</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/polish-brain&apos;z</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/portefolio-v1</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/portefolio-v2</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/rid</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/scratch-underflow</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/projects/spécial-card</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/categories/all</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/articles/3d-modeling-art-crm-vs-rodin-gen1</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/articles/a-glance-at-rodin-gen1.5</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/articles/adapt-color-palette-dynamic-image-integration</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/articles/create-2d-svg-avatar-step-by-step</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/articles/highlight-code-blocks-nextjs</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/articles/midjourney-character-reference</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/articles/monitor-disk-usage-with-discord</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/articles/monitor-ssh-connection-with-discord</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/articles/oxidize-your-shell</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/articles/rodin-gen-1</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/articles/snapshot-and-restore-quickly-postgresql-dslr</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://brev.al/blog/articles/two-sites-one-domain-caprover</loc><lastmod>2025-05-29T02:32:35.458Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>
