@@ -6,7 +6,6 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { slug } from 'github-slugger'
 import Image from 'next/image'
-import Head from 'next/head'
 import Link from 'next/link'
 
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
@@ -28,12 +27,6 @@ export default function BlogPageClient({
 		<div className="relative mt-20 min-h-screen bg-background text-foreground">
 			<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-20"></div>
 
-			<Head>
-				<link
-					href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
-					rel="stylesheet"
-				/>
-			</Head>
 			<script
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				type="application/ld+json"
