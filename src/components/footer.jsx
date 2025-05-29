@@ -6,7 +6,7 @@ export default function Footer() {
 
 	return (
 		<footer className="relative overflow-hidden border-t border-primary/20 py-10">
-			<div className="retro-grid absolute inset-0 opacity-10"></div>
+			<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-10"></div>
 			<div className="container mx-auto px-4">
 				<div className="flex flex-col items-center justify-between md:flex-row">
 					<div className="mb-6 md:mb-0">
@@ -14,7 +14,7 @@ export default function Footer() {
 							<div className="flex items-center">
 								<svg
 									width="70"
-									height="70"
+									height="100"
 									viewBox="0 0 210 297"
 									id="svg8"
 									fill="currentColor"
