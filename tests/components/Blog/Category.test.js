@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
 
-import Category from '../Category' // Assuming Category.js is in ../
+import Category from '@/components/Blog/Category' // Assuming Category.js is in ../
 
 // Mock next/link
 jest.mock('next/link', () => {

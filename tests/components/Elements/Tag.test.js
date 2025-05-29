@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
 
-import Tag from '../Tag'
+import Tag from '@/components/Elements/Tag'
 
 describe('Tag Component', () => {
 	test('renders an anchor tag with correct href and text content', () => {
@@ -16,22 +16,25 @@ describe('Tag Component', () => {
 		render(<Tag link="/test-link" name="Test Tag" />)
 		const anchorElement = screen.getByRole('link')
 		const expectedClasses = [
-			'ease',
+			'pixel-corners',
 			'inline-block',
 			'rounded-full',
 			'border-2',
 			'border-solid',
-			'border-light',
+			'border-border',
+			'bg-card/50',
 			'px-6',
 			'py-2',
 			'text-sm',
 			'font-semibold',
 			'capitalize',
-			'text-light',
+			'text-foreground',
 			'no-underline',
+			'backdrop-blur-sm',
 			'transition-all',
 			'duration-200',
 			'hover:scale-105',
+			'hover:bg-primary/10',
 			'sm:px-10',
 			'sm:py-3',
 			'sm:text-base',
