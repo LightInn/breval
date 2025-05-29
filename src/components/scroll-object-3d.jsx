@@ -1,7 +1,7 @@
 'use client'
 import { Environment, Float } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
 import { useEffect, useRef, useState } from 'react'
+import { useFrame } from '@react-three/fiber'
 
 import { useScroll } from 'framer-motion'
 import { useTheme } from 'next-themes'
