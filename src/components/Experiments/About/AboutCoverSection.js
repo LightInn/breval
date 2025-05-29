@@ -20,14 +20,27 @@ const AboutCoverSection = ({
 	data = {},
 }) => {
 	return (
-		<section className="text-dark bg-dynamic-bg flex h-screen w-screen flex-col items-center justify-center overflow-visible bg-cover md:flex-row">
+		<section
+			className="text-dark flex h-screen w-screen flex-col items-center justify-center overflow-visible bg-cover md:flex-row"
+			style={{ backgroundImage: `var(--bg-img)` }}
+		>
 			<div className="flex h-full w-full flex-col-reverse items-center justify-center gap-4 overflow-visible p-20 backdrop-blur-lg xl:flex-row xl:justify-evenly">
 				<div className="flex w-full flex-col items-center justify-center md:w-1/4 md:items-end">
-					<h2 className={ css.messagebulle + " text-center text-4xl font-bold capitalize text-white md:rounded-2xl md:bg-white/30 md:p-6 md:text-6xl lg:text-right"}>
+					<h2
+						className={
+							css.messagebulle +
+							' text-center text-4xl font-bold capitalize text-white md:rounded-2xl md:bg-white/30 md:p-6 md:text-6xl lg:text-right'
+						}
+					>
 						Hi, I&apos;m <br />
 						<strong>Bréval</strong>.
 					</h2>
-					<p className={ css.messagebulle + " font-medium capitalize text-white md:mt-8 md:rounded-2xl md:bg-white/30 md:p-20 md:text-right md:text-2xl"}>
+					<p
+						className={
+							css.messagebulle +
+							' font-medium capitalize text-white md:mt-8 md:rounded-2xl md:bg-white/30 md:p-20 md:text-right md:text-2xl'
+						}
+					>
 						I&apos;m a creative developer <br />
 						from France, Loire Atlantique.
 					</p>
@@ -44,7 +57,7 @@ const AboutCoverSection = ({
 							title="Github"
 						>
 							<GithubIcon
-								className="md:message-bulle w-[30px] rounded-2xl p-2"
+								className={css.messagebulle + ' w-[30px] rounded-2xl p-2'}
 								style={{ backgroundColor: data.lightVibrant }}
 							/>
 							{/*<DribbbleIcon*/}
@@ -61,7 +74,7 @@ const AboutCoverSection = ({
 							title="Linkedin"
 						>
 							<LinkedinIcon
-								className="md:message-bulle w-[30px] rounded-2xl p-2"
+								className={css.messagebulle + ' w-[30px] rounded-2xl p-2'}
 								style={{ backgroundColor: data.lightVibrant }}
 							/>
 						</Link>
@@ -76,7 +89,7 @@ const AboutCoverSection = ({
 							title="Twitter"
 						>
 							<TwitterIcon
-								className="md:message-bulle w-[30px] rounded-2xl p-2"
+								className={css.messagebulle + ' w-[30px] rounded-2xl p-2'}
 								style={{ backgroundColor: data.lightVibrant }}
 							/>
 						</Link>
@@ -91,7 +104,7 @@ const AboutCoverSection = ({
 							title="Email"
 						>
 							<EmailIcon
-								className="md:message-bulle w-[30px] rounded-2xl p-2"
+								className={css.messagebulle + ' w-[30px] rounded-2xl p-2'}
 								style={{ backgroundColor: data.lightVibrant }}
 							/>
 						</Link>
@@ -106,7 +119,7 @@ const AboutCoverSection = ({
 							title="Discord"
 						>
 							<DiscordIcon
-								className="md:message-bulle w-[30px] rounded-2xl p-2"
+								className={css.messagebulle + ' w-[30px] rounded-2xl p-2'}
 								style={{ backgroundColor: data.lightVibrant }}
 							/>
 						</Link>
