@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 
 import { getProjects } from '../../services/projects.services' // Assurez-vous que ce chemin est correct
-import ProjectClientNew from './ProjectClientNew' // Le nouveau composant client
+import ProjectClient from './ProjectClient' // Le nouveau composant client
 
 export default async function ProjectsPage() {
 	try {
@@ -18,7 +18,7 @@ export default async function ProjectsPage() {
 
 		return (
 			<Suspense fallback={<ProjectSkeleton />}>
-				<ProjectClientNew projects={projects} />
+				<ProjectClient projects={projects} />
 			</Suspense>
 		)
 	} catch (error) {
