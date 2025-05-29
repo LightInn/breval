@@ -59,46 +59,47 @@ export default function ArtistPage() {
 	const artExperiments = [
 		{
 			description:
-				'Une exploration des algorithmes génératifs utilisant WebGL et les fragment shaders pour créer des motifs organiques qui évoluent en temps réel.',
+				'Vectorial Avatar that reacts to mouse movements, creating a dynamic and interactive digital identity.',
 			image: '/placeholder.svg?height=600&width=800',
-			tags: ['WebGL', 'GLSL', 'Generative Art', 'Procedural'],
-			title: 'Genesis Fractale',
+			tags: ['SVG', 'Interactive', 'Animation'],
+			title: 'My Avatar',
 			demo: '#',
 			theme: 'organic',
 			color: 'from-emerald-500/20 to-teal-600/20',
 			bgPattern:
-				'radial-gradient(circle at 20% 50%, rgba(16,185,129,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(20,184,166,0.2) 0%, transparent 50%)',
+				'radial-gradient(circle at 20% 50%, rgba(0, 248, 165, 0.65) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(20,184,166,0.2) 0%, transparent 50%)',
 			interactive:
-				'Des fractales qui naissent et évoluent selon vos mouvements de souris, créant un écosystème visuel organique en perpétuelle mutation.',
+				'Des deplacement qui naissent et évoluent selon vos mouvements de souris, créant un ensemble organiser et mechanique.',
 		},
-		{
-			description:
-				'Visualisations réactives au son qui transforment la musique en paysages visuels abstraits, créant une synesthésie numérique immersive.',
-			image: '/placeholder.svg?height=600&width=800',
-			tags: ['Web Audio API', 'Canvas', 'Three.js', 'Synesthesia'],
-			title: 'Ondes Synesthétiques',
-			demo: '#',
-			theme: 'sound',
-			color: 'from-purple-500/20 to-pink-600/20',
-			bgPattern:
-				'linear-gradient(45deg, rgba(168,85,247,0.1) 0%, transparent 25%, rgba(236,72,153,0.1) 50%, transparent 75%)',
-			interactive:
-				'Chaque note devient couleur, chaque rythme devient forme. Une danse visuelle qui traduit la musique en émotions pures.',
-		},
-		{
-			description:
-				'Système de particules basé sur la physique avec dynamique des fluides, simulant des écosystèmes digitaux vivants.',
-			image: '/placeholder.svg?height=600&width=800',
-			tags: ['Physics', 'Simulation', 'WebGL', 'Ecosystem'],
-			title: 'Écosystème Numérique',
-			demo: '#',
-			theme: 'fluid',
-			color: 'from-blue-500/20 to-cyan-600/20',
-			bgPattern:
-				'conic-gradient(from 0deg at 50% 50%, rgba(59,130,246,0.2) 0deg, transparent 60deg, rgba(6,182,212,0.2) 120deg, transparent 180deg)',
-			interactive:
-				'Un monde vivant où chaque particule suit les lois de la physique, créant des comportements émergents fascinants.',
-		},
+		// ,
+		// {
+		// 	description:
+		// 		'Visualisations réactives au son qui transforment la musique en paysages visuels abstraits, créant une synesthésie numérique immersive.',
+		// 	image: '/placeholder.svg?height=600&width=800',
+		// 	tags: ['Web Audio API', 'Canvas', 'Three.js', 'Synesthesia'],
+		// 	title: 'Ondes Synesthétiques',
+		// 	demo: '#',
+		// 	theme: 'sound',
+		// 	color: 'from-purple-500/20 to-pink-600/20',
+		// 	bgPattern:
+		// 		'linear-gradient(45deg, rgba(168,85,247,0.1) 0%, transparent 25%, rgba(236,72,153,0.1) 50%, transparent 75%)',
+		// 	interactive:
+		// 		'Chaque note devient couleur, chaque rythme devient forme. Une danse visuelle qui traduit la musique en émotions pures.',
+		// },
+		// {
+		// 	description:
+		// 		'Système de particules basé sur la physique avec dynamique des fluides, simulant des écosystèmes digitaux vivants.',
+		// 	image: '/placeholder.svg?height=600&width=800',
+		// 	tags: ['Physics', 'Simulation', 'WebGL', 'Ecosystem'],
+		// 	title: 'Écosystème Numérique',
+		// 	demo: '#',
+		// 	theme: 'fluid',
+		// 	color: 'from-blue-500/20 to-cyan-600/20',
+		// 	bgPattern:
+		// 		'conic-gradient(from 0deg at 50% 50%, rgba(59,130,246,0.2) 0deg, transparent 60deg, rgba(6,182,212,0.2) 120deg, transparent 180deg)',
+		// 	interactive:
+		// 		'Un monde vivant où chaque particule suit les lois de la physique, créant des comportements émergents fascinants.',
+		// },
 	]
 
 	return (
@@ -412,26 +413,31 @@ export default function ArtistPage() {
 													{/* Floating Particles Effect */}
 													{isActive && (
 														<div className="absolute inset-0">
-															{[...Array(15)].map((_, i) => (
-																<motion.div
-																	key={i}
-																	className="absolute h-2 w-2 rounded-full bg-primary/30"
-																	animate={{
-																		x: [0, 100, -50, 0],
-																		y: [0, -100, 50, 0],
-																		opacity: [0, 1, 0.5, 0],
-																	}}
-																	transition={{
-																		duration: 3 + i * 0.2,
-																		repeat: Infinity,
-																		delay: i * 0.1,
-																	}}
-																	style={{
-																		left: `${Math.random() * 100}%`,
-																		top: `${Math.random() * 100}%`,
-																	}}
-																/>
-															))}
+															{[...Array(15)].map((_, i) => {
+																// Deterministic positioning to avoid hydration errors
+																const leftPos = (i * 23.7) % 100
+																const topPos = (i * 17.3 + 31) % 100
+																return (
+																	<motion.div
+																		key={i}
+																		className="absolute h-2 w-2 rounded-full bg-primary/30"
+																		animate={{
+																			x: [0, 100, -50, 0],
+																			y: [0, -100, 50, 0],
+																			opacity: [0, 1, 0.5, 0],
+																		}}
+																		transition={{
+																			duration: 3 + i * 0.2,
+																			repeat: Infinity,
+																			delay: i * 0.1,
+																		}}
+																		style={{
+																			left: `${leftPos}%`,
+																			top: `${topPos}%`,
+																		}}
+																	/>
+																)
+															})}
 														</div>
 													)}
 
@@ -585,28 +591,33 @@ export default function ArtistPage() {
 								{/* Animated Background */}
 								<div className="absolute inset-0 bg-gray-900/95 backdrop-blur-sm">
 									{/* Enhanced Particle System */}
-									{[...Array(30)].map((_, i) => (
-										<motion.div
-											key={i}
-											className="absolute h-1 w-1 rounded-full bg-primary/40"
-											animate={{
-												x: [0, 200, -100, 300, 0],
-												y: [0, -150, 100, -50, 0],
-												opacity: [0, 1, 0.7, 1, 0],
-												scale: [0, 1, 0.5, 1, 0],
-											}}
-											transition={{
-												duration: 5 + i * 0.1,
-												repeat: Infinity,
-												delay: i * 0.05,
-												ease: 'linear',
-											}}
-											style={{
-												left: `${Math.random() * 100}%`,
-												top: `${Math.random() * 100}%`,
-											}}
-										/>
-									))}
+									{[...Array(30)].map((_, i) => {
+										// Deterministic positioning to avoid hydration errors
+										const leftPos = (i * 12.7 + 7) % 100
+										const topPos = (i * 19.3 + 13) % 100
+										return (
+											<motion.div
+												key={i}
+												className="absolute h-1 w-1 rounded-full bg-primary/40"
+												animate={{
+													x: [0, 200, -100, 300, 0],
+													y: [0, -150, 100, -50, 0],
+													opacity: [0, 1, 0.7, 1, 0],
+													scale: [0, 1, 0.5, 1, 0],
+												}}
+												transition={{
+													duration: 5 + i * 0.1,
+													repeat: Infinity,
+													delay: i * 0.05,
+													ease: 'linear',
+												}}
+												style={{
+													left: `${leftPos}%`,
+													top: `${topPos}%`,
+												}}
+											/>
+										)
+									})}
 								</div>
 
 								{/* Content Grid */}
