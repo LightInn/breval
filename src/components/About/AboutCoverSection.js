@@ -15,7 +15,7 @@ import Avatar from '/src/components/About/Avatar'
 
 const AboutCoverSection = ({ background = null, setReload = null }) => {
 	return (
-		<section className="text-dark flex h-screen w-screen flex-col items-center justify-center overflow-visible bg-dynamic-bg bg-cover md:flex-row">
+		<section className="text-dark bg-dynamic-bg flex h-screen w-screen flex-col items-center justify-center overflow-visible bg-cover md:flex-row">
 			<div className="flex h-full w-full flex-col-reverse items-center justify-center gap-4 overflow-visible p-20 backdrop-blur-lg xl:flex-row xl:justify-evenly">
 				<div className="flex w-full flex-col items-center justify-center md:w-1/4 md:items-end">
 					<h2 className="md:message-bulle text-center text-4xl font-bold capitalize text-white md:rounded-2xl md:bg-white/30 md:p-6 md:text-6xl lg:text-right">
@@ -38,7 +38,7 @@ const AboutCoverSection = ({ background = null, setReload = null }) => {
 							target="_blank"
 							title="Github"
 						>
-							<GithubIcon className="md:message-bulle w-[30px] rounded-2xl bg-dynamic-vibrant-light p-2 hover:bg-dynamic-muted-light" />
+							<GithubIcon className="md:message-bulle bg-dynamic-vibrant-light hover:bg-dynamic-muted-light w-[30px] rounded-2xl p-2" />
 							{/*<DribbbleIcon*/}
 							{/*    className="w-[30px] rounded-2xl bg-dynamic-vibrant-light hover:bg-dynamic-muted-light p-2 md:message-bulle"/>*/}
 						</Link>
@@ -52,7 +52,7 @@ const AboutCoverSection = ({ background = null, setReload = null }) => {
 							target="_blank"
 							title="Linkedin"
 						>
-							<LinkedinIcon className="md:message-bulle w-[30px] rounded-2xl bg-dynamic-vibrant-light p-2 hover:bg-dynamic-muted-light" />
+							<LinkedinIcon className="md:message-bulle bg-dynamic-vibrant-light hover:bg-dynamic-muted-light w-[30px] rounded-2xl p-2" />
 						</Link>
 						<Link
 							aria-label="Twitter"
@@ -64,7 +64,7 @@ const AboutCoverSection = ({ background = null, setReload = null }) => {
 							target="_blank"
 							title="Twitter"
 						>
-							<TwitterIcon className="md:message-bulle w-[30px] rounded-2xl bg-dynamic-vibrant-light p-2 hover:bg-dynamic-muted-light" />
+							<TwitterIcon className="md:message-bulle bg-dynamic-vibrant-light hover:bg-dynamic-muted-light w-[30px] rounded-2xl p-2" />
 						</Link>
 						<Link
 							aria-label="Email"
@@ -76,7 +76,7 @@ const AboutCoverSection = ({ background = null, setReload = null }) => {
 							target="_blank"
 							title="Email"
 						>
-							<EmailIcon className="md:message-bulle w-[30px] rounded-2xl bg-dynamic-vibrant-light p-2 hover:bg-dynamic-muted-light" />
+							<EmailIcon className="md:message-bulle bg-dynamic-vibrant-light hover:bg-dynamic-muted-light w-[30px] rounded-2xl p-2" />
 						</Link>
 						<Link
 							aria-label="Discord"
@@ -88,7 +88,7 @@ const AboutCoverSection = ({ background = null, setReload = null }) => {
 							target="_blank"
 							title="Discord"
 						>
-							<DiscordIcon className="md:message-bulle w-[30px] rounded-2xl bg-dynamic-vibrant-light p-2 hover:bg-dynamic-muted-light" />
+							<DiscordIcon className="md:message-bulle bg-dynamic-vibrant-light hover:bg-dynamic-muted-light w-[30px] rounded-2xl p-2" />
 						</Link>
 						{/*Email*/}
 						{/*Tel*/}

@@ -33,7 +33,7 @@ export function SocialIcons() {
 
 			<a
 				aria-label="Linkedin"
-				className="animated-image text-slate-300 no-underline hover:text-glow-600"
+				className="animated-image hover:text-glow-600 text-slate-300 no-underline"
 				data-umami-event="social button"
 				data-umami-event-social="linkedin"
 				href="https://www.linkedin.com/in/breval-lefloch/"
@@ -53,7 +53,7 @@ export function SocialIcons() {
 
 			<a
 				aria-label="Github"
-				className="animated-image-bg text-slate-300 no-underline hover:text-glow-600"
+				className="animated-image-bg hover:text-glow-600 text-slate-300 no-underline"
 				data-umami-event="social button"
 				data-umami-event-social="github"
 				href="https://github.com/LightInn"

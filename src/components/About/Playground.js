@@ -5,8 +5,8 @@ import Image from 'next/image'
 export function Playground({ image = '/dynamic/0.webp', setReload = null }) {
 	return (
 		<div className="flex min-h-screen w-full flex-col items-center justify-center space-y-12 px-8 py-4 md:ml-20">
-			<div className="rounded-lg bg-dynamic-vibrant-light p-4 text-center shadow-xl">
-				<p className="text-gray-800 text-lg font-bold">
+			<div className="bg-dynamic-vibrant-light rounded-lg p-4 text-center shadow-xl">
+				<p className="text-lg font-bold text-gray-800">
 					Everything looks oddly colored here, doesn&apos;t it?
 				</p>
 				<p>Well, that&apos;s because I didn&apos;t choose the colors!</p>
@@ -21,22 +21,22 @@ export function Playground({ image = '/dynamic/0.webp', setReload = null }) {
 
 				<div className="flex flex-col items-center justify-center gap-2 md:flex-row">
 					<div className="grid w-[25vw] min-w-80 grid-cols-3 gap-4">
-						<div className="flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg bg-dynamic-vibrant-light text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110">
+						<div className="bg-dynamic-vibrant-light flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110">
 							Vibrant Light
 						</div>
-						<div className="flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg bg-dynamic-vibrant text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110">
+						<div className="bg-dynamic-vibrant flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110">
 							Vibrant
 						</div>
-						<div className="flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg bg-dynamic-vibrant-dark text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110">
+						<div className="bg-dynamic-vibrant-dark flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110">
 							Vibrant Dark
 						</div>
-						<div className="flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg bg-dynamic-muted-light text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110">
+						<div className="bg-dynamic-muted-light flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110">
 							Muted Light
 						</div>
-						<div className="flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg bg-dynamic-muted text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110">
+						<div className="bg-dynamic-muted flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110">
 							Muted
 						</div>
-						<div className="flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg bg-dynamic-muted-dark text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110">
+						<div className="bg-dynamic-muted-dark flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110">
 							Muted Dark
 						</div>
 					</div>
@@ -55,7 +55,7 @@ export function Playground({ image = '/dynamic/0.webp', setReload = null }) {
 			</div>
 
 			<button
-				className="mt-5 rounded-full bg-dynamic-vibrant px-6 py-3 font-bold shadow-lg transition-colors duration-300 ease-in-out hover:bg-dynamic-vibrant-dark hover:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+				className="bg-dynamic-vibrant hover:bg-dynamic-vibrant-dark mt-5 rounded-full px-6 py-3 font-bold shadow-lg transition-colors duration-300 ease-in-out hover:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
 				data-umami-event="reload"
 				onClick={() => setReload(Math.random())}
 			>

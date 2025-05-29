@@ -85,7 +85,7 @@ export function Overlay({ setStep, step }) {
 								<AnimatedTitle text="My Projects" />
 								<motion.p
 									animate={{ opacity: 1, y: 0 }}
-									className="text-gray-600 mx-auto mt-6 max-w-2xl text-xl"
+									className="mx-auto mt-6 max-w-2xl text-xl text-gray-600"
 									initial={{ opacity: 0, y: 20 }}
 									transition={{ duration: 0.8, delay: 0.5 }}
 								>

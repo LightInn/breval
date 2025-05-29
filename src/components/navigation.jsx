@@ -1,16 +1,18 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { Menu, Moon, Sun, X } from 'lucide-react'
+import { useEffect, useState } from 'react'
+
+import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
-import { Moon, Sun, Menu, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+
+import { Button } from '@/components/ui/button'
 
 export default function Navigation() {
 	const [mounted, setMounted] = useState(false)
-	const { theme, setTheme } = useTheme()
+	const { setTheme, theme } = useTheme()
 	const [isOpen, setIsOpen] = useState(false)
 	const [scrolled, setScrolled] = useState(false)
 	const pathname = usePathname()
@@ -33,9 +35,9 @@ export default function Navigation() {
 
 	const navItems = [
 		{ name: 'HOME', href: '/' },
-		{ name: 'PROJECTS', href: '/projects' },
-		{ name: 'BLOG', href: '/blog' },
-		{ name: 'ART', href: '/artist' },
+		{ href: '/projects', name: 'PROJECTS' },
+		{ href: '/blog', name: 'BLOG' },
+		{ href: '/artist', name: 'ART' },
 	]
 
 	const isActive = path => {
@@ -56,22 +58,22 @@ export default function Navigation() {
 				<nav className="flex items-center justify-between">
 					<div className="flex items-center">
 						<Link
-							href="/"
 							className="magnetic-button text-2xl font-bold text-primary"
+							href="/"
 						>
 							<motion.div
-								initial={{ opacity: 0, scale: 0.8 }}
 								animate={{ opacity: 1, scale: 1 }}
-								transition={{ duration: 0.5 }}
 								className="flex items-center"
+								initial={{ opacity: 0, scale: 0.8 }}
+								transition={{ duration: 0.5 }}
 							>
 								<div className="relative">
 									<svg
-										width="100"
-										height="100"
-										viewBox="0 0 210 297"
-										id="svg8"
 										fill="currentColor"
+										height="100"
+										id="svg8"
+										viewBox="0 0 210 297"
+										width="100"
 									>
 										<defs id="defs2" />
 
@@ -91,10 +93,10 @@ export default function Navigation() {
 					{/* Mobile menu button */}
 					<div className="md:hidden">
 						<Button
-							variant="ghost"
-							size="icon"
-							onClick={toggleMenu}
 							className="magnetic-button"
+							onClick={toggleMenu}
+							size="icon"
+							variant="ghost"
 						>
 							{isOpen ? (
 								<X className="h-6 w-6" />
@@ -106,26 +108,26 @@ export default function Navigation() {
 
 					{/* Desktop navigation */}
 					<motion.div
-						initial={{ y: -20, opacity: 0 }}
-						animate={{ y: 0, opacity: 1 }}
-						transition={{ duration: 0.5, delay: 0.2 }}
+						animate={{ opacity: 1, y: 0 }}
 						className="hidden items-center md:flex"
+						initial={{ opacity: 0, y: -20 }}
+						transition={{ duration: 0.5, delay: 0.2 }}
 					>
 						<div className="pixel-corners flex items-center space-x-6 rounded-full border border-primary/20 bg-card/80 px-6 py-3 backdrop-blur-md">
 							{navItems.map((item, index) => (
 								<motion.div
-									key={item.name}
-									initial={{ opacity: 0, y: -10 }}
 									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+									initial={{ opacity: 0, y: -10 }}
+									key={item.name}
+									transition={{ delay: 0.3 + index * 0.1, duration: 0.3 }}
 								>
 									<Link
-										href={item.href}
 										className={`magnetic-button rounded-full px-3 py-1 text-sm font-medium transition-all duration-300 ${
 											isActive(item.href)
 												? 'bg-primary/10 font-bold text-primary'
 												: 'hover:bg-primary/5 hover:text-primary'
 										}`}
+										href={item.href}
 									>
 										{item.name}
 									</Link>
@@ -137,20 +139,20 @@ export default function Navigation() {
 					{/* Theme toggle */}
 					{mounted && (
 						<motion.div
-							initial={{ scale: 0 }}
 							animate={{ scale: 1 }}
+							initial={{ scale: 0 }}
 							transition={{ duration: 0.5, delay: 0.4 }}
 						>
 							<Button
-								variant="ghost"
-								size="icon"
-								onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-								className="magnetic-button pixel-corners ml-4 hidden border border-primary/20 bg-card/80 backdrop-blur-md md:flex"
 								aria-label="Toggle theme"
+								className="magnetic-button pixel-corners ml-4 hidden border border-primary/20 bg-card/80 backdrop-blur-md md:flex"
+								onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+								size="icon"
+								variant="ghost"
 							>
 								<motion.div
-									initial={{ rotate: 0 }}
 									animate={{ rotate: theme === 'dark' ? 180 : 0 }}
+									initial={{ rotate: 0 }}
 									transition={{ duration: 0.5 }}
 								>
 									{theme === 'dark' ? (
@@ -167,27 +169,27 @@ export default function Navigation() {
 				{/* Mobile menu */}
 				{isOpen && (
 					<motion.div
-						initial={{ opacity: 0, y: -20, scale: 0.95 }}
-						animate={{ opacity: 1, y: 0, scale: 1 }}
-						exit={{ opacity: 0, y: -20, scale: 0.95 }}
-						transition={{ duration: 0.3 }}
+						animate={{ opacity: 1, scale: 1, y: 0 }}
 						className="pixel-corners dark:dithered-dark dithered-light mt-4 rounded-2xl border border-primary/20 bg-card/90 p-6 backdrop-blur-md md:hidden"
+						exit={{ scale: 0.95, opacity: 0, y: -20 }}
+						initial={{ scale: 0.95, opacity: 0, y: -20 }}
+						transition={{ duration: 0.3 }}
 					>
 						<div className="flex flex-col space-y-4">
 							{navItems.map((item, index) => (
 								<motion.div
-									key={item.name}
-									initial={{ opacity: 0, x: -20 }}
 									animate={{ opacity: 1, x: 0 }}
-									transition={{ duration: 0.3, delay: index * 0.1 }}
+									initial={{ opacity: 0, x: -20 }}
+									key={item.name}
+									transition={{ delay: index * 0.1, duration: 0.3 }}
 								>
 									<Link
-										href={item.href}
 										className={`magnetic-button block rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ${
 											isActive(item.href)
 												? 'bg-primary/10 font-bold text-primary'
 												: 'hover:bg-primary/5 hover:text-primary'
 										}`}
+										href={item.href}
 										onClick={() => setIsOpen(false)}
 									>
 										{item.name}
@@ -199,14 +201,14 @@ export default function Navigation() {
 									Toggle theme
 								</span>
 								<Button
-									variant="ghost"
-									size="icon"
-									onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
 									className="magnetic-button"
+									onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+									size="icon"
+									variant="ghost"
 								>
 									<motion.div
-										initial={{ rotate: 0 }}
 										animate={{ rotate: theme === 'dark' ? 180 : 0 }}
+										initial={{ rotate: 0 }}
 										transition={{ duration: 0.5 }}
 									>
 										{theme === 'dark' ? (

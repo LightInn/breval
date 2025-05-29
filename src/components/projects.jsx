@@ -1,17 +1,19 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { ArrowRight, ExternalLink, Github } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+
 import { motion, useInView } from 'framer-motion'
-import { Card, CardContent, CardFooter } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { ExternalLink, Github, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { getFeaturedProjects } from '@/services/projects.services'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 export default function Projects() {
 	const ref = useRef(null)
-	const isInView = useInView(ref, { once: true, amount: 0.1 })
+	const isInView = useInView(ref, { amount: 0.1, once: true })
 	const [projects, setProjects] = useState([])
 	const [loading, setLoading] = useState(true)
 
@@ -48,22 +50,22 @@ export default function Projects() {
 					}
 
 					return {
-						title: project.title || 'Projet sans titre',
-						description:
-							project.short_description ||
-							project.description ||
-							'Description non disponible.',
-						tags,
 						image:
 							project.main_media?.url ||
 							(project.media && project.media.length > 0
 								? project.media[0].url
 								: '/placeholder.svg?height=300&width=500'),
-						github: project.url || '#',
-						demo: project.live_url || '#',
-						featured: index === 0, // Le premier projet (plus haut rank) est featured
+						description:
+							project.short_description ||
+							project.description ||
+							'Description non disponible.',
 						category: project.category || 'Web Development',
+						title: project.title || 'Projet sans titre',
+						demo: project.live_url || '#',
+						github: project.url || '#',
 						rank: project.rank || 0,
+						featured: index === 0, // Le premier projet (plus haut rank) est featured
+						tags,
 					}
 				})
 
@@ -81,19 +83,19 @@ export default function Projects() {
 	}, [])
 
 	const container = {
-		hidden: { opacity: 0 },
 		show: {
-			opacity: 1,
 			transition: {
 				staggerChildren: 0.1,
 				delayChildren: 0.2,
 			},
+			opacity: 1,
 		},
+		hidden: { opacity: 0 },
 	}
 
 	const item = {
+		show: { transition: { duration: 0.5 }, opacity: 1, y: 0 },
 		hidden: { opacity: 0, y: 20 },
-		show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 	}
 
 	// Skeleton component pour l'état de chargement
@@ -110,7 +112,7 @@ export default function Projects() {
 				</div>
 				<div className="mt-4 flex flex-wrap gap-2">
 					{[1, 2, 3].map(i => (
-						<div key={i} className="h-6 w-16 animate-pulse rounded bg-muted" />
+						<div className="h-6 w-16 animate-pulse rounded bg-muted" key={i} />
 					))}
 				</div>
 			</CardContent>
@@ -122,14 +124,14 @@ export default function Projects() {
 	)
 
 	return (
-		<section id="projects" className="relative py-20">
+		<section className="relative py-20" id="projects">
 			<div className="absolute inset-0 bg-gradient-to-b from-background/0 via-primary/5 to-background/0" />
 			<div className="container mx-auto px-4">
 				<motion.div
-					initial={{ opacity: 0, y: 20 }}
 					animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-					transition={{ duration: 0.5 }}
 					className="mb-12 text-center"
+					initial={{ opacity: 0, y: 20 }}
+					transition={{ duration: 0.5 }}
 				>
 					<h2 className="mb-4 text-3xl font-bold md:text-4xl">
 						Featured <span className="text-primary">Projects</span>
@@ -141,11 +143,11 @@ export default function Projects() {
 				</motion.div>
 
 				<motion.div
-					ref={ref}
-					variants={container}
-					initial="hidden"
 					animate={isInView ? 'show' : 'hidden'}
 					className="grid grid-cols-1 gap-6 md:grid-cols-2"
+					initial="hidden"
+					ref={ref}
+					variants={container}
 				>
 					{loading ? (
 						// Afficher des skeletons pendant le chargement
@@ -168,9 +170,9 @@ export default function Projects() {
 									>
 										<div className="dark:dithered-dark dithered-light absolute inset-0 opacity-30" />
 										<img
-											src={project.image || '/placeholder.svg'}
 											alt={project.title}
 											className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+											src={project.image || '/placeholder.svg'}
 										/>
 										<div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
 										{project.featured && (
@@ -196,9 +198,9 @@ export default function Projects() {
 										<div className="flex flex-wrap gap-2">
 											{project.tags.map((tag, tagIndex) => (
 												<Badge
+													className="pixel-corners border-primary/30 bg-primary/10"
 													key={tagIndex}
 													variant="outline"
-													className="pixel-corners border-primary/30 bg-primary/10"
 												>
 													{tag}
 												</Badge>
@@ -209,20 +211,20 @@ export default function Projects() {
 									<CardFooter className="flex justify-between">
 										{project.github && project.github !== '#' ? (
 											<Button
-												variant="ghost"
-												size="sm"
 												className="magnetic-button pixel-corners hover:bg-primary/20"
 												onClick={() => window.open(project.github, '_blank')}
+												size="sm"
+												variant="ghost"
 											>
 												<Github className="mr-2 h-4 w-4" />
 												Code
 											</Button>
 										) : (
 											<Button
-												variant="ghost"
-												size="sm"
 												className="magnetic-button pixel-corners hover:bg-primary/20"
 												disabled
+												size="sm"
+												variant="ghost"
 											>
 												<Github className="mr-2 h-4 w-4" />
 												Code
@@ -230,20 +232,20 @@ export default function Projects() {
 										)}
 										{project.demo && project.demo !== '#' ? (
 											<Button
-												variant="outline"
-												size="sm"
 												className="magnetic-button pixel-corners border-primary hover:bg-primary/20"
 												onClick={() => window.open(project.demo, '_blank')}
+												size="sm"
+												variant="outline"
 											>
 												<ExternalLink className="mr-2 h-4 w-4" />
 												Live Demo
 											</Button>
 										) : (
 											<Button
-												variant="outline"
-												size="sm"
 												className="magnetic-button pixel-corners border-primary hover:bg-primary/20"
 												disabled
+												size="sm"
+												variant="outline"
 											>
 												<ExternalLink className="mr-2 h-4 w-4" />
 												Live Demo
@@ -255,7 +257,7 @@ export default function Projects() {
 						))
 					) : (
 						// Afficher un message si aucun projet n'est disponible
-						<motion.div variants={item} className="md:col-span-2">
+						<motion.div className="md:col-span-2" variants={item}>
 							<Card className="h-full overflow-hidden border-primary/20 bg-card/60 backdrop-blur-sm">
 								<CardContent className="pt-6 text-center">
 									<p className="text-muted-foreground">
@@ -268,10 +270,10 @@ export default function Projects() {
 				</motion.div>
 
 				<motion.div
-					initial={{ opacity: 0 }}
 					animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-					transition={{ duration: 0.5, delay: 0.6 }}
 					className="mt-12 text-center"
+					initial={{ opacity: 0 }}
+					transition={{ duration: 0.5, delay: 0.6 }}
 				>
 					<Link href="/projects">
 						<Button className="magnetic-button pixel-corners bg-primary hover:bg-primary/90">

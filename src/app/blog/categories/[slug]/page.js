@@ -59,7 +59,7 @@ const CategoryPage = async props => {
 
 	return (
 		<article className="text-dark mt-12 flex flex-col">
-			<div className="flex flex-col px-5 sm:px-10 md:px-24 sxl:px-32">
+			<div className="sxl:px-32 flex flex-col px-5 sm:px-10 md:px-24">
 				<h1 className="mt-6 text-2xl font-semibold md:text-4xl lg:text-5xl">
 					#{params.slug}
 				</h1>
@@ -68,7 +68,7 @@ const CategoryPage = async props => {
 				</span>
 			</div>
 			<Categories categories={sortedCategories} currentSlug={params.slug} />
-			<div className="mt-5 grid grid-cols-1 grid-rows-2 gap-16 px-5 sm:mt-10 sm:grid-cols-2 sm:px-10 md:mt-24 md:px-24 lg:grid-cols-3 sxl:mt-32 sxl:px-32">
+			<div className="sxl:mt-32 sxl:px-32 mt-5 grid grid-cols-1 grid-rows-2 gap-16 px-5 sm:mt-10 sm:grid-cols-2 sm:px-10 md:mt-24 md:px-24 lg:grid-cols-3">
 				{blogs.map((blog, index) => (
 					<article
 						className="relative col-span-1 row-span-1"

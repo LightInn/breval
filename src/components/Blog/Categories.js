@@ -15,7 +15,7 @@ const slugify = text => {
 
 const Categories = ({ currentSlug, categories }) => {
 	return (
-		<div className="text-dark border-dark mx-5 mt-10 flex flex-wrap items-start border-b-2 border-t-2 border-solid px-0 py-4 font-medium md:mx-10 md:px-10 sxl:px-20">
+		<div className="text-dark border-dark sxl:px-20 mx-5 mt-10 flex flex-wrap items-start border-b-2 border-t-2 border-solid px-0 py-4 font-medium md:mx-10 md:px-10">
 			{categories.map(cat => (
 				<Category
 					active={currentSlug === slugify(cat)}

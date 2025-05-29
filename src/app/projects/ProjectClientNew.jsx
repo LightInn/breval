@@ -1,14 +1,16 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { Card, CardContent, CardFooter } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import { ExternalLink, Filter } from 'lucide-react'
+import { useRef, useState } from 'react'
+
+import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import ScrollObject3D from '@/components/scroll-object-3d'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 export default function ProjectClientNew({ projects = [] }) {
 	// Default to empty array
@@ -19,42 +21,42 @@ export default function ProjectClientNew({ projects = [] }) {
 	const isFeaturedInView = useInView(featuredRef, { once: false, amount: 0.3 })
 
 	const container = {
-		hidden: { opacity: 0 },
 		show: {
-			opacity: 1,
 			transition: {
 				staggerChildren: 0.1,
 				delayChildren: 0.2,
 			},
+			opacity: 1,
 		},
+		hidden: { opacity: 0 },
 	}
 
 	const item = {
+		show: { transition: { duration: 0.5 }, opacity: 1, y: 0 },
 		hidden: { opacity: 0, y: 20 },
-		show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 	}
 
 	// Process all projects data to match the component structure
 	const processedProjects =
 		Array.isArray(projects) && projects.length > 0
 			? projects.map(project => ({
-					title: project.title || 'Titre non disponible',
-					description:
-						project.short_description ||
-						project.description ||
-						'Description non disponible.',
 					// Use main_media first, then fallback to first media item
 					image:
 						project.main_media?.url ||
 						(project.media && project.media.length > 0 && project.media[0].url
 							? project.media[0].url
 							: '/placeholder.svg?height=300&width=500'),
-					url: project.url || project.live_url,
-					slug: project.title ? project.title : '#',
 					tags: project.skills
 						? project.skills.slice(0, 3) // Limit to 3 tags for grid display
 						: ['Web Development'],
+					description:
+						project.short_description ||
+						project.description ||
+						'Description non disponible.',
+					title: project.title || 'Titre non disponible',
+					slug: project.title ? project.title : '#',
 					category: project.category || 'Other',
+					url: project.url || project.live_url,
 					liveUrl: project.live_url,
 					githubUrl: project.url,
 				}))
@@ -96,22 +98,22 @@ export default function ProjectClientNew({ projects = [] }) {
 		filteredProjects.length > 0
 			? {
 					...filteredProjects[0],
-					tags: filteredProjects[0].tags.slice(0, 5), // Extend to 5 tags for featured display
 					image: filteredProjects[0].image.replace(
 						'height=300&width=500',
 						'height=600&width=1200'
 					), // Higher resolution for featured
+					tags: filteredProjects[0].tags.slice(0, 5), // Extend to 5 tags for featured display
 				}
 			: {
-					title: 'Aucun projet disponible',
 					description: 'Aucun projet à afficher pour cette catégorie.',
 					image: '/placeholder.svg?height=600&width=1200',
-					url: '#',
-					slug: '#',
+					title: 'Aucun projet disponible',
 					tags: ['Tag par défaut'],
 					category: 'Other',
-					liveUrl: null,
 					githubUrl: null,
+					liveUrl: null,
+					slug: '#',
+					url: '#',
 				}
 
 	// Remove the featured project from the grid to avoid duplication
@@ -128,10 +130,10 @@ export default function ProjectClientNew({ projects = [] }) {
 
 					<div className="container mx-auto px-4">
 						<motion.div
-							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.5 }}
 							className="mb-12 text-center"
+							initial={{ opacity: 0, y: 20 }}
+							transition={{ duration: 0.5 }}
 						>
 							<h1 className="text-shadow mb-4 text-4xl font-bold md:text-6xl">
 								Project <span className="text-primary">Gallery</span>
@@ -147,17 +149,17 @@ export default function ProjectClientNew({ projects = [] }) {
 							<div className="flex flex-wrap gap-3">
 								{categories.map((category, index) => (
 									<Button
-										key={index}
-										variant={
-											selectedCategory === category ? 'default' : 'outline'
-										} // Updated variant based on selectedCategory
-										size="sm"
 										className={
 											selectedCategory === category
 												? 'bg-primary hover:bg-primary/80'
 												: 'border-primary/30 hover:bg-primary/20'
 										}
+										key={index}
 										onClick={() => handleCategoryClick(category)} // Added onClick handler
+										size="sm"
+										variant={
+											selectedCategory === category ? 'default' : 'outline'
+										} // Updated variant based on selectedCategory
 									>
 										{category}
 									</Button>
@@ -168,24 +170,24 @@ export default function ProjectClientNew({ projects = [] }) {
 						{/* Featured Project */}
 						{filteredProjects.length > 0 && (
 							<motion.div
-								ref={featuredRef}
-								initial={{ opacity: 0, y: 20 }}
 								animate={
 									isFeaturedInView
 										? { opacity: 1, y: 0 }
 										: { opacity: 0, y: 20 }
 								}
-								transition={{ duration: 0.7 }}
 								className="mb-16"
+								initial={{ opacity: 0, y: 20 }}
+								ref={featuredRef}
+								transition={{ duration: 0.7 }}
 							>
 								<div className="relative overflow-hidden rounded-lg border border-primary/30 bg-gray-900/60 backdrop-blur-sm">
 									<div className="md:flex">
 										<div className="relative h-64 md:h-auto md:w-1/2">
 											<Image
-												src={featuredProject.image}
 												alt={featuredProject.title}
-												fill
 												className="object-cover"
+												fill
+												src={featuredProject.image}
 												unoptimized // Si les images viennent d'une API externe et ne sont pas optimisées par Next/Image
 											/>
 											<div className="absolute left-4 top-4">
@@ -205,9 +207,9 @@ export default function ProjectClientNew({ projects = [] }) {
 												<div className="mb-6 flex flex-wrap gap-2">
 													{featuredProject.tags.map((tag, tagIndex) => (
 														<Badge
+															className="border-primary/30 bg-primary/10"
 															key={tagIndex}
 															variant="outline"
-															className="border-primary/30 bg-primary/10"
 														>
 															{tag}
 														</Badge>
@@ -218,8 +220,8 @@ export default function ProjectClientNew({ projects = [] }) {
 												{featuredProject.liveUrl && (
 													<Link
 														href={featuredProject.liveUrl}
-														target="_blank"
 														rel="noopener noreferrer"
+														target="_blank"
 													>
 														<Button className="bg-primary hover:bg-primary/80">
 															<ExternalLink className="mr-2 h-4 w-4" />
@@ -232,12 +234,12 @@ export default function ProjectClientNew({ projects = [] }) {
 														featuredProject.liveUrl && (
 														<Link
 															href={featuredProject.githubUrl}
-															target="_blank"
 															rel="noopener noreferrer"
+															target="_blank"
 														>
 															<Button
-																variant="outline"
 																className="border-primary/30 hover:bg-primary/20"
+																variant="outline"
 															>
 																<ExternalLink className="mr-2 h-4 w-4" />
 																GitHub
@@ -246,8 +248,8 @@ export default function ProjectClientNew({ projects = [] }) {
 													)}
 												<Link href={`/projects/${featuredProject.slug}`}>
 													<Button
-														variant="outline"
 														className="border-primary hover:bg-primary/20"
+														variant="outline"
 													>
 														View Details
 													</Button>
@@ -261,11 +263,11 @@ export default function ProjectClientNew({ projects = [] }) {
 
 						{/* Projects Grid */}
 						<motion.div
-							ref={ref}
-							variants={container}
-							initial="hidden"
 							animate={isInView ? 'show' : 'hidden'}
 							className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+							initial="hidden"
+							ref={ref}
+							variants={container}
 						>
 							{gridProjects.map(
 								(
@@ -276,10 +278,10 @@ export default function ProjectClientNew({ projects = [] }) {
 										<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-900/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50">
 											<div className="relative h-48 overflow-hidden">
 												<Image
-													src={project.image}
 													alt={project.title}
-													fill
 													className="object-cover transition-transform duration-500 hover:scale-105"
+													fill
+													src={project.image}
 													unoptimized
 												/>
 												{project.category && (
@@ -301,17 +303,17 @@ export default function ProjectClientNew({ projects = [] }) {
 												<div className="flex flex-wrap gap-2">
 													{project.tags.slice(0, 3).map((tag, tagIndex) => (
 														<Badge
+															className="border-primary/30 bg-primary/10"
 															key={tagIndex}
 															variant="outline"
-															className="border-primary/30 bg-primary/10"
 														>
 															{tag}
 														</Badge>
 													))}
 													{project.tags.length > 3 && (
 														<Badge
-															variant="outline"
 															className="border-primary/30 bg-primary/10"
+															variant="outline"
 														>
 															+{project.tags.length - 3}
 														</Badge>
@@ -322,9 +324,9 @@ export default function ProjectClientNew({ projects = [] }) {
 											<CardFooter className="flex items-center justify-between pt-4">
 												<Link href={`/projects/${project.slug}`}>
 													<Button
-														variant="ghost"
-														size="sm"
 														className="text-primary hover:bg-primary/20"
+														size="sm"
+														variant="ghost"
 													>
 														View Details
 													</Button>
@@ -333,13 +335,13 @@ export default function ProjectClientNew({ projects = [] }) {
 													{project.liveUrl && (
 														<Link
 															href={project.liveUrl}
-															target="_blank"
 															rel="noopener noreferrer"
+															target="_blank"
 														>
 															<Button
-																variant="outline"
-																size="sm"
 																className="border-primary hover:bg-primary/20"
+																size="sm"
+																variant="outline"
 															>
 																<ExternalLink className="mr-2 h-4 w-4" />
 																Live
@@ -350,13 +352,13 @@ export default function ProjectClientNew({ projects = [] }) {
 														project.githubUrl !== project.liveUrl && (
 															<Link
 																href={project.githubUrl}
-																target="_blank"
 																rel="noopener noreferrer"
+																target="_blank"
 															>
 																<Button
-																	variant="outline"
-																	size="sm"
 																	className="border-primary/30 hover:bg-primary/20"
+																	size="sm"
+																	variant="outline"
 																>
 																	<ExternalLink className="mr-2 h-4 w-4" />
 																	Code

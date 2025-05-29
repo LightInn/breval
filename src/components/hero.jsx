@@ -1,10 +1,12 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
 import { ArrowDown, Play } from 'lucide-react'
+import { useEffect, useRef } from 'react'
+
+import { motion } from 'framer-motion'
+
 import SakuraFall from '@/components/sakura-fall'
+import { Button } from '@/components/ui/button'
 
 export default function Hero() {
 	const videoRef = useRef(null)
@@ -30,15 +32,15 @@ export default function Hero() {
 					'absolute left-1/2 top-1/2 border-0 ' +
 					'animate-video bg-slate-900 opacity-75 dark:mix-blend-soft-light'
 				}
-				style={{
-					width: 'max(100vw, calc(100vh * 16/9))',
-					height: 'max(100vh, calc(100vw * 9/16))',
-					transform: 'translate(-50%, -50%)',
-					transformOrigin: 'center center',
-				}}
 				data-ready="true"
 				id="topHeroVideo"
 				src="https://player.vimeo.com/video/879007060?background=1&autoplay=1&loop=1&muted=1"
+				style={{
+					height: 'max(100vh, calc(100vw * 9/16))',
+					width: 'max(100vw, calc(100vh * 16/9))',
+					transform: 'translate(-50%, -50%)',
+					transformOrigin: 'center center',
+				}}
 				title={'landing page background video'}
 			></iframe>
 			{/* Sakura Fall Effect */}
@@ -49,33 +51,33 @@ export default function Hero() {
 			<div className="dark:mountain-bg-dark mountain-bg-light absolute bottom-0 left-0 right-0 opacity-40" />
 			<div className="container relative z-10 mx-auto px-4">
 				<motion.div
-					initial={{ opacity: 0, y: 30 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.8, delay: 0.2 }}
 					className="text-center"
+					initial={{ opacity: 0, y: 30 }}
+					transition={{ duration: 0.8, delay: 0.2 }}
 				>
 					{/* Greeting */}
 					<motion.div
-						initial={{ opacity: 0, scale: 0.8 }}
 						animate={{ opacity: 1, scale: 1 }}
-						transition={{ duration: 0.6, delay: 0.4 }}
 						className="mb-6"
+						initial={{ opacity: 0, scale: 0.8 }}
+						transition={{ duration: 0.6, delay: 0.4 }}
 						whileHover="hover" // Add whileHover to trigger children's hover animation
 					>
 						<div className="pixel-corners inline-block rounded-full border border-primary/30 bg-card/80 px-6 py-2 text-sm font-medium text-muted-foreground backdrop-blur-md">
 							<motion.span
+								className="inline-block"
 								variants={{
 									hover: {
+										transition: {
+											times: [0, 0.2, 0.5, 0.8, 1],
+											ease: 'easeInOut',
+											duration: 0.7,
+										},
 										scale: [1, 1.5, 1.3, 1.5, 1],
 										rotate: [0, -15, 15, -15, 0],
-										transition: {
-											duration: 0.7,
-											ease: 'easeInOut',
-											times: [0, 0.2, 0.5, 0.8, 1],
-										},
 									},
 								}}
-								className="inline-block"
 							>
 								👋
 							</motion.span>{' '}
@@ -85,10 +87,10 @@ export default function Hero() {
 
 					{/* Main Title */}
 					<motion.h1
-						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 0.6 }}
 						className="mb-6 text-5xl font-bold tracking-wider md:text-7xl lg:text-8xl"
+						initial={{ opacity: 0, y: 20 }}
+						transition={{ duration: 0.8, delay: 0.6 }}
 					>
 						<span className="dark:text-shadow-dark text-shadow-light">
 							BRÉVAL
@@ -101,10 +103,10 @@ export default function Hero() {
 
 					{/* Subtitle */}
 					<motion.div
-						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 0.8 }}
 						className="mb-8"
+						initial={{ opacity: 0, y: 20 }}
+						transition={{ duration: 0.8, delay: 0.8 }}
 					>
 						<div className="relative inline-block">
 							<div className="absolute inset-0 rounded-full bg-primary/20 blur-xl" />
@@ -116,10 +118,10 @@ export default function Hero() {
 
 					{/* Description */}
 					<motion.p
-						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 1 }}
 						className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground"
+						initial={{ opacity: 0, y: 20 }}
+						transition={{ duration: 0.8, delay: 1 }}
 					>
 						CTO of ForMenu, Co-founder of multiple startups, and passionate
 						about exploring the infinite possibilities of technology and
@@ -128,22 +130,22 @@ export default function Hero() {
 
 					{/* CTA Buttons */}
 					<motion.div
-						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 1.2 }}
 						className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+						initial={{ opacity: 0, y: 20 }}
+						transition={{ duration: 0.8, delay: 1.2 }}
 					>
 						<Button
-							size="lg"
 							className="magnetic-button pixel-corners rounded-full bg-primary px-8 py-3 text-primary-foreground hover:bg-primary/90"
+							size="lg"
 						>
 							<Play className="mr-2 h-5 w-5" />
 							View My Work
 						</Button>
 						<Button
-							variant="outline"
-							size="lg"
 							className="magnetic-button pixel-corners rounded-full border-primary/30 px-8 py-3 hover:bg-primary/10"
+							size="lg"
+							variant="outline"
 						>
 							Get In Touch
 						</Button>
@@ -153,10 +155,10 @@ export default function Hero() {
 
 			{/* Scroll Indicator */}
 			<motion.div
-				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.5, delay: 1.4 }}
 				className="absolute inset-x-0 bottom-12 z-10 z-30 flex justify-center"
+				initial={{ opacity: 0, y: 20 }}
+				transition={{ duration: 0.5, delay: 1.4 }}
 			>
 				<div className="flex flex-col items-center">
 					<p className="mb-4 text-sm text-muted-foreground">
@@ -164,8 +166,8 @@ export default function Hero() {
 					</p>
 					<motion.div
 						animate={{ y: [0, 10, 0] }}
-						transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
 						className="flex h-12 w-8 justify-center rounded-full border-2 border-primary/50 bg-card/30 p-2 backdrop-blur-sm"
+						transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
 					>
 						<ArrowDown className="animate-bounce-slow h-4 w-4 text-primary" />
 					</motion.div>

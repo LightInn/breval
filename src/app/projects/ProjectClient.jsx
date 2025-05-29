@@ -35,7 +35,7 @@ export default function ProjectClient({ projects }) {
 				</div>
 			</header>
 
-			<main className="mx-auto space-y-24 rounded-t-3xl bg-light">
+			<main className="bg-light mx-auto space-y-24 rounded-t-3xl">
 				<div className={'mx-auto max-w-7xl space-y-24 px-6 py-24'}>
 					{projects.map((project, i) => {
 						const data = project
@@ -54,7 +54,7 @@ export default function ProjectClient({ projects }) {
 								whileInView={{ opacity: 1, y: 0 }}
 							>
 								<div className="space-y-4">
-									<h2 className="text-3xl font-bold text-glow-600">
+									<h2 className="text-glow-600 text-3xl font-bold">
 										{data.title}
 									</h2>
 									<p className="text-slate-800">{data.short_description}</p>

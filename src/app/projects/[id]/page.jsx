@@ -1,6 +1,8 @@
 import React from 'react'
+
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
+
 import ProjectDetailClient from './ProjectDetailClient'
 
 export async function generateMetadata({ params }) {
@@ -10,8 +12,8 @@ export async function generateMetadata({ params }) {
 
 	if (!project) {
 		return {
-			title: 'Project Not Found | Bréval LE FLOCH',
 			description: 'The requested project could not be found.',
+			title: 'Project Not Found | Bréval LE FLOCH',
 		}
 	}
 
@@ -22,39 +24,39 @@ export async function generateMetadata({ params }) {
 			: '/placeholder.svg')
 
 	return {
-		title: `${project.title} | Bréval LE FLOCH`,
+		openGraph: {
+			images: [
+				{
+					height:
+						project.main_media?.height || project.media?.[0]?.height || 630,
+					width: project.main_media?.width || project.media?.[0]?.width || 1200,
+					alt: project.title,
+					url: imageUrl,
+				},
+			],
+			description:
+				project.short_description || project.description?.substring(0, 160),
+			title: `${project.title} | Bréval LE FLOCH`,
+			url: `https://brev.al/projects/${id}`,
+			publishedTime: project.date,
+			type: 'article',
+		},
+		twitter: {
+			description:
+				project.short_description || project.description?.substring(0, 160),
+			title: `${project.title} | Bréval LE FLOCH`,
+			card: 'summary_large_image',
+			images: [imageUrl],
+		},
 		description:
 			project.short_description ||
 			project.description?.substring(0, 160) ||
 			'Project by Bréval LE FLOCH',
-		keywords: project.skills?.join(', ') || '',
-		openGraph: {
-			title: `${project.title} | Bréval LE FLOCH`,
-			description:
-				project.short_description || project.description?.substring(0, 160),
-			images: [
-				{
-					url: imageUrl,
-					width: project.main_media?.width || project.media?.[0]?.width || 1200,
-					height:
-						project.main_media?.height || project.media?.[0]?.height || 630,
-					alt: project.title,
-				},
-			],
-			type: 'article',
-			publishedTime: project.date,
-			url: `https://brev.al/projects/${id}`,
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title: `${project.title} | Bréval LE FLOCH`,
-			description:
-				project.short_description || project.description?.substring(0, 160),
-			images: [imageUrl],
-		},
 		alternates: {
 			canonical: `https://brev.al/projects/${id}`,
 		},
+		title: `${project.title} | Bréval LE FLOCH`,
+		keywords: project.skills?.join(', ') || '',
 	}
 }
 

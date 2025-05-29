@@ -74,7 +74,7 @@ export default async function BlogPage(props) {
 									name={blog.tags[0]}
 								/>
 							</div>
-							<h1 className="relative mt-6 inline-block w-full text-center text-2xl font-semibold capitalize !leading-normal text-light md:text-3xl lg:text-5xl">
+							<h1 className="text-light relative mt-6 inline-block w-full text-center text-2xl font-semibold capitalize !leading-normal md:text-3xl lg:text-5xl">
 								{blog.title}
 							</h1>
 						</div>
@@ -95,7 +95,7 @@ export default async function BlogPage(props) {
 				</div>
 				<BlogDetails blog={blog} slug={params.slug} />
 
-				<div className="mt-8 grid grid-cols-12 gap-y-8 px-5 md:px-10 lg:gap-8 sxl:gap-16">
+				<div className="sxl:gap-16 mt-8 grid grid-cols-12 gap-y-8 px-5 md:px-10 lg:gap-8">
 					{/* sticky div */}
 					<div className="sticky top-0 col-span-12 lg:col-span-3">
 						{/* -------------------------------------------------------------------  TOC ! -----------------------------------------------------------------------------------------------------------------------  */}
@@ -118,7 +118,7 @@ export default async function BlogPage(props) {
 							<summary className="cursor-pointer text-lg font-semibold capitalize">
 								Similar Articles
 							</summary>
-							<ul className="mt-4 font-in text-base">
+							<ul className="font-in mt-4 text-base">
 								Not available for now
 								{similarArticles.map(article => (
 									<li className="mt-2" key={article.url}>

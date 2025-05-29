@@ -1,30 +1,27 @@
 'use client'
 
-import Markdown from 'react-markdown'
-import React from 'react'
-import { motion } from 'framer-motion'
-import { format, parseISO } from 'date-fns'
-import Link from 'next/link'
 import {
-	ExternalLink,
 	ArrowLeft,
 	Calendar,
-	Users,
+	Code,
+	ExternalLink,
 	Globe,
 	Tag,
-	Code,
+	Users,
 } from 'lucide-react'
+import Markdown from 'react-markdown'
+import React from 'react'
 
-import { rgbDataURL } from '@/services/dataurl.services'
+import { format, parseISO } from 'date-fns'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { rgbDataURL } from '@/services/dataurl.services'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 import ImageWithFallback from '../../../components/Home/ImageWithFallback'
-
-function classNames(...classes) {
-	return classes.filter(Boolean).join(' ')
-}
 
 export default function ProjectDetailClient({ project }) {
 	// Prioritize main_media, then media array
@@ -41,9 +38,9 @@ export default function ProjectDetailClient({ project }) {
 			<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-20"></div>
 
 			<motion.div
+				animate={{ opacity: 1, y: 0 }}
 				className="relative z-10 pb-16 pt-16 sm:pb-24"
 				initial={{ opacity: 0, y: 20 }}
-				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
 			>
 				<nav
@@ -85,9 +82,9 @@ export default function ProjectDetailClient({ project }) {
 					<div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
 						<div className="lg:col-span-5 lg:col-start-8">
 							<motion.div
+								animate={{ opacity: 1, x: 0 }}
 								className="flex flex-col space-y-4"
 								initial={{ opacity: 0, x: 20 }}
-								animate={{ opacity: 1, x: 0 }}
 								transition={{ duration: 0.5, delay: 0.2 }}
 							>
 								<div className="flex items-center justify-between">
@@ -96,8 +93,8 @@ export default function ProjectDetailClient({ project }) {
 									</h1>
 									{project?.date && (
 										<Badge
-											variant="secondary"
 											className="flex items-center gap-2"
+											variant="secondary"
 										>
 											<Calendar className="h-4 w-4" />
 											{format(parseISO(project.date), 'LLLL d, yyyy')}
@@ -109,20 +106,20 @@ export default function ProjectDetailClient({ project }) {
 								<div className="flex flex-wrap gap-2">
 									{project?.category && (
 										<Badge
-											variant="outline"
 											className="flex items-center gap-1"
+											variant="outline"
 										>
 											<Tag className="h-3 w-3" />
 											{project.category}
 										</Badge>
 									)}
 									{project?.skills?.slice(0, 5).map((skill, idx) => (
-										<Badge key={idx} variant="secondary" className="text-xs">
+										<Badge className="text-xs" key={idx} variant="secondary">
 											{skill}
 										</Badge>
 									))}
 									{project?.skills?.length > 5 && (
-										<Badge variant="secondary" className="text-xs">
+										<Badge className="text-xs" variant="secondary">
 											+{project.skills.length - 5} more
 										</Badge>
 									)}
@@ -132,25 +129,25 @@ export default function ProjectDetailClient({ project }) {
 
 						{/* Image gallery */}
 						<motion.div
+							animate={{ opacity: 1, x: 0 }}
 							className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0"
 							initial={{ opacity: 0, x: -20 }}
-							animate={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.5, delay: 0.1 }}
 						>
 							<h2 className="sr-only">Images</h2>
 							<div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
 								{displayImages.map((image, idx) => (
 									<motion.div
-										key={image.id}
-										initial={{ opacity: 0, scale: 0.95 }}
 										animate={{ opacity: 1, scale: 1 }}
-										transition={{ duration: 0.5, delay: 0.1 * idx }}
 										className={classNames(
 											idx === 0
 												? 'lg:col-span-2 lg:row-span-2'
 												: 'hidden lg:block',
 											'relative overflow-hidden rounded-lg border border-border'
 										)}
+										initial={{ scale: 0.95, opacity: 0 }}
+										key={image.id}
+										transition={{ delay: 0.1 * idx, duration: 0.5 }}
 									>
 										<ImageWithFallback
 											alt={image.name || `Project image ${idx + 1}`}
@@ -168,9 +165,9 @@ export default function ProjectDetailClient({ project }) {
 						</motion.div>
 
 						<motion.div
+							animate={{ opacity: 1, x: 0 }}
 							className="mt-2 lg:col-span-5"
 							initial={{ opacity: 0, x: 20 }}
-							animate={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.5, delay: 0.3 }}
 						>
 							{/* URL VIEW - Multiple buttons */}
@@ -185,8 +182,8 @@ export default function ProjectDetailClient({ project }) {
 											data-umami-event="project live link"
 											data-umami-event-url={project?.live_url}
 											href={project?.live_url}
-											target="_blank"
 											rel="noopener noreferrer"
+											target="_blank"
 										>
 											<Globe className="mr-2 h-4 w-4" />
 											Visit Live Site
@@ -197,16 +194,16 @@ export default function ProjectDetailClient({ project }) {
 								{project?.url && project?.url !== project?.live_url && (
 									<Button
 										asChild
-										variant="outline"
 										className="magnetic-button pixel-corners w-full"
 										size="lg"
+										variant="outline"
 									>
 										<a
 											data-umami-event="project source link"
 											data-umami-event-url={project?.url}
 											href={project?.url}
-											target="_blank"
 											rel="noopener noreferrer"
+											target="_blank"
 										>
 											<Code className="mr-2 h-4 w-4" />
 											View Source
@@ -224,8 +221,8 @@ export default function ProjectDetailClient({ project }) {
 											data-umami-event="project link"
 											data-umami-event-url={project?.url}
 											href={project?.url}
-											target="_blank"
 											rel="noopener noreferrer"
+											target="_blank"
 										>
 											<ExternalLink className="mr-2 h-4 w-4" />
 											Visit Project
@@ -263,14 +260,14 @@ export default function ProjectDetailClient({ project }) {
 										<div className="flex flex-wrap gap-2">
 											{project.skills.map((skill, idx) => (
 												<motion.div
-													key={idx}
-													initial={{ opacity: 0, scale: 0.9 }}
 													animate={{ opacity: 1, scale: 1 }}
-													transition={{ duration: 0.3, delay: 0.05 * idx }}
+													initial={{ opacity: 0, scale: 0.9 }}
+													key={idx}
+													transition={{ delay: 0.05 * idx, duration: 0.3 }}
 												>
 													<Badge
-														variant="outline"
 														className="cursor-default transition-colors hover:bg-primary/10"
+														variant="outline"
 													>
 														{skill}
 													</Badge>
@@ -293,23 +290,23 @@ export default function ProjectDetailClient({ project }) {
 										<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
 											{project?.creators?.map((creator, idx) => (
 												<motion.div
-													key={idx}
-													initial={{ opacity: 0, y: 20 }}
 													animate={{ opacity: 1, y: 0 }}
-													transition={{ duration: 0.3, delay: 0.1 * idx }}
+													initial={{ opacity: 0, y: 20 }}
+													key={idx}
+													transition={{ delay: 0.1 * idx, duration: 0.3 }}
 												>
 													<Button
 														asChild
-														variant="outline"
 														className="magnetic-button pixel-corners h-auto w-full justify-start p-4"
+														variant="outline"
 													>
 														<a
+															className="flex flex-col items-start space-y-2"
 															data-umami-event="creator link"
 															data-umami-event-site={creator.site}
 															href={'https://' + creator.site}
-															target="_blank"
 															rel="noopener noreferrer"
-															className="flex flex-col items-start space-y-2"
+															target="_blank"
 														>
 															<span className="font-medium text-foreground">
 																{creator.creator}
@@ -332,4 +329,8 @@ export default function ProjectDetailClient({ project }) {
 			</motion.div>
 		</div>
 	)
+}
+
+function classNames(...classes) {
+	return classes.filter(Boolean).join(' ')
 }
