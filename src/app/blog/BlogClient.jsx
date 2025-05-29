@@ -283,7 +283,7 @@ export default function BlogClient({ blogs = [] }) {
 													<Clock className="mr-2 h-4 w-4" />
 													<span>{featuredPost.readTime}</span>
 												</div>
-												<Link href={`/blog/${featuredPost.slug}`}>
+												<Link href={`/blog/articles/${featuredPost.slug}`}>
 													<Button className="w-full bg-primary hover:bg-primary/80 md:w-auto">
 														Lire l'article
 														<ArrowRight className="ml-2 h-4 w-4" />
