@@ -6,7 +6,6 @@ import { createGlobalStyle } from 'styled-components'
 
 import AboutCoverSection from '@/components/Experiments/About/AboutCoverSection'
 import { Playground } from '@/components/Experiments/About/Playground'
-import Skills from '@/components/Experiments/About/Skills'
 import Navbar from '@/components/Experiments/About/Navbar'
 
 import './App.css'
@@ -75,11 +74,9 @@ export default function About() {
 			<Navbar />
 
 			<div className="">
-				<AboutCoverSection setReload={setReload} data={data} />
+				<AboutCoverSection data={data} setReload={setReload} />
 
-				<Playground image={imgeUrl} setReload={setReload} data={data} />
-
-				<Skills />
+				<Playground data={data} image={imgeUrl} setReload={setReload} />
 			</div>
 		</div>
 	)
