@@ -83,9 +83,6 @@ export default async function ProjectDetail(props) {
 		notFound()
 	}
 
-	// Ensure media is always an array and handle the structure from your API
-	const mediaArray = Array.isArray(project?.media) ? project.media : []
-
 	return <ProjectDetailClient project={project} />
 }
 
