@@ -26,10 +26,9 @@ export default function ProjectDetailClient({ project }) {
 	return (
 		<div className="relative min-h-screen bg-background text-foreground">
 			<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-20"></div>
-			<Navbar />
 
 			<motion.div
-				className="relative z-10 pb-16 pt-16 sm:pb-24"
+				className="relative z-10 mt-12 pb-16 pt-16 sm:pb-24"
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
