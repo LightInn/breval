@@ -120,11 +120,11 @@ export default function ProjectClientNew({ projects = [] }) {
 	return (
 		<main className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
 			<div className="relative">
-				<ScrollObject3D />
+				{/* <ScrollObject3D /> */}
 
 				<section className="relative py-20">
-					<div className="retro-grid absolute inset-0 opacity-30"></div>
-					<div className="sakura-bg absolute inset-0 opacity-10"></div>
+					<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-30"></div>
+					{/* <div className="sakura-bg absolute inset-0 opacity-10"></div> */}
 
 					<div className="container mx-auto px-4">
 						<motion.div
