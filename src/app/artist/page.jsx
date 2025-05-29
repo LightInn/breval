@@ -9,6 +9,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import ScrollObject3D from '@/components/scroll-object-3d'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import Link from 'next/link'
 
 export default function ArtistPage() {
 	const ref = useRef(null)
@@ -63,7 +64,7 @@ export default function ArtistPage() {
 			image: '/placeholder.svg?height=600&width=800',
 			tags: ['SVG', 'Interactive', 'Animation'],
 			title: 'My Avatar',
-			demo: '#',
+			demo: '/about',
 			theme: 'organic',
 			color: 'from-emerald-500/20 to-teal-600/20',
 			bgPattern:
@@ -691,21 +692,35 @@ export default function ArtistPage() {
 
 											{/* Action Buttons */}
 											<div className="flex gap-4">
-												<Button
-													className="rounded-xl bg-primary px-8 py-4 text-lg text-white hover:bg-primary/80"
-													size="lg"
+												<Link
+													href={selectedExperiment.demo}
+													className="flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-lg text-white hover:bg-primary/80"
+													onClick={() => setSelectedExperiment(null)}
+													transition={{ duration: 0.3 }}
 												>
-													<Play className="mr-3 h-5 w-5" />
-													Lancer l'Expérience
-												</Button>
-												<Button
-													className="rounded-xl border-primary/50 px-8 py-4 text-lg hover:bg-primary/20"
-													variant="outline"
-													size="lg"
+													<Button
+														className="rounded-xl bg-primary px-8 py-4 text-lg text-white hover:bg-primary/80"
+														size="lg"
+													>
+														<Play className="mr-3 h-5 w-5" />
+														Lancer l'Expérience
+													</Button>
+												</Link>
+												<Link
+													href={selectedExperiment.demo}
+													className="flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-lg text-white hover:bg-primary/80"
+													onClick={() => setSelectedExperiment(null)}
+													transition={{ duration: 0.3 }}
 												>
-													<Eye className="mr-3 h-5 w-5" />
-													Code Source
-												</Button>
+													<Button
+														className="rounded-xl border-primary/50 px-8 py-4 text-lg hover:bg-primary/20"
+														variant="outline"
+														size="lg"
+													>
+														<Eye className="mr-3 h-5 w-5" />
+														Code Source
+													</Button>
+												</Link>
 											</div>
 										</motion.div>
 									</div>
