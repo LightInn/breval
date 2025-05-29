@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useRef } from 'react' // Added useState
+import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ExternalLink, Filter } from 'lucide-react' // Github icon removed as it's not in the API data
+import { ExternalLink, Filter } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import ScrollObject3D from '@/components/scroll-object-3d'
@@ -34,51 +34,10 @@ export default function ProjectClientNew({ projects = [] }) {
 		show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 	}
 
-	// Get the first project as featured, or use fallback if projects is empty or not an array
-	const featuredProjectData =
-		Array.isArray(projects) && projects.length > 0 ? projects[0] : null
-	const featuredProject = featuredProjectData
-		? {
-				title: featuredProjectData.title || 'Projet en vedette',
-				description:
-					featuredProjectData.short_description ||
-					featuredProjectData.description ||
-					'Description non disponible.',
-				// Use main_media first, then fallback to first media item
-				image:
-					featuredProjectData.main_media?.url ||
-					(featuredProjectData.media &&
-					featuredProjectData.media.length > 0 &&
-					featuredProjectData.media[0].url
-						? featuredProjectData.media[0].url
-						: '/placeholder.svg?height=600&width=1200'),
-				url: featuredProjectData.url || featuredProjectData.live_url, // Support both url and live_url
-				slug: featuredProjectData.title
-					? featuredProjectData.title.toLowerCase().replace(/\s+/g, '-')
-					: '#',
-				tags: featuredProjectData.skills
-					? featuredProjectData.skills.slice(0, 5) // Limit to 5 tags for display
-					: ['Web Development'],
-				category: featuredProjectData.category || 'Other',
-				liveUrl: featuredProjectData.live_url,
-				githubUrl: featuredProjectData.url,
-			}
-		: {
-				title: 'Projet non disponible',
-				description: 'Aucun projet à afficher en vedette pour le moment.',
-				image: '/placeholder.svg?height=600&width=1200',
-				url: '#',
-				slug: '#',
-				tags: ['Tag par défaut'],
-				category: 'Other',
-				liveUrl: null,
-				githubUrl: null,
-			}
-
-	// Process remaining projects data to match the component structure
+	// Process all projects data to match the component structure
 	const processedProjects =
-		Array.isArray(projects) && projects.length > 1
-			? projects.slice(1).map(project => ({
+		Array.isArray(projects) && projects.length > 0
+			? projects.map(project => ({
 					title: project.title || 'Titre non disponible',
 					description:
 						project.short_description ||
@@ -120,6 +79,8 @@ export default function ProjectClientNew({ projects = [] }) {
 	].slice(0, 6) // Limit to 6 categories for UI
 
 	const handleCategoryClick = category => {
+		console.log(`Category clicked: ${category}`)
+
 		setSelectedCategory(category)
 	}
 
@@ -129,6 +90,32 @@ export default function ProjectClientNew({ projects = [] }) {
 			: processedProjects.filter(
 					project => project.category === selectedCategory
 				)
+
+	// Get the featured project based on the selected category
+	const featuredProject =
+		filteredProjects.length > 0
+			? {
+					...filteredProjects[0],
+					tags: filteredProjects[0].tags.slice(0, 5), // Extend to 5 tags for featured display
+					image: filteredProjects[0].image.replace(
+						'height=300&width=500',
+						'height=600&width=1200'
+					), // Higher resolution for featured
+				}
+			: {
+					title: 'Aucun projet disponible',
+					description: 'Aucun projet à afficher pour cette catégorie.',
+					image: '/placeholder.svg?height=600&width=1200',
+					url: '#',
+					slug: '#',
+					tags: ['Tag par défaut'],
+					category: 'Other',
+					liveUrl: null,
+					githubUrl: null,
+				}
+
+	// Remove the featured project from the grid to avoid duplication
+	const gridProjects = filteredProjects.slice(1)
 
 	return (
 		<main className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
@@ -176,19 +163,10 @@ export default function ProjectClientNew({ projects = [] }) {
 									</Button>
 								))}
 							</div>
-
-							<Button
-								variant="outline"
-								size="sm"
-								className="border-primary/30 hover:bg-primary/20"
-							>
-								<Filter className="mr-2 h-4 w-4" />
-								Sort
-							</Button>
 						</div>
 
 						{/* Featured Project */}
-						{featuredProjectData && (
+						{filteredProjects.length > 0 && (
 							<motion.div
 								ref={featuredRef}
 								initial={{ opacity: 0, y: 20 }}
@@ -289,10 +267,10 @@ export default function ProjectClientNew({ projects = [] }) {
 							animate={isInView ? 'show' : 'hidden'}
 							className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
 						>
-							{filteredProjects.map(
+							{gridProjects.map(
 								(
 									project,
-									index // Use filteredProjects
+									index // Use gridProjects instead of filteredProjects
 								) => (
 									<motion.div key={project.slug || index} variants={item}>
 										<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-900/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50">
