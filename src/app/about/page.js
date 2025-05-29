@@ -13,35 +13,35 @@ import './App.css'
 
 export default function About() {
 	const bibiliothecqueDImage = [
-		// "/dynamic/0.webp",
-		'/dynamic/1.webp',
-		'/dynamic/2.webp',
-		'/dynamic/3.webp',
-		'/dynamic/4.webp',
-		'/dynamic/5.webp',
-		'/dynamic/6.webp',
-		'/dynamic/7.webp',
-		'/dynamic/8.webp',
-		'/dynamic/9.webp',
-		'/dynamic/10.webp',
-		'/dynamic/11.webp',
-		'/dynamic/12.webp',
-		'/dynamic/13.webp',
-		'/dynamic/14.webp',
-		'/dynamic/15.webp',
-		'/dynamic/16.webp',
-		'/dynamic/17.webp',
-		'/dynamic/18.webp',
-		'/dynamic/19.webp',
-		'/dynamic/20.webp',
-		'/dynamic/21.webp',
-		'/dynamic/22.webp',
-		'/dynamic/23.webp',
-		'/dynamic/24.webp',
-		'/dynamic/25.webp',
+		// "/experiments/about/dynamic/0.webp",
+		'/experiments/about/dynamic/1.webp',
+		'/experiments/about/dynamic/2.webp',
+		'/experiments/about/dynamic/3.webp',
+		'/experiments/about/dynamic/4.webp',
+		'/experiments/about/dynamic/5.webp',
+		'/experiments/about/dynamic/6.webp',
+		'/experiments/about/dynamic/7.webp',
+		'/experiments/about/dynamic/8.webp',
+		'/experiments/about/dynamic/9.webp',
+		'/experiments/about/dynamic/10.webp',
+		'/experiments/about/dynamic/11.webp',
+		'/experiments/about/dynamic/12.webp',
+		'/experiments/about/dynamic/13.webp',
+		'/experiments/about/dynamic/14.webp',
+		'/experiments/about/dynamic/15.webp',
+		'/experiments/about/dynamic/16.webp',
+		'/experiments/about/dynamic/17.webp',
+		'/experiments/about/dynamic/18.webp',
+		'/experiments/about/dynamic/19.webp',
+		'/experiments/about/dynamic/20.webp',
+		'/experiments/about/dynamic/21.webp',
+		'/experiments/about/dynamic/22.webp',
+		'/experiments/about/dynamic/23.webp',
+		'/experiments/about/dynamic/24.webp',
+		'/experiments/about/dynamic/25.webp',
 	]
 
-	const [imgeUrl, setUrl] = useState('/dynamic/0.webp')
+	const [imgeUrl, setUrl] = useState('/experiments/about/dynamic/0.webp')
 
 	const [reload, setReload] = useState(0)
 
@@ -75,9 +75,9 @@ export default function About() {
 			<Navbar />
 
 			<div className="">
-				<AboutCoverSection setReload={setReload} />
+				<AboutCoverSection setReload={setReload} data={data} />
 
-				<Playground image={imgeUrl} setReload={setReload} />
+				<Playground image={imgeUrl} setReload={setReload} data={data} />
 
 				<Skills />
 			</div>
