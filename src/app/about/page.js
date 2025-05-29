@@ -4,11 +4,10 @@ import { usePalette } from 'react-palette'
 
 import { createGlobalStyle } from 'styled-components'
 
-import AboutCoverSection from '@/components/About/AboutCoverSection'
-import { Playground } from '@/components/About/Playground'
-import Skills from '@/components/About/Skills'
-
-import Navbar from '../../components/About/Navbar'
+import AboutCoverSection from '@/components/Experiments/About/AboutCoverSection'
+import { Playground } from '@/components/Experiments/About/Playground'
+import Skills from '@/components/Experiments/About/Skills'
+import Navbar from '@/components/Experiments/About/Navbar'
 
 import './App.css'
 

@@ -9,9 +9,9 @@ import {
 	LinkedinIcon,
 	TwitterIcon,
 } from '@/components/Icons'
-import { ReloadCTA } from '@/components/About/ReloadCTA'
+import { ReloadCTA } from '@/components/Experiments/About/ReloadCTA'
 
-import Avatar from '/src/components/About/Avatar'
+import Avatar from '/src/components/Experiments/About/Avatar'
 
 const AboutCoverSection = ({ background = null, setReload = null }) => {
 	return (

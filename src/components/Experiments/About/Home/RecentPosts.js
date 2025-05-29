@@ -2,7 +2,7 @@ import React from 'react'
 
 import Link from 'next/link'
 
-import BlogLayoutThree from '../../Blog/BlogLayoutThree'
+import BlogLayoutThree from '../../../Blog/BlogLayoutThree'
 
 import { sortBlogs } from '/src/utils'
 

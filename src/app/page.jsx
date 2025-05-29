@@ -1,12 +1,12 @@
 import { Suspense } from 'react'
 
-import { SectionDivider } from '@/components/svg-stickers'
+import { SectionDivider } from '@/components/Home/svg-stickers'
 import ScrollObject3D from '@/components/scroll-object-3d'
 import LoadingScreen from '@/components/loading-screen'
-import Projects from '@/components/projects'
-import Journey from '@/components/journey'
-import About from '@/components/about'
-import Hero from '@/components/hero'
+import Projects from '@/components/Home/projects'
+import Journey from '@/components/Home/journey'
+import About from '@/components/Home/about'
+import Hero from '@/components/Home/hero'
 
 export default function Home() {
 	return (
