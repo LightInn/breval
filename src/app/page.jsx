@@ -1,11 +1,12 @@
 import { Suspense } from 'react'
-import Hero from '@/components/hero'
-import About from '@/components/about'
-import Journey from '@/components/journey'
-import Projects from '@/components/projects'
-import LoadingScreen from '@/components/loading-screen'
+
 import { SectionDivider } from '@/components/svg-stickers'
 import ScrollObject3D from '@/components/scroll-object-3d'
+import LoadingScreen from '@/components/loading-screen'
+import Projects from '@/components/projects'
+import Journey from '@/components/journey'
+import About from '@/components/about'
+import Hero from '@/components/hero'
 
 export default function Home() {
 	return (

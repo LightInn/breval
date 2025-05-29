@@ -5,7 +5,7 @@ import { PopCard } from 'special-card'
 
 export default function Presentation() {
 	return (
-		<section className="relative z-30 box-border flex min-h-[100vh] w-full -translate-y-[50px] transform snap-center snap-always flex-col flex-wrap items-center justify-center bg-light bg-sakura-tree bg-cover px-4 2xl:px-0">
+		<section className="bg-light bg-sakura-tree relative z-30 box-border flex min-h-[100vh] w-full -translate-y-[50px] transform snap-center snap-always flex-col flex-wrap items-center justify-center bg-cover px-4 2xl:px-0">
 			<div className={'mx-auto h-full max-w-7xl'}>
 				<div
 					className={
@@ -32,7 +32,7 @@ export default function Presentation() {
 								</div>
 								<div
 									className={
-										'animated-image-bg absolute hidden h-[250px] w-[250px] rotate-2 rounded-2xl bg-glow-500 p-10 shadow-2xl sm:block'
+										'animated-image-bg bg-glow-500 absolute hidden h-[250px] w-[250px] rotate-2 rounded-2xl p-10 shadow-2xl sm:block'
 									}
 								></div>
 							</div>

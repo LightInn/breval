@@ -29,7 +29,7 @@ const HomeCoverSection = ({ blogs }) => {
 					src={blog.image}
 				/>
 
-				<div className="z-10 flex w-full flex-col items-start justify-center p-6 text-light sm:p-8 md:p-12 lg:w-3/4 lg:p-16">
+				<div className="text-light z-10 flex w-full flex-col items-start justify-center p-6 sm:p-8 md:p-12 lg:w-3/4 lg:p-16">
 					<Tag
 						link={`/blog/categories/${slug(blog.tags[0])}`}
 						name={blog.tags[0]}
@@ -44,7 +44,7 @@ const HomeCoverSection = ({ blogs }) => {
 							</span>
 						</h1>
 					</Link>
-					<p className="mt-4 hidden font-in sm:inline-block md:text-lg lg:text-xl">
+					<p className="font-in mt-4 hidden sm:inline-block md:text-lg lg:text-xl">
 						{blog.description}
 					</p>
 				</div>

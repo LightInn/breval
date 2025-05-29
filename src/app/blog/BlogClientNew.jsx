@@ -1,38 +1,40 @@
 'use client'
 
-import { useRef, useState, useMemo } from 'react'
+import { ArrowRight, Calendar, Clock } from 'lucide-react'
+import { useMemo, useRef, useState } from 'react'
+
 import { motion, useInView } from 'framer-motion'
-import { Card, CardContent, CardFooter } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Calendar, Clock, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import ScrollObject3D from '@/components/scroll-object-3d'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 export default function BlogClientNew({ blogs = [] }) {
 	const ref = useRef(null)
 	const featuredRef = useRef(null)
-	const isInView = useInView(ref, { once: true, amount: 0.1 })
-	const isFeaturedInView = useInView(featuredRef, { once: true, amount: 0.3 })
+	const isInView = useInView(ref, { amount: 0.1, once: true })
+	const isFeaturedInView = useInView(featuredRef, { amount: 0.3, once: true })
 
 	// State for category filtering
 	const [selectedCategory, setSelectedCategory] = useState('Tous les articles')
 
 	const container = {
-		hidden: { opacity: 0 },
 		show: {
-			opacity: 1,
 			transition: {
 				staggerChildren: 0.1,
 				delayChildren: 0.2,
 			},
+			opacity: 1,
 		},
+		hidden: { opacity: 0 },
 	}
 
 	const item = {
+		show: { transition: { duration: 0.5 }, opacity: 1, y: 0 },
 		hidden: { opacity: 0, y: 20 },
-		show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 	}
 
 	// Format dates and process blog data
@@ -42,8 +44,8 @@ export default function BlogClientNew({ blogs = [] }) {
 			const date = new Date(dateString)
 			return date.toLocaleDateString('fr-FR', {
 				year: 'numeric',
-				month: 'long',
 				day: 'numeric',
+				month: 'long',
 			})
 		} catch (error) {
 			return 'Date non disponible'
@@ -86,26 +88,26 @@ export default function BlogClientNew({ blogs = [] }) {
 	console.log('Featured Blog Data:', featuredBlogData)
 	const featuredPost = featuredBlogData
 		? {
-				title: featuredBlogData.title || 'Article en vedette',
-				excerpt: featuredBlogData.describe || 'Description non disponible.',
-				date: formatDate(
-					featuredBlogData.publishedAt || featuredBlogData.createdAt
-				),
-				readTime: calculateReadTime(featuredBlogData.body),
 				image: featuredBlogData.image
 					? `${featuredBlogData.image}`
 					: '/placeholder.svg?height=600&width=1200',
-				tags: processTags(featuredBlogData.tags),
 				slug:
 					featuredBlogData.url ||
 					`#${featuredBlogData.title?.toLowerCase().replace(/\s+/g, '-')}`,
+				date: formatDate(
+					featuredBlogData.publishedAt || featuredBlogData.createdAt
+				),
+				excerpt: featuredBlogData.describe || 'Description non disponible.',
+				title: featuredBlogData.title || 'Article en vedette',
+				readTime: calculateReadTime(featuredBlogData.body),
+				tags: processTags(featuredBlogData.tags),
 			}
 		: {
-				title: 'Article non disponible',
 				excerpt: 'Aucun article à afficher pour le moment.',
-				date: 'Date non disponible',
-				readTime: '5 min de lecture',
 				image: '/placeholder.svg?height=600&width=1200',
+				title: 'Article non disponible',
+				readTime: '5 min de lecture',
+				date: 'Date non disponible',
 				tags: ['Blog'],
 				slug: '#',
 			}
@@ -116,16 +118,16 @@ export default function BlogClientNew({ blogs = [] }) {
 	const processedBlogs =
 		Array.isArray(blogs) && blogs.length > 1
 			? blogs.slice(1).map(blog => ({
-					title: blog.title || 'Titre non disponible',
-					excerpt: blog.describe || 'Description non disponible.',
-					date: formatDate(blog.publishedAt || blog.createdAt),
-					readTime: calculateReadTime(blog.body),
 					image: blog.image
 						? `${blog.image}`
 						: '/placeholder.svg?height=300&width=500',
-					tags: processTags(blog.tags),
 					slug:
 						blog.url || `#${blog.title?.toLowerCase().replace(/\s+/g, '-')}`,
+					excerpt: blog.describe || 'Description non disponible.',
+					date: formatDate(blog.publishedAt || blog.createdAt),
+					title: blog.title || 'Titre non disponible',
+					readTime: calculateReadTime(blog.body),
+					tags: processTags(blog.tags),
 				}))
 			: []
 
@@ -186,10 +188,10 @@ export default function BlogClientNew({ blogs = [] }) {
 
 					<div className="container mx-auto px-4">
 						<motion.div
-							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.5 }}
 							className="mb-12 text-center"
+							initial={{ opacity: 0, y: 20 }}
+							transition={{ duration: 0.5 }}
 						>
 							<h1 className="text-shadow mb-4 text-4xl font-bold md:text-6xl">
 								<span className="text-primary">Blog</span> & Réflexions
@@ -213,17 +215,17 @@ export default function BlogClientNew({ blogs = [] }) {
 						<div className="mb-12 flex flex-wrap justify-center gap-3">
 							{categories.map((category, index) => (
 								<Button
-									key={index}
-									variant={
-										selectedCategory === category ? 'default' : 'outline'
-									}
-									size="sm"
 									className={
 										selectedCategory === category
 											? 'bg-primary hover:bg-primary/80'
 											: 'border-primary/30 hover:bg-primary/20'
 									}
+									key={index}
 									onClick={() => handleCategoryClick(category)}
+									size="sm"
+									variant={
+										selectedCategory === category ? 'default' : 'outline'
+									}
 								>
 									{category}
 								</Button>
@@ -233,24 +235,24 @@ export default function BlogClientNew({ blogs = [] }) {
 						{/* Featured Post */}
 						{featuredBlogData && shouldShowFeatured && (
 							<motion.div
-								ref={featuredRef}
-								initial={{ opacity: 0, y: 20 }}
 								animate={
 									isFeaturedInView
 										? { opacity: 1, y: 0 }
 										: { opacity: 0, y: 20 }
 								}
-								transition={{ duration: 0.7 }}
 								className="mb-16"
+								initial={{ opacity: 0, y: 20 }}
+								ref={featuredRef}
+								transition={{ duration: 0.7 }}
 							>
 								<div className="relative overflow-hidden rounded-lg border border-primary/30 bg-gray-900/60 backdrop-blur-sm">
 									<div className="md:flex">
 										<div className="relative h-64 md:h-auto md:w-1/2">
 											<Image
-												src={featuredPost.image}
 												alt={featuredPost.title}
-												fill
 												className="object-cover"
+												fill
+												src={featuredPost.image}
 												unoptimized
 											/>
 											<div className="absolute left-4 top-4">
@@ -264,9 +266,9 @@ export default function BlogClientNew({ blogs = [] }) {
 												<div className="mb-4 flex flex-wrap gap-2">
 													{featuredPost.tags.map((tag, index) => (
 														<Badge
+															className="border-primary/30 bg-primary/10"
 															key={index}
 															variant="outline"
-															className="border-primary/30 bg-primary/10"
 														>
 															{tag}
 														</Badge>
@@ -303,21 +305,21 @@ export default function BlogClientNew({ blogs = [] }) {
 						{/* Blog Posts Grid */}
 						{filteredBlogs.length > 0 ? (
 							<motion.div
-								ref={ref}
-								variants={container}
-								initial="hidden"
 								animate={isInView ? 'show' : 'hidden'}
 								className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+								initial="hidden"
+								ref={ref}
+								variants={container}
 							>
 								{filteredBlogs.map((post, index) => (
 									<motion.div key={post.slug || index} variants={item}>
 										<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-900/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50">
 											<div className="relative h-48 overflow-hidden">
 												<Image
-													src={post.image}
 													alt={post.title}
-													fill
 													className="object-cover transition-transform duration-500 hover:scale-105"
+													fill
+													src={post.image}
 													unoptimized
 												/>
 											</div>
@@ -326,9 +328,9 @@ export default function BlogClientNew({ blogs = [] }) {
 												<div className="mb-3 flex flex-wrap gap-2">
 													{post.tags.slice(0, 2).map((tag, tagIndex) => (
 														<Badge
+															className="border-primary/30 bg-primary/10"
 															key={tagIndex}
 															variant="outline"
-															className="border-primary/30 bg-primary/10"
 														>
 															{tag}
 														</Badge>
@@ -349,12 +351,12 @@ export default function BlogClientNew({ blogs = [] }) {
 
 											<CardFooter className="pt-0">
 												<Link
-													href={`/blog/articles/${post.slug}`}
 													className="w-full"
+													href={`/blog/articles/${post.slug}`}
 												>
 													<Button
-														variant="ghost"
 														className="w-full justify-between hover:bg-primary/20 hover:text-white"
+														variant="ghost"
 													>
 														Lire l'article
 														<ArrowRight className="ml-2 h-4 w-4" />
@@ -367,13 +369,13 @@ export default function BlogClientNew({ blogs = [] }) {
 							</motion.div>
 						) : (
 							<motion.div
-								ref={ref}
-								initial={{ opacity: 0, y: 20 }}
 								animate={
 									isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
 								}
-								transition={{ duration: 0.5 }}
 								className="py-16 text-center"
+								initial={{ opacity: 0, y: 20 }}
+								ref={ref}
+								transition={{ duration: 0.5 }}
 							>
 								<div className="mx-auto max-w-md">
 									<h3 className="mb-2 text-xl font-semibold">
@@ -384,9 +386,9 @@ export default function BlogClientNew({ blogs = [] }) {
 										{selectedCategory}".
 									</p>
 									<Button
-										variant="outline"
-										onClick={() => handleCategoryClick('Tous les articles')}
 										className="border-primary/30 hover:bg-primary/20"
+										onClick={() => handleCategoryClick('Tous les articles')}
+										variant="outline"
 									>
 										Voir tous les articles
 									</Button>

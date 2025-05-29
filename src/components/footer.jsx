@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react'
+
 import Link from 'next/link'
 
 export default function Footer() {
@@ -10,14 +11,14 @@ export default function Footer() {
 			<div className="container mx-auto px-4">
 				<div className="flex flex-col items-center justify-between md:flex-row">
 					<div className="mb-6 md:mb-0">
-						<Link href="/" className="text-2xl font-bold text-primary">
+						<Link className="text-2xl font-bold text-primary" href="/">
 							<div className="flex items-center">
 								<svg
-									width="70"
-									height="100"
-									viewBox="0 0 210 297"
-									id="svg8"
 									fill="currentColor"
+									height="100"
+									id="svg8"
+									viewBox="0 0 210 297"
+									width="70"
 								>
 									<defs id="defs2" />
 
@@ -39,35 +40,35 @@ export default function Footer() {
 
 					<div className="mb-6 flex space-x-6 md:mb-0">
 						<Link
-							href="https://github.com/LightInn/"
-							target="_blank"
-							rel="noreferrer noopener"
 							className="text-muted-foreground transition-colors hover:text-primary"
+							href="https://github.com/LightInn/"
+							rel="noreferrer noopener"
+							target="_blank"
 						>
 							<Github className="h-5 w-5" />
 							<span className="sr-only">GitHub</span>
 						</Link>
 						<Link
-							href="https://www.linkedin.com/in/breval-lefloch/"
-							target="_blank"
-							rel="noreferrer noopener"
 							className="text-muted-foreground transition-colors hover:text-primary"
+							href="https://www.linkedin.com/in/breval-lefloch/"
+							rel="noreferrer noopener"
+							target="_blank"
 						>
 							<Linkedin className="h-5 w-5" />
 							<span className="sr-only">LinkedIn</span>
 						</Link>
 						<Link
-							href="https://twitter.com/Unknow429523025"
-							target="_blank"
-							rel="noreferrer noopener"
 							className="text-muted-foreground transition-colors hover:text-primary"
+							href="https://twitter.com/Unknow429523025"
+							rel="noreferrer noopener"
+							target="_blank"
 						>
 							<Twitter className="h-5 w-5" />
 							<span className="sr-only">Twitter</span>
 						</Link>
 						<Link
-							href="mailto:breval.lefloch@gmail.com"
 							className="text-muted-foreground transition-colors hover:text-primary"
+							href="mailto:breval.lefloch@gmail.com"
 						>
 							<Mail className="h-5 w-5" />
 							<span className="sr-only">Email</span>
@@ -82,14 +83,14 @@ export default function Footer() {
 
 					<div className="mt-4 flex space-x-6 md:mt-0">
 						<Link
-							href="#"
 							className="text-sm text-muted-foreground transition-colors hover:text-primary"
+							href="#"
 						>
 							Privacy Policy
 						</Link>
 						<Link
-							href="#"
 							className="text-sm text-muted-foreground transition-colors hover:text-primary"
+							href="#"
 						>
 							Terms of Service
 						</Link>

@@ -1,50 +1,49 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react' // Combined and changed from 'import type React'
 import {
-	motion,
-	useScroll,
-	useTransform,
-	useReducedMotion,
-	AnimatePresence,
-} from 'framer-motion'
-import {
-	Gamepad2,
-	CuboidIcon as Cube,
-	Terminal,
-	Shield,
 	Bot,
 	Brain,
-	Users,
-	GraduationCap,
-	Rocket,
-	Code,
-	Sparkles,
-	X,
+	Calendar,
 	ChevronLeft,
 	ChevronRight,
-	Calendar,
+	Code,
+	CuboidIcon as Cube,
+	Gamepad2,
+	GraduationCap,
 	MapPin,
+	Rocket,
+	Shield,
+	Sparkles,
+	Terminal,
+	Users,
+	X,
 	Zap,
 } from 'lucide-react'
+import React, { useEffect, useRef, useState } from 'react' // Combined and changed from 'import type React'
 
+import {
+	AnimatePresence,
+	motion,
+	useReducedMotion,
+	useScroll,
+	useTransform,
+} from 'framer-motion'
 import { useInView } from 'framer-motion'
 
 const journeyNodes = [
 	// Removed JourneyNode[] type
 	{
-		id: 'gaming',
-		title: 'Digital Fascination',
-		period: 'Collège',
-		description:
-			'Passion for gaming and digital universes sparked the desire to create my own worlds',
 		detailedDescription:
 			"My journey into technology began with an insatiable curiosity about digital worlds. Gaming wasn't just entertainment—it was a window into infinite possibilities. I spent countless hours exploring virtual universes, marveling at their complexity and dreaming of creating my own digital realms.",
+		bgPattern:
+			'radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.3) 0%, transparent 50%)',
 		achievements: [
 			'Discovered passion for digital creation',
 			'Developed problem-solving mindset',
 			'Built foundation for technical thinking',
 		],
+		description:
+			'Passion for gaming and digital universes sparked the desire to create my own worlds',
 		technologies: [
 			'Gaming Platforms',
 			'Digital Exploration',
@@ -52,40 +51,38 @@ const journeyNodes = [
 		],
 		icon: <Gamepad2 className="h-6 w-6" />,
 		color: 'from-pink-500 to-purple-600',
-		bgPattern:
-			'radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.3) 0%, transparent 50%)',
+		title: 'Digital Fascination',
 		position: { x: 10, y: 20 },
 		connections: ['blender'],
+		period: 'Collège',
+		id: 'gaming',
 	},
 	{
-		id: 'blender',
-		title: '3D Discovery',
-		period: 'Age 13',
-		description:
-			'First steps into 3D modeling with Blender and Python coding in BGE',
 		detailedDescription:
 			"At 13, I discovered Blender and fell in love with 3D modeling. This wasn't just about creating pretty pictures—it was about bringing imagination to life. I dove deep into the Blender Game Engine, learning Python to create interactive experiences. This was my first real taste of programming, and it was intoxicating.",
+		bgPattern:
+			'radial-gradient(circle at 30% 70%, rgba(249, 115, 22, 0.3) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(239, 68, 68, 0.3) 0%, transparent 50%)',
 		achievements: [
 			'Mastered 3D modeling fundamentals',
 			'First Python programming experience',
 			'Created interactive 3D scenes',
 		],
+		description:
+			'First steps into 3D modeling with Blender and Python coding in BGE',
 		technologies: ['Blender', 'Python', '3D Modeling', 'Game Development'],
-		icon: <Cube className="h-6 w-6" />,
-		color: 'from-orange-500 to-red-600',
-		bgPattern:
-			'radial-gradient(circle at 30% 70%, rgba(249, 115, 22, 0.3) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(239, 68, 68, 0.3) 0%, transparent 50%)',
-		position: { x: 25, y: 35 },
 		connections: ['opensource', 'security'],
+		color: 'from-orange-500 to-red-600',
+		icon: <Cube className="h-6 w-6" />,
+		position: { x: 25, y: 35 },
+		title: '3D Discovery',
+		period: 'Age 13',
+		id: 'blender',
 	},
 	{
-		id: 'opensource',
-		title: 'Open Source Explorer',
-		period: 'Collège',
-		description:
-			'Linux distributions, dual boot, and building PCs with friends',
 		detailedDescription:
 			'Together with a friend, we tumbled down the rabbit hole of open-source software. We experimented with different Linux distributions, set up dual-boot systems, and breathed new life into old computers. We even started a computer club at school, teaching others about the power of open-source technology.',
+		bgPattern:
+			'radial-gradient(circle at 40% 60%, rgba(34, 197, 94, 0.3) 0%, transparent 50%), radial-gradient(circle at 60% 40%, rgba(20, 184, 166, 0.3) 0%, transparent 50%)',
 		achievements: [
 			'Mastered Linux systems',
 			'Built computer club at school',
@@ -99,21 +96,21 @@ const journeyNodes = [
 			'Hardware Assembly',
 			'System Administration',
 		],
+		description:
+			'Linux distributions, dual boot, and building PCs with friends',
 		icon: <Terminal className="h-6 w-6" />,
 		color: 'from-green-500 to-teal-600',
-		bgPattern:
-			'radial-gradient(circle at 40% 60%, rgba(34, 197, 94, 0.3) 0%, transparent 50%), radial-gradient(circle at 60% 40%, rgba(20, 184, 166, 0.3) 0%, transparent 50%)',
+		title: 'Open Source Explorer',
 		position: { x: 15, y: 55 },
 		connections: ['security'],
+		period: 'Collège',
+		id: 'opensource',
 	},
 	{
-		id: 'security',
-		title: 'Network Hacker',
-		period: 'Collège',
-		description:
-			'Exploring network security, TCP/UDP, and gaining admin access',
 		detailedDescription:
 			"Our curiosity led us to explore network security. We attempted to hack the school's network so often that we eventually gained administrator passwords! This wasn't malicious—it was pure curiosity about how networks function. We learned about TCP/UDP protocols, packet transmission, and network addressing through hands-on experimentation.",
+		bgPattern:
+			'radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.3) 0%, transparent 50%)',
 		achievements: [
 			'Gained admin access to school network',
 			'Understood network protocols deeply',
@@ -126,19 +123,17 @@ const journeyNodes = [
 			'Network Administration',
 			'Ethical Hacking',
 		],
+		description:
+			'Exploring network security, TCP/UDP, and gaining admin access',
 		icon: <Shield className="h-6 w-6" />,
 		color: 'from-red-500 to-pink-600',
-		bgPattern:
-			'radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.3) 0%, transparent 50%)',
 		position: { x: 40, y: 50 },
+		title: 'Network Hacker',
 		connections: ['robot'],
+		period: 'Collège',
+		id: 'security',
 	},
 	{
-		id: 'robot',
-		title: 'Robot Builder',
-		period: 'End of Collège',
-		description:
-			'Built a remote-controlled robot from scratch - components, soldering, coding',
 		detailedDescription:
 			'For my final college project, I decided to build a remote-controlled robot completely from scratch. I wanted to do everything myself: buy components, solder circuits, design the mechanics, and write the control software. This project taught me the beauty of bringing digital code into the physical world.',
 		achievements: [
@@ -147,6 +142,8 @@ const journeyNodes = [
 			'Integrated hardware and software',
 			'Completed ambitious solo project',
 		],
+		bgPattern:
+			'radial-gradient(circle at 25% 75%, rgba(59, 130, 246, 0.3) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(99, 102, 241, 0.3) 0%, transparent 50%)',
 		technologies: [
 			'Electronics',
 			'Soldering',
@@ -154,19 +151,17 @@ const journeyNodes = [
 			'Robotics',
 			'Hardware Programming',
 		],
-		icon: <Bot className="h-6 w-6" />,
+		description:
+			'Built a remote-controlled robot from scratch - components, soldering, coding',
 		color: 'from-blue-500 to-indigo-600',
-		bgPattern:
-			'radial-gradient(circle at 25% 75%, rgba(59, 130, 246, 0.3) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(99, 102, 241, 0.3) 0%, transparent 50%)',
+		icon: <Bot className="h-6 w-6" />,
 		position: { x: 60, y: 30 },
+		period: 'End of Collège',
+		title: 'Robot Builder',
 		connections: ['ai'],
+		id: 'robot',
 	},
 	{
-		id: 'ai',
-		title: 'Neural Network Pioneer',
-		period: 'Lycée',
-		description:
-			'Fascination with brain function led to creating neural networks from scratch',
 		detailedDescription:
 			"I became fascinated with understanding how the human brain works and naturally gravitated toward neural networks. I attempted to recreate neural networks from scratch—admittedly quite crude, but I didn't care! I was captivated by the idea of creating 3D neural structures, moving beyond traditional 2D layer architectures to mimic real brain structures.",
 		achievements: [
@@ -175,6 +170,8 @@ const journeyNodes = [
 			'Bridged neuroscience and computing',
 			'Pioneered creative AI approaches',
 		],
+		bgPattern:
+			'radial-gradient(circle at 35% 65%, rgba(147, 51, 234, 0.3) 0%, transparent 50%), radial-gradient(circle at 65% 35%, rgba(236, 72, 153, 0.3) 0%, transparent 50%)',
 		technologies: [
 			'Neural Networks',
 			'Machine Learning',
@@ -182,21 +179,21 @@ const journeyNodes = [
 			'Mathematical Modeling',
 			'Neuroscience',
 		],
-		icon: <Brain className="h-6 w-6" />,
+		description:
+			'Fascination with brain function led to creating neural networks from scratch',
 		color: 'from-purple-500 to-pink-600',
-		bgPattern:
-			'radial-gradient(circle at 35% 65%, rgba(147, 51, 234, 0.3) 0%, transparent 50%), radial-gradient(circle at 65% 35%, rgba(236, 72, 153, 0.3) 0%, transparent 50%)',
+		icon: <Brain className="h-6 w-6" />,
+		title: 'Neural Network Pioneer',
 		position: { x: 75, y: 45 },
 		connections: ['social'],
+		period: 'Lycée',
+		id: 'ai',
 	},
 	{
-		id: 'social',
-		title: 'Social App Developer',
-		period: 'Lycée',
-		description:
-			'Attempted to build a social network app while learning databases',
 		detailedDescription:
 			'I decided to tackle building a social network application, even though I had no idea how to use databases at the time! This ambitious project pushed me to learn about data persistence, user management, and application architecture. While the app never launched, the learning experience was invaluable.',
+		bgPattern:
+			'radial-gradient(circle at 45% 55%, rgba(6, 182, 212, 0.3) 0%, transparent 50%), radial-gradient(circle at 55% 45%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)',
 		achievements: [
 			'Designed social network architecture',
 			'Self-taught database concepts',
@@ -210,19 +207,17 @@ const journeyNodes = [
 			'Application Architecture',
 			'Frontend/Backend',
 		],
+		description:
+			'Attempted to build a social network app while learning databases',
 		icon: <Users className="h-6 w-6" />, //
 		color: 'from-cyan-500 to-blue-600',
-		bgPattern:
-			'radial-gradient(circle at 45% 55%, rgba(6, 182, 212, 0.3) 0%, transparent 50%), radial-gradient(circle at 55% 45%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)',
+		title: 'Social App Developer',
 		position: { x: 85, y: 65 },
 		connections: ['school'],
+		period: 'Lycée',
+		id: 'social',
 	},
 	{
-		id: 'school',
-		title: 'Computer Science Mastery',
-		period: "École d'Informatique",
-		description:
-			'Mastered databases, Docker, Kubernetes, and infrastructure security',
 		detailedDescription:
 			'I arrived at computer science school with a burning desire to learn and master as many concepts as possible. I quickly filled my knowledge gaps in databases, particularly PostgreSQL, and dove deep into modern development practices. I mastered Docker, Kubernetes, automated deployments, and infrastructure security.',
 		achievements: [
@@ -231,6 +226,8 @@ const journeyNodes = [
 			'Learned infrastructure automation',
 			'Specialized in security practices',
 		],
+		bgPattern:
+			'radial-gradient(circle at 30% 70%, rgba(234, 179, 8, 0.3) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(249, 115, 22, 0.3) 0%, transparent 50%)',
 		technologies: [
 			'PostgreSQL',
 			'Docker',
@@ -239,19 +236,17 @@ const journeyNodes = [
 			'Infrastructure Security',
 			'CI/CD',
 		],
+		description:
+			'Mastered databases, Docker, Kubernetes, and infrastructure security',
 		icon: <GraduationCap className="h-6 w-6" />,
 		color: 'from-yellow-500 to-orange-600',
-		bgPattern:
-			'radial-gradient(circle at 30% 70%, rgba(234, 179, 8, 0.3) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(249, 115, 22, 0.3) 0%, transparent 50%)',
+		title: 'Computer Science Mastery',
+		period: "École d'Informatique",
 		position: { x: 70, y: 80 },
 		connections: ['startups'],
+		id: 'school',
 	},
 	{
-		id: 'startups',
-		title: 'Serial Entrepreneur',
-		period: 'Recent Years',
-		description:
-			'ForMenu, My-Makeup, Forvoyez - multiple SaaS projects with friends',
 		detailedDescription:
 			'With my newfound knowledge, I launched into entrepreneurship with friends. We created a tutoring platform for evening student help, then ForMenu.fr for dematerialized restaurant menus, followed by My-Makeup.fr connecting professional makeup artists, and Forvoyez.com for automated meta-description generation. Each project taught us new technologies and business lessons.',
 		achievements: [
@@ -260,6 +255,8 @@ const journeyNodes = [
 			'Created restaurant digitization solution',
 			'Developed AI-powered content tools',
 		],
+		bgPattern:
+			'radial-gradient(circle at 40% 60%, rgba(16, 185, 129, 0.3) 0%, transparent 50%), radial-gradient(circle at 60% 40%, rgba(34, 197, 94, 0.3) 0%, transparent 50%)',
 		technologies: [
 			'SaaS Development',
 			'Business Development',
@@ -267,19 +264,17 @@ const journeyNodes = [
 			'AI Integration',
 			'Full-Stack Development',
 		],
-		icon: <Rocket className="h-6 w-6" />, //
+		description:
+			'ForMenu, My-Makeup, Forvoyez - multiple SaaS projects with friends',
 		color: 'from-emerald-500 to-green-600',
-		bgPattern:
-			'radial-gradient(circle at 40% 60%, rgba(16, 185, 129, 0.3) 0%, transparent 50%), radial-gradient(circle at 60% 40%, rgba(34, 197, 94, 0.3) 0%, transparent 50%)',
+		icon: <Rocket className="h-6 w-6" />, //
+		title: 'Serial Entrepreneur',
 		position: { x: 45, y: 85 },
 		connections: ['current'],
+		period: 'Recent Years',
+		id: 'startups',
 	},
 	{
-		id: 'current',
-		title: 'Front-Ops Specialist',
-		period: 'Today',
-		description:
-			'Specialized in frontend technologies and infrastructure management',
 		detailedDescription:
 			"Today, I specialize in front-ops—the intersection of frontend technologies and infrastructure management. I love switching between different competencies, from crafting beautiful user interfaces to managing complex deployment pipelines. When I'm not coding on exciting projects, you'll find me playing indie games or exploring the latest technologies.",
 		achievements: [
@@ -288,6 +283,8 @@ const journeyNodes = [
 			'Continuous learning mindset',
 			'Balanced technical and creative skills',
 		],
+		bgPattern:
+			'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.3) 0%, transparent 50%)',
 		technologies: [
 			'Frontend Development',
 			'Infrastructure Management',
@@ -296,18 +293,21 @@ const journeyNodes = [
 			'Cloud Platforms',
 			'Automation',
 		],
-		icon: <Code className="h-6 w-6" />,
+		description:
+			'Specialized in frontend technologies and infrastructure management',
 		color: 'from-violet-500 to-purple-600',
-		bgPattern:
-			'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.3) 0%, transparent 50%)',
+		icon: <Code className="h-6 w-6" />,
+		title: 'Front-Ops Specialist',
 		position: { x: 20, y: 75 },
+		period: 'Today',
 		connections: [],
+		id: 'current',
 	},
 ]
 
 export default function MyJourneySection() {
 	const ref = useRef(null)
-	const isInView = useInView(ref, { once: true, amount: 0.1 })
+	const isInView = useInView(ref, { amount: 0.1, once: true })
 
 	const [activeNode, setActiveNode] = useState(null) // Removed <string | null>
 	const [isMobile, setIsMobile] = useState(false) // Removed <boolean>
@@ -430,24 +430,24 @@ export default function MyJourneySection() {
 
 				return (
 					<motion.line
-						key={`${node.id}-${connectionId}`}
-						x1={`${node.position.x}%`}
-						y1={`${node.position.y}%`}
-						x2={`${targetNode.position.x}%`}
-						y2={`${targetNode.position.y}%`}
-						stroke="url(#connectionGradient)"
-						strokeWidth="2"
-						strokeDasharray="5,5"
-						initial={{ pathLength: 0, opacity: 0 }}
 						animate={{
 							pathLength: isInView ? 1 : 0,
 							opacity: isInView ? 0.7 : 0,
 						}}
+						className="drop-shadow-lg"
+						initial={{ pathLength: 0, opacity: 0 }}
+						key={`${node.id}-${connectionId}`}
+						stroke="url(#connectionGradient)"
+						strokeDasharray="5,5"
+						strokeWidth="2"
 						transition={{
 							duration: shouldReduceMotion ? 0 : 2,
 							delay: shouldReduceMotion ? 0 : 1,
 						}}
-						className="drop-shadow-lg"
+						x1={`${node.position.x}%`}
+						x2={`${targetNode.position.x}%`}
+						y1={`${node.position.y}%`}
+						y2={`${targetNode.position.y}%`}
 					/>
 				)
 			})
@@ -458,9 +458,9 @@ export default function MyJourneySection() {
 
 	return (
 		<section
-			ref={ref}
-			className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-black"
 			aria-label="My Journey - Professional Development Timeline"
+			className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-black"
+			ref={ref}
 		>
 			{/* Animated Background */}
 			{!shouldReduceMotion && (
@@ -475,19 +475,19 @@ export default function MyJourneySection() {
 					>
 						{[...Array(30)].map((_, i) => (
 							<motion.div
-								key={i}
-								className="absolute h-1 w-1 rounded-full bg-white"
-								style={{
-									left: `${Math.random() * 100}%`,
-									top: `${Math.random() * 100}%`,
-								}}
 								animate={{
 									opacity: [0.3, 1, 0.3],
 									scale: [0.5, 1, 0.5],
 								}}
+								className="absolute h-1 w-1 rounded-full bg-white"
+								key={i}
+								style={{
+									left: `${Math.random() * 100}%`,
+									top: `${Math.random() * 100}%`,
+								}}
 								transition={{
-									duration: 3 + Math.random() * 2,
 									repeat: Number.POSITIVE_INFINITY,
+									duration: 3 + Math.random() * 2,
 									delay: Math.random() * 2,
 								}}
 							/>
@@ -499,13 +499,13 @@ export default function MyJourneySection() {
 			{/* Mouse Follower - Desktop Only */}
 			{!shouldReduceMotion && !isMobile && (
 				<motion.div
+					animate={{
+						scale: activeNode ? 1.5 : 1,
+					}}
 					className="pointer-events-none fixed z-40 h-6 w-6 rounded-full bg-pink-500 mix-blend-difference"
 					style={{
 						x: mousePosition.x - 12,
 						y: mousePosition.y - 12, //
-					}}
-					animate={{
-						scale: activeNode ? 1.5 : 1,
 					}}
 				/>
 			)}
@@ -513,10 +513,10 @@ export default function MyJourneySection() {
 			<div className="container relative z-10 mx-auto mt-20 px-6 py-20">
 				{/* Header */}
 				<motion.div
-					initial={{ opacity: 0, y: 50 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: shouldReduceMotion ? 0 : 1 }}
 					className="mb-20 text-center"
+					initial={{ opacity: 0, y: 50 }}
+					transition={{ duration: shouldReduceMotion ? 0 : 1 }}
 				>
 					<h2 className="mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-4xl font-bold text-transparent md:text-6xl">
 						My Journey
@@ -529,18 +529,18 @@ export default function MyJourneySection() {
 
 				{/* Journey Map */}
 				<div
-					ref={containerRef}
-					className="relative mx-auto h-[600px] w-full md:h-[800px]"
-					role="img"
 					aria-label="Interactive journey timeline showing professional development milestones"
+					className="relative mx-auto h-[600px] w-full md:h-[800px]"
+					ref={containerRef}
+					role="img"
 				>
-					<svg className="absolute inset-0 h-full w-full" aria-hidden="true">
+					<svg aria-hidden="true" className="absolute inset-0 h-full w-full">
 						<defs>
 							<linearGradient
 								id="connectionGradient"
 								x1="0%"
-								y1="0%"
 								x2="100%"
+								y1="0%"
 								y2="100%"
 							>
 								<stop offset="0%" stopColor="#ec4899" />
@@ -554,30 +554,30 @@ export default function MyJourneySection() {
 					{/* Journey Nodes */}
 					{journeyNodes.map((node, index) => (
 						<motion.div
-							key={node.id}
-							className="group absolute cursor-pointer touch-manipulation"
-							style={{
-								left: `calc(${node.position.x}% - 40px)`,
-								top: `calc(${node.position.y}% - 40px)`,
-							}}
-							initial={{ opacity: 0, scale: 0 }}
 							animate={{
 								opacity: isInView ? 1 : 0,
 								scale: isInView ? 1 : 0,
 							}}
+							aria-label={`${node.title} - ${node.period}: ${node.description}`}
+							className="group absolute cursor-pointer touch-manipulation"
+							initial={{ opacity: 0, scale: 0 }}
+							key={node.id}
+							onClick={() => handleNodeClick(node.id)}
+							onKeyDown={e => handleKeyDown(e, node.id)}
+							role="button"
+							style={{
+								left: `calc(${node.position.x}% - 40px)`,
+								top: `calc(${node.position.y}% - 40px)`,
+							}}
+							tabIndex={0}
 							transition={{
-								duration: shouldReduceMotion ? 0 : 0.6,
 								delay: shouldReduceMotion ? 0 : index * 0.2,
+								duration: shouldReduceMotion ? 0 : 0.6,
 								type: 'spring',
 								stiffness: 100,
 							}}
-							onClick={() => handleNodeClick(node.id)}
 							whileHover={{ scale: shouldReduceMotion ? 1 : 1.1 }}
 							whileTap={{ scale: shouldReduceMotion ? 1 : 0.95 }}
-							tabIndex={0}
-							role="button"
-							aria-label={`${node.title} - ${node.period}: ${node.description}`}
-							onKeyDown={e => handleKeyDown(e, node.id)}
 						>
 							{/* Node Circle */}
 							<div
@@ -594,15 +594,15 @@ export default function MyJourneySection() {
 								{/* Pulse Animation */}
 								{!shouldReduceMotion && (
 									<motion.div
-										className={`absolute inset-0 rounded-full bg-gradient-to-br ${node.color} opacity-30`}
 										animate={{
-											scale: [1, 1.5, 1],
 											opacity: [0.3, 0, 0.3],
+											scale: [1, 1.5, 1],
 										}}
+										className={`absolute inset-0 rounded-full bg-gradient-to-br ${node.color} opacity-30`}
 										transition={{
-											duration: 2,
 											repeat: Number.POSITIVE_INFINITY,
 											delay: index * 0.3,
+											duration: 2,
 										}}
 									/>
 								)}
@@ -613,13 +613,13 @@ export default function MyJourneySection() {
 
 				{/* Instructions */}
 				<motion.div
-					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }} //
+					className="mb-8 mt-12 text-center"
+					initial={{ opacity: 0, y: 20 }}
 					transition={{
 						duration: shouldReduceMotion ? 0 : 1,
 						delay: shouldReduceMotion ? 0 : 1.5,
 					}}
-					className="mb-8 mt-12 text-center"
 				>
 					<p className="text-sm text-gray-400">
 						{isMobile
@@ -630,13 +630,13 @@ export default function MyJourneySection() {
 
 				{/* Bottom Section */}
 				<motion.div
-					initial={{ opacity: 0, y: 50 }}
 					animate={{ opacity: 1, y: 0 }}
+					className="mt-20 text-center"
+					initial={{ opacity: 0, y: 50 }}
 					transition={{
 						duration: shouldReduceMotion ? 0 : 1,
 						delay: shouldReduceMotion ? 0 : 2,
 					}}
-					className="mt-20 text-center"
 				>
 					<div className="inline-flex items-center gap-3 rounded-full border border-pink-500/30 bg-gradient-to-r from-pink-500/20 to-purple-500/20 px-8 py-4 backdrop-blur-sm">
 						<Sparkles className="h-5 w-5 flex-shrink-0 text-pink-400" />
@@ -653,24 +653,24 @@ export default function MyJourneySection() {
 			<AnimatePresence>
 				{activeNode && activeNodeData && (
 					<motion.div
-						className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
-						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
+						className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
 						exit={{ opacity: 0 }}
-						transition={{ duration: 0.3 }}
+						initial={{ opacity: 0 }}
 						onClick={handleBackdropClick}
+						transition={{ duration: 0.3 }}
 					>
 						{/* Backdrop */}
 						<div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
 						{/* Modal Content */}
 						<motion.div
+							animate={{ opacity: 1, scale: 1, y: 0 }} //
 							className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-purple-500/30 bg-background shadow-2xl backdrop-blur-md"
-							initial={{ scale: 0.8, opacity: 0, y: 50 }}
-							animate={{ scale: 1, opacity: 1, y: 0 }} //
 							exit={{ scale: 0.8, opacity: 0, y: 50 }}
-							transition={{ duration: 0.4, type: 'spring', stiffness: 100 }}
+							initial={{ scale: 0.8, opacity: 0, y: 50 }}
 							onClick={e => e.stopPropagation()}
+							transition={{ type: 'spring', stiffness: 100, duration: 0.4 }}
 						>
 							{/* Background Pattern */}
 							<div
@@ -684,9 +684,9 @@ export default function MyJourneySection() {
 							<div className="relative max-h-[90vh] overflow-y-auto">
 								{/* Header */}
 								<motion.div
+									animate={{ opacity: 1, y: 0 }}
 									className="sticky top-0 z-10 flex items-center justify-between border-b border-purple-500/20 bg-background/80 p-6 backdrop-blur-md md:p-8"
-									initial={{ y: -50, opacity: 0 }}
-									animate={{ y: 0, opacity: 1 }}
+									initial={{ opacity: 0, y: -50 }}
 									transition={{ delay: 0.1 }}
 								>
 									<div className="flex items-center gap-4">
@@ -710,9 +710,9 @@ export default function MyJourneySection() {
 										</div>
 									</div>
 									<button
-										onClick={closeModal}
-										className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-background/80 text-gray-400 backdrop-blur-sm transition-all duration-200 hover:bg-background hover:text-white"
 										aria-label="Close modal"
+										className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-background/80 text-gray-400 backdrop-blur-sm transition-all duration-200 hover:bg-background hover:text-white"
+										onClick={closeModal}
 									>
 										<X className="h-6 w-6" />
 										<span className="absolute -bottom-8 left-1/2 -translate-x-1/2 transform whitespace-nowrap text-xs text-gray-400 opacity-0 transition-opacity group-hover:opacity-100">
@@ -724,9 +724,9 @@ export default function MyJourneySection() {
 								{/* Content */}
 								<div className="p-6 md:p-8">
 									<motion.div
+										animate={{ opacity: 1, y: 0 }}
 										className="grid gap-8 md:grid-cols-2 md:gap-12"
-										initial={{ y: 50, opacity: 0 }}
-										animate={{ y: 0, opacity: 1 }}
+										initial={{ opacity: 0, y: 50 }}
 										transition={{ delay: 0.2 }}
 									>
 										{/* Left Column - Main Content */}
@@ -766,10 +766,10 @@ export default function MyJourneySection() {
 														{activeNodeData.achievements.map(
 															(achievement, index) => (
 																<motion.li
-																	key={index}
+																	animate={{ opacity: 1, x: 0 }}
 																	className="flex items-start gap-3 text-gray-100"
-																	initial={{ x: -20, opacity: 0 }}
-																	animate={{ x: 0, opacity: 1 }}
+																	initial={{ opacity: 0, x: -20 }}
+																	key={index}
 																	transition={{ delay: 0.3 + index * 0.1 }}
 																>
 																	<div className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-gradient-to-r from-pink-400 to-purple-400" />
@@ -795,10 +795,10 @@ export default function MyJourneySection() {
 												<div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
 													{activeNodeData.technologies.map((tech, index) => (
 														<motion.div
-															key={index}
+															animate={{ opacity: 1, scale: 1 }}
 															className="rounded-lg border border-purple-500/20 bg-background/60 px-4 py-3 text-center backdrop-blur-sm transition-colors hover:bg-background/60"
 															initial={{ scale: 0.8, opacity: 0 }}
-															animate={{ scale: 1, opacity: 1 }}
+															key={index}
 															transition={{ delay: 0.4 + index * 0.05 }}
 															whileHover={{ scale: 1.05 }}
 														>
@@ -821,21 +821,21 @@ export default function MyJourneySection() {
 												</div>
 												<div className="h-2 w-full rounded-full bg-slate-700">
 													<motion.div
-														className={`h-2 rounded-full bg-gradient-to-r ${activeNodeData.color}`}
-														initial={{ width: 0 }}
 														animate={{
 															width: `${((getCurrentNodeIndex() + 1) / journeyNodes.length) * 100}%`,
 														}}
-														transition={{ delay: 0.5, duration: 0.8 }}
+														className={`h-2 rounded-full bg-gradient-to-r ${activeNodeData.color}`}
+														initial={{ width: 0 }}
+														transition={{ duration: 0.8, delay: 0.5 }}
 													/>
 												</div>
 											</div>
 
 											{/* Quote or Insight */}
 											<motion.div
+												animate={{ opacity: 1, scale: 1 }}
 												className="rounded-xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-pink-500/10 p-6 backdrop-blur-sm"
 												initial={{ scale: 0.9, opacity: 0 }}
-												animate={{ scale: 1, opacity: 1 }}
 												transition={{ delay: 0.6 }}
 											>
 												<div className="text-center">
@@ -853,16 +853,16 @@ export default function MyJourneySection() {
 
 								{/* Navigation Footer */}
 								<motion.div
+									animate={{ opacity: 1, y: 0 }}
 									className="sticky bottom-0 border-t border-purple-500/20 bg-slate-900/80 p-6 backdrop-blur-md md:p-8"
-									initial={{ y: 50, opacity: 0 }}
-									animate={{ y: 0, opacity: 1 }}
+									initial={{ opacity: 0, y: 50 }}
 									transition={{ delay: 0.3 }}
 								>
 									<div className="flex items-center justify-between">
 										<button
-											onClick={() => navigateToNode('prev')}
-											className="hover:background flex items-center gap-3 rounded-xl bg-background/80 px-6 py-3 text-gray-300 backdrop-blur-sm transition-all duration-200 hover:text-white"
 											aria-label="Previous milestone"
+											className="hover:background flex items-center gap-3 rounded-xl bg-background/80 px-6 py-3 text-gray-300 backdrop-blur-sm transition-all duration-200 hover:text-white"
+											onClick={() => navigateToNode('prev')}
 										>
 											<ChevronLeft className="h-5 w-5" />
 											<span className="hidden sm:inline">Previous</span>
@@ -875,21 +875,21 @@ export default function MyJourneySection() {
 											<div className="flex gap-2">
 												{journeyNodes.map((_, index) => (
 													<div
-														key={index}
 														className={`h-2 w-2 rounded-full transition-all duration-200 ${
 															index === getCurrentNodeIndex()
 																? 'scale-125 bg-purple-400'
 																: 'bg-slate-600'
 														}`}
+														key={index}
 													/>
 												))}
 											</div>
 										</div>
 
 										<button
-											onClick={() => navigateToNode('next')}
-											className="flex items-center gap-3 rounded-xl bg-background/80 px-6 py-3 text-gray-300 backdrop-blur-sm transition-all duration-200 hover:bg-background hover:text-white"
 											aria-label="Next milestone"
+											className="flex items-center gap-3 rounded-xl bg-background/80 px-6 py-3 text-gray-300 backdrop-blur-sm transition-all duration-200 hover:bg-background hover:text-white"
+											onClick={() => navigateToNode('next')}
 										>
 											<span className="hidden sm:inline">Next</span>
 											<ChevronRight className="h-5 w-5" />

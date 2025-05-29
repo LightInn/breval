@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+
 import { motion } from 'framer-motion'
 
 export default function CursorBlob() {
@@ -48,56 +49,56 @@ export default function CursorBlob() {
 		<>
 			{/* Main cursor blob */}
 			<motion.div
-				className="pointer-events-none fixed left-0 top-0 z-50 mix-blend-luminosity"
 				animate={{
+					scale: isHovering ? 1.5 : 1,
 					x: position.x - 20,
 					y: position.y - 20,
-					scale: isHovering ? 1.5 : 1,
 				}}
-				transition={{
-					type: 'spring',
-					damping: 30,
-					stiffness: 200,
-					mass: 0.5,
-				}}
+				className="pointer-events-none fixed left-0 top-0 z-50 mix-blend-luminosity"
 				// Force opacity to always be 1
 				style={{ opacity: 1 }}
+				transition={{
+					type: 'spring',
+					stiffness: 200,
+					damping: 30,
+					mass: 0.5,
+				}}
 			>
 				<div className="h-10 w-10 rounded-full bg-primary opacity-80 blur-sm" />
 			</motion.div>
 			{/* Inner cursor dot */}
 			<motion.div
-				className="pointer-events-none fixed left-0 top-0 z-50 mix-blend-difference"
 				animate={{
 					x: position.x - 2,
 					y: position.y - 2,
 				}}
-				transition={{
-					type: 'spring',
-					damping: 30,
-					stiffness: 400,
-					mass: 0.2,
-				}}
+				className="pointer-events-none fixed left-0 top-0 z-50 mix-blend-difference"
 				// Force opacity to always be 1
 				style={{ opacity: 1 }}
+				transition={{
+					type: 'spring',
+					stiffness: 400,
+					damping: 30,
+					mass: 0.2,
+				}}
 			>
 				<div className="h-1 w-1 rounded-full bg-primary" />
 			</motion.div>
 			{/* Magnetic effect ring */}
 			{isHovering && (
 				<motion.div
-					className="pointer-events-none fixed left-0 top-0 z-40"
 					animate={{
 						x: position.x - 30,
 						y: position.y - 30,
 					}}
-					transition={{
-						type: 'spring',
-						damping: 20,
-						stiffness: 150,
-					}}
+					className="pointer-events-none fixed left-0 top-0 z-40"
 					// Force opacity
 					style={{ opacity: 0.6 }}
+					transition={{
+						type: 'spring',
+						stiffness: 150,
+						damping: 20,
+					}}
 				>
 					<div className="w-15 h-15 animate-pulse rounded-full border-2 border-primary" />
 				</motion.div>

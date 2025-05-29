@@ -1,78 +1,80 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { Card, CardContent, CardFooter } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import { Eye } from 'lucide-react'
+import { useRef } from 'react'
+
+import { motion, useInView } from 'framer-motion'
+
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import ScrollObject3D from '@/components/scroll-object-3d'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 export default function ArtistPage() {
 	const ref = useRef(null)
 	const isInView = useInView(ref, { once: false, amount: 0.1 })
 
 	const container = {
-		hidden: { opacity: 0 },
 		show: {
-			opacity: 1,
 			transition: {
 				staggerChildren: 0.1,
 				delayChildren: 0.2,
 			},
+			opacity: 1,
 		},
+		hidden: { opacity: 0 },
 	}
 
 	const item = {
+		show: { transition: { duration: 0.5 }, opacity: 1, y: 0 },
 		hidden: { opacity: 0, y: 20 },
-		show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 	}
 
 	const artExperiments = [
 		{
-			title: 'Generative Art Experiment #1',
 			description:
 				'Exploring procedural generation with WebGL and fragment shaders.',
-			tags: ['WebGL', 'GLSL', 'Generative Art'],
 			image: '/placeholder.svg?height=300&width=500',
+			tags: ['WebGL', 'GLSL', 'Generative Art'],
+			title: 'Generative Art Experiment #1',
 			demo: '#',
 		},
 		{
-			title: 'Interactive Sound Visualization',
 			description:
 				'Audio-reactive visuals that respond to music and sound input.',
+			image: '/placeholder.svg?height=300&width=500',
 			tags: ['Web Audio API', 'Canvas', 'Three.js'],
-			image: '/placeholder.svg?height=300&width=500',
+			title: 'Interactive Sound Visualization',
 			demo: '#',
 		},
 		{
-			title: 'Particle Flow Simulation',
 			description: 'Physics-based particle system with fluid dynamics.',
-			tags: ['Physics', 'Simulation', 'WebGL'],
 			image: '/placeholder.svg?height=300&width=500',
+			tags: ['Physics', 'Simulation', 'WebGL'],
+			title: 'Particle Flow Simulation',
 			demo: '#',
 		},
 		{
-			title: 'Neural Network Art',
 			description:
 				'Artwork generated using machine learning and neural style transfer.',
 			tags: ['AI', 'Machine Learning', 'TensorFlow.js'],
 			image: '/placeholder.svg?height=300&width=500',
+			title: 'Neural Network Art',
 			demo: '#',
 		},
 		{
-			title: 'Fractal Explorer',
 			description: 'Interactive visualization of Mandelbrot and Julia sets.',
 			tags: ['Fractals', 'Mathematics', 'Interactive'],
 			image: '/placeholder.svg?height=300&width=500',
+			title: 'Fractal Explorer',
 			demo: '#',
 		},
 		{
-			title: 'Voxel Sculpture',
 			description:
 				'3D voxel-based digital sculptures with interactive elements.',
-			tags: ['Voxel', '3D', 'WebGL'],
 			image: '/placeholder.svg?height=300&width=500',
+			tags: ['Voxel', '3D', 'WebGL'],
+			title: 'Voxel Sculpture',
 			demo: '#',
 		},
 	]
@@ -88,10 +90,10 @@ export default function ArtistPage() {
 
 					<div className="container mx-auto px-4">
 						<motion.div
-							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.5 }}
 							className="mb-12 text-center"
+							initial={{ opacity: 0, y: 20 }}
+							transition={{ duration: 0.5 }}
 						>
 							<h1 className="text-shadow mb-4 text-4xl font-bold md:text-6xl">
 								<span className="text-primary">Art</span> Experiments
@@ -104,11 +106,11 @@ export default function ArtistPage() {
 						</motion.div>
 
 						<motion.div
-							ref={ref}
-							variants={container}
-							initial="hidden"
 							animate={isInView ? 'show' : 'hidden'}
 							className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+							initial="hidden"
+							ref={ref}
+							variants={container}
 						>
 							{artExperiments.map((experiment, index) => (
 								<motion.div key={index} variants={item}>
@@ -116,9 +118,9 @@ export default function ArtistPage() {
 										<div className="relative h-48 overflow-hidden">
 											<div className="dithered-light absolute inset-0 opacity-30"></div>
 											<img
-												src={experiment.image || '/placeholder.svg'}
 												alt={experiment.title}
 												className="h-full w-full object-cover"
+												src={experiment.image || '/placeholder.svg'}
 											/>
 											<div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
 											<div className="absolute bottom-4 left-4">
@@ -135,9 +137,9 @@ export default function ArtistPage() {
 											<div className="flex flex-wrap gap-2">
 												{experiment.tags.map((tag, tagIndex) => (
 													<Badge
+														className="border-primary/30 bg-primary/10"
 														key={tagIndex}
 														variant="outline"
-														className="border-primary/30 bg-primary/10"
 													>
 														{tag}
 													</Badge>
@@ -147,9 +149,9 @@ export default function ArtistPage() {
 
 										<CardFooter className="mt-auto">
 											<Button
-												variant="outline"
-												size="sm"
 												className="w-full border-primary hover:bg-primary/20"
+												size="sm"
+												variant="outline"
 											>
 												<Eye className="mr-2 h-4 w-4" />
 												View Experiment
@@ -161,14 +163,14 @@ export default function ArtistPage() {
 						</motion.div>
 
 						<motion.div
-							initial={{ opacity: 0 }}
 							animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-							transition={{ duration: 0.5, delay: 0.6 }}
 							className="mt-12 text-center"
+							initial={{ opacity: 0 }}
+							transition={{ duration: 0.5, delay: 0.6 }}
 						>
 							<Button
-								variant="default"
 								className="bg-primary hover:bg-primary/80"
+								variant="default"
 							>
 								Load More Experiments
 							</Button>

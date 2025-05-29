@@ -85,7 +85,7 @@ function Navbar() {
 				>
 					<div
 						className={
-							'flex h-[60px] items-center justify-between bg-dynamic-vibrant px-4'
+							'bg-dynamic-vibrant flex h-[60px] items-center justify-between px-4'
 						}
 					>
 						<Link
@@ -105,7 +105,7 @@ function Navbar() {
 						<button
 							aria-controls="mobile-menu"
 							aria-expanded="false"
-							className="text-gray-400 hover:bg-gray-700 relative inline-flex items-center justify-center rounded-md p-2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+							className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
 							onClick={() => setIsMobileOpen(!isMobileOpen)}
 							type="button"
 						>
@@ -155,7 +155,7 @@ function Navbar() {
 						>
 							<Link
 								className={
-									'bg-gray-900 block rounded-md px-3 py-2 text-base font-medium text-white'
+									'block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white'
 								}
 								href="/"
 							>
@@ -163,7 +163,7 @@ function Navbar() {
 							</Link>
 							<Link
 								className={
-									'text-gray-300 hover:bg-gray-700 block rounded-md px-3 py-2 text-base font-medium hover:text-white'
+									'block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'
 								}
 								href="/projects"
 							>
@@ -171,7 +171,7 @@ function Navbar() {
 							</Link>
 							<Link
 								className={
-									'text-gray-300 hover:bg-gray-700 block rounded-md px-3 py-2 text-base font-medium hover:text-white'
+									'block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'
 								}
 								href="/blog"
 							>
@@ -179,7 +179,7 @@ function Navbar() {
 							</Link>
 							<Link
 								className={
-									'text-gray-300 hover:bg-gray-700 block rounded-md px-3 py-2 text-base font-medium hover:text-white'
+									'block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'
 								}
 								href="/about"
 							>

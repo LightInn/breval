@@ -6,7 +6,7 @@ export default function NotFound() {
 			<h1 className="text-9xl font-extrabold tracking-widest text-accent">
 				404
 			</h1>
-			<div className="absolute rotate-12 rounded bg-glow-500 px-2 text-sm">
+			<div className="bg-glow-500 absolute rotate-12 rounded px-2 text-sm">
 				Page Not Found
 			</div>
 			<button className="mt-5">

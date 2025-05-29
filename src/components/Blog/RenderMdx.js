@@ -15,7 +15,7 @@ const RenderMdx = ({ blog }) => {
 
 	return (
 		<div
-			className="prose sm:prose-base md:prose-lg col-span-12 max-w-max font-in lg:col-span-8"
+			className="prose sm:prose-base md:prose-lg font-in col-span-12 max-w-max lg:col-span-8"
 			id="mdx-content"
 		>
 			<Markdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkMdx]}>

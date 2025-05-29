@@ -33,7 +33,7 @@ export function ReloadCTA({ setReload = null }) {
 
 			<button
 				aria-label="Reload"
-				className="animated-image message-bulle rounded-full bg-dynamic-vibrant-light p-6 text-slate-300 no-underline hover:rotate-180"
+				className="animated-image message-bulle bg-dynamic-vibrant-light rounded-full p-6 text-slate-300 no-underline hover:rotate-180"
 				data-umami-event="reload floating"
 				onClick={() => setReload(Math.random())}
 				rel="noopener nofollow noreferrer"
