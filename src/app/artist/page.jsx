@@ -54,29 +54,6 @@ export default function ArtistPage() {
 			title: 'Particle Flow Simulation',
 			demo: '#',
 		},
-		{
-			description:
-				'Artwork generated using machine learning and neural style transfer.',
-			tags: ['AI', 'Machine Learning', 'TensorFlow.js'],
-			image: '/placeholder.svg?height=300&width=500',
-			title: 'Neural Network Art',
-			demo: '#',
-		},
-		{
-			description: 'Interactive visualization of Mandelbrot and Julia sets.',
-			tags: ['Fractals', 'Mathematics', 'Interactive'],
-			image: '/placeholder.svg?height=300&width=500',
-			title: 'Fractal Explorer',
-			demo: '#',
-		},
-		{
-			description:
-				'3D voxel-based digital sculptures with interactive elements.',
-			image: '/placeholder.svg?height=300&width=500',
-			tags: ['Voxel', '3D', 'WebGL'],
-			title: 'Voxel Sculpture',
-			demo: '#',
-		},
 	]
 
 	return (
