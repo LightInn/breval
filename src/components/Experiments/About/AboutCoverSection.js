@@ -11,6 +11,7 @@ import {
 } from '@/components/Icons'
 import { ReloadCTA } from '@/components/Experiments/About/ReloadCTA'
 
+import css from '/src/styles/Navbar.module.css'
 import Avatar from '/src/components/Experiments/About/Avatar'
 
 const AboutCoverSection = ({
@@ -22,11 +23,11 @@ const AboutCoverSection = ({
 		<section className="text-dark bg-dynamic-bg flex h-screen w-screen flex-col items-center justify-center overflow-visible bg-cover md:flex-row">
 			<div className="flex h-full w-full flex-col-reverse items-center justify-center gap-4 overflow-visible p-20 backdrop-blur-lg xl:flex-row xl:justify-evenly">
 				<div className="flex w-full flex-col items-center justify-center md:w-1/4 md:items-end">
-					<h2 className="md:message-bulle text-center text-4xl font-bold capitalize text-white md:rounded-2xl md:bg-white/30 md:p-6 md:text-6xl lg:text-right">
+					<h2 className={ css.messagebulle + " text-center text-4xl font-bold capitalize text-white md:rounded-2xl md:bg-white/30 md:p-6 md:text-6xl lg:text-right"}>
 						Hi, I&apos;m <br />
 						<strong>Bréval</strong>.
 					</h2>
-					<p className="md:message-bulle font-medium capitalize text-white md:mt-8 md:rounded-2xl md:bg-white/30 md:p-20 md:text-right md:text-2xl">
+					<p className={ css.messagebulle + " font-medium capitalize text-white md:mt-8 md:rounded-2xl md:bg-white/30 md:p-20 md:text-right md:text-2xl"}>
 						I&apos;m a creative developer <br />
 						from France, Loire Atlantique.
 					</p>
@@ -43,8 +44,8 @@ const AboutCoverSection = ({
 							title="Github"
 						>
 							<GithubIcon
-								style={{ backgroundColor: data.lightVibrant }}
 								className="md:message-bulle w-[30px] rounded-2xl p-2"
+								style={{ backgroundColor: data.lightVibrant }}
 							/>
 							{/*<DribbbleIcon*/}
 							{/*    className="w-[30px] rounded-2xl bg-dynamic-vibrant-light hover:bg-dynamic-muted-light p-2 md:message-bulle"/>*/}
@@ -60,8 +61,8 @@ const AboutCoverSection = ({
 							title="Linkedin"
 						>
 							<LinkedinIcon
-								style={{ backgroundColor: data.lightVibrant }}
 								className="md:message-bulle w-[30px] rounded-2xl p-2"
+								style={{ backgroundColor: data.lightVibrant }}
 							/>
 						</Link>
 						<Link
@@ -75,8 +76,8 @@ const AboutCoverSection = ({
 							title="Twitter"
 						>
 							<TwitterIcon
-								style={{ backgroundColor: data.lightVibrant }}
 								className="md:message-bulle w-[30px] rounded-2xl p-2"
+								style={{ backgroundColor: data.lightVibrant }}
 							/>
 						</Link>
 						<Link
@@ -90,8 +91,8 @@ const AboutCoverSection = ({
 							title="Email"
 						>
 							<EmailIcon
-								style={{ backgroundColor: data.lightVibrant }}
 								className="md:message-bulle w-[30px] rounded-2xl p-2"
+								style={{ backgroundColor: data.lightVibrant }}
 							/>
 						</Link>
 						<Link
@@ -105,8 +106,8 @@ const AboutCoverSection = ({
 							title="Discord"
 						>
 							<DiscordIcon
-								style={{ backgroundColor: data.lightVibrant }}
 								className="md:message-bulle w-[30px] rounded-2xl p-2"
+								style={{ backgroundColor: data.lightVibrant }}
 							/>
 						</Link>
 						{/*Email*/}
@@ -117,7 +118,7 @@ const AboutCoverSection = ({
 					</div>
 
 					<div className="hidden md:block">
-						<ReloadCTA setReload={setReload} data={data} />
+						<ReloadCTA data={data} setReload={setReload} />
 					</div>
 				</div>
 				<div className="h-full max-h-[35vh] w-full max-w-[35vw] overflow-visible 2xl:max-h-[80vh]">

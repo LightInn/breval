@@ -1,15 +1,15 @@
 'use client'
 
-import { Eye, X, Play, Pause, RotateCcw } from 'lucide-react'
-import { useRef, useState, useEffect } from 'react'
+import { Eye, Pause, Play, RotateCcw, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion, useInView } from 'framer-motion'
+import Link from 'next/link'
 
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import ScrollObject3D from '@/components/scroll-object-3d'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import Link from 'next/link'
 
 export default function ArtistPage() {
 	const ref = useRef(null)
@@ -59,18 +59,18 @@ export default function ArtistPage() {
 
 	const artExperiments = [
 		{
-			description:
-				'Vectorial Avatar that reacts to mouse movements, creating a dynamic and interactive digital identity.',
-			image: '/placeholder.svg?height=600&width=800',
-			tags: ['SVG', 'Interactive', 'Animation'],
-			title: 'My Avatar',
-			demo: '/about',
-			theme: 'organic',
-			color: 'from-emerald-500/20 to-teal-600/20',
 			bgPattern:
 				'radial-gradient(circle at 20% 50%, rgba(0, 248, 165, 0.65) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(20,184,166,0.2) 0%, transparent 50%)',
 			interactive:
 				'Des deplacement qui naissent et évoluent selon vos mouvements de souris, créant un ensemble organiser et mechanique.',
+			description:
+				'Vectorial Avatar that reacts to mouse movements, creating a dynamic and interactive digital identity.',
+			image: '/placeholder.svg?height=600&width=800',
+			color: 'from-emerald-500/20 to-teal-600/20',
+			tags: ['SVG', 'Interactive', 'Animation'],
+			title: 'My Avatar',
+			theme: 'organic',
+			demo: '/about',
 		},
 		// ,
 		// {
@@ -120,23 +120,23 @@ export default function ArtistPage() {
 								{/* Floating geometric shapes */}
 								{[...Array(12)].map((_, i) => (
 									<motion.div
-										key={`shape-${i}`}
-										className="absolute opacity-15"
 										animate={{
-											x: [0, 150, -75, 200, 0],
-											y: [0, -120, 180, -60, 0],
 											rotate: [0, 270, 540, 180, 360],
 											scale: [1, 2, 0.6, 1.8, 1],
+											y: [0, -120, 180, -60, 0],
+											x: [0, 150, -75, 200, 0],
 										}}
-										transition={{
-											duration: 20 + i * 3,
-											repeat: Infinity,
-											delay: i * 2,
-											ease: 'easeInOut',
-										}}
+										className="absolute opacity-15"
+										key={`shape-${i}`}
 										style={{
 											left: `${5 + i * 8}%`,
 											top: `${10 + i * 7}%`,
+										}}
+										transition={{
+											duration: 20 + i * 3,
+											ease: 'easeInOut',
+											repeat: Infinity,
+											delay: i * 2,
 										}}
 									>
 										<div
@@ -172,10 +172,14 @@ export default function ArtistPage() {
 								{/* Enhanced sine wave lines */}
 								{[...Array(5)].map((_, i) => (
 									<motion.div
-										key={`wave-${i}`}
+										animate={{
+											scaleX: [0.3, 2, 0.6, 1.5, 0.3],
+											scaleY: [1, 0.5, 2, 0.8, 1],
+											x: ['-120%', '120%'],
+										}}
 										className="absolute h-2 w-full opacity-10"
+										key={`wave-${i}`}
 										style={{
-											top: `${20 + i * 15}%`,
 											background: `linear-gradient(90deg, transparent, ${
 												i === 0
 													? '#3b82f6'
@@ -188,11 +192,7 @@ export default function ArtistPage() {
 																: '#ef4444'
 											}, transparent)`,
 											transform: `rotate(${i * 12}deg)`,
-										}}
-										animate={{
-											x: ['-120%', '120%'],
-											scaleX: [0.3, 2, 0.6, 1.5, 0.3],
-											scaleY: [1, 0.5, 2, 0.8, 1],
+											top: `${20 + i * 15}%`,
 										}}
 										transition={{
 											duration: 12 + i * 3,
@@ -206,28 +206,28 @@ export default function ArtistPage() {
 								{/* Enhanced pulsing circles */}
 								{[...Array(8)].map((_, i) => (
 									<motion.div
-										key={`pulse-${i}`}
+										animate={{
+											rotate: [0, 180, 360],
+											opacity: [0, 0.4, 0],
+											scale: [0, 6, 0],
+										}}
 										className={`absolute rounded-full border-4 ${
 											i % 2 === 0
 												? 'border-primary/15'
 												: 'border-emerald-500/15'
 										}`}
-										animate={{
-											scale: [0, 6, 0],
-											opacity: [0, 0.4, 0],
-											rotate: [0, 180, 360],
-										}}
-										transition={{
-											duration: 8,
-											repeat: Infinity,
-											delay: i * 1.5,
-											ease: 'easeOut',
-										}}
+										key={`pulse-${i}`}
 										style={{
 											left: `${15 + i * 12}%`,
 											top: `${10 + i * 11}%`,
-											width: '30px',
 											height: '30px',
+											width: '30px',
+										}}
+										transition={{
+											repeat: Infinity,
+											ease: 'easeOut',
+											delay: i * 1.5,
+											duration: 8,
 										}}
 									/>
 								))}
@@ -235,40 +235,40 @@ export default function ArtistPage() {
 								{/* New: Spiral patterns */}
 								{[...Array(3)].map((_, i) => (
 									<motion.div
-										key={`spiral-${i}`}
-										className="absolute"
 										animate={{
-											rotate: [0, 360],
 											scale: [0.5, 1.5, 0.8, 1.2, 0.5],
+											rotate: [0, 360],
+										}}
+										className="absolute"
+										key={`spiral-${i}`}
+										style={{
+											left: `${30 + i * 20}%`,
+											top: `${25 + i * 25}%`,
+											height: '100px',
+											width: '100px',
 										}}
 										transition={{
 											duration: 15 + i * 5,
 											repeat: Infinity,
 											ease: 'linear',
 										}}
-										style={{
-											left: `${30 + i * 20}%`,
-											top: `${25 + i * 25}%`,
-											width: '100px',
-											height: '100px',
-										}}
 									>
 										{[...Array(6)].map((_, j) => (
 											<motion.div
-												key={j}
+												animate={{
+													opacity: [0.5, 1, 0.5],
+													scale: [1, 1.5, 1],
+												}}
 												className="absolute h-3 w-3 rounded-full bg-primary/10"
+												key={j}
 												style={{
 													left: `${50 + 40 * Math.cos((j * 60 * Math.PI) / 180)}%`,
 													top: `${50 + 40 * Math.sin((j * 60 * Math.PI) / 180)}%`,
 												}}
-												animate={{
-													scale: [1, 1.5, 1],
-													opacity: [0.5, 1, 0.5],
-												}}
 												transition={{
-													duration: 2,
 													repeat: Infinity,
 													delay: j * 0.2,
+													duration: 2,
 												}}
 											/>
 										))}
@@ -300,8 +300,8 @@ export default function ArtistPage() {
 							{/* Carousel Controls */}
 							<div className="absolute right-4 top-4 z-20 flex gap-2">
 								<Button
-									onClick={() => setIsPlaying(!isPlaying)}
 									className="border-primary/30 bg-gray-900/80 backdrop-blur-sm hover:bg-primary/20"
+									onClick={() => setIsPlaying(!isPlaying)}
 									size="sm"
 									variant="outline"
 								>
@@ -312,6 +312,7 @@ export default function ArtistPage() {
 									)}
 								</Button>
 								<Button
+									className="border-primary/30 bg-gray-900/80 backdrop-blur-sm hover:bg-primary/20"
 									onClick={() =>
 										setCurrentIndex(
 											prev =>
@@ -319,7 +320,6 @@ export default function ArtistPage() {
 												artExperiments.length
 										)
 									}
-									className="border-primary/30 bg-gray-900/80 backdrop-blur-sm hover:bg-primary/20"
 									size="sm"
 									variant="outline"
 								>
@@ -339,22 +339,7 @@ export default function ArtistPage() {
 
 									return (
 										<motion.div
-											key={index}
-											className="absolute cursor-pointer"
-											style={{
-												zIndex: artExperiments.length - offset,
-											}}
 											animate={{
-												x:
-													offset === 0
-														? 0
-														: offset === 1
-															? 400
-															: offset === artExperiments.length - 1
-																? -400
-																: 800,
-												y: offset === 0 ? 0 : offset * 25,
-												scale: offset === 0 ? 1 : 0.75 - offset * 0.1,
 												rotateY:
 													offset === 0
 														? 0
@@ -363,36 +348,23 @@ export default function ArtistPage() {
 															: offset === artExperiments.length - 1
 																? 15
 																: -30,
+												x:
+													offset === 0
+														? 0
+														: offset === 1
+															? 400
+															: offset === artExperiments.length - 1
+																? -400
+																: 800,
 												opacity:
 													offset < 2 || offset === artExperiments.length - 1
 														? 1
 														: 0,
+												scale: offset === 0 ? 1 : 0.75 - offset * 0.1,
+												y: offset === 0 ? 0 : offset * 25,
 											}}
-											whileHover={
-												offset === 0
-													? {
-															scale: 1.05,
-															rotateY: 5,
-															transition: { duration: 0.3 },
-														}
-													: offset === 1
-														? {
-																scale: 0.85,
-																x: 380,
-																transition: { duration: 0.3 },
-															}
-														: offset === artExperiments.length - 1
-															? {
-																	scale: 0.85,
-																	x: -380,
-																	transition: { duration: 0.3 },
-																}
-															: {}
-											}
-											transition={{
-												duration: 0.8,
-												ease: [0.32, 0.72, 0, 1],
-											}}
+											className="absolute cursor-pointer"
+											key={index}
 											onClick={() => {
 												if (isActive) {
 													setSelectedExperiment(experiment)
@@ -401,6 +373,34 @@ export default function ArtistPage() {
 													setIsPlaying(false)
 												}
 											}}
+											style={{
+												zIndex: artExperiments.length - offset,
+											}}
+											transition={{
+												ease: [0.32, 0.72, 0, 1],
+												duration: 0.8,
+											}}
+											whileHover={
+												offset === 0
+													? {
+															transition: { duration: 0.3 },
+															scale: 1.05,
+															rotateY: 5,
+														}
+													: offset === 1
+														? {
+																transition: { duration: 0.3 },
+																scale: 0.85,
+																x: 380,
+															}
+														: offset === artExperiments.length - 1
+															? {
+																	transition: { duration: 0.3 },
+																	scale: 0.85,
+																	x: -380,
+																}
+															: {}
+											}
 										>
 											{/* Card with Artistic Effects - Made Larger and Wider */}
 											<div
@@ -420,21 +420,21 @@ export default function ArtistPage() {
 																const topPos = (i * 17.3 + 31) % 100
 																return (
 																	<motion.div
-																		key={i}
-																		className="absolute h-2 w-2 rounded-full bg-primary/30"
 																		animate={{
+																			opacity: [0, 1, 0.5, 0],
 																			x: [0, 100, -50, 0],
 																			y: [0, -100, 50, 0],
-																			opacity: [0, 1, 0.5, 0],
+																		}}
+																		className="absolute h-2 w-2 rounded-full bg-primary/30"
+																		key={i}
+																		style={{
+																			left: `${leftPos}%`,
+																			top: `${topPos}%`,
 																		}}
 																		transition={{
 																			duration: 3 + i * 0.2,
 																			repeat: Infinity,
 																			delay: i * 0.1,
-																		}}
-																		style={{
-																			left: `${leftPos}%`,
-																			top: `${topPos}%`,
 																		}}
 																	/>
 																)
@@ -456,15 +456,15 @@ export default function ArtistPage() {
 														{/* Glitch Effect for Active Card */}
 														{isActive && (
 															<motion.div
-																className="absolute inset-0 bg-primary/5"
 																animate={{
 																	opacity: [0, 0.3, 0],
 																	scaleX: [1, 1.02, 1],
 																}}
+																className="absolute inset-0 bg-primary/5"
 																transition={{
-																	duration: 2,
-																	repeat: Infinity,
 																	repeatType: 'reverse',
+																	repeat: Infinity,
+																	duration: 2,
 																}}
 															/>
 														)}
@@ -473,7 +473,6 @@ export default function ArtistPage() {
 													{/* Content - Adjusted for larger card */}
 													<div className="flex h-[270px] flex-col p-8">
 														<motion.h3
-															className="mb-4 text-3xl font-bold text-primary"
 															animate={
 																isActive
 																	? {
@@ -485,7 +484,8 @@ export default function ArtistPage() {
 																		}
 																	: {}
 															}
-															transition={{ duration: 2, repeat: Infinity }}
+															className="mb-4 text-3xl font-bold text-primary"
+															transition={{ repeat: Infinity, duration: 2 }}
 														>
 															{experiment.title}
 														</motion.h3>
@@ -500,8 +500,8 @@ export default function ArtistPage() {
 																.slice(0, 3)
 																.map((tag, tagIndex) => (
 																	<Badge
-																		key={tagIndex}
 																		className="border-primary/30 bg-primary/10 px-3 py-1 text-sm"
+																		key={tagIndex}
 																		variant="outline"
 																	>
 																		{tag}
@@ -512,9 +512,9 @@ export default function ArtistPage() {
 														{/* Action */}
 														{isActive && (
 															<motion.div
-																initial={{ y: 20, opacity: 0 }}
-																animate={{ y: 0, opacity: 1 }}
+																animate={{ opacity: 1, y: 0 }}
 																className="mt-auto"
+																initial={{ opacity: 0, y: 20 }}
 															>
 																<Button
 																	className="w-full bg-primary text-white hover:bg-primary/80"
@@ -537,16 +537,16 @@ export default function ArtistPage() {
 							<div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 transform gap-3">
 								{artExperiments.map((_, index) => (
 									<button
-										key={index}
-										onClick={() => {
-											setCurrentIndex(index)
-											setIsPlaying(false)
-										}}
 										className={`h-3 w-3 rounded-full transition-all duration-300 ${
 											index === currentIndex
 												? 'scale-125 bg-primary'
 												: 'bg-primary/30 hover:bg-primary/50'
 										}`}
+										key={index}
+										onClick={() => {
+											setCurrentIndex(index)
+											setIsPlaying(false)
+										}}
 									/>
 								))}
 							</div>
@@ -559,23 +559,23 @@ export default function ArtistPage() {
 			<AnimatePresence>
 				{selectedExperiment && (
 					<motion.div
-						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
 						className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm"
+						exit={{ opacity: 0 }}
+						initial={{ opacity: 0 }}
 						onClick={() => setSelectedExperiment(null)}
 					>
 						<motion.div
-							initial={{ scale: 0.5, opacity: 0 }}
-							animate={{ scale: 1, opacity: 1 }}
-							exit={{ scale: 0.5, opacity: 0 }}
+							animate={{ opacity: 1, scale: 1 }}
 							className="flex h-full items-center justify-center p-8"
+							exit={{ scale: 0.5, opacity: 0 }}
+							initial={{ scale: 0.5, opacity: 0 }}
 							onClick={e => e.stopPropagation()}
 						>
 							{/* Close Button */}
 							<Button
-								onClick={() => setSelectedExperiment(null)}
 								className="absolute right-8 top-8 border-primary/30 bg-gray-900/80 backdrop-blur-sm hover:bg-primary/20"
+								onClick={() => setSelectedExperiment(null)}
 								size="sm"
 								variant="outline"
 							>
@@ -598,23 +598,23 @@ export default function ArtistPage() {
 										const topPos = (i * 19.3 + 13) % 100
 										return (
 											<motion.div
-												key={i}
-												className="absolute h-1 w-1 rounded-full bg-primary/40"
 												animate={{
+													opacity: [0, 1, 0.7, 1, 0],
 													x: [0, 200, -100, 300, 0],
 													y: [0, -150, 100, -50, 0],
-													opacity: [0, 1, 0.7, 1, 0],
 													scale: [0, 1, 0.5, 1, 0],
+												}}
+												className="absolute h-1 w-1 rounded-full bg-primary/40"
+												key={i}
+												style={{
+													left: `${leftPos}%`,
+													top: `${topPos}%`,
 												}}
 												transition={{
 													duration: 5 + i * 0.1,
 													repeat: Infinity,
 													delay: i * 0.05,
 													ease: 'linear',
-												}}
-												style={{
-													left: `${leftPos}%`,
-													top: `${topPos}%`,
 												}}
 											/>
 										)
@@ -626,9 +626,9 @@ export default function ArtistPage() {
 									{/* Left: Enhanced Visual */}
 									<div className="relative">
 										<motion.div
-											initial={{ scale: 0.8 }}
 											animate={{ scale: 1 }}
 											className="relative h-full overflow-hidden rounded-2xl border-2 border-primary/50"
+											initial={{ scale: 0.8 }}
 										>
 											<img
 												alt={selectedExperiment.title}
@@ -638,7 +638,6 @@ export default function ArtistPage() {
 
 											{/* Interactive Overlay */}
 											<motion.div
-												className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary/10"
 												animate={{
 													background: [
 														'linear-gradient(45deg, rgba(59,130,246,0.2) 0%, transparent 50%, rgba(59,130,246,0.1) 100%)',
@@ -646,7 +645,8 @@ export default function ArtistPage() {
 														'linear-gradient(45deg, rgba(59,130,246,0.2) 0%, transparent 50%, rgba(59,130,246,0.1) 100%)',
 													],
 												}}
-												transition={{ duration: 4, repeat: Infinity }}
+												className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary/10"
+												transition={{ repeat: Infinity, duration: 4 }}
 											/>
 										</motion.div>
 									</div>
@@ -654,8 +654,8 @@ export default function ArtistPage() {
 									{/* Right: Enhanced Content */}
 									<div className="flex flex-col justify-center space-y-8">
 										<motion.div
-											initial={{ x: 50, opacity: 0 }}
-											animate={{ x: 0, opacity: 1 }}
+											animate={{ opacity: 1, x: 0 }}
+											initial={{ opacity: 0, x: 50 }}
 											transition={{ delay: 0.2 }}
 										>
 											<h2 className="mb-6 text-5xl font-bold text-primary">
@@ -672,17 +672,17 @@ export default function ArtistPage() {
 										</motion.div>
 
 										<motion.div
-											initial={{ y: 30, opacity: 0 }}
-											animate={{ y: 0, opacity: 1 }}
-											transition={{ delay: 0.4 }}
+											animate={{ opacity: 1, y: 0 }}
 											className="space-y-6"
+											initial={{ opacity: 0, y: 30 }}
+											transition={{ delay: 0.4 }}
 										>
 											{/* Enhanced Tags */}
 											<div className="flex flex-wrap gap-3">
 												{selectedExperiment.tags.map((tag, tagIndex) => (
 													<Badge
-														key={tagIndex}
 														className="border-primary/50 bg-primary/20 px-4 py-2 text-sm transition-colors hover:bg-primary/30"
+														key={tagIndex}
 														variant="outline"
 													>
 														{tag}
@@ -693,8 +693,8 @@ export default function ArtistPage() {
 											{/* Action Buttons */}
 											<div className="flex gap-4">
 												<Link
-													href={selectedExperiment.demo}
 													className="flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-lg text-white hover:bg-primary/80"
+													href={selectedExperiment.demo}
 													onClick={() => setSelectedExperiment(null)}
 													transition={{ duration: 0.3 }}
 												>
@@ -707,15 +707,15 @@ export default function ArtistPage() {
 													</Button>
 												</Link>
 												<Link
-													href={selectedExperiment.demo}
 													className="flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-lg text-white hover:bg-primary/80"
+													href={selectedExperiment.demo}
 													onClick={() => setSelectedExperiment(null)}
 													transition={{ duration: 0.3 }}
 												>
 													<Button
 														className="rounded-xl border-primary/50 px-8 py-4 text-lg hover:bg-primary/20"
-														variant="outline"
 														size="lg"
+														variant="outline"
 													>
 														<Eye className="mr-3 h-5 w-5" />
 														Code Source
