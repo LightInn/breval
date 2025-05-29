@@ -32,9 +32,9 @@ export default function RootLayout({ children }) {
 			>
 				<ThemeProvider
 					attribute="class"
-					defaultTheme="light"
+					defaultTheme="dark"
 					disableTransitionOnChange={false}
-					enableSystem={false}
+					enableSystem={true}
 					forcedTheme={undefined}
 				>
 					<CursorBlob />
