@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState, useMemo } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -15,6 +15,9 @@ export default function BlogClientNew({ blogs = [] }) {
 	const featuredRef = useRef(null)
 	const isInView = useInView(ref, { once: true, amount: 0.1 })
 	const isFeaturedInView = useInView(featuredRef, { once: true, amount: 0.3 })
+
+	// State for category filtering
+	const [selectedCategory, setSelectedCategory] = useState('Tous les articles')
 
 	const container = {
 		hidden: { opacity: 0 },
@@ -128,15 +131,51 @@ export default function BlogClientNew({ blogs = [] }) {
 
 	console.log('Processed Blogs:', processedBlogs)
 
-	const categories = [
-		'Tous les articles',
-		'Développement créatif',
-		'Développement Web',
-		'Design',
-		'Graphiques 3D',
-		'Tutoriels',
-		'Études de cas',
-	]
+	// Extract unique categories from all blog tags
+	const categories = useMemo(() => {
+		const allTags = new Set(['Tous les articles'])
+
+		// Add tags from all blogs
+		if (Array.isArray(blogs)) {
+			blogs.forEach(blog => {
+				const tags = processTags(blog.tags)
+				tags.forEach(tag => {
+					if (tag !== 'Article de blog') {
+						allTags.add(tag)
+					}
+				})
+			})
+		}
+
+		return Array.from(allTags)
+	}, [blogs])
+
+	// Filter blogs based on selected category
+	const filteredBlogs = useMemo(() => {
+		if (selectedCategory === 'Tous les articles') {
+			return processedBlogs
+		}
+
+		return processedBlogs.filter(blog =>
+			blog.tags.some(tag => tag === selectedCategory)
+		)
+	}, [processedBlogs, selectedCategory])
+
+	// Filter featured post as well
+	const shouldShowFeatured = useMemo(() => {
+		if (selectedCategory === 'Tous les articles') {
+			return true
+		}
+
+		return (
+			featuredBlogData &&
+			featuredPost.tags.some(tag => tag === selectedCategory)
+		)
+	}, [selectedCategory, featuredBlogData, featuredPost])
+
+	const handleCategoryClick = category => {
+		setSelectedCategory(category)
+	}
 
 	return (
 		<main className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
@@ -160,19 +199,31 @@ export default function BlogClientNew({ blogs = [] }) {
 								l'art numérique et l'intersection de la technologie et de la
 								créativité.
 							</p>
+							{selectedCategory !== 'Tous les articles' && (
+								<p className="mt-4 text-sm text-primary">
+									Catégorie: {selectedCategory} •{' '}
+									{filteredBlogs.length + (shouldShowFeatured ? 1 : 0)} article
+									{filteredBlogs.length + (shouldShowFeatured ? 1 : 0) > 1
+										? 's'
+										: ''}
+								</p>
+							)}
 						</motion.div>
 
 						<div className="mb-12 flex flex-wrap justify-center gap-3">
 							{categories.map((category, index) => (
 								<Button
 									key={index}
-									variant={index === 0 ? 'default' : 'outline'}
+									variant={
+										selectedCategory === category ? 'default' : 'outline'
+									}
 									size="sm"
 									className={
-										index === 0
+										selectedCategory === category
 											? 'bg-primary hover:bg-primary/80'
 											: 'border-primary/30 hover:bg-primary/20'
 									}
+									onClick={() => handleCategoryClick(category)}
 								>
 									{category}
 								</Button>
@@ -180,7 +231,7 @@ export default function BlogClientNew({ blogs = [] }) {
 						</div>
 
 						{/* Featured Post */}
-						{featuredBlogData && (
+						{featuredBlogData && shouldShowFeatured && (
 							<motion.div
 								ref={featuredRef}
 								initial={{ opacity: 0, y: 20 }}
@@ -250,69 +301,98 @@ export default function BlogClientNew({ blogs = [] }) {
 						)}
 
 						{/* Blog Posts Grid */}
-						<motion.div
-							ref={ref}
-							variants={container}
-							initial="hidden"
-							animate={isInView ? 'show' : 'hidden'}
-							className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-						>
-							{processedBlogs.map((post, index) => (
-								<motion.div key={post.slug || index} variants={item}>
-									<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-900/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50">
-										<div className="relative h-48 overflow-hidden">
-											<Image
-												src={post.image}
-												alt={post.title}
-												fill
-												className="object-cover transition-transform duration-500 hover:scale-105"
-												unoptimized
-											/>
-										</div>
-
-										<CardContent className="flex-grow pt-6">
-											<div className="mb-3 flex flex-wrap gap-2">
-												{post.tags.slice(0, 2).map((tag, tagIndex) => (
-													<Badge
-														key={tagIndex}
-														variant="outline"
-														className="border-primary/30 bg-primary/10"
-													>
-														{tag}
-													</Badge>
-												))}
+						{filteredBlogs.length > 0 ? (
+							<motion.div
+								ref={ref}
+								variants={container}
+								initial="hidden"
+								animate={isInView ? 'show' : 'hidden'}
+								className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+							>
+								{filteredBlogs.map((post, index) => (
+									<motion.div key={post.slug || index} variants={item}>
+										<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-900/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50">
+											<div className="relative h-48 overflow-hidden">
+												<Image
+													src={post.image}
+													alt={post.title}
+													fill
+													className="object-cover transition-transform duration-500 hover:scale-105"
+													unoptimized
+												/>
 											</div>
-											<h3 className="mb-2 text-xl font-bold">{post.title}</h3>
-											<p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-												{post.excerpt}
-											</p>
-											<div className="flex items-center text-sm text-muted-foreground">
-												<Calendar className="mr-2 h-4 w-4" />
-												<span>{post.date}</span>
-												<span className="mx-2">•</span>
-												<Clock className="mr-2 h-4 w-4" />
-												<span>{post.readTime}</span>
-											</div>
-										</CardContent>
 
-										<CardFooter className="pt-0">
-											<Link
-												href={`/blog/articles/${post.slug}`}
-												className="w-full"
-											>
-												<Button
-													variant="ghost"
-													className="w-full justify-between hover:bg-primary/20 hover:text-white"
+											<CardContent className="flex-grow pt-6">
+												<div className="mb-3 flex flex-wrap gap-2">
+													{post.tags.slice(0, 2).map((tag, tagIndex) => (
+														<Badge
+															key={tagIndex}
+															variant="outline"
+															className="border-primary/30 bg-primary/10"
+														>
+															{tag}
+														</Badge>
+													))}
+												</div>
+												<h3 className="mb-2 text-xl font-bold">{post.title}</h3>
+												<p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+													{post.excerpt}
+												</p>
+												<div className="flex items-center text-sm text-muted-foreground">
+													<Calendar className="mr-2 h-4 w-4" />
+													<span>{post.date}</span>
+													<span className="mx-2">•</span>
+													<Clock className="mr-2 h-4 w-4" />
+													<span>{post.readTime}</span>
+												</div>
+											</CardContent>
+
+											<CardFooter className="pt-0">
+												<Link
+													href={`/blog/articles/${post.slug}`}
+													className="w-full"
 												>
-													Lire l'article
-													<ArrowRight className="ml-2 h-4 w-4" />
-												</Button>
-											</Link>
-										</CardFooter>
-									</Card>
-								</motion.div>
-							))}
-						</motion.div>
+													<Button
+														variant="ghost"
+														className="w-full justify-between hover:bg-primary/20 hover:text-white"
+													>
+														Lire l'article
+														<ArrowRight className="ml-2 h-4 w-4" />
+													</Button>
+												</Link>
+											</CardFooter>
+										</Card>
+									</motion.div>
+								))}
+							</motion.div>
+						) : (
+							<motion.div
+								ref={ref}
+								initial={{ opacity: 0, y: 20 }}
+								animate={
+									isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+								}
+								transition={{ duration: 0.5 }}
+								className="py-16 text-center"
+							>
+								<div className="mx-auto max-w-md">
+									<h3 className="mb-2 text-xl font-semibold">
+										Aucun article trouvé
+									</h3>
+									<p className="mb-4 text-muted-foreground">
+										Aucun article n'est disponible dans la catégorie "
+										{selectedCategory}".
+									</p>
+									<Button
+										variant="outline"
+										onClick={() => handleCategoryClick('Tous les articles')}
+										className="border-primary/30 hover:bg-primary/20"
+									>
+										Voir tous les articles
+									</Button>
+								</div>
+							</motion.div>
+						)}
 
 						{/* Load More Button - Commented out for now */}
 						{/* <motion.div
