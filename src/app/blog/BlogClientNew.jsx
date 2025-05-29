@@ -84,7 +84,6 @@ export default function BlogClientNew({ blogs = [] }) {
 	const featuredBlogData =
 		Array.isArray(blogs) && blogs.length > 0 ? blogs[0] : null
 
-	console.log('Featured Blog Data:', featuredBlogData)
 	const featuredPost = featuredBlogData
 		? {
 				image: featuredBlogData.image
@@ -111,8 +110,6 @@ export default function BlogClientNew({ blogs = [] }) {
 				slug: '#',
 			}
 
-	console.log('unprocessedBlogs :', blogs)
-
 	// Process remaining blogs data
 	const processedBlogs =
 		Array.isArray(blogs) && blogs.length > 1
@@ -129,8 +126,6 @@ export default function BlogClientNew({ blogs = [] }) {
 					tags: processTags(blog.tags),
 				}))
 			: []
-
-	console.log('Processed Blogs:', processedBlogs)
 
 	// Extract unique categories from all blog tags
 	const categories = useMemo(() => {

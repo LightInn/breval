@@ -15,7 +15,7 @@ export default function Hero() {
 		if (videoRef.current) {
 			videoRef.current.play().catch(() => {
 				// Fallback if autoplay fails
-				console.log('Autoplay prevented')
+				console.error('Autoplay prevented')
 			})
 		}
 	}, [])

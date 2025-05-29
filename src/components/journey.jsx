@@ -20,6 +20,7 @@ import {
 	Zap,
 } from 'lucide-react'
 import React, { useEffect, useRef, useState } from 'react' // Combined and changed from 'import type React'
+
 import {
 	AnimatePresence,
 	motion,

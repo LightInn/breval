@@ -80,8 +80,6 @@ export default function ProjectClientNew({ projects = [] }) {
 	].slice(0, 6) // Limit to 6 categories for UI
 
 	const handleCategoryClick = category => {
-		console.log(`Category clicked: ${category}`)
-
 		setSelectedCategory(category)
 	}
 
