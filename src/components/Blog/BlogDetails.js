@@ -7,10 +7,14 @@ import Link from 'next/link'
 
 const BlogDetails = ({ slug: blogSlug, blog }) => {
 	return (
-		<div className="text-dark mx-5 flex flex-wrap items-center justify-around rounded-lg bg-accent px-2 py-2 text-lg font-medium sm:text-xl md:mx-10 md:px-10">
+		<div className="pixel-corners mx-5 flex flex-wrap items-center justify-around rounded-lg border border-border bg-card/50 px-2 py-2 text-lg font-medium text-foreground backdrop-blur-sm sm:text-xl md:mx-10 md:px-10">
 			<address className="author">
 				By{' '}
-				<Link href="/" rel="author">
+				<Link
+					href="/"
+					rel="author"
+					className="text-primary transition-colors hover:text-primary/80"
+				>
 					Bréval LE FLOCH
 				</Link>
 			</address>
@@ -19,7 +23,7 @@ const BlogDetails = ({ slug: blogSlug, blog }) => {
 				{blog.tags.length > 1 &&
 					blog.tags.map(tag => (
 						<Link
-							className="m-1"
+							className="m-1 text-muted-foreground transition-colors hover:text-foreground"
 							href={`/blog/categories/${slug(tag)}`}
 							key={slug(tag)}
 						>
@@ -33,6 +37,7 @@ const BlogDetails = ({ slug: blogSlug, blog }) => {
 					dateTime={parseISO(blog.publishedAt)}
 					pubdate="true"
 					title={format(parseISO(blog.publishedAt), 'LLLL d, yyyy, h:mm a')}
+					className="text-muted-foreground"
 				>
 					{format(parseISO(blog.publishedAt), 'LLLL d, yyyy, h:mm a')}
 				</time>
