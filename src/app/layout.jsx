@@ -22,6 +22,7 @@ export const metadata = {
 	description:
 		'Portfolio of Bréval Le Floch - Creative Developer, CTO, and Co-founder',
 	title: 'Bréval Le Floch | Creative Developer',
+	metadataBase: new URL('https://brev.al'),
 }
 
 export default function RootLayout({ children }) {
