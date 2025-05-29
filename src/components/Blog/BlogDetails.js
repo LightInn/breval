@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 const BlogDetails = ({ slug: blogSlug, blog }) => {
 	return (
-		<div className="pixel-corners mx-5 flex flex-wrap items-center justify-around rounded-lg border border-border bg-card/50 px-2 py-2 text-lg font-medium text-foreground backdrop-blur-sm sm:text-xl md:mx-10 md:px-10">
+		<div className="pixel-corners flex flex-wrap items-center justify-around rounded-lg border border-border bg-card/50 px-2 py-2 text-lg font-medium text-foreground backdrop-blur-sm sm:text-xl md:px-10">
 			<address className="author">
 				By{' '}
 				<Link
