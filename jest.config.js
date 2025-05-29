@@ -7,7 +7,7 @@ module.exports = {
 		// Handle CSS imports (if you use CSS modules)
 		'\.(css|less|scss|sass)$': 'identity-obj-proxy',
 		// Handle image imports
-		'\.(gif|ttf|eot|svg|png)$': '<rootDir>/__mocks__/fileMock.js',
+		'\.(gif|ttf|eot|svg|png)$': '<rootDir>/tests/__mocks__/fileMock.js',
 		// Handle module aliases (if you have them in jsconfig.json or tsconfig.json)
 		'^@/components/(.*)$': '<rootDir>/src/components/$1',
 		'^@/lib/(.*)$': '<rootDir>/src/lib/$1',
