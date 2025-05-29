@@ -1,6 +1,6 @@
 import siteMetadata from '../../utils/siteMetaData'
 
-import Footer from '/src/components/Footer'
+
 import { cx } from '/src/utils'
 
 export const revalidate = 60
