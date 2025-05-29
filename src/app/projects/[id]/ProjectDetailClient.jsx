@@ -5,7 +5,15 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { format, parseISO } from 'date-fns'
 import Link from 'next/link'
-import { ExternalLink, ArrowLeft, Calendar, Users } from 'lucide-react'
+import {
+	ExternalLink,
+	ArrowLeft,
+	Calendar,
+	Users,
+	Globe,
+	Tag,
+	Code,
+} from 'lucide-react'
 
 import { rgbDataURL } from '@/services/dataurl.services'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
@@ -13,22 +21,27 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 
 import ImageWithFallback from '../../../components/Home/ImageWithFallback'
-import Navbar from '../../../components/navbar'
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
 }
 
 export default function ProjectDetailClient({ project }) {
-	// Ensure media is always an array and handle the structure from your API
+	// Prioritize main_media, then media array
+	const featuredImage = project?.main_media
 	const mediaArray = Array.isArray(project?.media) ? project.media : []
+
+	// Create display array with main_media first if it exists
+	const displayImages = featuredImage
+		? [featuredImage, ...mediaArray.filter(img => img.id !== featuredImage.id)]
+		: mediaArray
 
 	return (
 		<div className="relative min-h-screen bg-background text-foreground">
 			<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-20"></div>
 
 			<motion.div
-				className="relative z-10 mt-12 pb-16 pt-16 sm:pb-24"
+				className="relative z-10 pb-16 pt-16 sm:pb-24"
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
@@ -72,23 +85,48 @@ export default function ProjectDetailClient({ project }) {
 					<div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
 						<div className="lg:col-span-5 lg:col-start-8">
 							<motion.div
-								className="flex items-center justify-between"
+								className="flex flex-col space-y-4"
 								initial={{ opacity: 0, x: 20 }}
 								animate={{ opacity: 1, x: 0 }}
 								transition={{ duration: 0.5, delay: 0.2 }}
 							>
-								<h1 className="text-2xl font-semibold text-foreground">
-									{project?.title}
-								</h1>
-								{project?.date && (
-									<Badge
-										variant="secondary"
-										className="flex items-center gap-2"
-									>
-										<Calendar className="h-4 w-4" />
-										{format(parseISO(project.date), 'LLLL d, yyyy')}
-									</Badge>
-								)}
+								<div className="flex items-center justify-between">
+									<h1 className="text-2xl font-semibold text-foreground">
+										{project?.title}
+									</h1>
+									{project?.date && (
+										<Badge
+											variant="secondary"
+											className="flex items-center gap-2"
+										>
+											<Calendar className="h-4 w-4" />
+											{format(parseISO(project.date), 'LLLL d, yyyy')}
+										</Badge>
+									)}
+								</div>
+
+								{/* Category and Skills */}
+								<div className="flex flex-wrap gap-2">
+									{project?.category && (
+										<Badge
+											variant="outline"
+											className="flex items-center gap-1"
+										>
+											<Tag className="h-3 w-3" />
+											{project.category}
+										</Badge>
+									)}
+									{project?.skills?.slice(0, 5).map((skill, idx) => (
+										<Badge key={idx} variant="secondary" className="text-xs">
+											{skill}
+										</Badge>
+									))}
+									{project?.skills?.length > 5 && (
+										<Badge variant="secondary" className="text-xs">
+											+{project.skills.length - 5} more
+										</Badge>
+									)}
+								</div>
 							</motion.div>
 						</div>
 
@@ -101,7 +139,7 @@ export default function ProjectDetailClient({ project }) {
 						>
 							<h2 className="sr-only">Images</h2>
 							<div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
-								{mediaArray.map((image, idx) => (
+								{displayImages.map((image, idx) => (
 									<motion.div
 										key={image.id}
 										initial={{ opacity: 0, scale: 0.95 }}
@@ -135,25 +173,66 @@ export default function ProjectDetailClient({ project }) {
 							animate={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.5, delay: 0.3 }}
 						>
-							{/* URL VIEW */}
-							{project?.url && (
-								<Button
-									asChild
-									className="magnetic-button pixel-corners mt-8 w-full"
-									size="lg"
-								>
-									<a
-										data-umami-event="project link"
-										data-umami-event-url={project?.url}
-										href={project?.url}
-										target="_blank"
-										rel="noopener noreferrer"
+							{/* URL VIEW - Multiple buttons */}
+							<div className="mt-8 flex flex-col gap-4">
+								{project?.live_url && (
+									<Button
+										asChild
+										className="magnetic-button pixel-corners w-full"
+										size="lg"
 									>
-										<ExternalLink className="mr-2 h-4 w-4" />
-										Visit Project
-									</a>
-								</Button>
-							)}
+										<a
+											data-umami-event="project live link"
+											data-umami-event-url={project?.live_url}
+											href={project?.live_url}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<Globe className="mr-2 h-4 w-4" />
+											Visit Live Site
+										</a>
+									</Button>
+								)}
+
+								{project?.url && project?.url !== project?.live_url && (
+									<Button
+										asChild
+										variant="outline"
+										className="magnetic-button pixel-corners w-full"
+										size="lg"
+									>
+										<a
+											data-umami-event="project source link"
+											data-umami-event-url={project?.url}
+											href={project?.url}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<Code className="mr-2 h-4 w-4" />
+											View Source
+										</a>
+									</Button>
+								)}
+
+								{!project?.live_url && project?.url && (
+									<Button
+										asChild
+										className="magnetic-button pixel-corners w-full"
+										size="lg"
+									>
+										<a
+											data-umami-event="project link"
+											data-umami-event-url={project?.url}
+											href={project?.url}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<ExternalLink className="mr-2 h-4 w-4" />
+											Visit Project
+										</a>
+									</Button>
+								)}
+							</div>
 
 							{/* Product details */}
 							<Card className="pixel-corners mt-10 border-border bg-card/50 backdrop-blur-sm">
@@ -170,6 +249,37 @@ export default function ProjectDetailClient({ project }) {
 									</div>
 								</CardContent>
 							</Card>
+
+							{/* Skills Section */}
+							{project?.skills?.length > 0 && (
+								<Card className="pixel-corners mt-10 border-border bg-card/50 backdrop-blur-sm">
+									<CardHeader>
+										<h2 className="flex items-center gap-2 text-lg font-semibold text-foreground">
+											<Code className="h-5 w-5" />
+											Technologies & Skills
+										</h2>
+									</CardHeader>
+									<CardContent>
+										<div className="flex flex-wrap gap-2">
+											{project.skills.map((skill, idx) => (
+												<motion.div
+													key={idx}
+													initial={{ opacity: 0, scale: 0.9 }}
+													animate={{ opacity: 1, scale: 1 }}
+													transition={{ duration: 0.3, delay: 0.05 * idx }}
+												>
+													<Badge
+														variant="outline"
+														className="cursor-default transition-colors hover:bg-primary/10"
+													>
+														{skill}
+													</Badge>
+												</motion.div>
+											))}
+										</div>
+									</CardContent>
+								</Card>
+							)}
 
 							{project?.creators?.length > 0 && (
 								<Card className="pixel-corners mt-10 border-border bg-card/50 backdrop-blur-sm">
