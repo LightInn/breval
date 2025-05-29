@@ -10,7 +10,7 @@ async function getAllBlogs() {
 	const bloa = blo.data.map(data => {
 		return {
 			publishedAt: data.publishedAt,
-			image: data.image?.url ?? '',
+			image: data.image?.data?.attributes?.url ?? '',
 			describe: data.describe,
 			content: data.content,
 			title: data.title,
