@@ -1,4 +1,4 @@
-import { cn, cx, sortBlogs } from '../index'
+import { cn, cx, sortBlogs } from '@/utils'
 
 describe('cn function', () => {
 	test('should handle simple string arguments', () => {

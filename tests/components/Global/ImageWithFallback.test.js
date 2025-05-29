@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 
-import ImageWithFallback from '../../Global/ImageWithFallback'
+import ImageWithFallback from '@/components/Global/ImageWithFallback'
 
 // Mock next/image
 jest.mock('next/image', () => {

@@ -1,4 +1,4 @@
-import { rgbDataURL } from '../dataurl.services'
+import { rgbDataURL } from '@/services/dataurl.services'
 
 describe('rgbDataURL function', () => {
 	test('should generate correct data URL for black (0, 0, 0)', () => {
