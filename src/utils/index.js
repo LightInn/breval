@@ -1,6 +1,6 @@
 import { compareDesc, parseISO } from 'date-fns'
 import { twMerge } from 'tailwind-merge'
-import { ClassValue, clsx } from 'clsx'
+import { clsx } from 'clsx'
 
 export const cx = (...classNames) => classNames.filter(Boolean).join(' ')
 

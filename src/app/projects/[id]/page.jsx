@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { notFound } from 'next/navigation'
-import { Metadata } from 'next'
 
 import ProjectDetailClient from './ProjectDetailClient'
 

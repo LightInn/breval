@@ -8,7 +8,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
-import ScrollObject3D from '@/components/scroll-object-3d'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 

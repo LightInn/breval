@@ -44,8 +44,6 @@ export default function About() {
 
 	const [imgeUrl, setUrl] = useState('/dynamic/0.webp')
 
-
-
 	const [reload, setReload] = useState(0)
 
 	useEffect(() => {

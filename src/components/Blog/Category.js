@@ -1,6 +1,4 @@
 import React from 'react'
-
-import Link from 'next/link'
 import { cx } from '@/utils'
 
 const Category = ({ link = '#', active, name, ...props }) => {
