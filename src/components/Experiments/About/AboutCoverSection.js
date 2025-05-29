@@ -13,7 +13,11 @@ import { ReloadCTA } from '@/components/Experiments/About/ReloadCTA'
 
 import Avatar from '/src/components/Experiments/About/Avatar'
 
-const AboutCoverSection = ({ background = null, setReload = null }) => {
+const AboutCoverSection = ({
+	background = null,
+	setReload = null,
+	data = {},
+}) => {
 	return (
 		<section className="text-dark bg-dynamic-bg flex h-screen w-screen flex-col items-center justify-center overflow-visible bg-cover md:flex-row">
 			<div className="flex h-full w-full flex-col-reverse items-center justify-center gap-4 overflow-visible p-20 backdrop-blur-lg xl:flex-row xl:justify-evenly">
@@ -38,7 +42,10 @@ const AboutCoverSection = ({ background = null, setReload = null }) => {
 							target="_blank"
 							title="Github"
 						>
-							<GithubIcon className="md:message-bulle bg-dynamic-vibrant-light hover:bg-dynamic-muted-light w-[30px] rounded-2xl p-2" />
+							<GithubIcon
+								style={{ backgroundColor: data.lightVibrant }}
+								className="md:message-bulle w-[30px] rounded-2xl p-2"
+							/>
 							{/*<DribbbleIcon*/}
 							{/*    className="w-[30px] rounded-2xl bg-dynamic-vibrant-light hover:bg-dynamic-muted-light p-2 md:message-bulle"/>*/}
 						</Link>
@@ -52,7 +59,10 @@ const AboutCoverSection = ({ background = null, setReload = null }) => {
 							target="_blank"
 							title="Linkedin"
 						>
-							<LinkedinIcon className="md:message-bulle bg-dynamic-vibrant-light hover:bg-dynamic-muted-light w-[30px] rounded-2xl p-2" />
+							<LinkedinIcon
+								style={{ backgroundColor: data.lightVibrant }}
+								className="md:message-bulle w-[30px] rounded-2xl p-2"
+							/>
 						</Link>
 						<Link
 							aria-label="Twitter"
@@ -64,7 +74,10 @@ const AboutCoverSection = ({ background = null, setReload = null }) => {
 							target="_blank"
 							title="Twitter"
 						>
-							<TwitterIcon className="md:message-bulle bg-dynamic-vibrant-light hover:bg-dynamic-muted-light w-[30px] rounded-2xl p-2" />
+							<TwitterIcon
+								style={{ backgroundColor: data.lightVibrant }}
+								className="md:message-bulle w-[30px] rounded-2xl p-2"
+							/>
 						</Link>
 						<Link
 							aria-label="Email"
@@ -76,7 +89,10 @@ const AboutCoverSection = ({ background = null, setReload = null }) => {
 							target="_blank"
 							title="Email"
 						>
-							<EmailIcon className="md:message-bulle bg-dynamic-vibrant-light hover:bg-dynamic-muted-light w-[30px] rounded-2xl p-2" />
+							<EmailIcon
+								style={{ backgroundColor: data.lightVibrant }}
+								className="md:message-bulle w-[30px] rounded-2xl p-2"
+							/>
 						</Link>
 						<Link
 							aria-label="Discord"
@@ -88,7 +104,10 @@ const AboutCoverSection = ({ background = null, setReload = null }) => {
 							target="_blank"
 							title="Discord"
 						>
-							<DiscordIcon className="md:message-bulle bg-dynamic-vibrant-light hover:bg-dynamic-muted-light w-[30px] rounded-2xl p-2" />
+							<DiscordIcon
+								style={{ backgroundColor: data.lightVibrant }}
+								className="md:message-bulle w-[30px] rounded-2xl p-2"
+							/>
 						</Link>
 						{/*Email*/}
 						{/*Tel*/}
@@ -98,7 +117,7 @@ const AboutCoverSection = ({ background = null, setReload = null }) => {
 					</div>
 
 					<div className="hidden md:block">
-						<ReloadCTA setReload={setReload} />
+						<ReloadCTA setReload={setReload} data={data} />
 					</div>
 				</div>
 				<div className="h-full max-h-[35vh] w-full max-w-[35vw] overflow-visible 2xl:max-h-[80vh]">
