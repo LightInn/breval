@@ -11,7 +11,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
-export default function BlogClientNew({ blogs = [] }) {
+export default function BlogClient({ blogs = [] }) {
 	const ref = useRef(null)
 	const featuredRef = useRef(null)
 	const isInView = useInView(ref, { amount: 0.1, once: true })

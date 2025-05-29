@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 
 import getAllBlogs from '../../services/blog.services'
-import BlogClientNew from './BlogClientNew'
+import BlogClient from './BlogClient'
 
 export const metadata = {
 	description:
@@ -23,7 +23,7 @@ export default async function BlogPage() {
 
 		return (
 			<Suspense fallback={<BlogSkeleton />}>
-				<BlogClientNew blogs={blogs} />
+				<BlogClient blogs={blogs} />
 			</Suspense>
 		)
 	} catch (error) {
