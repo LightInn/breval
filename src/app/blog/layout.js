@@ -1,6 +1,5 @@
 import siteMetadata from '../../utils/siteMetaData'
 
-
 import { cx } from '/src/utils'
 
 export const revalidate = 60

@@ -20,15 +20,14 @@ import {
 	Zap,
 } from 'lucide-react'
 import React, { useEffect, useRef, useState } from 'react' // Combined and changed from 'import type React'
-
 import {
 	AnimatePresence,
 	motion,
+	useInView,
 	useReducedMotion,
 	useScroll,
 	useTransform,
 } from 'framer-motion'
-import { useInView } from 'framer-motion'
 
 const journeyNodes = [
 	// Removed JourneyNode[] type

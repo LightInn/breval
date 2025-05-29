@@ -1,6 +1,4 @@
 'use client'
-import { useState } from 'react'
-
 import Logo from './Logo'
 
 import Navbar from '/src/components/navbar'

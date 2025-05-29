@@ -1,6 +1,6 @@
 'use client'
 import { Environment, Float } from '@react-three/drei'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { useFrame } from '@react-three/fiber'
 import { useEffect, useRef, useState } from 'react'
 
 import { useScroll } from 'framer-motion'
