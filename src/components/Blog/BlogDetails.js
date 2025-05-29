@@ -11,9 +11,9 @@ const BlogDetails = ({ slug: blogSlug, blog }) => {
 			<address className="author">
 				By{' '}
 				<Link
+					className="text-primary transition-colors hover:text-primary/80"
 					href="/"
 					rel="author"
-					className="text-primary transition-colors hover:text-primary/80"
 				>
 					Bréval LE FLOCH
 				</Link>
@@ -34,10 +34,10 @@ const BlogDetails = ({ slug: blogSlug, blog }) => {
 
 			<p className="m-3">
 				<time
+					className="text-muted-foreground"
 					dateTime={parseISO(blog.publishedAt)}
 					pubdate="true"
 					title={format(parseISO(blog.publishedAt), 'LLLL d, yyyy, h:mm a')}
-					className="text-muted-foreground"
 				>
 					{format(parseISO(blog.publishedAt), 'LLLL d, yyyy, h:mm a')}
 				</time>

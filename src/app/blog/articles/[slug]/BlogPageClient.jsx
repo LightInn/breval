@@ -1,28 +1,28 @@
 'use client'
 
+import { ArrowLeft, Calendar, Clock, Tag as TagIcon, User } from 'lucide-react'
 import React from 'react'
+
+import { motion } from 'framer-motion'
+import { slug } from 'github-slugger'
 import Image from 'next/image'
 import Head from 'next/head'
-import { motion } from 'framer-motion'
-import { ArrowLeft, Calendar, Clock, User, Tag as TagIcon } from 'lucide-react'
 import Link from 'next/link'
-import { slug } from 'github-slugger'
 
-import { rgbDataURL } from '@/services/dataurl.services'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-
+import { rgbDataURL } from '@/services/dataurl.services'
 import BlogDetails from '@/components/Blog/BlogDetails'
 import RenderMdx from '@/components/Blog/RenderMdx'
+import { Button } from '@/components/ui/button'
 import Highlight from '@/components/Highlight'
+import { Badge } from '@/components/ui/badge'
 import Tag from '@/components/Elements/Tag'
 
 export default function BlogPageClient({
-	blog,
 	similarArticles,
-	jsonLd,
 	slug: pageSlug,
+	jsonLd,
+	blog,
 }) {
 	return (
 		<div className="relative mt-20 min-h-screen bg-background text-foreground">
@@ -40,10 +40,10 @@ export default function BlogPageClient({
 			/>
 
 			<motion.div
-				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.5 }}
 				className="relative z-10"
+				initial={{ opacity: 0, y: 20 }}
+				transition={{ duration: 0.5 }}
 			>
 				{/* Navigation */}
 				<nav
@@ -83,17 +83,17 @@ export default function BlogPageClient({
 				<article className="relative">
 					{/* Hero Section */}
 					<motion.div
-						initial={{ opacity: 0, scale: 0.95 }}
 						animate={{ opacity: 1, scale: 1 }}
-						transition={{ duration: 0.6 }}
 						className="pixel-corners relative mx-auto mb-12 h-[70vh] w-full max-w-7xl overflow-hidden px-4 sm:px-6 lg:px-8"
+						initial={{ scale: 0.95, opacity: 0 }}
+						transition={{ duration: 0.6 }}
 					>
 						<div className="absolute inset-0 z-10 flex items-center justify-center">
 							<motion.div
-								initial={{ opacity: 0, y: 30 }}
 								animate={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.6, delay: 0.2 }}
 								className="pixel-corners flex h-1/2 w-full flex-col justify-center gap-8 rounded-2xl border border-border bg-background/80 p-8 backdrop-blur-xl md:max-w-[70vw]"
+								initial={{ opacity: 0, y: 30 }}
+								transition={{ duration: 0.6, delay: 0.2 }}
 							>
 								<div className="flex flex-wrap justify-center gap-2">
 									{blog.tags?.[0] && (
@@ -105,9 +105,9 @@ export default function BlogPageClient({
 									)}
 									{blog.tags?.slice(1, 3).map((tag, idx) => (
 										<Badge
+											className="flex items-center gap-1"
 											key={idx}
 											variant="secondary"
-											className="flex items-center gap-1"
 										>
 											<TagIcon className="h-3 w-3" />
 											{tag}
@@ -116,19 +116,19 @@ export default function BlogPageClient({
 								</div>
 
 								<motion.h1
-									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.6, delay: 0.4 }}
 									className="text-center text-2xl font-semibold !leading-normal text-foreground md:text-3xl lg:text-5xl"
+									initial={{ opacity: 0, y: 20 }}
+									transition={{ duration: 0.6, delay: 0.4 }}
 								>
 									{blog.title}
 								</motion.h1>
 
 								<motion.div
-									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.6, delay: 0.6 }}
 									className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground"
+									initial={{ opacity: 0, y: 20 }}
+									transition={{ duration: 0.6, delay: 0.6 }}
 								>
 									{blog.author && (
 										<div className="flex items-center gap-1">
@@ -169,10 +169,10 @@ export default function BlogPageClient({
 						<div className="mt-8 grid grid-cols-12 gap-y-8 lg:gap-8">
 							{/* Sidebar */}
 							<motion.div
-								initial={{ opacity: 0, x: -20 }}
 								animate={{ opacity: 1, x: 0 }}
-								transition={{ duration: 0.5, delay: 0.3 }}
 								className="sticky top-8 col-span-12 lg:col-span-3"
+								initial={{ opacity: 0, x: -20 }}
+								transition={{ duration: 0.5, delay: 0.3 }}
 							>
 								{/* Similar Articles */}
 								<Card className="pixel-corners border-border bg-card/50 backdrop-blur-sm">
@@ -187,15 +187,15 @@ export default function BlogPageClient({
 											<ul className="space-y-3">
 												{similarArticles.slice(0, 5).map((article, idx) => (
 													<motion.li
-														key={article.url}
-														initial={{ opacity: 0, y: 10 }}
 														animate={{ opacity: 1, y: 0 }}
-														transition={{ duration: 0.3, delay: 0.1 * idx }}
+														initial={{ opacity: 0, y: 10 }}
+														key={article.url}
+														transition={{ delay: 0.1 * idx, duration: 0.3 }}
 													>
 														<Button
 															asChild
-															variant="ghost"
 															className="h-auto w-full justify-start p-2 text-left hover:bg-accent/10"
+															variant="ghost"
 														>
 															<Link href={`/blog/articles/${article.url}`}>
 																<div className="space-y-1">
@@ -224,10 +224,10 @@ export default function BlogPageClient({
 
 							{/* Main Content */}
 							<motion.div
-								initial={{ opacity: 0, x: 20 }}
 								animate={{ opacity: 1, x: 0 }}
-								transition={{ duration: 0.5, delay: 0.4 }}
 								className="col-span-12 lg:col-span-9"
+								initial={{ opacity: 0, x: 20 }}
+								transition={{ duration: 0.5, delay: 0.4 }}
 							>
 								<Card className="pixel-corners border-border bg-card/50 backdrop-blur-sm">
 									<CardContent className="p-6 lg:p-8">

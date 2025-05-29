@@ -5,6 +5,7 @@ import { useRef } from 'react'
 
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -31,31 +32,32 @@ export default function About() {
 
 	const roles = [
 		{
+			description: 'image meta-description generation platform',
 			icon: <Globe className="h-4 w-4" />,
 			title: 'CTO of the start-up',
-			link: 'ForMenu',
-			url: '#',
+			url: 'https://forvoyez.com',
+			link: 'ForVoyez',
 		},
 		{
 			description: 'a platform to reference makeup artists',
 			icon: <Code className="h-4 w-4" />,
+			url: 'https://my-makeup.fr',
 			title: 'Co-founder of',
 			link: 'My-Makeup',
-			url: '#',
 		},
 		{
 			description: 'an e-commerce website for art',
 			icon: <Code className="h-4 w-4" />,
-			title: 'Co-founder of',
-			link: 'Artriste',
-			url: '#',
+			title: 'CTO of the start-up',
+			url: 'https://formenu.fr',
+			link: 'ForMenu',
 		},
 		{
 			description: 'the hub for our bees',
 			icon: <Cpu className="h-4 w-4" />,
+			url: 'https://forhives.fr',
 			title: 'Co-founder of',
 			link: 'ForHives',
-			url: '#',
 		},
 	]
 
@@ -126,27 +128,47 @@ export default function About() {
 						</motion.div>
 
 						<motion.div className="flex flex-wrap gap-4" variants={item}>
-							<Button
+							<Link
 								className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10"
-								variant="outline"
+								href="https://github.com/LightInn/"
+								target="_blank"
 							>
-								<Github className="mr-2 h-4 w-4" />
-								GitHub
-							</Button>
-							<Button
+								<Button
+									className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10"
+									variant="outline"
+								>
+									<Github className="mr-2 h-4 w-4" />
+									GitHub
+								</Button>
+							</Link>
+
+							<Link
 								className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10"
-								variant="outline"
+								href="https://www.linkedin.com/in/breval-lefloch/"
+								target="_blank"
 							>
-								<Linkedin className="mr-2 h-4 w-4" />
-								LinkedIn
-							</Button>
-							<Button
+								<Button
+									className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10"
+									variant="outline"
+								>
+									<Linkedin className="mr-2 h-4 w-4" />
+									LinkedIn
+								</Button>
+							</Link>
+
+							<Link
 								className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10"
-								variant="outline"
+								href="/Resume.pdf"
+								target="_blank"
 							>
-								<ExternalLink className="mr-2 h-4 w-4" />
-								Resume
-							</Button>
+								<Button
+									className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10"
+									variant="outline"
+								>
+									<ExternalLink className="mr-2 h-4 w-4" />
+									Resume
+								</Button>
+							</Link>
 						</motion.div>
 					</div>
 
@@ -155,7 +177,7 @@ export default function About() {
 						<motion.div className="flex justify-center" variants={item}>
 							<div className="relative">
 								<div className="absolute -inset-4 rounded-full bg-primary/20 blur-xl" />
-								<div className="pixel-corners dark:dithered-dark dithered-light relative rounded-2xl border border-primary/30 bg-card/80 p-3 backdrop-blur-sm">
+								<div className="pixel-corners dark:dithered-dark dithered-light relative rounded-2xl border border-primary/30 bg-card/80 p-1 backdrop-blur-sm">
 									<div className="overflow-hidden rounded-xl bg-card/90 p-4">
 										<Image
 											alt="Bréval Le Floch"

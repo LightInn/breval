@@ -1,7 +1,10 @@
 import React from 'react'
-import { notFound } from 'next/navigation'
-import getAllBlogs from '@/services/blog.services'
+
 import siteMetadata from '@/utils/siteMetaData'
+import { notFound } from 'next/navigation'
+
+import getAllBlogs from '@/services/blog.services'
+
 import BlogPageClient from './BlogPageClient'
 
 export default async function BlogPage(props) {
@@ -50,8 +53,8 @@ export default async function BlogPage(props) {
 	return (
 		<BlogPageClient
 			blog={blog}
-			similarArticles={similarArticles}
 			jsonLd={jsonLd}
+			similarArticles={similarArticles}
 			slug={params.slug}
 		/>
 	)
