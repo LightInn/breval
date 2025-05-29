@@ -84,7 +84,7 @@ export default function BlogClientNew({ blogs = [] }) {
 	const featuredPost = featuredBlogData
 		? {
 				title: featuredBlogData.title || 'Article en vedette',
-				excerpt: featuredBlogData.description || 'Description non disponible.',
+				excerpt: featuredBlogData.describe || 'Description non disponible.',
 				date: formatDate(
 					featuredBlogData.publishedAt || featuredBlogData.createdAt
 				),
@@ -94,7 +94,7 @@ export default function BlogClientNew({ blogs = [] }) {
 					: '/placeholder.svg?height=600&width=1200',
 				tags: processTags(featuredBlogData.tags),
 				slug:
-					featuredBlogData.slug ||
+					featuredBlogData.url ||
 					`#${featuredBlogData.title?.toLowerCase().replace(/\s+/g, '-')}`,
 			}
 		: {
@@ -107,12 +107,14 @@ export default function BlogClientNew({ blogs = [] }) {
 				slug: '#',
 			}
 
+	console.log('unprocessedBlogs :', blogs)
+
 	// Process remaining blogs data
 	const processedBlogs =
 		Array.isArray(blogs) && blogs.length > 1
 			? blogs.slice(1).map(blog => ({
 					title: blog.title || 'Titre non disponible',
-					excerpt: blog.description || 'Description non disponible.',
+					excerpt: blog.describe || 'Description non disponible.',
 					date: formatDate(blog.publishedAt || blog.createdAt),
 					readTime: calculateReadTime(blog.body),
 					image: blog.image
@@ -120,9 +122,11 @@ export default function BlogClientNew({ blogs = [] }) {
 						: '/placeholder.svg?height=300&width=500',
 					tags: processTags(blog.tags),
 					slug:
-						blog.slug || `#${blog.title?.toLowerCase().replace(/\s+/g, '-')}`,
+						blog.url || `#${blog.title?.toLowerCase().replace(/\s+/g, '-')}`,
 				}))
 			: []
+
+	console.log('Processed Blogs:', processedBlogs)
 
 	const categories = [
 		'Tous les articles',
@@ -191,7 +195,6 @@ export default function BlogClientNew({ blogs = [] }) {
 								className="mb-16"
 							>
 								<div className="relative overflow-hidden rounded-lg border border-primary/30 bg-gray-900/60 backdrop-blur-sm">
-									<div className="dithered absolute inset-0 opacity-20"></div>
 									<div className="md:flex">
 										<div className="relative h-64 md:h-auto md:w-1/2">
 											<Image
@@ -295,7 +298,10 @@ export default function BlogClientNew({ blogs = [] }) {
 										</CardContent>
 
 										<CardFooter className="pt-0">
-											<Link href={`/blog/${post.slug}`} className="w-full">
+											<Link
+												href={`/blog/articles/${post.slug}`}
+												className="w-full"
+											>
 												<Button
 													variant="ghost"
 													className="w-full justify-between hover:bg-primary/20 hover:text-white"

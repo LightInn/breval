@@ -201,7 +201,6 @@ export default function ProjectClientNew({ projects = [] }) {
 								className="mb-16"
 							>
 								<div className="relative overflow-hidden rounded-lg border border-primary/30 bg-gray-900/60 backdrop-blur-sm">
-									<div className="dithered absolute inset-0 opacity-20"></div>
 									<div className="md:flex">
 										<div className="relative h-64 md:h-auto md:w-1/2">
 											<Image
