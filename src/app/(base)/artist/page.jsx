@@ -65,7 +65,7 @@ export default function ArtistPage() {
 				'Displacements that are born and evolve according to your mouse movements, creating an organized and mechanical whole.',
 			description:
 				'Vectorial Avatar that reacts to mouse movements, creating a dynamic and interactive digital identity.',
-			image: '/about/thumb.png?height=600&width=800',
+			image: '/about/thumb.webp?height=600&width=800',
 			color: 'from-emerald-500/20 to-teal-600/20',
 			tags: ['SVG', 'Interactive', 'Animation'],
 			demo: '/experiment/about',
@@ -77,11 +77,11 @@ export default function ArtistPage() {
 			interactive:
 				'Each note becomes color, each rhythm becomes form. A visual dance that translates music into pure emotions.',
 			bgPattern:
-				'linear-gradient(45deg, rgba(168,85,247,0.1) 0%, transparent 25%, rgba(236,72,153,0.1) 50%, transparent 75%)',
+				'linear-gradient(45deg, rgba(74, 43, 102, 0.1) 0%, transparent 25%, rgba(236,72,153,0.1) 50%, transparent 75%)',
 			description:
 				'Procedural art with generative slime, creating a mesmerizing visual experience.',
 			tags: ['Procedural', 'Canvas', 'Slime', 'Interactive'],
-			image: '/slime/thumb.png?height=800&width=600',
+			image: '/slime/thumb.webp?height=800&width=600',
 			color: 'from-purple-500/20 to-pink-600/20',
 			title: 'Slime Simulation',
 			demo: '/experiment/slime',
@@ -119,7 +119,7 @@ export default function ArtistPage() {
 						{isPlaying && (
 							<div className="absolute inset-0">
 								{/* Floating geometric shapes */}
-								{[...Array(12)].map((_, i) => (
+								{[...Array(6)].map((_, i) => (
 									<motion.div
 										animate={{
 											rotate: [0, 270, 540, 180, 360],
@@ -171,7 +171,7 @@ export default function ArtistPage() {
 								))}
 
 								{/* Enhanced sine wave lines */}
-								{[...Array(5)].map((_, i) => (
+								{[...Array(3)].map((_, i) => (
 									<motion.div
 										animate={{
 											scaleX: [0.3, 2, 0.6, 1.5, 0.3],
@@ -205,7 +205,7 @@ export default function ArtistPage() {
 								))}
 
 								{/* Enhanced pulsing circles */}
-								{[...Array(8)].map((_, i) => (
+								{[...Array(4)].map((_, i) => (
 									<motion.div
 										animate={{
 											rotate: [0, 180, 360],
@@ -234,7 +234,7 @@ export default function ArtistPage() {
 								))}
 
 								{/* New: Spiral patterns */}
-								{[...Array(3)].map((_, i) => (
+								{[...Array(2)].map((_, i) => (
 									<motion.div
 										animate={{
 											scale: [0.5, 1.5, 0.8, 1.2, 0.5],
@@ -301,6 +301,11 @@ export default function ArtistPage() {
 							{/* Carousel Controls */}
 							<div className="absolute right-4 top-4 z-20 flex gap-2">
 								<Button
+									aria-label={
+										isPlaying
+											? 'Pause automatic rotation'
+											: 'Play automatic rotation'
+									}
 									className="border-primary/30 bg-gray-900/80 backdrop-blur-sm hover:bg-primary/20"
 									onClick={() => setIsPlaying(!isPlaying)}
 									size="sm"
@@ -313,6 +318,7 @@ export default function ArtistPage() {
 									)}
 								</Button>
 								<Button
+									aria-label="Previous experiment"
 									className="border-primary/30 bg-gray-900/80 backdrop-blur-sm hover:bg-primary/20"
 									onClick={() =>
 										setCurrentIndex(
@@ -448,6 +454,11 @@ export default function ArtistPage() {
 														<img
 															alt={experiment.title}
 															className="h-full w-full object-cover"
+															fetchPriority={
+																experiment.title === 'Slime Simulation'
+																	? 'high'
+																	: undefined
+															}
 															src={'/experiments/' + experiment.image}
 														/>
 
@@ -473,7 +484,7 @@ export default function ArtistPage() {
 
 													{/* Content - Adjusted for larger card */}
 													<div className="flex h-[400px] flex-col p-8">
-														<motion.h3
+														<motion.h2
 															animate={
 																isActive
 																	? {
@@ -489,7 +500,7 @@ export default function ArtistPage() {
 															transition={{ repeat: Infinity, duration: 2 }}
 														>
 															{experiment.title}
-														</motion.h3>
+														</motion.h2>
 
 														<p className="mb-6 line-clamp-4 text-base text-muted-foreground">
 															{experiment.description}
@@ -521,6 +532,7 @@ export default function ArtistPage() {
 							<div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 transform gap-3">
 								{artExperiments.map((_, index) => (
 									<button
+										aria-label={`Go to experiment ${index + 1}: ${artExperiments[index].title}`}
 										className={`h-3 w-3 rounded-full transition-all duration-300 ${
 											index === currentIndex
 												? 'scale-125 bg-primary'
