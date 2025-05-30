@@ -1,6 +1,6 @@
 'use client'
 
-import { Menu, Moon, Sun, X } from 'lucide-react'
+import { Menu, Moon, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { usePathname } from 'next/navigation'
@@ -32,6 +32,54 @@ export default function Navigation() {
 	}, [])
 
 	const toggleMenu = () => setIsOpen(!isOpen)
+
+	// 🌙 ATTENTION: Light mode has been temporarily disabled due to reports
+	// of users spontaneously combusting when exposed to bright pixels.
+	// Our lawyers say we can't afford another lawsuit. Stay in the darkness! 🕶️
+	const handleThemeToggle = () => {
+		// Show a fun tooltip/toast message instead of switching themes
+		const message =
+			"🚫 Nice try! But we're stuck in the void until further notice."
+
+		// You can use either a tooltip library or a simple toast
+		// For now, using a temporary tooltip-like alert
+		const tooltip = document.createElement('div')
+		tooltip.textContent = message
+		tooltip.style.cssText = `
+			position: fixed;
+			top: 80px;
+			right: 20px;
+			background: rgba(0, 0, 0, 0.9);
+			color: white;
+			padding: 12px 16px;
+			border-radius: 8px;
+			border: 1px solid rgba(255, 255, 255, 0.2);
+			z-index: 9999;
+			font-size: 14px;
+			animation: slideIn 0.3s ease-out;
+		`
+
+		// Add animation
+		if (!document.querySelector('style[data-tooltip-styles]')) {
+			const style = document.createElement('style')
+			style.setAttribute('data-tooltip-styles', 'true')
+			style.textContent = `
+				@keyframes slideIn {
+					from { transform: translateX(100%); opacity: 0; }
+					to { transform: translateX(0); opacity: 1; }
+				}
+			`
+			document.head.appendChild(style)
+		}
+
+		document.body.appendChild(tooltip)
+
+		// Remove after 3 seconds
+		setTimeout(() => {
+			tooltip.remove()
+		}, 3000)
+		// setTheme(theme === 'dark' ? 'light' : 'dark')
+	}
 
 	const navItems = [
 		{ name: 'HOME', href: '/' },
@@ -147,22 +195,19 @@ export default function Navigation() {
 							transition={{ duration: 0.5, delay: 0.4 }}
 						>
 							<Button
-								aria-label="Toggle theme"
-								className="magnetic-button pixel-corners ml-4 hidden border border-primary/20 bg-card/80 backdrop-blur-md md:flex"
-								onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+								aria-label="Toggle theme (currently disabled - light mode too dangerous!)"
+								className="magnetic-button pixel-corners ml-4 hidden cursor-not-allowed border border-primary/20 bg-card/80 opacity-50 backdrop-blur-md md:flex"
+								onClick={handleThemeToggle}
 								size="icon"
 								variant="ghost"
+								// disabled
 							>
 								<motion.div
 									animate={{ rotate: theme === 'dark' ? 180 : 0 }}
 									initial={{ rotate: 0 }}
 									transition={{ duration: 0.5 }}
 								>
-									{theme === 'dark' ? (
-										<Sun className="h-5 w-5 text-primary" />
-									) : (
-										<Moon className="h-5 w-5 text-primary" />
-									)}
+									<Moon className="h-5 w-5 text-primary" />
 								</motion.div>
 							</Button>
 						</motion.div>
@@ -201,25 +246,22 @@ export default function Navigation() {
 							))}
 							<div className="flex items-center justify-between border-t border-primary/20 pt-4">
 								<span className="text-xs text-muted-foreground">
-									Toggle theme
+									Theme locked in darkness 🌙
 								</span>
 								<Button
-									aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-									className="magnetic-button"
-									onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+									aria-label="Theme toggle disabled - light mode too dangerous!"
+									className="magnetic-button cursor-not-allowed opacity-50"
+									disabled
+									onClick={handleThemeToggle}
 									size="icon"
 									variant="ghost"
 								>
 									<motion.div
-										animate={{ rotate: theme === 'dark' ? 180 : 0 }}
+										animate={{ rotate: 180 }}
 										initial={{ rotate: 0 }}
 										transition={{ duration: 0.5 }}
 									>
-										{theme === 'dark' ? (
-											<Sun className="h-4 w-4" />
-										) : (
-											<Moon className="h-4 w-4" />
-										)}
+										<Moon className="h-4 w-4" />
 									</motion.div>
 								</Button>
 							</div>

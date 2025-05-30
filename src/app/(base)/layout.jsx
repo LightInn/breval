@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
 				attribute="class"
 				defaultTheme="dark"
 				disableTransitionOnChange={false}
-				enableSystem={true}
+				enableSystem={false}
 				forcedTheme={undefined}
 			>
 				<CursorBlob />
