@@ -68,24 +68,24 @@ export default function ArtistPage() {
 			image: '/about/thumb.png?height=600&width=800',
 			color: 'from-emerald-500/20 to-teal-600/20',
 			tags: ['SVG', 'Interactive', 'Animation'],
+			demo: '/experiment/about',
 			title: 'My Avatar',
 			theme: 'organic',
-			demo: '/experiment/about',
 		},
 
 		{
+			interactive:
+				'Each note becomes color, each rhythm becomes form. A visual dance that translates music into pure emotions.',
+			bgPattern:
+				'linear-gradient(45deg, rgba(168,85,247,0.1) 0%, transparent 25%, rgba(236,72,153,0.1) 50%, transparent 75%)',
 			description:
 				'Procedural art with generative slime, creating a mesmerizing visual experience.',
-			image: '/slime/thumb.png?height=800&width=600',
 			tags: ['Procedural', 'Canvas', 'Slime', 'Interactive'],
+			image: '/slime/thumb.png?height=800&width=600',
+			color: 'from-purple-500/20 to-pink-600/20',
 			title: 'Slime Simulation',
 			demo: '/experiment/slime',
 			theme: 'sound',
-			color: 'from-purple-500/20 to-pink-600/20',
-			bgPattern:
-				'linear-gradient(45deg, rgba(168,85,247,0.1) 0%, transparent 25%, rgba(236,72,153,0.1) 50%, transparent 75%)',
-			interactive:
-				'Each note becomes color, each rhythm becomes form. A visual dance that translates music into pure emotions.',
 		},
 
 		// {

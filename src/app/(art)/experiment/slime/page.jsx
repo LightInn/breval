@@ -1,9 +1,7 @@
 'use client'
-import React from 'react'
-
 import SlimeSimulation from 'react-slime-simulation'
-
 import { useEffect, useState } from 'react'
+import React from 'react'
 
 export default function SlimePage() {
 	const [showOverlay, setShowOverlay] = useState(true)
@@ -49,16 +47,16 @@ export default function SlimePage() {
 					<div className="space-y-4">
 						<p className="flex items-center text-base">
 							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="20"
-								height="20"
-								viewBox="0 0 24 24"
+								className="mr-3 flex-shrink-0 text-pink-400"
 								fill="none"
+								height="20"
 								stroke="currentColor"
-								strokeWidth="2"
 								strokeLinecap="round"
 								strokeLinejoin="round"
-								className="mr-3 flex-shrink-0 text-pink-400"
+								strokeWidth="2"
+								viewBox="0 0 24 24"
+								width="20"
+								xmlns="http://www.w3.org/2000/svg"
 							>
 								<path d="M21 12a9 9 0 1 1-6.219-8.56" />
 							</svg>
@@ -66,16 +64,16 @@ export default function SlimePage() {
 						</p>
 						<p className="flex items-center text-base">
 							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="20"
-								height="20"
-								viewBox="0 0 24 24"
+								className="mr-3 flex-shrink-0 text-purple-400"
 								fill="none"
+								height="20"
 								stroke="currentColor"
-								strokeWidth="2"
 								strokeLinecap="round"
 								strokeLinejoin="round"
-								className="mr-3 flex-shrink-0 text-purple-400"
+								strokeWidth="2"
+								viewBox="0 0 24 24"
+								width="20"
+								xmlns="http://www.w3.org/2000/svg"
 							>
 								<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
 								<polyline points="22 4 12 14.01 9 11.01" />
@@ -84,20 +82,20 @@ export default function SlimePage() {
 						</p>
 						<div className="mt-6 flex flex-col space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
 							<button
-								onClick={handleRefresh}
 								className="flex w-full transform items-center justify-center rounded-lg bg-pink-500/80 px-6 py-3 text-sm font-semibold shadow-lg transition-all hover:scale-105 hover:bg-pink-600/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-75"
+								onClick={handleRefresh}
 							>
 								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="18"
-									height="18"
-									viewBox="0 0 24 24"
+									className="mr-2.5"
 									fill="none"
+									height="18"
 									stroke="currentColor"
-									strokeWidth="2"
 									strokeLinecap="round"
 									strokeLinejoin="round"
-									className="mr-2.5"
+									strokeWidth="2"
+									viewBox="0 0 24 24"
+									width="18"
+									xmlns="http://www.w3.org/2000/svg"
 								>
 									<path d="M3 2v6h6" />
 									<path d="M21 12A9 9 0 0 0 6 5.3L3 8" />
@@ -107,20 +105,20 @@ export default function SlimePage() {
 								Refresh
 							</button>
 							<button
-								onClick={handleGoBack}
 								className="flex w-full transform items-center justify-center rounded-lg bg-purple-500/80 px-6 py-3 text-sm font-semibold shadow-lg transition-all hover:scale-105 hover:bg-purple-600/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75"
+								onClick={handleGoBack}
 							>
 								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="18"
-									height="18"
-									viewBox="0 0 24 24"
+									className="mr-2.5"
 									fill="none"
+									height="18"
 									stroke="currentColor"
-									strokeWidth="2"
 									strokeLinecap="round"
 									strokeLinejoin="round"
-									className="mr-2.5"
+									strokeWidth="2"
+									viewBox="0 0 24 24"
+									width="18"
+									xmlns="http://www.w3.org/2000/svg"
 								>
 									<path d="m12 19-7-7 7-7" />
 									<path d="M19 12H5" />
