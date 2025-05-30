@@ -72,21 +72,22 @@ export default function ArtistPage() {
 			theme: 'organic',
 			demo: '/experiment/about',
 		},
-		// ,
-		// {
-		// 	description:
-		// 		'Visualisations réactives au son qui transforment la musique en paysages visuels abstraits, créant une synesthésie numérique immersive.',
-		// 	image: '/placeholder.svg?height=600&width=800',
-		// 	tags: ['Web Audio API', 'Canvas', 'Three.js', 'Synesthesia'],
-		// 	title: 'Ondes Synesthétiques',
-		// 	demo: '#',
-		// 	theme: 'sound',
-		// 	color: 'from-purple-500/20 to-pink-600/20',
-		// 	bgPattern:
-		// 		'linear-gradient(45deg, rgba(168,85,247,0.1) 0%, transparent 25%, rgba(236,72,153,0.1) 50%, transparent 75%)',
-		// 	interactive:
-		// 		'Chaque note devient couleur, chaque rythme devient forme. Une danse visuelle qui traduit la musique en émotions pures.',
-		// },
+
+		{
+			description:
+				'Visualisations réactives au son qui transforment la musique en paysages visuels abstraits, créant une synesthésie numérique immersive.',
+			image: '/placeholder.svg?height=600&width=800',
+			tags: ['Web Audio API', 'Canvas', 'Three.js', 'Synesthesia'],
+			title: 'Slime Simulation',
+			demo: '/experiment/slime',
+			theme: 'sound',
+			color: 'from-purple-500/20 to-pink-600/20',
+			bgPattern:
+				'linear-gradient(45deg, rgba(168,85,247,0.1) 0%, transparent 25%, rgba(236,72,153,0.1) 50%, transparent 75%)',
+			interactive:
+				'Chaque note devient couleur, chaque rythme devient forme. Une danse visuelle qui traduit la musique en émotions pures.',
+		},
+
 		// {
 		// 	description:
 		// 		'Système de particules basé sur la physique avec dynamique des fluides, simulant des écosystèmes digitaux vivants.',
