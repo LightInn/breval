@@ -34,7 +34,8 @@ export default function Hero() {
 				}
 				data-ready="true"
 				id="topHeroVideo"
-				src="https://player.vimeo.com/video/879007060?background=1&autoplay=1&loop=1&muted=1"
+				loading="eager"
+				src="https://player.vimeo.com/video/879007060?background=1&autoplay=1&loop=1&muted=1&quality=720p"
 				style={{
 					height: 'max(100vh, calc(100vw * 9/16))',
 					width: 'max(100vw, calc(100vh * 16/9))',

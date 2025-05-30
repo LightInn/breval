@@ -183,7 +183,7 @@ export default function About() {
 											alt="Bréval Le Floch"
 											className="rounded-xl"
 											height={400}
-											src="/home/breval_long_wood.png?height=400&width=400"
+											src="/home/breval_long_wood.webp?height=400&width=400"
 											width={400}
 										/>
 										<div className="absolute bottom-8 left-8 right-8 rounded-lg border border-primary/30 bg-card/90 p-3 backdrop-blur-sm">

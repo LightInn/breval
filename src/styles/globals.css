@@ -75,11 +75,8 @@
 
 	body {
 		@apply bg-background text-foreground;
-		font-family: var(--font-open-sans), sans-serif; /* Add Open Sans as a default font */
-		transition:
-			background-color 0.3s ease,
-			color 0.3s ease;
-		/* Ensure proper overflow handling */
+		font-family: var(--font-open-sans), sans-serif;
+		transition: background-color 0.3s ease, color 0.3s ease;
 		overflow-x: hidden;
 	}
 
@@ -91,14 +88,6 @@
 }
 
 @layer utilities {
-	.text-shadow-light {
-		text-shadow: 0 2px 4px rgba(255, 105, 180, 0.3);
-	}
-
-	.text-shadow-dark {
-		text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
-	}
-
 	.pixel-corners {
 		clip-path: polygon(
 			0% 6px,
@@ -175,10 +164,6 @@
 	100% {
 		transform: translateY(0px);
 	}
-}
-
-.animate-pulse-slow {
-	animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .animate-bounce-slow {
