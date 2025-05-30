@@ -62,7 +62,7 @@ export default function ArtistPage() {
 			bgPattern:
 				'radial-gradient(circle at 20% 50%, rgba(0, 248, 165, 0.65) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(20,184,166,0.2) 0%, transparent 50%)',
 			interactive:
-				'Des deplacement qui naissent et évoluent selon vos mouvements de souris, créant un ensemble organiser et mechanique.',
+				'Displacements that are born and evolve according to your mouse movements, creating an organized and mechanical whole.',
 			description:
 				'Vectorial Avatar that reacts to mouse movements, creating a dynamic and interactive digital identity.',
 			image: '/about/thumb.png?height=600&width=800',
@@ -75,9 +75,9 @@ export default function ArtistPage() {
 
 		{
 			description:
-				'Visualisations réactives au son qui transforment la musique en paysages visuels abstraits, créant une synesthésie numérique immersive.',
-			image: '/placeholder.svg?height=600&width=800',
-			tags: ['Web Audio API', 'Canvas', 'Three.js', 'Synesthesia'],
+				'Procedural art with generative slime, creating a mesmerizing visual experience.',
+			image: '/slime/thumb.png?height=800&width=600',
+			tags: ['Procedural', 'Canvas', 'Slime', 'Interactive'],
 			title: 'Slime Simulation',
 			demo: '/experiment/slime',
 			theme: 'sound',
@@ -85,22 +85,22 @@ export default function ArtistPage() {
 			bgPattern:
 				'linear-gradient(45deg, rgba(168,85,247,0.1) 0%, transparent 25%, rgba(236,72,153,0.1) 50%, transparent 75%)',
 			interactive:
-				'Chaque note devient couleur, chaque rythme devient forme. Une danse visuelle qui traduit la musique en émotions pures.',
+				'Each note becomes color, each rhythm becomes form. A visual dance that translates music into pure emotions.',
 		},
 
 		// {
 		// 	description:
-		// 		'Système de particules basé sur la physique avec dynamique des fluides, simulant des écosystèmes digitaux vivants.',
+		// 		'Physics-based particle system with fluid dynamics, simulating living digital ecosystems.',
 		// 	image: '/placeholder.svg?height=600&width=800',
 		// 	tags: ['Physics', 'Simulation', 'WebGL', 'Ecosystem'],
-		// 	title: 'Écosystème Numérique',
+		// 	title: 'Digital Ecosystem',
 		// 	demo: '#',
 		// 	theme: 'fluid',
 		// 	color: 'from-blue-500/20 to-cyan-600/20',
 		// 	bgPattern:
 		// 		'conic-gradient(from 0deg at 50% 50%, rgba(59,130,246,0.2) 0deg, transparent 60deg, rgba(6,182,212,0.2) 120deg, transparent 180deg)',
 		// 	interactive:
-		// 		'Un monde vivant où chaque particule suit les lois de la physique, créant des comportements émergents fascinants.',
+		// 		'A living world where each particle follows the laws of physics, creating fascinating emergent behaviors.',
 		// },
 	]
 
@@ -290,9 +290,9 @@ export default function ArtistPage() {
 								<span className="text-primary">Art</span> Experiments
 							</h1>
 							<p className="mx-auto max-w-2xl text-muted-foreground">
-								Une collection d'expériences de code créatif, d'art génératif et
-								d'expériences numériques interactives. Cliquez pour plonger dans
-								chaque univers.
+								A collection of creative coding experiments, generative art, and
+								interactive digital experiences. Click to dive into each
+								universe.
 							</p>
 						</motion.div>
 
@@ -687,7 +687,7 @@ export default function ArtistPage() {
 														size="lg"
 													>
 														<Play className="mr-3 h-5 w-5" />
-														Lancer l'Expérience
+														Launch Experiment
 													</Button>
 												</Link>
 												<Link
@@ -702,7 +702,7 @@ export default function ArtistPage() {
 														variant="outline"
 													>
 														<Eye className="mr-3 h-5 w-5" />
-														Code Source
+														Source Code
 													</Button>
 												</Link>
 											</div>
