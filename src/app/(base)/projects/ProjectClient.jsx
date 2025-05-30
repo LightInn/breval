@@ -117,7 +117,7 @@ export default function ProjectClient({ projects = [] }) {
 	const gridProjects = filteredProjects.slice(1)
 
 	return (
-		<main className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
+		<main className="from-gray-150 min-h-screen bg-gradient-to-b to-gray-200 pt-20 dark:from-gray-950 dark:to-gray-900 dark:text-white">
 			<div className="relative">
 				{/* <ScrollObject3D /> */}
 
@@ -177,7 +177,7 @@ export default function ProjectClient({ projects = [] }) {
 								ref={featuredRef}
 								transition={{ duration: 0.7 }}
 							>
-								<div className="relative overflow-hidden rounded-lg border border-primary/30 bg-gray-900/60 backdrop-blur-sm">
+								<div className="relative overflow-hidden rounded-lg border border-primary/30 bg-gray-200/60 backdrop-blur-sm dark:bg-gray-900/60">
 									<div className="md:flex">
 										<div className="relative h-64 md:h-auto md:w-1/2">
 											<Image
@@ -272,7 +272,7 @@ export default function ProjectClient({ projects = [] }) {
 									index // Use gridProjects instead of filteredProjects
 								) => (
 									<motion.div key={project.slug || index} variants={item}>
-										<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-900/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50">
+										<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-200/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 dark:bg-gray-900/60">
 											<div className="relative h-48 overflow-hidden">
 												<Image
 													alt={project.title}
