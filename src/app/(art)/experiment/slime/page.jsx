@@ -42,25 +42,90 @@ export default function SlimePage() {
 	}, [])
 
 	return (
-		<div className="" onMouseMove={handleMouseMove}>
+		<div className="relative min-h-screen" onMouseMove={handleMouseMove}>
 			<SlimeExperience />
 			{showOverlay && (
-				<div className="fixed bottom-4 right-4 max-w-xs rounded-lg bg-black bg-opacity-80 p-4 text-sm text-white transition-opacity duration-300">
-					<div className="space-y-2">
-						<p>• Les propriétés du slime changent à chaque actualisation</p>
-						<p>• Bougez la souris pour laisser une traînée de phéromones</p>
-						<div className="mt-3 flex gap-2">
+				<div className="animate-fadeIn fixed bottom-8 right-8 max-w-md rounded-xl bg-gradient-to-br from-purple-600/20 to-pink-500/20 p-6 text-white shadow-2xl backdrop-blur-lg transition-all duration-500 ease-in-out">
+					<div className="space-y-4">
+						<p className="flex items-center text-base">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								className="mr-3 flex-shrink-0 text-pink-400"
+							>
+								<path d="M21 12a9 9 0 1 1-6.219-8.56" />
+							</svg>
+							<span>Slime properties change with each refresh.</span>
+						</p>
+						<p className="flex items-center text-base">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								className="mr-3 flex-shrink-0 text-purple-400"
+							>
+								<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+								<polyline points="22 4 12 14.01 9 11.01" />
+							</svg>
+							<span>Move the mouse to leave a trail of pheromones.</span>
+						</p>
+						<div className="mt-6 flex flex-col space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
 							<button
 								onClick={handleRefresh}
-								className="rounded bg-blue-600 px-3 py-1 text-xs hover:bg-blue-700"
+								className="flex w-full transform items-center justify-center rounded-lg bg-pink-500/80 px-6 py-3 text-sm font-semibold shadow-lg transition-all hover:scale-105 hover:bg-pink-600/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-75"
 							>
-								Actualiser
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="18"
+									height="18"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									className="mr-2.5"
+								>
+									<path d="M3 2v6h6" />
+									<path d="M21 12A9 9 0 0 0 6 5.3L3 8" />
+									<path d="M21 22v-6h-6" />
+									<path d="M3 12a9 9 0 0 0 15 6.7l3-2.7" />
+								</svg>
+								Refresh
 							</button>
 							<button
 								onClick={handleGoBack}
-								className="rounded bg-gray-600 px-3 py-1 text-xs hover:bg-gray-700"
+								className="flex w-full transform items-center justify-center rounded-lg bg-purple-500/80 px-6 py-3 text-sm font-semibold shadow-lg transition-all hover:scale-105 hover:bg-purple-600/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75"
 							>
-								Retour
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="18"
+									height="18"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									className="mr-2.5"
+								>
+									<path d="m12 19-7-7 7-7" />
+									<path d="M19 12H5" />
+								</svg>
+								Go Back
 							</button>
 						</div>
 					</div>
