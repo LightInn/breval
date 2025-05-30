@@ -190,7 +190,9 @@ export default function BlogPageClient({
 															className="h-auto w-full justify-start p-2 text-left hover:bg-accent/10"
 															variant="ghost"
 														>
-															<Link href={`/blog/articles/${article.url}`}>
+															<Link
+																href={`/src/app/(base)/blog/articles/${article.url}`}
+															>
 																<div className="space-y-1">
 																	<p className="line-clamp-2 text-sm font-medium text-foreground">
 																		{article.title}

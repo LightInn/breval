@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import getAllBlogs from '../../services/blog.services'
+import getAllBlogs from '../../../services/blog.services'
 import BlogClient from './BlogClient'
 
 export const metadata = {

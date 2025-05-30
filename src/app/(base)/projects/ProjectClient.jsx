@@ -243,7 +243,9 @@ export default function ProjectClient({ projects = [] }) {
 															</Button>
 														</Link>
 													)}
-												<Link href={`/projects/${featuredProject.slug}`}>
+												<Link
+													href={`/src/app/(base)/projects/${featuredProject.slug}`}
+												>
 													<Button
 														className="border-primary hover:bg-primary/20"
 														variant="outline"
@@ -319,7 +321,7 @@ export default function ProjectClient({ projects = [] }) {
 											</CardContent>
 
 											<CardFooter className="flex items-center justify-between pt-4">
-												<Link href={`/projects/${project.slug}`}>
+												<Link href={`/src/app/(base)/projects/${project.slug}`}>
 													<Button
 														className="text-primary hover:bg-primary/20"
 														size="sm"

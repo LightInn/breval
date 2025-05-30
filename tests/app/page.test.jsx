@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import Home from '@/app/page'
+import Home from '@/app/(base)/page'
 
 // Mock child components
 jest.mock('@/components/scroll-object-3d', () => () => (

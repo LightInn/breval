@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { getProjects } from '../../services/projects.services' // Assurez-vous que ce chemin est correct
+import { getProjects } from '../../../services/projects.services' // Assurez-vous que ce chemin est correct
 import ProjectClient from './ProjectClient' // Le nouveau composant client
 
 export default async function ProjectsPage() {

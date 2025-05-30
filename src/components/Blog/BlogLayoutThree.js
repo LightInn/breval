@@ -11,7 +11,7 @@ const BlogLayoutThree = ({ blog }) => {
 		<div className="text-dark group flex flex-col items-center">
 			<Link
 				className="h-full overflow-hidden rounded-xl"
-				href={'/blog/articles/' + blog.url}
+				href={'/src/app/(base)/blog/articles/' + blog.url}
 			>
 				<Image
 					alt={blog.title}
@@ -29,7 +29,10 @@ const BlogLayoutThree = ({ blog }) => {
 				<span className="text-xs font-semibold uppercase text-accent sm:text-sm">
 					{blog.tags[0]}
 				</span>
-				<Link className="my-1 inline-block" href={'/blog/articles/' + blog.url}>
+				<Link
+					className="my-1 inline-block"
+					href={'/src/app/(base)/blog/articles/' + blog.url}
+				>
 					<h2 className="text-base font-semibold capitalize sm:text-lg">
 						<span className="bg-gradient-to-r from-accent/50 to-accent/50 bg-[length:0px_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[length:100%_6px]">
 							{blog.title}

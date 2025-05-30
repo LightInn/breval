@@ -1,4 +1,3 @@
-
 .navBackground {
 	position: fixed;
 	text-align: center;
@@ -333,53 +332,50 @@
 	}
 }
 
-
-
-
 /* --------------------------------------  Message Bulle -----------------------------------------------------------*/
 
 .messagebulle {
-		transform: translatey(0px);
-		animation: float 5s ease-in-out infinite;
+	transform: translatey(0px);
+	animation: float 5s ease-in-out infinite;
 
-		text-align: center;
-		text-transform: uppercase;
-		font-weight: bold;
-		letter-spacing: 3px;
-		font-size: 15px;
-		color: black;
-		background-color: var(--vibrant-light);
-		
-		/*padding: 50px;*/
-		border-radius: 11px;
-		position: relative;
-		box-shadow: 20px 20px var(--muted-dark);
-		/*// border: 1px solid $color-green;*/
-	}
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 3px;
+	font-size: 15px;
+	color: black;
+	background-color: var(--vibrant-light);
 
-	.messagebulle:after {
-		transform: translatey(0px);
-		animation: float2 5s ease-in-out infinite;
-		content: '.';
-		font-weight: bold;
-		/*// -webkit-text-stroke: 0.5px $color-green;*/
-		-webkit-text-fill-color: var(--vibrant-light);
-		/*// border: 1px solid $color-green;*/
-		text-shadow: 22px 22px var(--muted-dark);
-		text-align: right;
-		font-size: 55px;
-		width: 55px;
-		height: 11px;
-		line-height: 30px;
-		border-radius: 11px;
-		background-color: var(--vibrant-light);
-		position: absolute;
-		display: block;
-		bottom: -30px;
-		right: 0;
-		box-shadow: 22px 22px var(--muted-dark);
-		z-index: -2;
-	}
+	/*padding: 50px;*/
+	border-radius: 11px;
+	position: relative;
+	box-shadow: 20px 20px var(--muted-dark);
+	/*// border: 1px solid $color-green;*/
+}
+
+.messagebulle:after {
+	transform: translatey(0px);
+	animation: float2 5s ease-in-out infinite;
+	content: '.';
+	font-weight: bold;
+	/*// -webkit-text-stroke: 0.5px $color-green;*/
+	-webkit-text-fill-color: var(--vibrant-light);
+	/*// border: 1px solid $color-green;*/
+	text-shadow: 22px 22px var(--muted-dark);
+	text-align: right;
+	font-size: 55px;
+	width: 55px;
+	height: 11px;
+	line-height: 30px;
+	border-radius: 11px;
+	background-color: var(--vibrant-light);
+	position: absolute;
+	display: block;
+	bottom: -30px;
+	right: 0;
+	box-shadow: 22px 22px var(--muted-dark);
+	z-index: -2;
+}
 
 @keyframes float {
 	0% {
@@ -409,6 +405,5 @@
 		transform: translatey(0px);
 	}
 }
-
 
 /*# sourceMappingURL=Navbar.module.css.map */

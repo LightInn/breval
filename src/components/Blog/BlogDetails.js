@@ -24,7 +24,7 @@ const BlogDetails = ({ slug: blogSlug, blog }) => {
 					blog.tags.map(tag => (
 						<Link
 							className="m-1 text-muted-foreground transition-colors hover:text-foreground"
-							href={`/blog/categories/${slug(tag)}`}
+							href={`/src/app/(base)/blog/categories/${slug(tag)}`}
 							key={slug(tag)}
 						>
 							#{tag}
