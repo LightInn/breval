@@ -76,7 +76,9 @@
 	body {
 		@apply bg-background text-foreground;
 		font-family: var(--font-open-sans), sans-serif;
-		transition: background-color 0.3s ease, color 0.3s ease;
+		transition:
+			background-color 0.3s ease,
+			color 0.3s ease;
 		overflow-x: hidden;
 	}
 
