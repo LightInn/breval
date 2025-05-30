@@ -283,7 +283,9 @@ export default function BlogClient({ blogs = [] }) {
 													<Clock className="mr-2 h-4 w-4" />
 													<span>{featuredPost.readTime}</span>
 												</div>
-												<Link href={`/blog/articles/${featuredPost.slug}`}>
+												<Link
+													href={`/src/app/(base)/blog/articles/${featuredPost.slug}`}
+												>
 													<Button className="w-full bg-primary hover:bg-primary/80 md:w-auto">
 														Lire l'article
 														<ArrowRight className="ml-2 h-4 w-4" />
@@ -346,7 +348,7 @@ export default function BlogClient({ blogs = [] }) {
 											<CardFooter className="pt-0">
 												<Link
 													className="w-full"
-													href={`/blog/articles/${post.slug}`}
+													href={`/src/app/(base)/blog/articles/${post.slug}`}
 												>
 													<Button
 														className="w-full justify-between hover:bg-primary/20 hover:text-white"

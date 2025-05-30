@@ -1,4 +1,4 @@
-import siteMetadata from '../../utils/siteMetaData'
+import siteMetadata from '../../../utils/siteMetaData'
 
 import { cx } from '/src/utils'
 

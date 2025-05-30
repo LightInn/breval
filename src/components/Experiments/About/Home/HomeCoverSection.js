@@ -36,7 +36,7 @@ const HomeCoverSection = ({ blogs }) => {
 					/>
 					<Link
 						className="mt-6 no-underline"
-						href={'/blog/articles/' + blog.url}
+						href={'/src/app/(base)/blog/articles/' + blog.url}
 					>
 						<h1 className="text-lg font-bold capitalize sm:text-xl md:text-3xl lg:text-4xl">
 							<span className="bg-gradient-to-r from-accent to-accent bg-[length:0px_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_6px]">

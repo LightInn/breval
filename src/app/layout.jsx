@@ -1,12 +1,7 @@
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 
-import { ThemeProvider } from '@/components/Global/theme-provider'
-import CursorBlob from '@/components/Global/cursor-blob'
-import Navigation from '@/components/Global/navigation'
-import Footer from '@/components/Global/footer'
-
-import '../styles/globals.css'
+import '@/styles/globals.css'
 
 export const metadata = {
 	openGraph: {
@@ -31,18 +26,7 @@ export default function RootLayout({ children }) {
 			<body
 				className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}
 			>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="dark"
-					disableTransitionOnChange={false}
-					enableSystem={true}
-					forcedTheme={undefined}
-				>
-					<CursorBlob />
-					<Navigation />
-					{children}
-					<Footer />
-				</ThemeProvider>
+				{children}
 			</body>
 		</html>
 	)

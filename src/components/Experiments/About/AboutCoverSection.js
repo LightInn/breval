@@ -12,6 +12,7 @@ import {
 import { ReloadCTA } from '@/components/Experiments/About/ReloadCTA'
 
 import css from '/src/styles/Navbar.module.css'
+
 import Avatar from '/src/components/Experiments/About/Avatar'
 
 const AboutCoverSection = ({

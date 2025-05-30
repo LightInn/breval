@@ -65,12 +65,12 @@ export default function ArtistPage() {
 				'Des deplacement qui naissent et évoluent selon vos mouvements de souris, créant un ensemble organiser et mechanique.',
 			description:
 				'Vectorial Avatar that reacts to mouse movements, creating a dynamic and interactive digital identity.',
-			image: '/placeholder.svg?height=600&width=800',
+			image: '/about/thumb.png?height=600&width=800',
 			color: 'from-emerald-500/20 to-teal-600/20',
 			tags: ['SVG', 'Interactive', 'Animation'],
 			title: 'My Avatar',
 			theme: 'organic',
-			demo: '/about',
+			demo: '/experiment/about',
 		},
 		// ,
 		// {
@@ -404,7 +404,7 @@ export default function ArtistPage() {
 										>
 											{/* Card with Artistic Effects - Made Larger and Wider */}
 											<div
-												className="relative h-[650px] w-[500px] transform-gpu"
+												className="relative h-[750px] w-[500px] transform-gpu"
 												style={{
 													background: experiment.bgPattern,
 												}}
@@ -443,11 +443,11 @@ export default function ArtistPage() {
 													)}
 
 													{/* Image Container - Larger */}
-													<div className="relative h-80 overflow-hidden">
+													<div className="relative h-[55vh] overflow-hidden">
 														<img
 															alt={experiment.title}
 															className="h-full w-full object-cover"
-															src={experiment.image}
+															src={'/experiments/' + experiment.image}
 														/>
 
 														{/* Dynamic Overlay */}
@@ -471,15 +471,15 @@ export default function ArtistPage() {
 													</div>
 
 													{/* Content - Adjusted for larger card */}
-													<div className="flex h-[270px] flex-col p-8">
+													<div className="flex h-[400px] flex-col p-8">
 														<motion.h3
 															animate={
 																isActive
 																	? {
 																			textShadow: [
-																				'0 0 0px #3b82f6',
+																				'0 0 0pxrgb(187, 163, 231)',
 																				'0 0 15px #3b82f6',
-																				'0 0 0px #3b82f6',
+																				'0 0 0pxrgb(241, 241, 241)',
 																			],
 																		}
 																	: {}
@@ -508,23 +508,6 @@ export default function ArtistPage() {
 																	</Badge>
 																))}
 														</div>
-
-														{/* Action */}
-														{isActive && (
-															<motion.div
-																animate={{ opacity: 1, y: 0 }}
-																className="mt-auto"
-																initial={{ opacity: 0, y: 20 }}
-															>
-																<Button
-																	className="w-full bg-primary text-white hover:bg-primary/80"
-																	size="sm"
-																>
-																	<Eye className="mr-2 h-4 w-4" />
-																	Plonger dans l'expérience
-																</Button>
-															</motion.div>
-														)}
 													</div>
 												</div>
 											</div>
@@ -633,7 +616,7 @@ export default function ArtistPage() {
 											<img
 												alt={selectedExperiment.title}
 												className="h-full w-full object-cover"
-												src={selectedExperiment.image}
+												src={'/experiments/' + selectedExperiment.image}
 											/>
 
 											{/* Interactive Overlay */}
@@ -693,7 +676,7 @@ export default function ArtistPage() {
 											{/* Action Buttons */}
 											<div className="flex gap-4">
 												<Link
-													className="flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-lg text-white hover:bg-primary/80"
+													className="flex items-center justify-center"
 													href={selectedExperiment.demo}
 													onClick={() => setSelectedExperiment(null)}
 													transition={{ duration: 0.3 }}
@@ -707,7 +690,7 @@ export default function ArtistPage() {
 													</Button>
 												</Link>
 												<Link
-													className="flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-lg text-white hover:bg-primary/80"
+													className="flex items-center justify-center"
 													href={selectedExperiment.demo}
 													onClick={() => setSelectedExperiment(null)}
 													transition={{ duration: 0.3 }}

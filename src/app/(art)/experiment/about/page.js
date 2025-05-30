@@ -10,6 +10,7 @@ import Navbar from '@/components/Experiments/About/Navbar'
 
 import './App.css'
 
+
 export default function About() {
 	const bibiliothecqueDImage = [
 		// "/experiments/about/dynamic/0.webp",

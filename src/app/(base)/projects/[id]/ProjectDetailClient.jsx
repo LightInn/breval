@@ -21,7 +21,7 @@ import { rgbDataURL } from '@/services/dataurl.services'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
-import ImageWithFallback from '../../../components/Global/ImageWithFallback'
+import ImageWithFallback from '../../../../components/Global/ImageWithFallback'
 
 export default function ProjectDetailClient({ project }) {
 	// Prioritize main_media, then media array
