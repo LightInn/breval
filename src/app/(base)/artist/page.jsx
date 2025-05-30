@@ -105,7 +105,7 @@ export default function ArtistPage() {
 	]
 
 	return (
-		<main className="min-h-screen overflow-hidden bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
+		<main className="from-gray-150 min-h-screen overflow-hidden bg-gradient-to-b to-gray-200 pt-20 dark:from-gray-950 dark:to-gray-900 dark:text-white">
 			<div className="relative">
 				<ScrollObject3D />
 
@@ -306,7 +306,7 @@ export default function ArtistPage() {
 											? 'Pause automatic rotation'
 											: 'Play automatic rotation'
 									}
-									className="border-primary/30 bg-gray-900/80 backdrop-blur-sm hover:bg-primary/20"
+									className="border-primary/30 bg-gray-200/80 backdrop-blur-sm hover:bg-primary/20 dark:bg-gray-900/80"
 									onClick={() => setIsPlaying(!isPlaying)}
 									size="sm"
 									variant="outline"
@@ -319,7 +319,7 @@ export default function ArtistPage() {
 								</Button>
 								<Button
 									aria-label="Previous experiment"
-									className="border-primary/30 bg-gray-900/80 backdrop-blur-sm hover:bg-primary/20"
+									className="border-primary/30 bg-gray-200/80 backdrop-blur-sm hover:bg-primary/20 dark:bg-gray-900/80"
 									onClick={() =>
 										setCurrentIndex(
 											prev =>
@@ -417,7 +417,7 @@ export default function ArtistPage() {
 												}}
 											>
 												{/* Artistic Border */}
-												<div className="absolute inset-0 overflow-hidden rounded-3xl border-2 border-primary/30 bg-gray-900/90 backdrop-blur-sm">
+												<div className=":bg-gray-900/90 absolute inset-0 overflow-hidden rounded-3xl border-2 border-primary/30 bg-gray-200/90 backdrop-blur-sm">
 													{/* Floating Particles Effect */}
 													{isActive && (
 														<div className="absolute inset-0">
@@ -463,7 +463,7 @@ export default function ArtistPage() {
 														/>
 
 														{/* Dynamic Overlay */}
-														<div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
+														<div className="absolute inset-0 bg-gradient-to-t from-gray-200 via-transparent to-transparent dark:from-gray-900" />
 
 														{/* Glitch Effect for Active Card */}
 														{isActive && (
@@ -570,7 +570,7 @@ export default function ArtistPage() {
 						>
 							{/* Close Button */}
 							<Button
-								className="absolute right-8 top-8 border-primary/30 bg-gray-900/80 backdrop-blur-sm hover:bg-primary/20"
+								className="absolute right-8 top-8 border-primary/30 bg-gray-200/80 backdrop-blur-sm hover:bg-primary/20 dark:bg-gray-900/80"
 								onClick={() => setSelectedExperiment(null)}
 								size="sm"
 								variant="outline"
@@ -586,7 +586,7 @@ export default function ArtistPage() {
 								}}
 							>
 								{/* Animated Background */}
-								<div className="absolute inset-0 bg-gray-900/95 backdrop-blur-sm">
+								<div className="absolute inset-0 bg-gray-200/95 backdrop-blur-sm dark:bg-gray-900/95">
 									{/* Enhanced Particle System */}
 									{[...Array(30)].map((_, i) => {
 										// Deterministic positioning to avoid hydration errors
