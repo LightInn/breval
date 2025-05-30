@@ -51,6 +51,17 @@ export default function RootLayout({ children }) {
 			lang="en"
 			suppressHydrationWarning
 		>
+			<head>
+				{/* Preconnect to third-party origins for faster loading */}
+				<link href="https://player.vimeo.com" rel="preconnect" />
+				<link href="https://vod-adaptive-ak.vimeocdn.com" rel="preconnect" />
+				<link href="https://f.vimeocdn.com" rel="preconnect" />
+				<link href="https://breval-api.lightin.io" rel="preconnect" />
+				<link href="https://cdn.brev.al" rel="preconnect" />
+				<link href="https://player.vimeo.com" rel="dns-prefetch" />
+				<link href="https://vod-adaptive-ak.vimeocdn.com" rel="dns-prefetch" />
+				<link href="https://f.vimeocdn.com" rel="dns-prefetch" />
+			</head>
 			<body
 				className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}
 			>

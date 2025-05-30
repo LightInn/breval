@@ -93,6 +93,9 @@ export default function Navigation() {
 					{/* Mobile menu button */}
 					<div className="md:hidden">
 						<Button
+							aria-label={
+								isOpen ? 'Close navigation menu' : 'Open navigation menu'
+							}
 							className="magnetic-button"
 							onClick={toggleMenu}
 							size="icon"
@@ -201,6 +204,7 @@ export default function Navigation() {
 									Toggle theme
 								</span>
 								<Button
+									aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
 									className="magnetic-button"
 									onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
 									size="icon"

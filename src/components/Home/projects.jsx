@@ -4,6 +4,7 @@ import { ArrowRight, ExternalLink, Github } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
 import { motion, useInView } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
@@ -169,9 +170,16 @@ export default function Projects() {
 										className={`relative overflow-hidden ${project.featured ? 'h-64' : 'h-48'}`}
 									>
 										<div className="dark:dithered-dark dithered-light absolute inset-0 opacity-30" />
-										<img
+										<Image
 											alt={project.title}
 											className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+											fill
+											priority={project.featured}
+											sizes={
+												project.featured
+													? '(max-width: 768px) 100vw, 800px'
+													: '(max-width: 768px) 100vw, 500px'
+											}
 											src={project.image || '/placeholder.svg'}
 										/>
 										<div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
