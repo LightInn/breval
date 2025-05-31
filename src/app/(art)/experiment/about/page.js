@@ -3,34 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { usePalette } from 'react-palette'
 
 import { createGlobalStyle } from 'styled-components'
-import siteMetaData from '@/utils/siteMetaData'
 
 import AboutCoverSection from '@/components/Experiments/About/AboutCoverSection'
 import { Playground } from '@/components/Experiments/About/Playground'
 import Navbar from '@/components/Experiments/About/Navbar'
 
 import './App.css'
-
-export const metadata = {
-	openGraph: {
-		images: [
-			{
-				url: siteMetaData.socialBanner || '/experiments/about/thumb.webp', // A specific thumbnail for this experiment would be best
-				alt: 'Interactive SVG Avatar Experiment by Bréval Le Floch',
-				width: 1200,
-				height: 630,
-			},
-		],
-		description:
-			'Explore an interactive SVG avatar experiment by Bréval Le Floch, showcasing dynamic animations and color palettes generated from images.',
-		title: 'Interactive Avatar Experiment | Bréval Le Floch',
-		url: `${siteMetaData.siteUrl}/experiment/about`,
-		type: 'website', // Or 'article' if it's presented as a case study
-	},
-	description:
-		'Explore an interactive SVG avatar experiment by Bréval Le Floch, showcasing dynamic animations and color palettes generated from images.',
-	title: 'Interactive Avatar Experiment | Bréval Le Floch',
-}
 
 export default function About() {
 	const bibiliothecqueDImage = [
