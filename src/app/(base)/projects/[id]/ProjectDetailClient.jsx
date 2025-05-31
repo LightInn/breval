@@ -55,7 +55,7 @@ export default function ProjectDetailClient({ project }) {
 									href={'/projects'}
 								>
 									<ArrowLeft className="mr-2 inline h-4 w-4" />
-									projets
+									Projects
 								</Link>
 								<svg
 									aria-hidden="true"

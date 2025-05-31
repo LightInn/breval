@@ -18,29 +18,29 @@ export default function Projects() {
 	const [projects, setProjects] = useState([])
 	const [loading, setLoading] = useState(true)
 
-	// Charger les projets featured depuis l'API
+	// Load featured projects from the API
 	useEffect(() => {
 		const fetchProjects = async () => {
 			try {
 				setLoading(true)
 				const data = await getFeaturedProjects()
 
-				// Transformer les données de l'API au format attendu par le composant
+				// Transform API data to the format expected by the component
 				const transformedProjects = data.map((project, index) => {
-					// Parser les skills de différents formats possibles
-					let tags = ['Web Development'] // Valeur par défaut
+					// Parse skills from different possible formats
+					let tags = ['Web Development'] // Default value
 					if (project.skills) {
 						if (Array.isArray(project.skills)) {
-							tags = project.skills.slice(0, 4) // Limiter à 4 tags
+							tags = project.skills.slice(0, 4) // Limit to 4 tags
 						} else if (typeof project.skills === 'string') {
-							// Si c'est une chaîne, essayer de la parser (JSON ou séparée par virgules)
+							// If it's a string, try to parse it (JSON or comma-separated)
 							try {
 								const parsed = JSON.parse(project.skills)
 								if (Array.isArray(parsed)) {
 									tags = parsed.slice(0, 4)
 								}
 							} catch {
-								// Si ce n'est pas du JSON, essayer de séparer par virgules
+								// If not JSON, try to split by commas
 								tags = project.skills
 									.split(',')
 									.map(s => s.trim())
@@ -59,21 +59,21 @@ export default function Projects() {
 						description:
 							project.short_description ||
 							project.description ||
-							'Description non disponible.',
+							'Description not available.',
 						category: project.category || 'Web Development',
-						title: project.title || 'Projet sans titre',
+						title: project.title || 'Untitled project',
 						demo: project.live_url || '#',
 						github: project.url || '#',
 						rank: project.rank || 0,
-						featured: index === 0, // Le premier projet (plus haut rank) est featured
+						featured: index === 0, // The first project (highest rank) is featured
 						tags,
 					}
 				})
 
 				setProjects(transformedProjects)
 			} catch (error) {
-				console.error('Erreur lors du chargement des projets:', error)
-				// En cas d'erreur, utiliser des données par défaut
+				console.error('Error loading projects:', error)
+				// In case of error, use default data
 				setProjects([])
 			} finally {
 				setLoading(false)
@@ -99,7 +99,7 @@ export default function Projects() {
 		hidden: { opacity: 0, y: 20 },
 	}
 
-	// Skeleton component pour l'état de chargement
+	// Skeleton component for loading state
 	const ProjectSkeleton = () => (
 		<Card className="h-full overflow-hidden border-primary/20 bg-card/60 backdrop-blur-sm">
 			<div className="relative h-48 overflow-hidden">
@@ -151,7 +151,7 @@ export default function Projects() {
 					variants={container}
 				>
 					{loading ? (
-						// Afficher des skeletons pendant le chargement
+						// Display skeletons while loading
 						Array.from({ length: 4 }, (_, index) => (
 							<motion.div key={index} variants={item}>
 								<div className={index === 0 ? 'md:col-span-2' : ''}>
@@ -160,7 +160,7 @@ export default function Projects() {
 							</motion.div>
 						))
 					) : projects.length > 0 ? (
-						// Afficher les projets chargés
+						// Display loaded projects
 						projects.map((project, index) => (
 							<motion.div key={index} variants={item}>
 								<Card
@@ -264,12 +264,12 @@ export default function Projects() {
 							</motion.div>
 						))
 					) : (
-						// Afficher un message si aucun projet n'est disponible
+						// Display a message if no projects are available
 						<motion.div className="md:col-span-2" variants={item}>
 							<Card className="h-full overflow-hidden border-primary/20 bg-card/60 backdrop-blur-sm">
 								<CardContent className="pt-6 text-center">
 									<p className="text-muted-foreground">
-										Aucun projet disponible pour le moment.
+										No projects available at the moment.
 									</p>
 								</CardContent>
 							</Card>

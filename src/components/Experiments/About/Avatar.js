@@ -116,7 +116,7 @@ export default function Avatar() {
 
 	useEffect(() => {
 		watchViewport(updateValues)
-		// Fonction de nettoyage pour détacher l'écouteur lorsque le composant est démonté
+		// Cleanup function to detach the listener when the component is unmounted
 		return () => {
 			unwatchViewport(updateValues)
 		}

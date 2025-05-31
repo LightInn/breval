@@ -1,12 +1,29 @@
 import { Suspense } from 'react'
 
+import siteMetaData from '@/utils/siteMetaData'
+
 import getAllBlogs from '../../../services/blog.services'
 import BlogClient from './BlogClient'
 
 export const metadata = {
+	openGraph: {
+		images: [
+			{
+				url: siteMetaData.socialBanner || '/og-image.png',
+				alt: 'Bréval Le Floch - Blog',
+				width: 1200,
+				height: 630,
+			},
+		],
+		description:
+			'Explore insightful articles and tutorials on web development, creative coding, UI/UX design, and tech by Bréval Le Floch.',
+		title: 'Blog | Bréval Le Floch - Creative Developer',
+		url: `${siteMetaData.siteUrl}/blog`,
+		type: 'website', // Or 'article' if you consider the blog listing itself an article collection
+	},
 	description:
-		'In this blog, I share my thoughts, my projects, my experiences and my knowledge about web and mobile development !',
-	title: 'Bréval LE FLOCH | My Blog',
+		'Explore insightful articles and tutorials on web development, creative coding, UI/UX design, and tech by Bréval Le Floch.',
+	title: 'Blog | Bréval Le Floch - Creative Developer',
 }
 
 export default async function BlogPage() {
@@ -16,7 +33,7 @@ export default async function BlogPage() {
 
 		if (!Array.isArray(allBlogs)) {
 			console.warn(
-				"getAllBlogs n'a pas retourné un tableau comme attendu. Reçu:",
+				'getAllBlogs did not return an array as expected. Received:',
 				allBlogs
 			)
 		}
@@ -27,20 +44,16 @@ export default async function BlogPage() {
 			</Suspense>
 		)
 	} catch (error) {
-		console.error(
-			'Erreur lors de la récupération des blogs dans BlogPage:',
-			error
-		)
+		console.error('Error fetching blogs in BlogPage:', error)
 		return (
 			<div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
 				<div className="container mx-auto px-4 py-20 text-center">
-					<h1 className="mb-4 text-4xl font-bold">
-						Erreur de chargement des articles
-					</h1>
+					<h1 className="mb-4 text-4xl font-bold">Error loading articles</h1>
 					<p className="text-red-400">
-						Désolé, une erreur est survenue lors de la tentative de chargement
-						des articles de blog.
+						Sorry, an error occurred while trying to load the blog articles.
+						Sorry, an error occurred while trying to load the blog articles.
 					</p>
+					{/* For debugging: <p className="text-xs text-gray-500 mt-2">Detail: {error.message}</p> */}
 				</div>
 			</div>
 		)

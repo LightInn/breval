@@ -5,7 +5,7 @@ import { clsx } from 'clsx'
 export const cx = (...classNames) => classNames.filter(Boolean).join(' ')
 
 export const sortBlogs = blogs => {
-	// Sort blogs by date, exemple de blog : [{title: "titre de l'article", description: "description de l'article", content: "contenu de l'article", publishedAt: "date de publication", updatedAt: "date de mise à jour", image: "image de l'article"}]
+	// Sort blogs by date, example blog: [{title: "article title", description: "article description", content: "article content", publishedAt: "publication date", updatedAt: "update date", image: "article image"}]
 	// blog is a list of objects
 
 	return blogs.sort((a, b) => {

@@ -10,7 +10,7 @@ export default function Highlight() {
 		if (typeof window !== 'undefined') {
 			hljs.highlightAll()
 		}
-	}, []) // Le tableau vide signifie que cet effet s'exécute une seule fois après le premier rendu
+	}, []) // The empty array means this effect runs once after the first render
 
 	return null
 }

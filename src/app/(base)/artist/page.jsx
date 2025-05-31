@@ -4,12 +4,34 @@ import { Eye, Pause, Play, RotateCcw, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
 import { AnimatePresence, motion, useInView } from 'framer-motion'
+import siteMetaData from '@/utils/siteMetaData'
 import Link from 'next/link'
 
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import ScrollObject3D from '@/components/scroll-object-3d'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+
+export const metadata = {
+	openGraph: {
+		images: [
+			{
+				url: siteMetaData.socialBanner || '/og-image.png', // Assuming a general OG image, or create a specific one
+				alt: 'Bréval Le Floch - Art Experiments',
+				width: 1200,
+				height: 630,
+			},
+		],
+		description:
+			'Discover a collection of interactive art experiments and creative coding projects by Bréval Le Floch, showcasing generative art and digital experiences.',
+		title: 'Art Experiments | Bréval Le Floch - Creative Developer',
+		url: `${siteMetaData.siteUrl}/artist`,
+		type: 'website',
+	},
+	description:
+		'Discover a collection of interactive art experiments and creative coding projects by Bréval Le Floch, showcasing generative art and digital experiences.',
+	title: 'Art Experiments | Bréval Le Floch - Creative Developer',
+}
 
 export default function ArtistPage() {
 	const ref = useRef(null)

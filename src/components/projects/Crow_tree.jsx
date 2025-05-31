@@ -34,13 +34,13 @@ export function Crow({ step }, props) {
 		}
 		if (step === 2) {
 			// actions.idle.paused = true
-			// Rendre la scène transparente
+			// Make the scene transparent
 			materials.PaletteMaterial001.transparent = true
-			materials.PaletteMaterial001.opacity = 1 // Ajuste selon la transparence souhaitée
+			materials.PaletteMaterial001.opacity = 1 // Adjust according to desired transparency
 		}
 		if (step === 3) {
 			actions.idle.paused = true
-			// Rendre la scène transparente
+			// Make the scene transparent
 			materials.PaletteMaterial001.transparent = true
 			materials.PaletteMaterial001.opacity = 0 //
 		}

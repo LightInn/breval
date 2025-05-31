@@ -6,11 +6,11 @@ const slugify = text => {
 	return text
 		.toString()
 		.toLowerCase()
-		.replace(/\s+/g, '-') // Remplace les espaces par des tirets
-		.replace(/[^\w\-]+/g, '') // Retire les caractères non-alphanumériques
-		.replace(/\-\-+/g, '-') // Remplace plusieurs tirets par un seul tiret
-		.replace(/^-+/, '') // Retire les tirets en début de chaîne
-		.replace(/-+$/, '') // Retire les tirets en fin de chaîne
+		.replace(/\s+/g, '-') // Replace spaces with hyphens
+		.replace(/[^\w\-]+/g, '') // Remove non-alphanumeric characters
+		.replace(/\-\-+/g, '-') // Replace multiple hyphens with a single hyphen
+		.replace(/^-+/, '') // Remove hyphens from the beginning of the string
+		.replace(/-+$/, '') // Remove hyphens from the end of the string
 }
 
 const Categories = ({ currentSlug, categories }) => {

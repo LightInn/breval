@@ -3,7 +3,7 @@ import React from 'react'
 export function ReloadCTA({ setReload = null, data = {} }) {
 	return (
 		<div className="absolute right-0 top-0 z-20 mt-14 flex flex-col items-center justify-evenly gap-8 p-4 xl:mt-0 xl:gap-10 xl:p-16">
-			{/* todo changer reséaux sociaux */}
+			{/* todo change social networks */}
 
 			{/* FACEBOOK */}
 
