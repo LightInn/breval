@@ -1,3 +1,4 @@
+// TODO delete: Potentially unused component. Icons are imported from lucide-react in footer.
 import React from 'react'
 
 import { cx } from '@/utils'

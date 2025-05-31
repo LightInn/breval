@@ -1,3 +1,4 @@
+// TODO delete: Potentially unused component. Rendering logic is commented out.
 'use client'
 import { Environment, Float } from '@react-three/drei'
 import { useEffect, useRef, useState } from 'react'

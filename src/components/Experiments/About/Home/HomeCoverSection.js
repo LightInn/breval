@@ -1,3 +1,4 @@
+// TODO delete: Unused experimental component.
 import React from 'react'
 
 import { slug } from 'github-slugger'

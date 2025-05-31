@@ -1,0 +1,1 @@
+TODO delete: Potentially unused or redundant asset. Check if a newer version exists in `public/global/` or if this asset is used anywhere in the codebase. Asset path: public/xprojects/projets-gallery.png

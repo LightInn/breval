@@ -1,3 +1,4 @@
+// TODO delete: Potentially unused component. Not found in homepage or artist page.
 'use client'
 import { useEffect, useState } from 'react'
 

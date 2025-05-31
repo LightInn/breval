@@ -1,0 +1,1 @@
+TODO delete: Potentially unused asset. Referenced by no components found so far. Asset path: public/experiments/about/avatar.svg
