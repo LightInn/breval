@@ -1,17 +1,17 @@
 import { Suspense } from 'react'
 
-import { getProjects } from '../../../services/projects.services' // Assurez-vous que ce chemin est correct
-import ProjectClient from './ProjectClient' // Le nouveau composant client
+import { getProjects } from '../../../services/projects.services' // Make sure this path is correct
+import ProjectClient from './ProjectClient' // The new client component
 
 export default async function ProjectsPage() {
 	try {
 		const projectsData = await getProjects()
-		// getProjects retourne directement le tableau de projets (data.data)
+		// getProjects directly returns the array of projects (data.data)
 		const projects = Array.isArray(projectsData) ? projectsData : []
 
 		if (!Array.isArray(projectsData)) {
 			console.warn(
-				"getProjects n'a pas retourné un tableau comme attendu. Reçu:",
+				'getProjects did not return an array as expected. Received:',
 				projectsData
 			)
 		}
@@ -22,21 +22,15 @@ export default async function ProjectsPage() {
 			</Suspense>
 		)
 	} catch (error) {
-		console.error(
-			'Erreur lors de la récupération des projets dans ProjectsPage:',
-			error
-		)
+		console.error('Error fetching projects in ProjectsPage:', error)
 		return (
 			<div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
 				<div className="container mx-auto px-4 py-20 text-center">
-					<h1 className="mb-4 text-4xl font-bold">
-						Erreur de chargement des projets
-					</h1>
+					<h1 className="mb-4 text-4xl font-bold">Error loading projects</h1>
 					<p className="text-red-400">
-						Désolé, une erreur est survenue lors de la tentative de chargement
-						des projets.
+						Sorry, an error occurred while trying to load the projects.
 					</p>
-					{/* Pour le débogage: <p className="text-xs text-gray-500 mt-2">Détail: {error.message}</p> */}
+					{/* For debugging: <p className="text-xs text-gray-500 mt-2">Detail: {error.message}</p> */}
 				</div>
 			</div>
 		)

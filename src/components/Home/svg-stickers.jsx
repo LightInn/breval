@@ -46,7 +46,7 @@ export function SvgSticker({ className = '', size = 'md', type }) {
 		lg: 'w-20 h-20', // Reduced from w-24 h-24
 	}
 
-	// Utiliser useMemo pour que chaque sticker ait une animation unique et fixe
+	// Use useMemo so that each sticker has a unique and fixed animation
 	const animation = useMemo(() => {
 		const rotations = [-360, -180, -90, 90, 180, 360]
 		const delays = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
@@ -59,7 +59,7 @@ export function SvgSticker({ className = '', size = 'md', type }) {
 			bounce: bounces[Math.floor(Math.random() * bounces.length)],
 			delay: delays[Math.floor(Math.random() * delays.length)],
 		}
-	}, [type, className]) // Dépendances pour créer une animation unique par sticker
+	}, [type, className]) // Dependencies to create a unique animation per sticker
 
 	const stickers = {
 		mountain: (

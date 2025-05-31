@@ -1,8 +1,9 @@
 // please update required information
 const siteMetadata = {
-	description: 'Personal website of Bréval, to show my projects and my blog.',
-	headerTitle: 'Breval LE FLOCH | web developer',
-	title: 'Portefolio of Bréval LE FLOCH',
+	description:
+		'Explore the creative portfolio and insightful blog of Bréval Le Floch, a passionate Creative Developer specializing in web development, UI/UX, and interactive experiences.',
+	headerTitle: 'Bréval Le Floch - Creative Developer Portfolio & Blog',
+	title: 'Bréval Le Floch - Creative Developer | Portfolio & Blog',
 	github: 'https://github.com/LighInn',
 	// socialBanner: '/social-banner.png', // add social banner in the public folder
 	email: 'breval.lefloch@gmail.com',

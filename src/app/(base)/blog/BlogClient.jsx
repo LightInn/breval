@@ -18,7 +18,7 @@ export default function BlogClient({ blogs = [] }) {
 	const isFeaturedInView = useInView(featuredRef, { amount: 0.3, once: true })
 
 	// State for category filtering
-	const [selectedCategory, setSelectedCategory] = useState('Tous les articles')
+	const [selectedCategory, setSelectedCategory] = useState('All Articles')
 
 	const container = {
 		show: {
@@ -38,34 +38,35 @@ export default function BlogClient({ blogs = [] }) {
 
 	// Format dates and process blog data
 	const formatDate = dateString => {
-		if (!dateString) return 'Date non disponible'
+		if (!dateString) return 'Date not available'
 		try {
 			const date = new Date(dateString)
-			return date.toLocaleDateString('fr-FR', {
+			return date.toLocaleDateString('en-US', {
+				// Changed locale to en-US
 				year: 'numeric',
 				day: 'numeric',
 				month: 'long',
 			})
 		} catch (error) {
-			return 'Date non disponible'
+			return 'Date not available'
 		}
 	}
 
 	const calculateReadTime = content => {
-		if (!content) return '5 min de lecture'
+		if (!content) return '5 min read'
 		const wordsPerMinute = 200
 		const wordCount = content.split(' ').length
 		const readTime = Math.ceil(wordCount / wordsPerMinute)
-		return `${readTime} min de lecture`
+		return `${readTime} min read`
 	}
 
 	// Utility function to safely process tags
 	const processTags = tags => {
-		if (!tags) return ['Article de blog']
+		if (!tags) return ['Blog Post']
 
 		// If tags is already an array
 		if (Array.isArray(tags)) {
-			return tags.length > 0 ? tags : ['Article de blog']
+			return tags.length > 0 ? tags : ['Blog Post']
 		}
 
 		// If tags is a string
@@ -77,7 +78,7 @@ export default function BlogClient({ blogs = [] }) {
 		}
 
 		// Fallback
-		return ['Article de blog']
+		return ['Blog Post']
 	}
 
 	// Get the first blog as featured, or use fallback
@@ -95,17 +96,17 @@ export default function BlogClient({ blogs = [] }) {
 				date: formatDate(
 					featuredBlogData.publishedAt || featuredBlogData.createdAt
 				),
-				excerpt: featuredBlogData.describe || 'Description non disponible.',
-				title: featuredBlogData.title || 'Article en vedette',
+				excerpt: featuredBlogData.describe || 'Description not available.',
 				readTime: calculateReadTime(featuredBlogData.body),
+				title: featuredBlogData.title || 'Featured Post',
 				tags: processTags(featuredBlogData.tags),
 			}
 		: {
-				excerpt: 'Aucun article à afficher pour le moment.',
+				excerpt: 'No articles to display at the moment.',
 				image: '/placeholder.svg?height=600&width=1200',
-				title: 'Article non disponible',
-				readTime: '5 min de lecture',
-				date: 'Date non disponible',
+				title: 'Article not available',
+				date: 'Date not available',
+				readTime: '5 min read',
 				tags: ['Blog'],
 				slug: '#',
 			}
@@ -119,9 +120,9 @@ export default function BlogClient({ blogs = [] }) {
 						: '/placeholder.svg?height=300&width=500',
 					slug:
 						blog.url || `#${blog.title?.toLowerCase().replace(/\s+/g, '-')}`,
-					excerpt: blog.describe || 'Description non disponible.',
+					excerpt: blog.describe || 'Description not available.',
 					date: formatDate(blog.publishedAt || blog.createdAt),
-					title: blog.title || 'Titre non disponible',
+					title: blog.title || 'Title not available',
 					readTime: calculateReadTime(blog.body),
 					tags: processTags(blog.tags),
 				}))
@@ -129,14 +130,15 @@ export default function BlogClient({ blogs = [] }) {
 
 	// Extract unique categories from all blog tags
 	const categories = useMemo(() => {
-		const allTags = new Set(['Tous les articles'])
+		const allTags = new Set(['All Articles'])
 
 		// Add tags from all blogs
 		if (Array.isArray(blogs)) {
 			blogs.forEach(blog => {
 				const tags = processTags(blog.tags)
 				tags.forEach(tag => {
-					if (tag !== 'Article de blog') {
+					if (tag !== 'Blog Post') {
+						// Check against the new default tag
 						allTags.add(tag)
 					}
 				})
@@ -148,7 +150,7 @@ export default function BlogClient({ blogs = [] }) {
 
 	// Filter blogs based on selected category
 	const filteredBlogs = useMemo(() => {
-		if (selectedCategory === 'Tous les articles') {
+		if (selectedCategory === 'All Articles') {
 			return processedBlogs
 		}
 
@@ -159,7 +161,7 @@ export default function BlogClient({ blogs = [] }) {
 
 	// Filter featured post as well
 	const shouldShowFeatured = useMemo(() => {
-		if (selectedCategory === 'Tous les articles') {
+		if (selectedCategory === 'All Articles') {
 			return true
 		}
 
@@ -188,16 +190,15 @@ export default function BlogClient({ blogs = [] }) {
 							transition={{ duration: 0.5 }}
 						>
 							<h1 className="text-shadow mb-4 text-4xl font-bold md:text-6xl">
-								<span className="text-primary">Blog</span> & Réflexions
+								<span className="text-primary">Blog</span> & Reflections
 							</h1>
 							<p className="mx-auto max-w-2xl text-muted-foreground">
-								Idées, tutoriels et réflexions sur le développement créatif,
-								l'art numérique et l'intersection de la technologie et de la
-								créativité.
+								Ideas, tutorials, and reflections on creative development,
+								digital art, and the intersection of technology and creativity.
 							</p>
-							{selectedCategory !== 'Tous les articles' && (
+							{selectedCategory !== 'All Articles' && (
 								<p className="mt-4 text-sm text-primary">
-									Catégorie: {selectedCategory} •{' '}
+									Category: {selectedCategory} •{' '}
 									{filteredBlogs.length + (shouldShowFeatured ? 1 : 0)} article
 									{filteredBlogs.length + (shouldShowFeatured ? 1 : 0) > 1
 										? 's'
@@ -251,7 +252,7 @@ export default function BlogClient({ blogs = [] }) {
 											/>
 											<div className="absolute left-4 top-4">
 												<Badge className="bg-primary text-white">
-													En vedette
+													Featured
 												</Badge>
 											</div>
 										</div>
@@ -285,7 +286,7 @@ export default function BlogClient({ blogs = [] }) {
 												</div>
 												<Link href={`/blog/articles/${featuredPost.slug}`}>
 													<Button className="w-full bg-primary hover:bg-primary/80 md:w-auto">
-														Lire l'article
+														Read Article
 														<ArrowRight className="ml-2 h-4 w-4" />
 													</Button>
 												</Link>
@@ -352,7 +353,7 @@ export default function BlogClient({ blogs = [] }) {
 														className="w-full justify-between hover:bg-primary/20 hover:text-white"
 														variant="ghost"
 													>
-														Lire l'article
+														Read Article
 														<ArrowRight className="ml-2 h-4 w-4" />
 													</Button>
 												</Link>
@@ -373,18 +374,18 @@ export default function BlogClient({ blogs = [] }) {
 							>
 								<div className="mx-auto max-w-md">
 									<h3 className="mb-2 text-xl font-semibold">
-										Aucun article trouvé
+										No articles found
 									</h3>
 									<p className="mb-4 text-muted-foreground">
-										Aucun article n'est disponible dans la catégorie "
+										No articles are available in the category "
 										{selectedCategory}".
 									</p>
 									<Button
 										className="border-primary/30 hover:bg-primary/20"
-										onClick={() => handleCategoryClick('Tous les articles')}
+										onClick={() => handleCategoryClick('All Articles')}
 										variant="outline"
 									>
-										Voir tous les articles
+										View all articles
 									</Button>
 								</div>
 							</motion.div>
@@ -398,7 +399,7 @@ export default function BlogClient({ blogs = [] }) {
               className="text-center mt-12"
             >
               <Button variant="default" className="bg-primary hover:bg-primary/80">
-                Charger plus d'articles
+                Load more articles
               </Button>
             </motion.div> */}
 					</div>

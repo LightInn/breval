@@ -94,7 +94,7 @@ function Navbar() {
 							href="/"
 						>
 							<Image
-								alt="Logo signature de Bréval Le Floch"
+								alt="Bréval Le Floch's signature logo"
 								blurDataURL={rgbDataURL(231, 183, 202)}
 								height={100}
 								placeholder="blur"

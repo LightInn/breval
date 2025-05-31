@@ -26,22 +26,26 @@ const openSans = Open_Sans({
 	display: 'swap',
 	weight: '400',
 })
+import siteMetaData from '@/utils/siteMetaData'
 
 export const metadata = {
 	openGraph: {
 		images: [
 			{
-				alt: 'Bréval Le Floch - Creative Developer',
-				url: '/og-image.png',
+				alt: 'Bréval Le Floch - Creative Developer Portfolio Website',
+				url: siteMetaData.socialBanner || '/og-image.png', // Use socialBanner from metadata or fallback
 				width: 1200,
 				height: 630,
 			},
 		],
+		description: siteMetaData.description,
+		title: siteMetaData.title,
+		url: siteMetaData.siteUrl,
+		type: 'website',
 	},
-	description:
-		'Portfolio of Bréval Le Floch - Creative Developer, CTO, and Co-founder',
-	title: 'Bréval Le Floch | Creative Developer',
-	metadataBase: new URL('https://brev.al'),
+	metadataBase: new URL(siteMetaData.siteUrl),
+	description: siteMetaData.description,
+	title: siteMetaData.title,
 }
 
 export default function RootLayout({ children }) {

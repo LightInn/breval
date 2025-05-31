@@ -1,5 +1,6 @@
 import React from 'react'
 
+import siteMetaData from '@/utils/siteMetaData'
 import { notFound } from 'next/navigation'
 
 import ProjectDetailClient from './ProjectDetailClient'
@@ -12,7 +13,7 @@ export async function generateMetadata({ params }) {
 	if (!project) {
 		return {
 			description: 'The requested project could not be found.',
-			title: 'Project Not Found | Bréval LE FLOCH',
+			title: 'Project Not Found | Bréval Le Floch', // Aligned name
 		}
 	}
 
@@ -35,26 +36,26 @@ export async function generateMetadata({ params }) {
 			],
 			description:
 				project.short_description || project.description?.substring(0, 160),
-			title: `${project.title} | Bréval LE FLOCH`,
-			url: `https://brev.al/projects/${id}`,
-			publishedTime: project.date,
+			title: `${project.title} | Bréval Le Floch - Creative Developer`, // Aligned name and made more descriptive
+			url: `${siteMetaData.siteUrl}/projects/${id}`, // Used siteMetaData
+			published_time: project.date, // Corrected property name
 			type: 'article',
 		},
 		twitter: {
 			description:
 				project.short_description || project.description?.substring(0, 160),
-			title: `${project.title} | Bréval LE FLOCH`,
+			title: `${project.title} | Bréval Le Floch - Creative Developer`, // Aligned name and made more descriptive
 			card: 'summary_large_image',
 			images: [imageUrl],
 		},
 		description:
 			project.short_description ||
 			project.description?.substring(0, 160) ||
-			'Project by Bréval LE FLOCH',
+			`Explore the ${project.title} project by Bréval Le Floch.`, // More dynamic fallback
 		alternates: {
-			canonical: `https://brev.al/projects/${id}`,
+			canonical: `${siteMetaData.siteUrl}/projects/${id}`, // Used siteMetaData
 		},
-		title: `${project.title} | Bréval LE FLOCH`,
+		title: `${project.title} | Bréval Le Floch - Creative Developer`, // Aligned name and made more descriptive
 		keywords: project.skills?.join(', ') || '',
 	}
 }

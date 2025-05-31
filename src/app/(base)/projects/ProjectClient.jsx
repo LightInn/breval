@@ -51,8 +51,8 @@ export default function ProjectClient({ projects = [] }) {
 					description:
 						project.short_description ||
 						project.description ||
-						'Description non disponible.',
-					title: project.title || 'Titre non disponible',
+						'Description not available.',
+					title: project.title || 'Title not available',
 					slug: project.title ? project.title : '#',
 					category: project.category || 'Other',
 					url: project.url || project.live_url,
@@ -102,10 +102,10 @@ export default function ProjectClient({ projects = [] }) {
 					tags: filteredProjects[0].tags.slice(0, 5), // Extend to 5 tags for featured display
 				}
 			: {
-					description: 'Aucun projet à afficher pour cette catégorie.',
+					description: 'No projects to display for this category.',
 					image: '/placeholder.svg?height=600&width=1200',
-					title: 'Aucun projet disponible',
-					tags: ['Tag par défaut'],
+					title: 'No projects available',
+					tags: ['Default Tag'],
 					category: 'Other',
 					githubUrl: null,
 					liveUrl: null,
