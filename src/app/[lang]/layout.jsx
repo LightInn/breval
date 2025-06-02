@@ -6,6 +6,10 @@ import Head from 'next/head'
 
 import '@/styles/globals.css'
 
+export async function generateStaticParams() {
+  return [{ lang: 'en' }, { lang: 'fr' }];
+}
+
 const varelaRound = Varela_Round({
 	variable: '--font-varela-round',
 	subsets: ['latin'],
@@ -50,11 +54,12 @@ export const metadata = {
 	title: siteMetaData.title,
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children, params }) {
+	const { lang } = params
 	return (
 		<html
 			className={`light ${varelaRound.variable} ${exo2.variable} ${openSans.variable}`}
-			lang="en"
+			lang={lang}
 			suppressHydrationWarning
 		>
 			<Head>

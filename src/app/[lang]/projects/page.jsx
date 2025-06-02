@@ -1,58 +1,34 @@
 import { Suspense } from 'react'
 
-import siteMetaData from '@/utils/siteMetaData'
+import { getProjects } from '@/services/projects.services' // Make sure this path is correct
+import ProjectClient from './ProjectClient' // The new client component
 
-import getAllBlogs from '../../../services/blog.services'
-import BlogClient from './BlogClient'
-
-export const metadata = {
-	openGraph: {
-		images: [
-			{
-				url: siteMetaData.socialBanner || '/og-image.png',
-				alt: 'Bréval Le Floch - Blog',
-				width: 1200,
-				height: 630,
-			},
-		],
-		description:
-			'Explore insightful articles and tutorials on web development, creative coding, UI/UX design, and tech by Bréval Le Floch.',
-		title: 'Blog | Bréval Le Floch - Creative Developer',
-		url: `${siteMetaData.siteUrl}/blog`,
-		type: 'website', // Or 'article' if you consider the blog listing itself an article collection
-	},
-	description:
-		'Explore insightful articles and tutorials on web development, creative coding, UI/UX design, and tech by Bréval Le Floch.',
-	title: 'Blog | Bréval Le Floch - Creative Developer',
-	alternates: { canonical: '/blog' },
-}
-
-export default async function BlogPage() {
+export default async function ProjectsPage() {
 	try {
-		const allBlogs = await getAllBlogs()
-		const blogs = Array.isArray(allBlogs) ? allBlogs : []
+		const projectsData = await getProjects()
+		// getProjects directly returns the array of projects (data.data)
+		const projects = Array.isArray(projectsData) ? projectsData : []
 
-		if (!Array.isArray(allBlogs)) {
+		if (!Array.isArray(projectsData)) {
 			console.warn(
-				'getAllBlogs did not return an array as expected. Received:',
-				allBlogs
+				'getProjects did not return an array as expected. Received:',
+				projectsData
 			)
 		}
 
 		return (
-			<Suspense fallback={<BlogSkeleton />}>
-				<BlogClient blogs={blogs} />
+			<Suspense fallback={<ProjectSkeleton />}>
+				<ProjectClient projects={projects} />
 			</Suspense>
 		)
 	} catch (error) {
-		console.error('Error fetching blogs in BlogPage:', error)
+		console.error('Error fetching projects in ProjectsPage:', error)
 		return (
 			<div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
 				<div className="container mx-auto px-4 py-20 text-center">
-					<h1 className="mb-4 text-4xl font-bold">Error loading articles</h1>
+					<h1 className="mb-4 text-4xl font-bold">Error loading projects</h1>
 					<p className="text-red-400">
-						Sorry, an error occurred while trying to load the blog articles.
-						Sorry, an error occurred while trying to load the blog articles.
+						Sorry, an error occurred while trying to load the projects.
 					</p>
 					{/* For debugging: <p className="text-xs text-gray-500 mt-2">Detail: {error.message}</p> */}
 				</div>
@@ -61,7 +37,7 @@ export default async function BlogPage() {
 	}
 }
 
-function BlogSkeleton() {
+function ProjectSkeleton() {
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
 			<div className="container mx-auto px-4 py-20">
@@ -69,13 +45,16 @@ function BlogSkeleton() {
 					<div className="mx-auto mb-4 h-10 w-3/4 animate-pulse rounded bg-gray-800 md:h-14"></div>
 					<div className="mx-auto h-4 w-1/2 animate-pulse rounded bg-gray-800"></div>
 				</div>
-				<div className="mb-8 flex flex-wrap justify-center gap-3">
-					{Array.from({ length: 5 }).map((_, i) => (
-						<div
-							className="h-8 w-24 animate-pulse rounded bg-gray-800"
-							key={i}
-						/>
-					))}
+				<div className="mb-8 flex items-center justify-between">
+					<div className="flex flex-wrap gap-3">
+						{Array.from({ length: 4 }).map((_, i) => (
+							<div
+								className="h-8 w-24 animate-pulse rounded bg-gray-800"
+								key={i}
+							/>
+						))}
+					</div>
+					<div className="h-8 w-20 animate-pulse rounded bg-gray-800" />
 				</div>
 				<div className="mb-16 animate-pulse rounded-lg border border-gray-700 bg-gray-800/50 p-6 md:p-8">
 					<div className="md:flex">
@@ -87,6 +66,7 @@ function BlogSkeleton() {
 								<div className="mb-6 h-4 w-5/6 rounded bg-gray-700"></div>
 							</div>
 							<div className="flex gap-4">
+								<div className="h-10 w-32 rounded bg-gray-700"></div>
 								<div className="h-10 w-32 rounded bg-gray-700"></div>
 							</div>
 						</div>

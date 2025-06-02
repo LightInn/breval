@@ -8,12 +8,17 @@ import Journey from '@/components/Home/journey'
 import About from '@/components/Home/about'
 import Hero from '@/components/Home/hero'
 
-export default function Home() {
+import { getDictionary } from '@/lib/getDictionary'
+
+export default async function Home({ params }) {
+	const { lang } = params
+	const dict = await getDictionary(lang)
 	return (
 		<main className="relative min-h-screen bg-background text-foreground">
 			<ScrollObject3D />
 			<Suspense fallback={<LoadingScreen />}>
 				<div className="overflow-x-hidden">
+					<h1>{dict.greeting}</h1>
 					<Hero />
 					<div className="sticker-container">
 						<SectionDivider direction="up" />
