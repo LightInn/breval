@@ -2,7 +2,8 @@ import { Exo_2, Open_Sans, Varela_Round } from 'next/font/google'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import Script from 'next/script'
-import Head from 'next/head'
+import siteMetaData from '@/utils/siteMetaData'
+import { getLocale } from '@/lib/get-locale'
 
 import '@/styles/globals.css'
 
@@ -28,14 +29,13 @@ const openSans = Open_Sans({
 	display: 'swap',
 	weight: '400',
 })
-import siteMetaData from '@/utils/siteMetaData'
 
 export const metadata = {
 	openGraph: {
 		images: [
 			{
 				alt: 'Bréval Le Floch - Creative Developer Portfolio Website',
-				url: siteMetaData.socialBanner || '/og-image.png', // Use socialBanner from metadata or fallback
+				url: siteMetaData.socialBanner || '/og-image.png',
 				width: 1200,
 				height: 630,
 			},
@@ -50,11 +50,13 @@ export const metadata = {
 	title: siteMetaData.title,
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+	const locale = await getLocale()
+
 	return (
 		<html
 			className={`light ${varelaRound.variable} ${exo2.variable} ${openSans.variable}`}
-			lang="en"
+			lang={locale}
 			suppressHydrationWarning
 		>
 			<Head>
@@ -106,7 +108,6 @@ export default function RootLayout({ children }) {
 				id="google-analytics"
 				strategy="afterInteractive"
 			/>
-
 			<body
 				className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}
 			>
