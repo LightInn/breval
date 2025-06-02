@@ -11,8 +11,8 @@ export async function getLocale() {
 		.map(lang => {
 			const [code, quality = '1'] = lang.trim().split(';q=')
 			return {
-				code: code.split('-')[0], // Get only the language part (e.g., 'fr' from 'fr-FR')
 				quality: parseFloat(quality),
+				code: code.split('-')[0], // Get only the language part (e.g., 'fr' from 'fr-FR')
 			}
 		})
 		.sort((a, b) => b.quality - a.quality)

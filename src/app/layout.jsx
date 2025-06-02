@@ -1,9 +1,10 @@
 import { Exo_2, Open_Sans, Varela_Round } from 'next/font/google'
+import siteMetaData from '@/utils/siteMetaData'
+import { getLocale } from '@/lib/get-locale'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import Script from 'next/script'
-import siteMetaData from '@/utils/siteMetaData'
-import { getLocale } from '@/lib/get-locale'
+import Head from 'next/head'
 
 import '@/styles/globals.css'
 
