@@ -76,9 +76,6 @@ export default function RootLayout({ children }) {
 				<link href="https://fonts.googleapis.com" rel="preconnect" />
 				<link crossOrigin href="https://fonts.gstatic.com" rel="preconnect" />
 
-				<link href="https://brev.al/projet" key="canonical" rel="canonical" />
-				<link href="https://brev.al/blog" key="canonical" rel="canonical" />
-
 				<link
 					href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
 					rel="stylesheet"

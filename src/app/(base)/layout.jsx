@@ -23,6 +23,7 @@ export const metadata = {
 	metadataBase: new URL(siteMetaData.siteUrl),
 	description: siteMetaData.description,
 	title: siteMetaData.title,
+	alternates: { canonical: '/' },
 }
 
 export default function RootLayout({ children }) {
