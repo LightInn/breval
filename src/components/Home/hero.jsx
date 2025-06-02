@@ -251,7 +251,7 @@ export default function Hero() {
 							<div className="space-y-3">
 								<motion.a
 									className="flex w-full items-center justify-between rounded-lg border border-primary/30 bg-card/50 p-4 transition-all hover:border-primary/50 hover:bg-primary/10"
-									href="mailto:breval.lefloch@example.com" // Remplace par ton vrai email
+									href="mailto:breval.lefloch@google.com"
 									whileHover={{ scale: 1.02, x: 5 }}
 									whileTap={{ scale: 0.98 }}
 								>
