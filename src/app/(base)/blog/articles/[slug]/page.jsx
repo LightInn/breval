@@ -134,9 +134,11 @@ export async function generateMetadata(props) {
 				title: blog.title,
 				images: ogImages,
 			},
+			alternates: {
+				canonical: `${siteMetadata.siteUrl}/blog/articles/${params.slug}`,
+			},
 			description: blog.describe || blog.description || '',
 			title: blog.title,
-			alternates: { canonical: `${siteMetadata.siteUrl}/blog/articles/${params.slug}` },
 		}
 	} catch (error) {
 		console.error('Error generating metadata:', error)
