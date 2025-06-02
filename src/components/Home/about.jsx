@@ -10,7 +10,7 @@ import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 
-export default function About() {
+export default function About({ dict }) {
 	const ref = useRef(null)
 	const isInView = useInView(ref, { amount: 0.3, once: true })
 
@@ -32,23 +32,28 @@ export default function About() {
 
 	const roles = [
 		{
-			description: 'image meta-description generation platform',
+			description:
+				dict?.about?.roles?.forvoyezDesc ||
+				'image meta-description generation platform',
 			icon: <Globe className="h-4 w-4" />,
-			title: 'CTO of the start-up',
+			title: dict?.about?.roles?.ctoForvoyez || 'CTO of the start-up',
 			url: 'https://forvoyez.com',
 			link: 'ForVoyez',
 		},
 		{
-			description: 'a platform to reference makeup artists',
+			description:
+				dict?.about?.roles?.makeupDesc ||
+				'a platform to reference makeup artists',
 			icon: <Code className="h-4 w-4" />,
 			url: 'https://my-makeup.fr',
-			title: 'Co-founder of',
+			title: dict?.about?.roles?.coFounderMakeup || 'Co-founder of',
 			link: 'My-Makeup',
 		},
 		{
-			description: 'an e-commerce website for art',
+			description:
+				dict?.about?.roles?.formenuDesc || 'an e-commerce website for art',
 			icon: <Code className="h-4 w-4" />,
-			title: 'CTO of the start-up',
+			title: dict?.about?.roles?.ctoFormenu || 'CTO of the start-up',
 			url: 'https://formenu.fr',
 			link: 'ForMenu',
 		},
@@ -79,8 +84,10 @@ export default function About() {
 							className="mb-6 text-3xl font-bold md:text-4xl"
 							variants={item}
 						>
-							Hello, my name is{' '}
-							<span className="text-primary">Bréval Le Floch</span>
+							{dict?.about?.greeting || 'Hello, my name is'}{' '}
+							<span className="text-primary">
+								{dict?.about?.name || 'Bréval Le Floch'}
+							</span>
 						</motion.h2>
 
 						<motion.div className="mb-8 space-y-4" variants={item}>
@@ -110,20 +117,12 @@ export default function About() {
 
 						<motion.div className="mb-8 space-y-4" variants={item}>
 							<p className="text-muted-foreground">
-								I'm a work-study student living in Nantes. From my youngest age,
-								I am very fascinated by the infinite possibilities of computers
-								and new technologies.
+								{dict?.about?.description1 ||
+									"I'm a work-study student living in Nantes. From my youngest age, I am very fascinated by the infinite possibilities of computers and new technologies."}
 							</p>
 							<p className="text-muted-foreground">
-								As I continue to learn and explore this ever-evolving universe,
-								I'm driven by my passion to discover new worlds and their new
-								rules. Currently focused on front-end development while
-								maintaining a deep interest in all aspects of computer science.
-							</p>
-							<p className="text-muted-foreground">
-								When I'm not coding, you'll find me exploring indie games or
-								working on creative projects that push the boundaries of what's
-								possible with technology.
+								{dict?.about?.description2 ||
+									"As I continue to learn and explore this ever-evolving universe, I'm driven by my passion to discover new worlds and their new rules. Currently focused on front-end development while maintaining a deep interest in all aspects of computer science."}
 							</p>
 						</motion.div>
 
@@ -166,7 +165,7 @@ export default function About() {
 									variant="outline"
 								>
 									<ExternalLink className="mr-2 h-4 w-4" />
-									Resume
+									{dict?.about?.downloadResume || 'Resume'}
 								</Button>
 							</Link>
 						</motion.div>
