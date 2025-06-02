@@ -6,6 +6,7 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 import SakuraFall from '@/components/sakura-fall'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
 export default function Hero() {
@@ -136,13 +137,15 @@ export default function Hero() {
 						initial={{ opacity: 0, y: 20 }}
 						transition={{ duration: 0.8, delay: 1.2 }}
 					>
-						<Button
-							className="magnetic-button pixel-corners rounded-full bg-primary px-8 py-3 text-primary-foreground hover:bg-primary/90"
-							size="lg"
-						>
-							<Play className="mr-2 h-5 w-5" />
-							View My Work
-						</Button>
+						<Link href="/projects" passHref>
+							<Button
+								className="magnetic-button pixel-corners rounded-full bg-primary px-8 py-3 text-primary-foreground hover:bg-primary/90"
+								size="lg"
+							>
+								<Play className="mr-2 h-5 w-5" />
+								View My Work
+							</Button>
+						</Link>
 						<Button
 							className="magnetic-button pixel-corners rounded-full border-primary/30 px-8 py-3 hover:bg-primary/10"
 							size="lg"
