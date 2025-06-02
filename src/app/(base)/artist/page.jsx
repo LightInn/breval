@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 
+import ImageWithFallback from '@/components/Global/ImageWithFallback'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import ScrollObject3D from '@/components/scroll-object-3d'
 import { Button } from '@/components/ui/button'
@@ -61,11 +62,12 @@ export default function ArtistPage() {
 		{
 			bgPattern:
 				'radial-gradient(circle at 20% 50%, rgba(0, 248, 165, 0.65) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(20,184,166,0.2) 0%, transparent 50%)',
+			image:
+				'/about/thumb.webp?width=600&height=1000&quality=85&format=webp&fit=cover&position=center&kernel=nearest&withoutScaling=1&sharpen=0',
 			interactive:
 				'Displacements that are born and evolve according to your mouse movements, creating an organized and mechanical whole.',
 			description:
 				'Vectorial Avatar that reacts to mouse movements, creating a dynamic and interactive digital identity.',
-			image: '/about/thumb.webp?height=600&width=800',
 			color: 'from-emerald-500/20 to-teal-600/20',
 			tags: ['SVG', 'Interactive', 'Animation'],
 			demo: '/experiment/about',
@@ -417,7 +419,7 @@ export default function ArtistPage() {
 												}}
 											>
 												{/* Artistic Border */}
-												<div className=":bg-gray-900/90 absolute inset-0 overflow-hidden rounded-3xl border-2 border-primary/30 bg-gray-200/90 backdrop-blur-sm">
+												<div className="absolute inset-0 overflow-hidden rounded-3xl border-2 border-primary/30 bg-gray-200/90 backdrop-blur-sm dark:bg-gray-900/90">
 													{/* Floating Particles Effect */}
 													{isActive && (
 														<div className="absolute inset-0">
@@ -451,15 +453,19 @@ export default function ArtistPage() {
 
 													{/* Image Container - Larger */}
 													<div className="relative h-[55vh] overflow-hidden">
-														<img
+														<ImageWithFallback
 															alt={experiment.title}
 															className="h-full w-full object-cover"
+															fallbackSrc="/placeholder.svg"
 															fetchPriority={
 																experiment.title === 'Slime Simulation'
 																	? 'high'
 																	: undefined
 															}
-															src={'/experiments/' + experiment.image}
+															fill
+															priority={experiment.title === 'Slime Simulation'}
+															sizes="(max-width: 768px) 100vw, 500px"
+															src={'/experiments' + experiment.image}
 														/>
 
 														{/* Dynamic Overlay */}
@@ -626,10 +632,13 @@ export default function ArtistPage() {
 											className="relative h-full overflow-hidden rounded-2xl border-2 border-primary/50"
 											initial={{ scale: 0.8 }}
 										>
-											<img
+											<ImageWithFallback
 												alt={selectedExperiment.title}
 												className="h-full w-full object-cover"
-												src={'/experiments/' + selectedExperiment.image}
+												fallbackSrc="/placeholder.svg"
+												fill
+												sizes="(min-width: 1024px) 50vw, 100vw"
+												src={'/experiments' + selectedExperiment.image}
 											/>
 
 											{/* Interactive Overlay */}
