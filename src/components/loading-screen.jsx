@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { motion } from 'framer-motion'
 
-export default function LoadingScreen() {
+export default function LoadingScreen({ dict }) {
 	const [progress, setProgress] = useState(0)
 
 	useEffect(() => {
@@ -50,7 +50,7 @@ export default function LoadingScreen() {
 				</svg>
 
 				<h2 className="mb-4 text-2xl font-bold text-primary">
-					Loading Experience
+					{dict?.common?.loading || 'Loading Experience'}
 				</h2>
 
 				<div className="h-2 w-64 overflow-hidden rounded-full bg-gray-800">
@@ -63,7 +63,7 @@ export default function LoadingScreen() {
 				</div>
 
 				<p className="mt-4 animate-pulse text-sm text-muted-foreground">
-					Preparing digital canvas...
+					{dict?.common?.preparingCanvas || 'Preparing digital canvas...'}
 				</p>
 			</motion.div>
 		</div>

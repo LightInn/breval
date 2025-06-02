@@ -12,7 +12,7 @@ import { getFeaturedProjects } from '@/services/projects.services'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
-export default function Projects() {
+export default function Projects({ dict }) {
 	const ref = useRef(null)
 	const isInView = useInView(ref, { amount: 0.1, once: true })
 	const [projects, setProjects] = useState([])
@@ -135,11 +135,12 @@ export default function Projects() {
 					transition={{ duration: 0.5 }}
 				>
 					<h2 className="mb-4 text-3xl font-bold md:text-4xl">
-						Featured <span className="text-primary">Projects</span>
+						{dict?.projects?.title || 'Featured'}{' '}
+						<span className="text-primary">Projects</span>
 					</h2>
 					<p className="mx-auto max-w-2xl text-muted-foreground">
-						A showcase of my creative work and technical projects. Each project
-						represents a unique challenge and learning experience.
+						{dict?.projects?.description ||
+							'A showcase of my creative work and technical projects. Each project represents a unique challenge and learning experience.'}
 					</p>
 				</motion.div>
 
@@ -225,7 +226,7 @@ export default function Projects() {
 												variant="ghost"
 											>
 												<Github className="mr-2 h-4 w-4" />
-												Code
+												{dict?.projects?.viewCode || 'Code'}
 											</Button>
 										) : (
 											<Button
@@ -235,7 +236,7 @@ export default function Projects() {
 												variant="ghost"
 											>
 												<Github className="mr-2 h-4 w-4" />
-												Code
+												{dict?.projects?.viewCode || 'Code'}
 											</Button>
 										)}
 										{project.demo && project.demo !== '#' ? (
@@ -246,7 +247,7 @@ export default function Projects() {
 												variant="outline"
 											>
 												<ExternalLink className="mr-2 h-4 w-4" />
-												Live Demo
+												{dict?.projects?.viewDemo || 'Live Demo'}
 											</Button>
 										) : (
 											<Button
@@ -256,7 +257,7 @@ export default function Projects() {
 												variant="outline"
 											>
 												<ExternalLink className="mr-2 h-4 w-4" />
-												Live Demo
+												{dict?.projects?.viewDemo || 'Live Demo'}
 											</Button>
 										)}
 									</CardFooter>
@@ -285,7 +286,7 @@ export default function Projects() {
 				>
 					<Link href="/projects">
 						<Button className="magnetic-button pixel-corners bg-primary hover:bg-primary/90">
-							View All Projects
+							{dict?.projects?.seeMore || 'View All Projects'}
 							<ArrowRight className="ml-2 h-4 w-4" />
 						</Button>
 					</Link>

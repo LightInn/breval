@@ -305,7 +305,7 @@ const journeyNodes = [
 	},
 ]
 
-export default function MyJourneySection() {
+export default function MyJourneySection({ dict }) {
 	const ref = useRef(null)
 	const isInView = useInView(ref, { amount: 0.1, once: true })
 
@@ -519,11 +519,11 @@ export default function MyJourneySection() {
 					transition={{ duration: shouldReduceMotion ? 0 : 1 }}
 				>
 					<h2 className="mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-4xl font-bold text-transparent md:text-6xl">
-						My Journey
+						{dict?.journey?.title || 'My Journey'}
 					</h2>
 					<p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-200 md:text-xl">
-						From gaming passion to full-stack mastery - a visual story of
-						curiosity, creation, and continuous learning
+						{dict?.journey?.description ||
+							'From gaming passion to full-stack mastery - a visual story of curiosity, creation, and continuous learning'}
 					</p>
 				</motion.div>
 

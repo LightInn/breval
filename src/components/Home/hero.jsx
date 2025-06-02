@@ -9,7 +9,7 @@ import Link from 'next/link'
 import SakuraFall from '@/components/sakura-fall'
 import { Button } from '@/components/ui/button'
 
-export default function Hero() {
+export default function Hero({ dict }) {
 	const videoRef = useRef(null)
 	const [showContactPopup, setShowContactPopup] = useState(false)
 
@@ -114,7 +114,7 @@ export default function Hero() {
 						<div className="relative inline-block">
 							<div className="absolute inset-0 rounded-full bg-primary/20 blur-xl" />
 							<p className="pixel-corners relative rounded-full border border-primary/30 bg-card/60 px-8 py-3 text-lg backdrop-blur-sm md:text-xl">
-								Creative Developer & Digital Craftsman
+								{dict?.hero?.title || 'Creative Developer & Digital Craftsman'}
 							</p>
 						</div>
 					</motion.div>
@@ -126,9 +126,8 @@ export default function Hero() {
 						initial={{ opacity: 0, y: 20 }}
 						transition={{ duration: 0.8, delay: 1 }}
 					>
-						CTO of ForMenu, Co-founder of multiple startups, and passionate
-						about exploring the infinite possibilities of technology and
-						creative development.
+						{dict?.hero?.description ||
+							'CTO of ForMenu, Co-founder of multiple startups, and passionate about exploring the infinite possibilities of technology and creative development.'}
 					</motion.p>
 
 					{/* CTA Buttons */}
@@ -144,7 +143,7 @@ export default function Hero() {
 								size="lg"
 							>
 								<Play className="mr-2 h-5 w-5" />
-								View My Work
+								{dict?.projects?.viewProject || 'View My Work'}
 							</Button>
 						</Link>
 						<Button
@@ -153,7 +152,7 @@ export default function Hero() {
 							size="lg"
 							variant="outline"
 						>
-							Get In Touch
+							{dict?.navigation?.contact || 'Get In Touch'}
 						</Button>
 					</motion.div>
 				</motion.div>
@@ -168,7 +167,7 @@ export default function Hero() {
 			>
 				<div className="flex flex-col items-center">
 					<p className="mb-4 text-sm text-muted-foreground">
-						Scroll to explore
+						{dict?.common?.scrollToExplore || 'Scroll to explore'}
 					</p>
 					<motion.div
 						animate={{ y: [0, 10, 0] }}

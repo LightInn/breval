@@ -4,29 +4,34 @@ import { SectionDivider } from '@/components/Home/svg-stickers'
 import ScrollObject3D from '@/components/scroll-object-3d'
 import LoadingScreen from '@/components/loading-screen'
 import Projects from '@/components/Home/projects'
-import Journey from '@/components/Home/journey'
+import MyJourneySection from '@/components/Home/journey'
 import About from '@/components/Home/about'
 import Hero from '@/components/Home/hero'
+import { getLocale } from '@/lib/get-locale'
+import { getDictionary } from '@/lib/get-dictionary'
 
-export default function Home() {
+export default async function Home() {
+	const locale = await getLocale()
+	const dict = await getDictionary(locale)
+
 	return (
 		<main className="relative min-h-screen bg-background text-foreground">
 			<ScrollObject3D />
-			<Suspense fallback={<LoadingScreen />}>
+			<Suspense fallback={<LoadingScreen dict={dict} />}>
 				<div className="overflow-x-hidden">
-					<Hero />
+					<Hero dict={dict} />
 					<div className="sticker-container">
 						<SectionDivider direction="up" />
 					</div>
-					<About />
+					<About dict={dict} />
 					<div className="sticker-container">
 						<SectionDivider />
 					</div>
-					<Projects />
+					<Projects dict={dict} />
 					<div className="sticker-container">
 						<SectionDivider direction="down" />
 					</div>
-					<Journey />
+					<MyJourneySection dict={dict} />
 				</div>
 			</Suspense>
 		</main>

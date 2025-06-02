@@ -1,0 +1,50 @@
+{
+	"navigation": {
+		"home": "Home",
+		"about": "About",
+		"projects": "Projects",
+		"contact": "Get In Touch"
+	},
+	"hero": {
+		"title": "Creative Developer & Digital Craftsman",
+		"subtitle": "Building digital experiences",
+		"description": "CTO of ForMenu, Co-founder of multiple startups, and passionate about exploring the infinite possibilities of technology and creative development."
+	},
+	"about": {
+		"title": "About Me",
+		"greeting": "Hello, my name is",
+		"name": "Bréval Le Floch",
+		"description1": "I'm a work-study student living in Nantes. From my youngest age, I am very fascinated by the infinite possibilities of computers and new technologies.",
+		"description2": "As I continue to learn and explore this ever-evolving universe, I'm driven by my passion to discover new worlds and their new rules. Currently focused on front-end development while maintaining a deep interest in all aspects of computer science.",
+		"roles": {
+			"ctoForvoyez": "CTO of the start-up",
+			"forvoyezDesc": "image meta-description generation platform",
+			"coFounderMakeup": "Co-founder of",
+			"makeupDesc": "a platform to reference makeup artists",
+			"ctoFormenu": "CTO of the start-up",
+			"formenuDesc": "an e-commerce website for art"
+		},
+		"letsTalk": "Let's Talk",
+		"downloadResume": "Download Resume"
+	},
+	"projects": {
+		"title": "Featured",
+		"description": "A showcase of my creative work and technical projects. Each project represents a unique challenge and learning experience.",
+		"viewProject": "View My Work",
+		"seeMore": "See More",
+		"viewDemo": "View Demo",
+		"viewCode": "View Code"
+	},
+	"journey": {
+		"title": "My Journey",
+		"description": "From gaming passion to full-stack mastery - a visual story of curiosity, creation, and continuous learning"
+	},
+	"common": {
+		"loading": "Loading Experience",
+		"error": "Error",
+		"readMore": "Read More",
+		"back": "Back",
+		"scrollToExplore": "Scroll to explore",
+		"preparingCanvas": "Preparing digital canvas..."
+	}
+}

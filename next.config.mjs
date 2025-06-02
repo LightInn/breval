@@ -22,10 +22,6 @@ const nextConfig = {
 			},
 		],
 	},
-	i18n: {
-		locales: ['fr'],
-		defaultLocale: 'fr',
-	},
 }
 
 export default nextConfig
