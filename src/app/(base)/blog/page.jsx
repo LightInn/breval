@@ -24,6 +24,7 @@ export const metadata = {
 	description:
 		'Explore insightful articles and tutorials on web development, creative coding, UI/UX design, and tech by Bréval Le Floch.',
 	title: 'Blog | Bréval Le Floch - Creative Developer',
+	alternates: { canonical: '/blog' },
 }
 
 export default async function BlogPage() {

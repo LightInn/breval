@@ -1,4 +1,7 @@
 'use client'
+// SEO Reminder: Authors should ensure that blog post content (Markdown) uses headings semantically.
+// Only one H1 should exist per page (typically the main article title rendered by the template).
+// Within the Markdown body, use H2-H6 for subheadings.
 import Markdown from 'react-markdown'
 import React from 'react'
 
