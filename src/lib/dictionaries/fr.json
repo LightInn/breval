@@ -2,42 +2,46 @@
 	"navigation": {
 		"home": "Accueil",
 		"about": "À propos",
-		"projects": "Projets",
-		"contact": "Contactez-moi"
+		"projects": "Projets"
 	},
-	"hero": {
-		"title": "Développeur Créatif & Artisan Numérique",
-		"subtitle": "Créer des expériences digitales",
-		"description": "CTO de ForMenu, Co-fondateur de plusieurs startups, et passionné par l'exploration des possibilités infinies de la technologie et du développement créatif."
-	},
-	"about": {
-		"title": "À propos de moi",
-		"greeting": "Bonjour, je m'appelle",
-		"name": "Bréval Le Floch",
-		"description1": "Je suis un étudiant en alternance vivant à Nantes. Depuis mon plus jeune âge, je suis très fasciné par les possibilités infinies des ordinateurs et des nouvelles technologies.",
-		"description2": "Alors que je continue d'apprendre et d'explorer cet univers en constante évolution, je suis motivé par ma passion de découvrir de nouveaux mondes et leurs nouvelles règles. Actuellement concentré sur le développement front-end tout en maintenant un intérêt profond pour tous les aspects de l'informatique.",
-		"roles": {
-			"ctoForvoyez": "CTO de la start-up",
-			"forvoyezDesc": "plateforme de génération de méta-descriptions d'images",
-			"coFounderMakeup": "Co-fondateur de",
-			"makeupDesc": "une plateforme pour référencer les maquilleurs",
-			"ctoFormenu": "CTO de la start-up",
-			"formenuDesc": "un site e-commerce pour l'art"
+
+	"home": {
+		"hero": {
+			"hello": "Bonjour, je suis",
+			"title": "Développeur Créatif & Artisan Numérique",
+			"subtitle": "Créer des expériences digitales",
+			"description": "CTO de ForMenu, Co-fondateur de plusieurs startups, et passionné par l'exploration des possibilités infinies de la technologie et du développement créatif.",
+			"ctaWork": "Mon travail",
+			"ctaContact": "Contactez-moi"
 		},
-		"letsTalk": "Discutons",
-		"downloadResume": "Télécharger le CV"
-	},
-	"projects": {
-		"title": "Projets Phares",
-		"description": "Une vitrine de mon travail créatif et de mes projets techniques. Chaque projet représente un défi unique et une expérience d'apprentissage.",
-		"viewProject": "Voir Mon Travail",
-		"seeMore": "Voir Plus",
-		"viewDemo": "Voir la Démo",
-		"viewCode": "Voir le Code"
-	},
-	"journey": {
-		"title": "Mon Parcours",
-		"description": "De la passion du gaming à la maîtrise du full-stack - une histoire visuelle de curiosité, de création et d'apprentissage continu"
+		"about": {
+			"greeting": "Bonjour, je m'appelle",
+			"name": "Bréval Le Floch",
+			"description1": "Je suis un étudiant en alternance vivant à Nantes. Depuis mon plus jeune âge, je suis très fasciné par les possibilités infinies des ordinateurs et des nouvelles technologies.",
+			"description2": "Alors que je continue d'apprendre et d'explorer cet univers en constante évolution, je suis motivé par ma passion de découvrir de nouveaux mondes et leurs nouvelles règles. Actuellement concentré sur le développement front-end tout en maintenant un intérêt profond pour tous les aspects de l'informatique.",
+			"roles": {
+				"ctoForvoyez": "CTO de la start-up",
+				"forvoyezDesc": "plateforme de génération de méta-descriptions d'images",
+				"coFounderMakeup": "Co-fondateur de",
+				"makeupDesc": "une plateforme pour référencer les maquilleurs",
+				"ctoFormenu": "CTO de la start-up",
+				"formenuDesc": "un site e-commerce pour l'art"
+			},
+
+			"downloadResume": "CV"
+		},
+		"projects": {
+			"title": "Projets Phares",
+			"description": "Une vitrine de mon travail créatif et de mes projets techniques. Chaque projet représente un défi unique et une expérience d'apprentissage.",
+			"viewProject": "Voir Mon Travail",
+			"seeMore": "Voir Plus",
+			"viewDemo": "Voir la Démo",
+			"viewCode": "Voir le Code"
+		},
+		"journey": {
+			"title": "Mon Parcours",
+			"description": "De la passion du gaming à la maîtrise du full-stack - une histoire visuelle de curiosité, de création et d'apprentissage continu"
+		}
 	},
 	"common": {
 		"loading": "Expérience de Chargement",

@@ -4,6 +4,7 @@ import siteMetaData from '@/utils/siteMetaData'
 import { notFound } from 'next/navigation'
 
 import ProjectDetailClient from './ProjectDetailClient'
+import { getLocale } from '@/lib/get-locale'
 
 export async function generateMetadata({ params }) {
 	const resolvedParams = await params
@@ -62,12 +63,14 @@ export async function generateMetadata({ params }) {
 
 export async function generateStaticParams() {
 	const res = await fetch(
-		'https://breval-api.lightin.io/api/projets?fields=title'
+		'https://breval-api.lightin.io/api/projets?fields=slug'
 	)
 	const data = await res.json()
 
+	console.log(data)
+
 	const paths = data.data.map(project => ({
-		id: project.title.toLowerCase().replace(/\s+/g, '-'),
+		id: project.slug.toLowerCase(),
 	}))
 
 	return paths
@@ -76,7 +79,8 @@ export async function generateStaticParams() {
 export default async function ProjectDetail(props) {
 	const params = await props.params
 	const { id } = params
-	const project = await getProject(id)
+	const locale = await getLocale()
+	const project = await getProject(id, locale)
 
 	// Add proper error handling
 	if (!project) {
@@ -86,10 +90,10 @@ export default async function ProjectDetail(props) {
 	return <ProjectDetailClient project={project} />
 }
 
-async function getProject(title) {
+async function getProject(title, locale = 'en') {
 	try {
 		const res = await fetch(
-			`https://breval-api.lightin.io/api/projets?filters[title][$eq]=${title}&populate=*`,
+			`https://breval-api.lightin.io/api/projets?filters[title][$eq]=${title}&populate=*&locale=${locale}`,
 			{ next: { revalidate: 3600 } } // Cache for 1 hour
 		)
 

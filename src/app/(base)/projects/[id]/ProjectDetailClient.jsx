@@ -24,6 +24,8 @@ import { Badge } from '@/components/ui/badge'
 import ImageWithFallback from '../../../../components/Global/ImageWithFallback'
 
 export default function ProjectDetailClient({ project }) {
+	console.log('Project Detail:', project)
+
 	// Prioritize main_media, then media array
 	const featuredImage = project?.main_media
 	const mediaArray = Array.isArray(project?.media) ? project.media : []
