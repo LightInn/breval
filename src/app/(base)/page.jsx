@@ -1,14 +1,15 @@
 import { Suspense } from 'react'
 
+import { getDictionary } from '@/lib/get-dictionary'
+import { getLocale } from '@/lib/get-locale'
+
 import { SectionDivider } from '@/components/Home/svg-stickers'
 import ScrollObject3D from '@/components/scroll-object-3d'
+import MyJourneySection from '@/components/Home/journey'
 import LoadingScreen from '@/components/loading-screen'
 import Projects from '@/components/Home/projects'
-import MyJourneySection from '@/components/Home/journey'
 import About from '@/components/Home/about'
 import Hero from '@/components/Home/hero'
-import { getLocale } from '@/lib/get-locale'
-import { getDictionary } from '@/lib/get-dictionary'
 
 export default async function Home() {
 	const locale = await getLocale()

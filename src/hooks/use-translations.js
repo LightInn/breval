@@ -1,18 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-
-// Client-side locale detection
-function getClientLocale() {
-	if (typeof window === 'undefined') return 'en'
-
-	const language = navigator.language || navigator.languages?.[0] || 'en'
-	const langCode = language.split('-')[0]
-
-	// Return 'fr' if French, otherwise default to 'en'
-	// return langCode === 'fr' ? 'fr' : 'en'
-	return 'fr'
-}
+import { useEffect, useState } from 'react'
 
 export function useTranslations() {
 	const [dict, setDict] = useState(null)
@@ -57,5 +45,17 @@ export function useTranslations() {
 		return typeof value === 'string' ? value : key
 	}
 
-	return { t, locale, isLoaded: dict !== null }
+	return { isLoaded: dict !== null, locale, t }
+}
+
+// Client-side locale detection
+function getClientLocale() {
+	if (typeof window === 'undefined') return 'en'
+
+	const language = navigator.language || navigator.languages?.[0] || 'en'
+	const langCode = language.split('-')[0]
+
+	// Return 'fr' if French, otherwise default to 'en'
+	// return langCode === 'fr' ? 'fr' : 'en'
+	return 'fr'
 }

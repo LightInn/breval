@@ -35,8 +35,8 @@ export default function About({ dict }) {
 			description:
 				dict?.about?.roles?.forvoyezDesc ||
 				'image meta-description generation platform',
-			icon: <Globe className="h-4 w-4" />,
 			title: dict?.about?.roles?.ctoForvoyez || 'CTO of the start-up',
+			icon: <Globe className="h-4 w-4" />,
 			url: 'https://forvoyez.com',
 			link: 'ForVoyez',
 		},
@@ -44,16 +44,16 @@ export default function About({ dict }) {
 			description:
 				dict?.about?.roles?.makeupDesc ||
 				'a platform to reference makeup artists',
+			title: dict?.about?.roles?.coFounderMakeup || 'Co-founder of',
 			icon: <Code className="h-4 w-4" />,
 			url: 'https://my-makeup.fr',
-			title: dict?.about?.roles?.coFounderMakeup || 'Co-founder of',
 			link: 'My-Makeup',
 		},
 		{
 			description:
 				dict?.about?.roles?.formenuDesc || 'an e-commerce website for art',
-			icon: <Code className="h-4 w-4" />,
 			title: dict?.about?.roles?.ctoFormenu || 'CTO of the start-up',
+			icon: <Code className="h-4 w-4" />,
 			url: 'https://formenu.fr',
 			link: 'ForMenu',
 		},
