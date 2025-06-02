@@ -1,16 +1,17 @@
 'use client'
 
-import { ArrowDown, Play } from 'lucide-react'
-import { useEffect, useRef } from 'react'
+import { ArrowDown, Linkedin, Mail, Play, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
 
 import SakuraFall from '@/components/sakura-fall'
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
 export default function Hero() {
 	const videoRef = useRef(null)
+	const [showContactPopup, setShowContactPopup] = useState(false)
 
 	useEffect(() => {
 		if (videoRef.current) {
@@ -148,6 +149,7 @@ export default function Hero() {
 						</Link>
 						<Button
 							className="magnetic-button pixel-corners rounded-full border-primary/30 px-8 py-3 hover:bg-primary/10"
+							onClick={() => setShowContactPopup(true)}
 							size="lg"
 							variant="outline"
 						>
@@ -179,6 +181,139 @@ export default function Hero() {
 			</motion.div>
 			{/* Bottom Gradient */}
 			<div className="z-5 absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+
+			{/* Contact Popup - Funny & Bizarre */}
+			<AnimatePresence>
+				{showContactPopup && (
+					<motion.div
+						animate={{ opacity: 1 }}
+						className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+						exit={{ opacity: 0 }}
+						initial={{ opacity: 0 }}
+						onClick={() => setShowContactPopup(false)}
+					>
+						<motion.div
+							animate={{ rotate: 0, scale: 1, y: 0 }}
+							className="relative mx-4 max-w-md rounded-2xl border-2 border-primary/50 bg-gradient-to-br from-card/95 to-card/80 p-6 shadow-2xl backdrop-blur-xl"
+							exit={{ scale: 0.8, rotate: 5, y: 50 }}
+							initial={{ scale: 0.8, rotate: -5, y: 50 }}
+							onClick={e => e.stopPropagation()}
+							transition={{
+								type: 'spring',
+								stiffness: 300,
+								duration: 0.5,
+								damping: 20,
+							}}
+						>
+							{/* Close Button */}
+							<button
+								className="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-colors hover:bg-primary/90"
+								onClick={() => setShowContactPopup(false)}
+							>
+								<X className="h-4 w-4" />
+							</button>
+
+							{/* Funny Header */}
+							<div className="mb-4 text-center">
+								<motion.div
+									animate={{ rotate: [0, -10, 10, -10, 0] }}
+									className="mx-auto mb-2 text-4xl"
+									transition={{
+										ease: 'easeInOut',
+										repeat: Infinity,
+										duration: 2,
+									}}
+								>
+									🤖
+								</motion.div>
+								<h3 className="text-xl font-bold text-primary">
+									Contact Protocols Activated!
+								</h3>
+								<p className="mt-1 text-sm text-muted-foreground">
+									*Beep boop* Initializing human communication channels...
+								</p>
+							</div>
+
+							{/* Funny Description */}
+							<div className="mb-6 rounded-lg bg-primary/10 p-4 text-center">
+								<p className="text-sm leading-relaxed">
+									🎭 <strong>Warning:</strong> You're about to enter the
+									mysterious realm of
+									<span className="font-semibold text-primary">
+										{' '}
+										professional networking
+									</span>
+									! Choose your communication weapon wisely... 🎯
+								</p>
+							</div>
+
+							{/* Contact Options */}
+							<div className="space-y-3">
+								<motion.a
+									className="flex w-full items-center justify-between rounded-lg border border-primary/30 bg-card/50 p-4 transition-all hover:border-primary/50 hover:bg-primary/10"
+									href="mailto:breval.lefloch@example.com" // Remplace par ton vrai email
+									whileHover={{ scale: 1.02, x: 5 }}
+									whileTap={{ scale: 0.98 }}
+								>
+									<div className="flex items-center gap-3">
+										<div className="rounded-full bg-primary/20 p-2">
+											<Mail className="h-5 w-5 text-primary" />
+										</div>
+										<div>
+											<div className="font-medium">📧 Electronic Mail</div>
+											<div className="text-xs text-muted-foreground">
+												The classic approach - 99.9% delivery rate*
+											</div>
+										</div>
+									</div>
+									<div className="text-xl">→</div>
+								</motion.a>
+
+								<motion.a
+									className="flex w-full items-center justify-between rounded-lg border border-primary/30 bg-card/50 p-4 transition-all hover:border-primary/50 hover:bg-primary/10"
+									href="https://linkedin.com/in/breval-lefloch" // Remplace par ton vrai LinkedIn
+									rel="noopener noreferrer"
+									target="_blank"
+									whileHover={{ scale: 1.02, x: 5 }}
+									whileTap={{ scale: 0.98 }}
+								>
+									<div className="flex items-center gap-3">
+										<div className="rounded-full bg-blue-500/20 p-2">
+											<Linkedin className="h-5 w-5 text-blue-500" />
+										</div>
+										<div>
+											<div className="font-medium">💼 LinkedIn Portal</div>
+											<div className="text-xs text-muted-foreground">
+												Where business cards go to evolve
+											</div>
+										</div>
+									</div>
+									<div className="text-xl">→</div>
+								</motion.a>
+							</div>
+
+							{/* Funny Footer */}
+							<div className="mt-6 text-center">
+								<p className="text-xs text-muted-foreground">
+									<motion.span
+										animate={{ opacity: [1, 0.5, 1] }}
+										transition={{ repeat: Infinity, duration: 2 }}
+									>
+										⚡
+									</motion.span>{' '}
+									Response time: Usually faster than a pizza delivery{' '}
+									<motion.span
+										animate={{ opacity: [1, 0.5, 1] }}
+										transition={{ repeat: Infinity, duration: 2, delay: 1 }}
+									>
+										⚡
+									</motion.span>
+								</p>
+							</div>
+						</motion.div>
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</section>
 	)
 }
