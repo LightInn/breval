@@ -39,6 +39,7 @@ export default function Navigation({ dict }) {
 	const handleThemeToggle = () => {
 		// Show a fun tooltip/toast message instead of switching themes
 		const message =
+			dict?.navigation?.themeLockTooltip ||
 			"🚫 Nice try! But we're stuck in the void until further notice."
 
 		// You can use either a tooltip library or a simple toast
@@ -142,7 +143,9 @@ export default function Navigation({ dict }) {
 					<div className="md:hidden">
 						<Button
 							aria-label={
-								isOpen ? 'Close navigation menu' : 'Open navigation menu'
+								isOpen
+									? dict?.navigation?.ariaCloseMenu || 'Close navigation menu'
+									: dict?.navigation?.ariaOpenMenu || 'Open navigation menu'
 							}
 							className="magnetic-button pixel-corners cursor-pointer rounded-full border border-primary/20 bg-card/80 backdrop-blur-md transition-all duration-300 hover:bg-card/90"
 							onClick={toggleMenu}
@@ -196,7 +199,10 @@ export default function Navigation({ dict }) {
 							transition={{ duration: 0.5, delay: 0.4 }}
 						>
 							<Button
-								aria-label="Toggle theme (currently disabled - light mode too dangerous!)"
+								aria-label={
+									dict?.navigation?.ariaThemeToggle ||
+									'Toggle theme (currently disabled - light mode too dangerous!)'
+								}
 								className="magnetic-button pixel-corners ml-4 hidden cursor-not-allowed border border-primary/20 bg-card/80 opacity-50 backdrop-blur-md md:flex"
 								onClick={handleThemeToggle}
 								size="icon"
@@ -246,10 +252,14 @@ export default function Navigation({ dict }) {
 							))}
 							<div className="flex items-center justify-between border-t border-primary/20 pt-4">
 								<span className="text-xs text-muted-foreground">
-									Theme locked in darkness 🌙
+									{dict?.navigation?.themeLockedMobile ||
+										'Theme locked in darkness 🌙'}
 								</span>
 								<Button
-									aria-label="Theme toggle disabled - light mode too dangerous!"
+									aria-label={
+										dict?.navigation?.ariaThemeToggleDisabledMobile ||
+										'Theme toggle disabled - light mode too dangerous!'
+									}
 									className="magnetic-button cursor-not-allowed opacity-50"
 									disabled
 									onClick={handleThemeToggle}

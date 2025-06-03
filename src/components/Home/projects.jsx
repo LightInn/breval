@@ -28,7 +28,9 @@ export default function Projects({ dict }) {
 				// Transform API data to the format expected by the component
 				const transformedProjects = data.map((project, index) => {
 					// Parse skills from different possible formats
-					let tags = ['Web Development'] // Default value
+					let tags = [
+						dict?.home?.projects?.defaultTagWebDev || 'Web Development',
+					] // Default value
 					if (project.skills) {
 						if (Array.isArray(project.skills)) {
 							tags = project.skills.slice(0, 4) // Limit to 4 tags
@@ -59,9 +61,16 @@ export default function Projects({ dict }) {
 						description:
 							project.short_description ||
 							project.description ||
+							dict?.home?.projects?.descriptionNotAvailable ||
 							'Description not available.',
-						category: project.category || 'Web Development',
-						title: project.title || 'Untitled project',
+						category:
+							project.category ||
+							dict?.home?.projects?.defaultTagWebDev ||
+							'Web Development',
+						title:
+							project.title ||
+							dict?.home?.projects?.untitledProject ||
+							'Untitled project',
 						demo: project.live_url || '#',
 						github: project.url || '#',
 						rank: project.rank || 0,
@@ -189,7 +198,7 @@ export default function Projects({ dict }) {
 										{project.featured && (
 											<div className="absolute left-4 top-4">
 												<Badge className="pixel-corners bg-primary text-primary-foreground">
-													Featured
+													{dict?.home?.projects?.featuredBadge || 'Featured'}
 												</Badge>
 											</div>
 										)}
@@ -272,7 +281,8 @@ export default function Projects({ dict }) {
 							<Card className="h-full overflow-hidden border-primary/20 bg-card/60 backdrop-blur-sm">
 								<CardContent className="pt-6 text-center">
 									<p className="text-muted-foreground">
-										No projects available at the moment.
+										{dict?.home?.projects?.noProjectsAvailable ||
+											'No projects available at the moment.'}
 									</p>
 								</CardContent>
 							</Card>

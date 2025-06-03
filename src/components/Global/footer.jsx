@@ -1,9 +1,15 @@
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react'
 
+import { getDictionary } from '@/lib/get-dictionary'
+import { getLocale } from '@/lib/get-locale' // Assuming getLocale is synchronous or handled by middleware
 import Link from 'next/link'
 
-export default function Footer() {
+export default async function Footer() {
+	const locale = getLocale()
+	const dict = await getDictionary(locale)
 	const currentYear = new Date().getFullYear()
+
+	const footerDict = dict?.footer || {}
 
 	return (
 		<footer className="relative overflow-hidden border-t border-primary/20 py-10">
@@ -34,7 +40,7 @@ export default function Footer() {
 							</div>
 						</Link>
 						<p className="mt-2 text-sm text-muted-foreground">
-							Creative Developer & Digital Craftsman
+							{footerDict.subtitle || 'Creative Developer & Digital Craftsman'}
 						</p>
 					</div>
 
@@ -46,7 +52,7 @@ export default function Footer() {
 							target="_blank"
 						>
 							<Github className="h-5 w-5" />
-							<span className="sr-only">GitHub</span>
+							<span className="sr-only">{footerDict.srGithub || 'GitHub'}</span>
 						</Link>
 						<Link
 							className="text-muted-foreground transition-colors hover:text-primary"
@@ -55,7 +61,9 @@ export default function Footer() {
 							target="_blank"
 						>
 							<Linkedin className="h-5 w-5" />
-							<span className="sr-only">LinkedIn</span>
+							<span className="sr-only">
+								{footerDict.srLinkedIn || 'LinkedIn'}
+							</span>
 						</Link>
 						<Link
 							className="text-muted-foreground transition-colors hover:text-primary"
@@ -64,35 +72,40 @@ export default function Footer() {
 							target="_blank"
 						>
 							<Twitter className="h-5 w-5" />
-							<span className="sr-only">Twitter</span>
+							<span className="sr-only">
+								{footerDict.srTwitter || 'Twitter'}
+							</span>
 						</Link>
 						<Link
 							className="text-muted-foreground transition-colors hover:text-primary"
 							href="mailto:breval.lefloch@gmail.com"
 						>
 							<Mail className="h-5 w-5" />
-							<span className="sr-only">Email</span>
+							<span className="sr-only">{footerDict.srEmail || 'Email'}</span>
 						</Link>
 					</div>
 				</div>
 
 				<div className="mt-8 flex flex-col items-center justify-between border-t border-primary/10 pt-8 md:flex-row">
 					<p className="text-sm text-muted-foreground">
-						&copy; {currentYear} Bréval Le Floch. All rights reserved.
+						{(
+							footerDict.copyright ||
+							'&copy; {currentYear} Bréval Le Floch. All rights reserved.'
+						).replace('{currentYear}', currentYear.toString())}
 					</p>
 
 					<div className="mt-4 flex space-x-6 md:mt-0">
 						<Link
 							className="text-sm text-muted-foreground transition-colors hover:text-primary"
-							href="#"
+							href="#" // Assuming these links might become dynamic or configurable later
 						>
-							Privacy Policy
+							{footerDict.privacyPolicy || 'Privacy Policy'}
 						</Link>
 						<Link
 							className="text-sm text-muted-foreground transition-colors hover:text-primary"
-							href="#"
+							href="#" // Assuming these links might become dynamic or configurable later
 						>
-							Terms of Service
+							{footerDict.termsOfService || 'Terms of Service'}
 						</Link>
 					</div>
 				</div>
