@@ -84,7 +84,7 @@ export default function Hero({ dict }) {
 							>
 								👋
 							</motion.span>{' '}
-							Hello, I'm
+							{dict?.home?.hero?.hello || "Hello, I'm"}
 						</div>
 					</motion.div>
 
@@ -114,7 +114,8 @@ export default function Hero({ dict }) {
 						<div className="relative inline-block">
 							<div className="absolute inset-0 rounded-full bg-primary/20 blur-xl" />
 							<p className="pixel-corners relative rounded-full border border-primary/30 bg-card/60 px-8 py-3 text-lg backdrop-blur-sm md:text-xl">
-								{dict?.hero?.title || 'Creative Developer & Digital Craftsman'}
+								{dict?.home?.hero?.title ||
+									'Creative Developer & Digital Craftsman'}
 							</p>
 						</div>
 					</motion.div>
@@ -126,7 +127,7 @@ export default function Hero({ dict }) {
 						initial={{ opacity: 0, y: 20 }}
 						transition={{ duration: 0.8, delay: 1 }}
 					>
-						{dict?.hero?.description ||
+						{dict?.home?.hero?.description ||
 							'CTO of ForMenu, Co-founder of multiple startups, and passionate about exploring the infinite possibilities of technology and creative development.'}
 					</motion.p>
 
@@ -143,7 +144,7 @@ export default function Hero({ dict }) {
 								size="lg"
 							>
 								<Play className="mr-2 h-5 w-5" />
-								{dict?.projects?.viewProject || 'View My Work'}
+								{dict?.home?.hero?.ctaWork || 'View My Work'}
 							</Button>
 						</Link>
 						<Button
@@ -152,7 +153,7 @@ export default function Hero({ dict }) {
 							size="lg"
 							variant="outline"
 						>
-							{dict?.navigation?.contact || 'Get In Touch'}
+							{dict?.home?.hero?.ctaContact || 'Get In Touch'}
 						</Button>
 					</motion.div>
 				</motion.div>
