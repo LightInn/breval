@@ -33,35 +33,37 @@ export default function About({ dict }) {
 	const roles = [
 		{
 			description:
-				dict?.about?.roles?.forvoyezDesc ||
+				dict?.home?.about?.roles?.forvoyezDesc ||
 				'image meta-description generation platform',
-			title: dict?.about?.roles?.ctoForvoyez || 'CTO of the start-up',
+			title: dict?.home?.about?.roles?.ctoForvoyez || 'CTO of the start-up',
 			icon: <Globe className="h-4 w-4" />,
 			url: 'https://forvoyez.com',
 			link: 'ForVoyez',
 		},
 		{
 			description:
-				dict?.about?.roles?.makeupDesc ||
+				dict?.home?.about?.roles?.makeupDesc ||
 				'a platform to reference makeup artists',
-			title: dict?.about?.roles?.coFounderMakeup || 'Co-founder of',
+			title: dict?.home?.about?.roles?.coFounderMakeup || 'Co-founder of',
 			icon: <Code className="h-4 w-4" />,
 			url: 'https://my-makeup.fr',
 			link: 'My-Makeup',
 		},
 		{
 			description:
-				dict?.about?.roles?.formenuDesc || 'an e-commerce website for art',
-			title: dict?.about?.roles?.ctoFormenu || 'CTO of the start-up',
+				dict?.home?.about?.roles?.formenuDesc ||
+				'an e-commerce website for art',
+			title: dict?.home?.about?.roles?.ctoFormenu || 'CTO of the start-up',
 			icon: <Code className="h-4 w-4" />,
 			url: 'https://formenu.fr',
 			link: 'ForMenu',
 		},
 		{
-			description: 'the hub for our bees',
+			description:
+				dict?.home?.about?.roles?.coFounderForHives || 'the hub for our bees',
 			icon: <Cpu className="h-4 w-4" />,
 			url: 'https://forhives.fr',
-			title: 'Co-founder of',
+			title: dict?.home?.about?.roles?.forHivesDesc || 'Co-founder of',
 			link: 'ForHives',
 		},
 	]
@@ -84,9 +86,9 @@ export default function About({ dict }) {
 							className="mb-6 text-3xl font-bold md:text-4xl"
 							variants={item}
 						>
-							{dict?.about?.greeting || 'Hello, my name is'}{' '}
+							{dict?.home?.about?.greeting || 'Hello, my name is'}{' '}
 							<span className="text-primary">
-								{dict?.about?.name || 'Bréval Le Floch'}
+								{dict?.home?.about?.name || 'Bréval Le Floch'}
 							</span>
 						</motion.h2>
 
@@ -117,11 +119,11 @@ export default function About({ dict }) {
 
 						<motion.div className="mb-8 space-y-4" variants={item}>
 							<p className="text-muted-foreground">
-								{dict?.about?.description1 ||
+								{dict?.home?.about?.description1 ||
 									"I'm a work-study student living in Nantes. From my youngest age, I am very fascinated by the infinite possibilities of computers and new technologies."}
 							</p>
 							<p className="text-muted-foreground">
-								{dict?.about?.description2 ||
+								{dict?.home?.about?.description2 ||
 									"As I continue to learn and explore this ever-evolving universe, I'm driven by my passion to discover new worlds and their new rules. Currently focused on front-end development while maintaining a deep interest in all aspects of computer science."}
 							</p>
 						</motion.div>
@@ -165,7 +167,7 @@ export default function About({ dict }) {
 									variant="outline"
 								>
 									<ExternalLink className="mr-2 h-4 w-4" />
-									{dict?.about?.downloadResume || 'Resume'}
+									{dict?.home?.about?.downloadResume || 'Resume'}
 								</Button>
 							</Link>
 						</motion.div>

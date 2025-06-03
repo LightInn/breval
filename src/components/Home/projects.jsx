@@ -135,11 +135,13 @@ export default function Projects({ dict }) {
 					transition={{ duration: 0.5 }}
 				>
 					<h2 className="mb-4 text-3xl font-bold md:text-4xl">
-						{dict?.projects?.title || 'Featured'}{' '}
-						<span className="text-primary">Projects</span>
+						{dict?.home?.projects?.title || 'Featured'}{' '}
+						<span className="text-primary">
+							{dict?.home?.projects?.name || 'Projects'}
+						</span>
 					</h2>
 					<p className="mx-auto max-w-2xl text-muted-foreground">
-						{dict?.projects?.description ||
+						{dict?.home?.projects?.description ||
 							'A showcase of my creative work and technical projects. Each project represents a unique challenge and learning experience.'}
 					</p>
 				</motion.div>
@@ -226,7 +228,7 @@ export default function Projects({ dict }) {
 												variant="ghost"
 											>
 												<Github className="mr-2 h-4 w-4" />
-												{dict?.projects?.viewCode || 'Code'}
+												{dict?.home?.projects?.viewCode || 'Code'}
 											</Button>
 										) : (
 											<Button
@@ -236,7 +238,7 @@ export default function Projects({ dict }) {
 												variant="ghost"
 											>
 												<Github className="mr-2 h-4 w-4" />
-												{dict?.projects?.viewCode || 'Code'}
+												{dict?.home?.projects?.viewCode || 'Code'}
 											</Button>
 										)}
 										{project.demo && project.demo !== '#' ? (
@@ -247,7 +249,7 @@ export default function Projects({ dict }) {
 												variant="outline"
 											>
 												<ExternalLink className="mr-2 h-4 w-4" />
-												{dict?.projects?.viewDemo || 'Live Demo'}
+												{dict?.home?.projects?.viewDemo || 'Live Demo'}
 											</Button>
 										) : (
 											<Button
@@ -257,7 +259,7 @@ export default function Projects({ dict }) {
 												variant="outline"
 											>
 												<ExternalLink className="mr-2 h-4 w-4" />
-												{dict?.projects?.viewDemo || 'Live Demo'}
+												{dict?.home?.projects?.viewDemo || 'Live Demo'}
 											</Button>
 										)}
 									</CardFooter>
@@ -286,7 +288,7 @@ export default function Projects({ dict }) {
 				>
 					<Link href="/projects">
 						<Button className="magnetic-button pixel-corners bg-primary hover:bg-primary/90">
-							{dict?.projects?.seeMore || 'View All Projects'}
+							{dict?.home?.projects?.seeMore || 'View All Projects'}
 							<ArrowRight className="ml-2 h-4 w-4" />
 						</Button>
 					</Link>

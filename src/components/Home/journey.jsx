@@ -519,10 +519,10 @@ export default function MyJourneySection({ dict }) {
 					transition={{ duration: shouldReduceMotion ? 0 : 1 }}
 				>
 					<h2 className="mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-4xl font-bold text-transparent md:text-6xl">
-						{dict?.journey?.title || 'My Journey'}
+						{dict?.home?.journey?.title || 'My Journey'}
 					</h2>
 					<p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-200 md:text-xl">
-						{dict?.journey?.description ||
+						{dict?.home?.journey?.description ||
 							'From gaming passion to full-stack mastery - a visual story of curiosity, creation, and continuous learning'}
 					</p>
 				</motion.div>
@@ -623,8 +623,10 @@ export default function MyJourneySection({ dict }) {
 				>
 					<p className="text-sm text-gray-400">
 						{isMobile
-							? 'Tap on the nodes to explore each milestone in detail'
-							: 'Click on the nodes to explore each milestone • Use arrow keys or navigation buttons to browse • Click outside to close'}
+							? dict?.home?.journey?.controlsMobile ||
+								'Tap on the nodes to explore each milestone in detail'
+							: dict?.home?.journey?.controls ||
+								'Click on the nodes to explore each milestone • Use arrow keys or navigation buttons to browse • Click outside to close'}
 					</p>
 				</motion.div>
 
@@ -641,9 +643,8 @@ export default function MyJourneySection({ dict }) {
 					<div className="inline-flex items-center gap-3 rounded-full border border-pink-500/30 bg-gradient-to-r from-pink-500/20 to-purple-500/20 px-8 py-4 backdrop-blur-sm">
 						<Sparkles className="h-5 w-5 flex-shrink-0 text-pink-400" />
 						<span className="font-medium text-gray-200">
-							{
-								'Today, I continue to code with passion, always exploring new possibilities'
-							}
+							{dict?.home?.journey?.today ||
+								'Today, I continue to code with passion, always exploring new possibilities'}
 						</span>
 					</div>
 				</motion.div>
