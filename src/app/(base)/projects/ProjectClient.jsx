@@ -53,7 +53,7 @@ export default function ProjectClient({ projects = [], dict }) {
 						project.description ||
 						'Description not available.',
 					title: project.title || 'Title not available',
-					slug: project.title ? project.title : '#',
+					slug: project.slug ? project.slug : '#',
 					category: project.category || 'Other',
 					url: project.url || project.live_url,
 					liveUrl: project.live_url,
