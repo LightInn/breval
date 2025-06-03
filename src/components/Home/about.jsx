@@ -139,7 +139,7 @@ export default function About({ dict }) {
 									variant="outline"
 								>
 									<Github className="mr-2 h-4 w-4" />
-									GitHub
+									{dict?.home?.about?.githubButton || 'GitHub'}
 								</Button>
 							</Link>
 
@@ -153,7 +153,7 @@ export default function About({ dict }) {
 									variant="outline"
 								>
 									<Linkedin className="mr-2 h-4 w-4" />
-									LinkedIn
+									{dict?.home?.about?.linkedinButton || 'LinkedIn'}
 								</Button>
 							</Link>
 
@@ -192,7 +192,8 @@ export default function About({ dict }) {
 												BRÉVAL LE FLOCH
 											</p>
 											<p className="text-center text-xs text-muted-foreground">
-												Creative Developer
+												{dict?.home?.about?.creativeDeveloperImage ||
+													'Creative Developer'}
 											</p>
 										</div>
 									</div>
