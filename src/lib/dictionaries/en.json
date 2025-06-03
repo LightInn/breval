@@ -1,50 +1,71 @@
 {
 	"navigation": {
-		"home": "Home",
-		"about": "About",
-		"projects": "Projects",
-		"contact": "Get In Touch"
+		"home": "HOME",
+		"projects": "PROJECTS",
+		"blog": "BLOG",
+		"art": "ART"
 	},
-	"hero": {
-		"title": "Creative Developer & Digital Craftsman",
-		"subtitle": "Building digital experiences",
-		"description": "CTO of ForMenu, Co-founder of multiple startups, and passionate about exploring the infinite possibilities of technology and creative development."
-	},
-	"about": {
-		"title": "About Me",
-		"greeting": "Hello, my name is",
-		"name": "Bréval Le Floch",
-		"description1": "I'm a work-study student living in Nantes. From my youngest age, I am very fascinated by the infinite possibilities of computers and new technologies.",
-		"description2": "As I continue to learn and explore this ever-evolving universe, I'm driven by my passion to discover new worlds and their new rules. Currently focused on front-end development while maintaining a deep interest in all aspects of computer science.",
-		"roles": {
-			"ctoForvoyez": "CTO of the start-up",
-			"forvoyezDesc": "image meta-description generation platform",
-			"coFounderMakeup": "Co-founder of",
-			"makeupDesc": "a platform to reference makeup artists",
-			"ctoFormenu": "CTO of the start-up",
-			"formenuDesc": "an e-commerce website for art"
+
+	"home": {
+		"hero": {
+			"hello": "Hello, I am",
+			"title": "Creative Developer & Digital Artisan",
+			"subtitle": "Creating digital experiences",
+			"description": "CTO of ForMenu, Co-founder of several startups, and passionate about exploring the infinite possibilities of technology and creative development.",
+			"ctaWork": "My Work",
+			"ctaContact": "Contact Me"
 		},
-		"letsTalk": "Let's Talk",
-		"downloadResume": "Download Resume"
+		"about": {
+			"greeting": "Hello, my name is",
+			"name": "Bréval Le Floch",
+			"description1": "I am a work-study student living in Nantes. From a young age, I have been very fascinated by the infinite possibilities of computers and new technologies.",
+			"description2": "As I continue to learn and explore this ever-evolving universe, I am motivated by my passion for discovering new worlds and their new rules. Currently focused on front-end development while maintaining a deep interest in all aspects of computer science.",
+			"roles": {
+				"ctoForvoyez": "CTO of the startup",
+				"forvoyezDesc": "image meta-description generation platform",
+				"coFounderMakeup": "Co-founder of",
+				"makeupDesc": "a platform to list professional makeup artists",
+				"ctoFormenu": "CTO of the startup",
+				"formenuDesc": "a digital map website for restaurants",
+				"coFounderForHives": "Co-founder of",
+				"forHivesDesc": "a networking platform for freelancers and businesses"
+			},
+
+			"downloadResume": "Resume"
+		},
+		"projects": {
+			"name": "Projects",
+			"title": "My Best",
+			"description": "A showcase of my creative work and technical projects. Each project represents a unique challenge and a learning experience.",
+			"viewProject": "View My Work",
+			"seeMore": "See More",
+			"viewDemo": "View Demo",
+			"viewCode": "View Code"
+		},
+		"journey": {
+			"title": "My Journey",
+			"description": "From the passion of gaming to full-stack mastery - a visual story of curiosity, creation, and continuous learning",
+			"controls": "Click on the nodes to explore each step • Use arrow keys or navigation buttons to browse • Click outside to close",
+			"controlsMobile": "Tap on the nodes to explore each step",
+			"today": "Today, I continue to code with passion, always looking for new possibilities"
+		}
 	},
+
 	"projects": {
-		"title": "Featured",
-		"description": "A showcase of my creative work and technical projects. Each project represents a unique challenge and learning experience.",
+		"name": "Projects",
+		"title": "Gallery of",
+		"description": "A showcase of my creative work and technical projects. Each project represents a unique challenge and a learning experience in my developer journey.",
 		"viewProject": "View My Work",
 		"seeMore": "See More",
 		"viewDemo": "View Demo",
 		"viewCode": "View Code"
-	},
-	"journey": {
-		"title": "My Journey",
-		"description": "From gaming passion to full-stack mastery - a visual story of curiosity, creation, and continuous learning"
 	},
 	"common": {
 		"loading": "Loading Experience",
 		"error": "Error",
 		"readMore": "Read More",
 		"back": "Back",
-		"scrollToExplore": "Scroll to explore",
+		"scrollToExplore": "Scroll to Explore",
 		"preparingCanvas": "Preparing digital canvas..."
 	}
 }

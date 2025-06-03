@@ -50,6 +50,16 @@
 			"today": "Aujourd'hui, je continue de coder avec passion, toujours à la recherche de nouvelles possibilités"
 		}
 	},
+
+	"projects": {
+		"name": "Projets",
+		"title": "Galerie de",
+		"description": "Une vitrine de mon travail créatif et de mes projets techniques. Chaque projet représente un défi unique et une expérience d'apprentissage dans mon parcours de développeur.",
+		"viewProject": "Voir Mon Travail",
+		"seeMore": "Voir Plus",
+		"viewDemo": "Voir la Démo",
+		"viewCode": "Voir le Code"
+	},
 	"common": {
 		"loading": "Expérience de Chargement",
 		"error": "Erreur",
