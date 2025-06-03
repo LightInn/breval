@@ -83,9 +83,9 @@ export default function Navigation({ dict }) {
 
 	const navItems = [
 		{ name: dict?.navigation?.home || 'HOME', href: '/' },
-		{ href: '/projects', name: dict?.navigation?.projects || 'PROJECTS' },
-		{ href: '/blog', name: dict?.navigation?.blog || 'BLOG' },
-		{ href: '/artist', name: dict?.navigation?.art || 'ART' },
+		{ name: dict?.navigation?.projects || 'PROJECTS', href: '/projects' },
+		{ name: dict?.navigation?.blog || 'BLOG', href: '/blog' },
+		{ name: dict?.navigation?.art || 'ART', href: '/artist' },
 	]
 
 	const isActive = path => {
@@ -190,8 +190,8 @@ export default function Navigation({ dict }) {
 					{/* Theme toggle */}
 					{mounted && (
 						<motion.div
-							className="hidden md:block"
 							animate={{ scale: 1 }}
+							className="hidden md:block"
 							initial={{ scale: 0 }}
 							transition={{ duration: 0.5, delay: 0.4 }}
 						>

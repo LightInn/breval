@@ -1,10 +1,10 @@
 import React from 'react'
 
 import siteMetaData from '@/utils/siteMetaData'
+import { getLocale } from '@/lib/get-locale'
 import { notFound } from 'next/navigation'
 
 import ProjectDetailClient from './ProjectDetailClient'
-import { getLocale } from '@/lib/get-locale'
 
 export async function generateMetadata({ params }) {
 	const resolvedParams = await params
@@ -66,8 +66,6 @@ export async function generateStaticParams() {
 		'https://breval-api.lightin.io/api/projets?fields=slug'
 	)
 	const data = await res.json()
-
-	console.log(data)
 
 	const paths = data.data.map(project => ({
 		id: project.slug.toLowerCase(),
