@@ -2,9 +2,14 @@ import { Suspense } from 'react'
 
 import { getProjects } from '../../../services/projects.services' // Make sure this path is correct
 import ProjectClient from './ProjectClient' // The new client component
+import { getLocale } from '@/lib/get-locale'
+import { getDictionary } from '@/lib/get-dictionary'
 
 export default async function ProjectsPage() {
 	try {
+		const locale = await getLocale()
+		const dict = await getDictionary(locale)
+
 		const projectsData = await getProjects()
 		// getProjects directly returns the array of projects (data.data)
 		const projects = Array.isArray(projectsData) ? projectsData : []
@@ -18,7 +23,7 @@ export default async function ProjectsPage() {
 
 		return (
 			<Suspense fallback={<ProjectSkeleton />}>
-				<ProjectClient projects={projects} />
+				<ProjectClient dict={dict} projects={projects} />
 			</Suspense>
 		)
 	} catch (error) {

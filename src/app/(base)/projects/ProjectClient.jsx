@@ -11,7 +11,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
-export default function ProjectClient({ projects = [] }) {
+export default function ProjectClient({ projects = [], dict }) {
 	// Default to empty array
 	const [selectedCategory, setSelectedCategory] = useState('All Projects') // Added state for selected category
 	const ref = useRef(null)
@@ -133,17 +133,19 @@ export default function ProjectClient({ projects = [] }) {
 							transition={{ duration: 0.5 }}
 						>
 							<h1 className="text-shadow mb-4 text-4xl font-bold md:text-6xl">
-								Project <span className="text-primary">Gallery</span>
+								<span className="text-primary">
+									{dict?.projects?.title || 'Gallery of'}{' '}
+								</span>
+								{dict?.projects?.name || 'Projects'}{' '}
 							</h1>
 							<p className="mx-auto max-w-2xl text-muted-foreground">
-								A showcase of my creative work and technical projects. Each
-								project represents a unique challenge and learning experience in
-								my developer journey.
+								{dict?.projects?.description ||
+									'A showcase of my creative work'}
 							</p>
 						</motion.div>
 
 						<div className="mb-8 flex items-center justify-between">
-							<div className="flex flex-wrap gap-3">
+							<div className="flex flex-wrap items-center justify-center gap-3">
 								{categories.map((category, index) => (
 									<Button
 										className={
