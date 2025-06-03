@@ -61,9 +61,9 @@ export default function About({ dict }) {
 		{
 			description:
 				dict?.home?.about?.roles?.coFounderForHives || 'the hub for our bees',
+			title: dict?.home?.about?.roles?.forHivesDesc || 'Co-founder of',
 			icon: <Cpu className="h-4 w-4" />,
 			url: 'https://forhives.fr',
-			title: dict?.home?.about?.roles?.forHivesDesc || 'Co-founder of',
 			link: 'ForHives',
 		},
 	]

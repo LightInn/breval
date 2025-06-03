@@ -1,9 +1,10 @@
 import { Suspense } from 'react'
 
+import { getDictionary } from '@/lib/get-dictionary'
+import { getLocale } from '@/lib/get-locale'
+
 import { getProjects } from '../../../services/projects.services' // Make sure this path is correct
 import ProjectClient from './ProjectClient' // The new client component
-import { getLocale } from '@/lib/get-locale'
-import { getDictionary } from '@/lib/get-dictionary'
 
 export default async function ProjectsPage() {
 	try {

@@ -25,8 +25,8 @@ export const metadata = {
 	alternates: { canonical: '/' },
 	title: siteMetaData.title,
 }
-import { getLocale } from '@/lib/get-locale'
 import { getDictionary } from '@/lib/get-dictionary'
+import { getLocale } from '@/lib/get-locale'
 
 export default async function RootLayout({ children }) {
 	const locale = await getLocale()
