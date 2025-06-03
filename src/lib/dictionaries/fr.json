@@ -1,8 +1,9 @@
 {
 	"navigation": {
-		"home": "Accueil",
-		"about": "À propos",
-		"projects": "Projets"
+		"home": "ACCUEIL",
+		"projects": "PROJETS",
+		"blog": "BLOG",
+		"art": "ART"
 	},
 
 	"home": {

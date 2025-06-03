@@ -25,8 +25,13 @@ export const metadata = {
 	alternates: { canonical: '/' },
 	title: siteMetaData.title,
 }
+import { getLocale } from '@/lib/get-locale'
+import { getDictionary } from '@/lib/get-dictionary'
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+	const locale = await getLocale()
+	const dict = await getDictionary(locale)
+
 	return (
 		<>
 			<ThemeProvider
@@ -37,7 +42,7 @@ export default function RootLayout({ children }) {
 				forcedTheme={undefined}
 			>
 				<CursorBlob />
-				<Navigation />
+				<Navigation dict={dict} />
 				{children}
 				<Footer />
 			</ThemeProvider>

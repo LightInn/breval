@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 
-export default function Navigation() {
+export default function Navigation({ dict }) {
 	const [mounted, setMounted] = useState(false)
 	const { setTheme, theme } = useTheme()
 	const [isOpen, setIsOpen] = useState(false)
@@ -82,10 +82,10 @@ export default function Navigation() {
 	}
 
 	const navItems = [
-		{ name: 'HOME', href: '/' },
-		{ href: '/projects', name: 'PROJECTS' },
-		{ href: '/blog', name: 'BLOG' },
-		{ href: '/artist', name: 'ART' },
+		{ name: dict?.navigation?.home || 'HOME', href: '/' },
+		{ href: '/projects', name: dict?.navigation?.projects || 'PROJECTS' },
+		{ href: '/blog', name: dict?.navigation?.blog || 'BLOG' },
+		{ href: '/artist', name: dict?.navigation?.art || 'ART' },
 	]
 
 	const isActive = path => {
@@ -144,7 +144,7 @@ export default function Navigation() {
 							aria-label={
 								isOpen ? 'Close navigation menu' : 'Open navigation menu'
 							}
-							className="magnetic-button"
+							className="magnetic-button pixel-corners cursor-pointer rounded-full border border-primary/20 bg-card/80 backdrop-blur-md transition-all duration-300 hover:bg-card/90"
 							onClick={toggleMenu}
 							size="icon"
 							variant="ghost"
@@ -190,6 +190,7 @@ export default function Navigation() {
 					{/* Theme toggle */}
 					{mounted && (
 						<motion.div
+							className="hidden md:block"
 							animate={{ scale: 1 }}
 							initial={{ scale: 0 }}
 							transition={{ duration: 0.5, delay: 0.4 }}
@@ -213,7 +214,6 @@ export default function Navigation() {
 						</motion.div>
 					)}
 				</nav>
-
 				{/* Mobile menu */}
 				{isOpen && (
 					<motion.div
