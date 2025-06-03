@@ -1,6 +1,15 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import Home from '@/app/(base)/page'
+
+// Mock async functions
+jest.mock('@/lib/get-locale', () => ({
+	getLocale: jest.fn(() => Promise.resolve('en')),
+}))
+
+jest.mock('@/lib/get-dictionary', () => ({
+	getDictionary: jest.fn(() => Promise.resolve({})),
+}))
 
 // Mock child components
 jest.mock('@/components/scroll-object-3d', () => () => (
@@ -31,8 +40,10 @@ describe('Home Page (src/app/page.jsx)', () => {
 		jest.clearAllMocks()
 	})
 
-	test('renders the main page structure and all mocked child components', () => {
-		render(<Home />)
+	test('renders the main page structure and all mocked child components', async () => {
+		await act(async () => {
+			render(await Home())
+		})
 
 		// Check for the main element
 		const mainElement = screen.getByRole('main')
@@ -60,8 +71,10 @@ describe('Home Page (src/app/page.jsx)', () => {
 		// expect(SectionDivider).toHaveBeenCalledTimes(3);
 	})
 
-	test('main element has correct default classes', () => {
-		render(<Home />)
+	test('main element has correct default classes', async () => {
+		await act(async () => {
+			render(await Home())
+		})
 		const mainElement = screen.getByRole('main')
 		expect(mainElement).toHaveClass('relative')
 		expect(mainElement).toHaveClass('min-h-screen')
