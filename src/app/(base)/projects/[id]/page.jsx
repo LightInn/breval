@@ -88,10 +88,10 @@ export default async function ProjectDetail(props) {
 	return <ProjectDetailClient project={project} />
 }
 
-async function getProject(title, locale = 'en') {
+async function getProject(slug, locale = 'en') {
 	try {
 		const res = await fetch(
-			`https://breval-api.lightin.io/api/projets?filters[title][$eq]=${title}&populate=*&locale=${locale}`,
+			`https://breval-api.lightin.io/api/projets?filters[slug][$eq]=${slug}&populate=*&locale=${locale}`,
 			{ next: { revalidate: 3600 } } // Cache for 1 hour
 		)
 
