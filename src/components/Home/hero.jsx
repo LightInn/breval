@@ -227,23 +227,21 @@ export default function Hero({ dict }) {
 									🤖
 								</motion.div>
 								<h3 className="text-xl font-bold text-primary">
-									Contact Protocols Activated!
+									{dict?.home?.hero?.contactPopup?.contactProtocolsActivated ||
+										'Contact Protocols Activated!'}
 								</h3>
 								<p className="mt-1 text-sm text-muted-foreground">
-									*Beep boop* Initializing human communication channels...
+									{dict?.home?.hero?.contactPopup?.beepBoop ||
+										'*Beep boop* Initializing human communication channels...'}
 								</p>
 							</div>
 
 							{/* Funny Description */}
 							<div className="mb-6 rounded-lg bg-primary/10 p-4 text-center">
 								<p className="text-sm leading-relaxed">
-									🎭 <strong>Warning:</strong> You're about to enter the
-									mysterious realm of
-									<span className="font-semibold text-primary">
-										{' '}
-										professional networking
-									</span>
-									! Choose your communication weapon wisely... 🎯
+									{/* The warningRealm key contains the full string. Styling of specific words might need to be handled differently if required, e.g. by splitting the string or using a component that can parse and style parts of the string. */}
+									{dict?.home?.hero?.contactPopup?.warningRealm ||
+										"Warning: You're about to enter the mysterious realm of professional networking! Choose your communication weapon wisely..."}
 								</p>
 							</div>
 
@@ -260,9 +258,14 @@ export default function Hero({ dict }) {
 											<Mail className="h-5 w-5 text-primary" />
 										</div>
 										<div>
-											<div className="font-medium">📧 Electronic Mail</div>
+											<div className="font-medium">
+												📧{' '}
+												{dict?.home?.hero?.contactPopup?.electronicMail ||
+													'Electronic Mail'}
+											</div>
 											<div className="text-xs text-muted-foreground">
-												The classic approach - 99.9% delivery rate*
+												{dict?.home?.hero?.contactPopup?.classicApproach ||
+													'The classic approach - 99.9% delivery rate*'}
 											</div>
 										</div>
 									</div>
@@ -282,9 +285,14 @@ export default function Hero({ dict }) {
 											<Linkedin className="h-5 w-5 text-blue-500" />
 										</div>
 										<div>
-											<div className="font-medium">💼 LinkedIn Portal</div>
+											<div className="font-medium">
+												💼{' '}
+												{dict?.home?.hero?.contactPopup?.linkedInPortal ||
+													'LinkedIn Portal'}
+											</div>
 											<div className="text-xs text-muted-foreground">
-												Where business cards go to evolve
+												{dict?.home?.hero?.contactPopup?.businessCardsEvolve ||
+													'Where business cards go to evolve'}
 											</div>
 										</div>
 									</div>
@@ -301,7 +309,8 @@ export default function Hero({ dict }) {
 									>
 										⚡
 									</motion.span>{' '}
-									Response time: Usually faster than a pizza delivery{' '}
+									{dict?.home?.hero?.contactPopup?.responseTime ||
+										'Response time: Usually faster than a pizza delivery'}{' '}
 									<motion.span
 										animate={{ opacity: [1, 0.5, 1] }}
 										transition={{ repeat: Infinity, duration: 2, delay: 1 }}

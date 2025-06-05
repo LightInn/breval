@@ -1,71 +1,319 @@
 {
-	"navigation": {
-		"home": "ACCUEIL",
-		"projects": "PROJETS",
-		"blog": "BLOG",
-		"art": "ART"
-	},
-
-	"home": {
-		"hero": {
-			"hello": "Bonjour, je suis",
-			"title": "Développeur Créatif & Artisan Numérique",
-			"subtitle": "Créer des expériences digitales",
-			"description": "CTO de ForMenu, Co-fondateur de plusieurs startups, et passionné par l'exploration des possibilités infinies de la technologie et du développement créatif.",
-			"ctaWork": "Mon travail",
-			"ctaContact": "Contactez-moi"
-		},
-		"about": {
-			"greeting": "Bonjour, je m'appelle",
-			"name": "Bréval Le Floch",
-			"description1": "Je suis un étudiant en alternance vivant à Nantes. Depuis mon plus jeune âge, je suis très fasciné par les possibilités infinies des ordinateurs et des nouvelles technologies.",
-			"description2": "Alors que je continue d'apprendre et d'explorer cet univers en constante évolution, je suis motivé par ma passion de découvrir de nouveaux mondes et leurs nouvelles règles. Actuellement concentré sur le développement front-end tout en maintenant un intérêt profond pour tous les aspects de l'informatique.",
-			"roles": {
-				"ctoForvoyez": "CTO de la start-up",
-				"forvoyezDesc": "plateforme de génération de méta-descriptions d'images",
-				"coFounderMakeup": "Co-fondateur de",
-				"makeupDesc": "une plateforme pour référencer les maquilleuses professionnelles",
-				"ctoFormenu": "CTO de la start-up",
-				"formenuDesc": "un site de carte numérique pour les restaurants",
-				"coFounderForHives": "Co-fondateur de",
-				"forHivesDesc": "une plateforme de mise en relation pour les freelances et les entreprises"
-			},
-
-			"downloadResume": "CV"
-		},
-		"projects": {
-			"name": "Projets",
-			"title": "Mes meilleures",
-			"description": "Une vitrine de mon travail créatif et de mes projets techniques. Chaque projet représente un défi unique et une expérience d'apprentissage.",
-			"viewProject": "Voir Mon Travail",
-			"seeMore": "Voir Plus",
-			"viewDemo": "Voir la Démo",
-			"viewCode": "Voir le Code"
-		},
-		"journey": {
-			"title": "Mon Parcours",
-			"description": "De la passion du gaming à la maîtrise du full-stack - une histoire visuelle de curiosité, de création et d'apprentissage continu",
-			"controls": "Cliquez sur les nœuds pour explorer chaque étape • Utilisez les touches fléchées ou les boutons de navigation pour parcourir • Cliquez à l'extérieur pour fermer",
-			"controlsMobile": "Appuyez sur les nœuds pour explorer chaque étape",
-			"today": "Aujourd'hui, je continue de coder avec passion, toujours à la recherche de nouvelles possibilités"
-		}
-	},
-
-	"projects": {
-		"name": "Projets",
-		"title": "Galerie de",
-		"description": "Une vitrine de mon travail créatif et de mes projets techniques. Chaque projet représente un défi unique et une expérience d'apprentissage dans mon parcours de développeur.",
-		"viewProject": "Voir Mon Travail",
-		"seeMore": "Voir Plus",
-		"viewDemo": "Voir la Démo",
-		"viewCode": "Voir le Code"
-	},
-	"common": {
-		"loading": "Expérience de Chargement",
-		"error": "Erreur",
-		"readMore": "Lire Plus",
-		"back": "Retour",
-		"scrollToExplore": "Faites défiler pour explorer",
-		"preparingCanvas": "Préparation de la toile numérique..."
-	}
+  "navigation": {
+    "home": "HOME",
+    "projects": "PROJECTS",
+    "blog": "BLOG",
+    "art": "ART",
+    "themeLockTooltip": "🚫 Nice try! But we're stuck in the void until further notice.",
+    "ariaCloseMenu": "Close navigation menu",
+    "ariaOpenMenu": "Open navigation menu",
+    "ariaThemeToggle": "Toggle theme (currently disabled - light mode too dangerous!)",
+    "themeLockedMobile": "Theme locked in darkness 🌙",
+    "ariaThemeToggleDisabledMobile": "Theme toggle disabled - light mode too dangerous!"
+  },
+  "home": {
+    "hero": {
+      "hello": "Hello, I am",
+      "title": "Creative Developer & Digital Artisan",
+      "subtitle": "Creating digital experiences",
+      "description": "CTO of ForMenu, Co-founder of several startups, and passionate about exploring the infinite possibilities of technology and creative development.",
+      "ctaWork": "My Work",
+      "ctaContact": "Contact Me",
+      "contactPopup": {
+        "contactProtocolsActivated": "Contact Protocols Activated!",
+        "beepBoop": "*Beep boop* Initializing human communication channels...",
+        "warningRealm": "Warning: You're about to enter the mysterious realm of professional networking! Choose your communication weapon wisely...",
+        "electronicMail": "Electronic Mail",
+        "classicApproach": "The classic approach - 99.9% delivery rate*",
+        "linkedInPortal": "LinkedIn Portal",
+        "businessCardsEvolve": "Where business cards go to evolve",
+        "responseTime": "Response time: Usually faster than a pizza delivery"
+      }
+    },
+    "about": {
+      "greeting": "Hello, my name is",
+      "name": "Bréval Le Floch",
+      "description1": "I am a work-study student living in Nantes. From a young age, I have been very fascinated by the infinite possibilities of computers and new technologies.",
+      "description2": "As I continue to learn and explore this ever-evolving universe, I am motivated by my passion for discovering new worlds and their new rules. Currently focused on front-end development while maintaining a deep interest in all aspects of computer science.",
+      "roles": {
+        "ctoForvoyez": "CTO of the startup",
+        "forvoyezDesc": "image meta-description generation platform",
+        "coFounderMakeup": "Co-founder of",
+        "makeupDesc": "a platform to list professional makeup artists",
+        "ctoFormenu": "CTO of the startup",
+        "formenuDesc": "a digital map website for restaurants",
+        "coFounderForHives": "Co-founder of",
+        "forHivesDesc": "a networking platform for freelancers and businesses"
+      },
+      "downloadResume": "Resume",
+      "githubButton": "GitHub",
+      "linkedinButton": "LinkedIn",
+      "creativeDeveloperImage": "Creative Developer"
+    },
+    "projects": {
+      "name": "Projects",
+      "title": "My Best",
+      "description": "A showcase of my creative work and technical projects. Each project represents a unique challenge and a learning experience.",
+      "viewProject": "View My Work",
+      "seeMore": "See More",
+      "viewDemo": "View Demo",
+      "viewCode": "View Code",
+      "featuredBadge": "Featured",
+      "defaultTagWebDev": "Web Development",
+      "descriptionNotAvailable": "Description not available.",
+      "untitledProject": "Untitled project",
+      "noProjectsAvailable": "No projects available at the moment."
+    },
+    "journey": {
+      "title": "My Journey",
+      "description": "From the passion of gaming to full-stack mastery - a visual story of curiosity, creation, and continuous learning",
+      "controls": "Click on the nodes to explore each step • Use arrow keys or navigation buttons to browse • Click outside to close",
+      "controlsMobile": "Tap on the nodes to explore each step",
+      "today": "Today, I continue to code with passion, always looking for new possibilities",
+      "nodes": {
+        "gaming": {
+          "title": "Digital Fascination",
+          "description": "Passion for gaming and digital universes sparked the desire to create my own worlds",
+          "detailedDescription": "My journey into technology began with an insatiable curiosity about digital worlds. Gaming wasn't just entertainment—it was a window into infinite possibilities. I spent countless hours exploring virtual universes, marveling at their complexity and dreaming of creating my own digital realms.",
+          "period": "Collège",
+          "achievements": {
+            "0": "Discovered passion for digital creation",
+            "1": "Developed problem-solving mindset",
+            "2": "Built foundation for technical thinking"
+          },
+          "technologies": {
+            "0": "Gaming Platforms",
+            "1": "Digital Exploration",
+            "2": "Creative Thinking"
+          }
+        },
+        "blender": {
+          "title": "3D Discovery",
+          "description": "First steps into 3D modeling with Blender and Python coding in BGE",
+          "detailedDescription": "At 13, I discovered Blender and fell in love with 3D modeling. This wasn't just about creating pretty pictures—it was about bringing imagination to life. I dove deep into the Blender Game Engine, learning Python to create interactive experiences. This was my first real taste of programming, and it was intoxicating.",
+          "period": "Age 13",
+          "achievements": {
+            "0": "Mastered 3D modeling fundamentals",
+            "1": "First Python programming experience",
+            "2": "Created interactive 3D scenes"
+          },
+          "technologies": {
+            "0": "Blender",
+            "1": "Python",
+            "2": "3D Modeling",
+            "3": "Game Development"
+          }
+        },
+        "opensource": {
+          "title": "Open Source Explorer",
+          "description": "Linux distributions, dual boot, and building PCs with friends",
+          "detailedDescription": "Together with a friend, we tumbled down the rabbit hole of open-source software. We experimented with different Linux distributions, set up dual-boot systems, and breathed new life into old computers. We even started a computer club at school, teaching others about the power of open-source technology.",
+          "period": "Collège",
+          "achievements": {
+            "0": "Mastered Linux systems",
+            "1": "Built computer club at school",
+            "2": "Refurbished old computers",
+            "3": "Introduced peers to open-source"
+          },
+          "technologies": {
+            "0": "Linux",
+            "1": "Ubuntu",
+            "2": "Debian",
+            "3": "Hardware Assembly",
+            "4": "System Administration"
+          }
+        },
+        "security": {
+          "title": "Network Hacker",
+          "description": "Exploring network security, TCP/UDP, and gaining admin access",
+          "detailedDescription": "Our curiosity led us to explore network security. We attempted to hack the school's network so often that we eventually gained administrator passwords! This wasn't malicious—it was pure curiosity about how networks function. We learned about TCP/UDP protocols, packet transmission, and network addressing through hands-on experimentation.",
+          "period": "Collège",
+          "achievements": {
+            "0": "Gained admin access to school network",
+            "1": "Understood network protocols deeply",
+            "2": "Learned ethical hacking principles"
+          },
+          "technologies": {
+            "0": "Network Security",
+            "1": "TCP/UDP",
+            "2": "Packet Analysis",
+            "3": "Network Administration",
+            "4": "Ethical Hacking"
+          }
+        },
+        "robot": {
+          "title": "Robot Builder",
+          "description": "Built a remote-controlled robot from scratch - components, soldering, coding",
+          "detailedDescription": "For my final college project, I decided to build a remote-controlled robot completely from scratch. I wanted to do everything myself: buy components, solder circuits, design the mechanics, and write the control software. This project taught me the beauty of bringing digital code into the physical world.",
+          "period": "End of Collège",
+          "achievements": {
+            "0": "Built complete robot from scratch",
+            "1": "Mastered soldering and electronics",
+            "2": "Integrated hardware and software",
+            "3": "Completed ambitious solo project"
+          },
+          "technologies": {
+            "0": "Electronics",
+            "1": "Soldering",
+            "2": "Microcontrollers",
+            "3": "Robotics",
+            "4": "Hardware Programming"
+          }
+        },
+        "ai": {
+          "title": "Neural Network Pioneer",
+          "description": "Fascination with brain function led to creating neural networks from scratch",
+          "detailedDescription": "I became fascinated with understanding how the human brain works and naturally gravitated toward neural networks. I attempted to recreate neural networks from scratch—admittedly quite crude, but I didn't care! I was captivated by the idea of creating 3D neural structures, moving beyond traditional 2D layer architectures to mimic real brain structures.",
+          "period": "Lycée",
+          "achievements": {
+            "0": "Built neural networks from scratch",
+            "1": "Explored 3D neural architectures",
+            "2": "Bridged neuroscience and computing",
+            "3": "Pioneered creative AI approaches"
+          },
+          "technologies": {
+            "0": "Neural Networks",
+            "1": "Machine Learning",
+            "2": "Python",
+            "3": "Mathematical Modeling",
+            "4": "Neuroscience"
+          }
+        },
+        "social": {
+          "title": "Social App Developer",
+          "description": "Attempted to build a social network app while learning databases",
+          "detailedDescription": "I decided to tackle building a social network application, even though I had no idea how to use databases at the time! This ambitious project pushed me to learn about data persistence, user management, and application architecture. While the app never launched, the learning experience was invaluable.",
+          "period": "Lycée",
+          "achievements": {
+            "0": "Designed social network architecture",
+            "1": "Self-taught database concepts",
+            "2": "Built user authentication system",
+            "3": "Learned full-stack development"
+          },
+          "technologies": {
+            "0": "Web Development",
+            "1": "Database Design",
+            "2": "User Authentication",
+            "3": "Application Architecture",
+            "4": "Frontend/Backend"
+          }
+        },
+        "school": {
+          "title": "Computer Science Mastery",
+          "description": "Mastered databases, Docker, Kubernetes, and infrastructure security",
+          "detailedDescription": "I arrived at computer science school with a burning desire to learn and master as many concepts as possible. I quickly filled my knowledge gaps in databases, particularly PostgreSQL, and dove deep into modern development practices. I mastered Docker, Kubernetes, automated deployments, and infrastructure security.",
+          "period": "École d'Informatique",
+          "achievements": {
+            "0": "Mastered PostgreSQL and database design",
+            "1": "Became expert in containerization",
+            "2": "Learned infrastructure automation",
+            "3": "Specialized in security practices"
+          },
+          "technologies": {
+            "0": "PostgreSQL",
+            "1": "Docker",
+            "2": "Kubernetes",
+            "3": "DevOps",
+            "4": "Infrastructure Security",
+            "5": "CI/CD"
+          }
+        },
+        "startups": {
+          "title": "Serial Entrepreneur",
+          "description": "ForMenu, My-Makeup, Forvoyez - multiple SaaS projects with friends",
+          "detailedDescription": "With my newfound knowledge, I launched into entrepreneurship with friends. We created a tutoring platform for evening student help, then ForMenu.fr for dematerialized restaurant menus, followed by My-Makeup.fr connecting professional makeup artists, and Forvoyez.com for automated meta-description generation. Each project taught us new technologies and business lessons.",
+          "period": "Recent Years",
+          "achievements": {
+            "0": "Launched multiple successful SaaS products",
+            "1": "Built tutoring platform for students",
+            "2": "Created restaurant digitization solution",
+            "3": "Developed AI-powered content tools"
+          },
+          "technologies": {
+            "0": "SaaS Development",
+            "1": "Business Development",
+            "2": "Product Management",
+            "3": "AI Integration",
+            "4": "Full-Stack Development"
+          }
+        },
+        "current": {
+          "title": "Front-Ops Specialist",
+          "description": "Specialized in frontend technologies and infrastructure management",
+          "detailedDescription": "Today, I specialize in front-ops—the intersection of frontend technologies and infrastructure management. I love switching between different competencies, from crafting beautiful user interfaces to managing complex deployment pipelines. When I'm not coding on exciting projects, you'll find me playing indie games or exploring the latest technologies.",
+          "period": "Today",
+          "achievements": {
+            "0": "Mastered front-ops specialization",
+            "1": "Expert in multiple technology stacks",
+            "2": "Continuous learning mindset",
+            "3": "Balanced technical and creative skills"
+          },
+          "technologies": {
+            "0": "Frontend Development",
+            "1": "Infrastructure Management",
+            "2": "DevOps",
+            "3": "Modern JavaScript",
+            "4": "Cloud Platforms",
+            "5": "Automation"
+          }
+        }
+      },
+      "ui": {
+        "ariaTimeline": "My Journey - Professional Development Timeline",
+        "ariaInteractiveTimeline": "Interactive journey timeline showing professional development milestones",
+        "ariaNodeDescriptionStructure": "{title} - {period}: {description}",
+        "closeModal": "Close modal",
+        "clickOutsideToClose": "Click outside to close",
+        "modalTheStory": "The Story",
+        "modalKeyAchievements": "Key Achievements",
+        "modalTechnologiesSkills": "Technologies & Skills",
+        "modalJourneyProgress": "Journey Progress",
+        "modalMilestone": "Milestone {current}",
+        "modalTotal": "{total} Total",
+        "modalQuote": "Every challenge was a stepping stone to the next adventure in technology.",
+        "modalPreviousMilestone": "Previous milestone",
+        "modalPreviousButton": "Previous",
+        "modalProgressText": "{current} of {total}",
+        "modalNextMilestone": "Next milestone",
+        "modalNextButton": "Next"
+      }
+    }
+  },
+  "projects": {
+    "name": "Projects",
+    "title": "Gallery of",
+    "description": "A showcase of my creative work and technical projects. Each project represents a unique challenge and a learning experience in my developer journey.",
+    "viewProject": "View My Work",
+    "seeMore": "See More",
+    "viewDemo": "View Demo",
+    "viewCode": "View Code"
+  },
+  "common": {
+    "loading": "Loading Experience",
+    "error": "Error",
+    "readMore": "Read More",
+    "back": "Back",
+    "scrollToExplore": "Scroll to Explore",
+    "preparingCanvas": "Preparing digital canvas..."
+  },
+  "footer": {
+    "subtitle": "Creative Developer & Digital Craftsman",
+    "srGithub": "GitHub",
+    "srLinkedIn": "LinkedIn",
+    "srTwitter": "Twitter",
+    "srEmail": "Email",
+    "copyright": "&copy; {currentYear} Bréval Le Floch. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "notFound": {
+    "touchTreeInitial": "🌸 Touch the sakura tree to reveal your path...",
+    "touchTreeSecond": "🌸 The petals are stirring... touch once more...",
+    "fourOhFour": "404",
+    "title": "You've wandered off the path",
+    "description": "Like petals carried by the wind, the page you seek has drifted beyond reach. But every ending is a new beginning in the garden of possibilities.",
+    "missingStep": "missing",
+    "returnToPathButton": "Return to the Path",
+    "gardenEntranceButton": "Garden Entrance"
+  }
 }
