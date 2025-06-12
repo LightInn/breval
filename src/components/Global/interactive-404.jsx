@@ -3,11 +3,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowLeft, Home } from 'lucide-react'
 
+import { getDictionary } from '@/lib/get-dictionary' // These would be used in a parent server component
+import { getLocale } from '@/lib/get-locale' // These would be used in a parent server component
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 
-export default function Interactive404() {
+// Note: This component is marked 'use client', so it cannot directly fetch server-side data.
+// It will expect 'dict' to be passed as a prop from a parent server component.
+export default function Interactive404({ dict }) {
+	const notFoundDict = dict?.notFound || {}
 	const [particles, setParticles] = useState([])
 	const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 	const [treeShaken, setTreeShaken] = useState(false)
@@ -278,8 +283,10 @@ export default function Interactive404() {
 						{!messageRevealed && (
 							<p className="mt-4 animate-pulse text-sm text-pink-300">
 								{interactionCount === 0
-									? '🌸 Touch the sakura tree to reveal your path...'
-									: '🌸 The petals are stirring... touch once more...'}
+									? notFoundDict.touchTreeInitial ||
+										'🌸 Touch the sakura tree to reveal your path...'
+									: notFoundDict.touchTreeSecond ||
+										'🌸 The petals are stirring... touch once more...'}
 							</p>
 						)}
 					</div>
@@ -290,7 +297,7 @@ export default function Interactive404() {
 					>
 						<div className="relative">
 							<h1 className="mb-4 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 bg-clip-text text-8xl font-bold leading-none text-transparent md:text-9xl">
-								404
+								{notFoundDict.fourOhFour || '404'}
 							</h1>
 							<div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-4 transform">
 								<div className="h-1 w-16 bg-gradient-to-r from-transparent via-pink-400 to-transparent opacity-60"></div>
@@ -298,13 +305,12 @@ export default function Interactive404() {
 						</div>
 
 						<h2 className="mb-4 text-2xl font-semibold text-white md:text-3xl">
-							You've wandered off the path
+							{notFoundDict.title || "You've wandered off the path"}
 						</h2>
 
 						<p className="mx-auto mb-8 max-w-md leading-relaxed text-gray-400">
-							Like petals carried by the wind, the page you seek has drifted
-							beyond reach. But every ending is a new beginning in the garden of
-							possibilities.
+							{notFoundDict.description ||
+								'Like petals carried by the wind, the page you seek has drifted beyond reach. But every ending is a new beginning in the garden of possibilities.'}
 						</p>
 
 						{/* Mystical path visualization */}
@@ -353,7 +359,7 @@ export default function Interactive404() {
 									x="150"
 									y="50"
 								>
-									missing
+									{notFoundDict.missingStep || 'missing'}
 								</text>
 							</svg>
 						</div>
@@ -365,7 +371,7 @@ export default function Interactive404() {
 								onClick={handleGoBack}
 							>
 								<ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-								Return to the Path
+								{notFoundDict.returnToPathButton || 'Return to the Path'}
 							</Button>
 
 							<Button
@@ -375,7 +381,7 @@ export default function Interactive404() {
 							>
 								<Link href="/">
 									<Home className="mr-2 h-4 w-4" />
-									Garden Entrance
+									{notFoundDict.gardenEntranceButton || 'Garden Entrance'}
 								</Link>
 							</Button>
 						</div>

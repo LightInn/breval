@@ -19,7 +19,7 @@ import {
 	X,
 	Zap,
 } from 'lucide-react'
-import React, { useEffect, useRef, useState } from 'react' // Combined and changed from 'import type React'
+import React, { useEffect, useMemo, useRef, useState } from 'react' // Combined and changed from 'import type React'
 
 import {
 	AnimatePresence,
@@ -309,6 +309,65 @@ export default function MyJourneySection({ dict }) {
 	const ref = useRef(null)
 	const isInView = useInView(ref, { amount: 0.1, once: true })
 
+	// Translate journeyNodes
+	const translatedJourneyNodes = useMemo(() => {
+		// Default journeyNodes structure with original text as ultimate fallbacks
+		const defaultNodes = journeyNodes.map(node => ({ ...node }))
+
+		if (!dict?.home?.journey?.nodes) {
+			return defaultNodes
+		}
+
+		return journeyNodes.map(node => {
+			const nodeId = node.id
+			const nodeTranslations = dict.home.journey.nodes[nodeId] || {}
+
+			const originalAchievements = node.achievements || []
+			const originalTechnologies = node.technologies || []
+
+			let translatedAchievements = originalAchievements
+			if (nodeTranslations.achievements) {
+				if (
+					Array.isArray(nodeTranslations.achievements) &&
+					nodeTranslations.achievements.length > 0
+				) {
+					translatedAchievements = nodeTranslations.achievements
+				} else if (
+					typeof nodeTranslations.achievements === 'object' &&
+					Object.keys(nodeTranslations.achievements).length > 0
+				) {
+					translatedAchievements = Object.values(nodeTranslations.achievements)
+				}
+			}
+
+			let translatedTechnologies = originalTechnologies
+			if (nodeTranslations.technologies) {
+				if (
+					Array.isArray(nodeTranslations.technologies) &&
+					nodeTranslations.technologies.length > 0
+				) {
+					translatedTechnologies = nodeTranslations.technologies
+				} else if (
+					typeof nodeTranslations.technologies === 'object' &&
+					Object.keys(nodeTranslations.technologies).length > 0
+				) {
+					translatedTechnologies = Object.values(nodeTranslations.technologies)
+				}
+			}
+
+			return {
+				...node,
+				detailedDescription:
+					nodeTranslations.detailedDescription || node.detailedDescription,
+				description: nodeTranslations.description || node.description,
+				period: nodeTranslations.period || node.period,
+				title: nodeTranslations.title || node.title,
+				achievements: translatedAchievements,
+				technologies: translatedTechnologies,
+			}
+		})
+	}, [dict])
+
 	const [activeNode, setActiveNode] = useState(null) // Removed <string | null>
 	const [isMobile, setIsMobile] = useState(false) // Removed <boolean>
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 }) //
@@ -378,7 +437,7 @@ export default function MyJourneySection({ dict }) {
 	}
 
 	const getCurrentNodeIndex = () => {
-		return journeyNodes.findIndex(node => node.id === activeNode)
+		return translatedJourneyNodes.findIndex(node => node.id === activeNode)
 	}
 
 	const navigateToNode = direction => {
@@ -388,12 +447,18 @@ export default function MyJourneySection({ dict }) {
 
 		let newIndex
 		if (direction === 'prev') {
-			newIndex = currentIndex === 0 ? journeyNodes.length - 1 : currentIndex - 1
+			newIndex =
+				currentIndex === 0
+					? translatedJourneyNodes.length - 1
+					: currentIndex - 1
 		} else {
-			newIndex = currentIndex === journeyNodes.length - 1 ? 0 : currentIndex + 1
+			newIndex =
+				currentIndex === translatedJourneyNodes.length - 1
+					? 0
+					: currentIndex + 1
 		}
 
-		setActiveNode(journeyNodes[newIndex].id)
+		setActiveNode(translatedJourneyNodes[newIndex].id)
 	}
 
 	const handleKeyDown = (e, nodeId) => {
@@ -423,10 +488,12 @@ export default function MyJourneySection({ dict }) {
 	}, [activeNode])
 
 	const renderConnections = () => {
+		// Connections are based on original node IDs and positions, so use original journeyNodes for this mapping part
 		return journeyNodes.flatMap(node =>
 			node.connections.map(connectionId => {
-				const targetNode = journeyNodes.find(n => n.id === connectionId)
-				if (!targetNode) return null
+				const sourceNode = journeyNodes.find(n => n.id === node.id) // Use original for positions
+				const targetNode = journeyNodes.find(n => n.id === connectionId) // Use original for positions
+				if (!sourceNode || !targetNode) return null
 
 				return (
 					<motion.line
@@ -436,7 +503,7 @@ export default function MyJourneySection({ dict }) {
 						}}
 						className="drop-shadow-lg"
 						initial={{ pathLength: 0, opacity: 0 }}
-						key={`${node.id}-${connectionId}`}
+						key={`${sourceNode.id}-${connectionId}`}
 						stroke="url(#connectionGradient)"
 						strokeDasharray="5,5"
 						strokeWidth="2"
@@ -444,9 +511,9 @@ export default function MyJourneySection({ dict }) {
 							duration: shouldReduceMotion ? 0 : 2,
 							delay: shouldReduceMotion ? 0 : 1,
 						}}
-						x1={`${node.position.x}%`}
+						x1={`${sourceNode.position.x}%`}
 						x2={`${targetNode.position.x}%`}
-						y1={`${node.position.y}%`}
+						y1={`${sourceNode.position.y}%`}
 						y2={`${targetNode.position.y}%`}
 					/>
 				)
@@ -454,11 +521,16 @@ export default function MyJourneySection({ dict }) {
 		)
 	}
 
-	const activeNodeData = journeyNodes.find(node => node.id === activeNode)
+	const activeNodeData = translatedJourneyNodes.find(
+		node => node.id === activeNode
+	)
 
 	return (
 		<section
-			aria-label="My Journey - Professional Development Timeline"
+			aria-label={
+				dict?.home?.journey?.ui?.ariaTimeline ||
+				'My Journey - Professional Development Timeline'
+			}
 			className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-black"
 			ref={ref}
 		>
@@ -529,7 +601,10 @@ export default function MyJourneySection({ dict }) {
 
 				{/* Journey Map */}
 				<div
-					aria-label="Interactive journey timeline showing professional development milestones"
+					aria-label={
+						dict?.home?.journey?.ui?.ariaInteractiveTimeline ||
+						'Interactive journey timeline showing professional development milestones'
+					}
 					className="relative mx-auto h-[600px] w-full md:h-[800px]"
 					ref={containerRef}
 					role="img"
@@ -552,13 +627,19 @@ export default function MyJourneySection({ dict }) {
 					</svg>
 
 					{/* Journey Nodes */}
-					{journeyNodes.map((node, index) => (
+					{translatedJourneyNodes.map((node, index) => (
 						<motion.div
 							animate={{
 								opacity: isInView ? 1 : 0,
 								scale: isInView ? 1 : 0,
 							}}
-							aria-label={`${node.title} - ${node.period}: ${node.description}`}
+							aria-label={
+								dict?.home?.journey?.ui?.ariaNodeDescriptionStructure
+									?.replace('{title}', node.title)
+									?.replace('{period}', node.period)
+									?.replace('{description}', node.description) ||
+								`${node.title} - ${node.period}: ${node.description}`
+							}
 							className="group absolute cursor-pointer touch-manipulation"
 							initial={{ opacity: 0, scale: 0 }}
 							key={node.id}
@@ -623,9 +704,11 @@ export default function MyJourneySection({ dict }) {
 				>
 					<p className="text-sm text-gray-400">
 						{isMobile
-							? dict?.home?.journey?.controlsMobile ||
+							? dict?.home?.journey?.ui?.controlsMobile ||
+								dict?.home?.journey?.controlsMobile ||
 								'Tap on the nodes to explore each milestone in detail'
-							: dict?.home?.journey?.controls ||
+							: dict?.home?.journey?.ui?.controls ||
+								dict?.home?.journey?.controls ||
 								'Click on the nodes to explore each milestone • Use arrow keys or navigation buttons to browse • Click outside to close'}
 					</p>
 				</motion.div>
@@ -711,13 +794,16 @@ export default function MyJourneySection({ dict }) {
 										</div>
 									</div>
 									<button
-										aria-label="Close modal"
+										aria-label={
+											dict?.home?.journey?.ui?.closeModal || 'Close modal'
+										}
 										className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-background/80 text-gray-400 backdrop-blur-sm transition-all duration-200 hover:bg-background hover:text-white"
 										onClick={closeModal}
 									>
 										<X className="h-6 w-6" />
 										<span className="absolute -bottom-8 left-1/2 -translate-x-1/2 transform whitespace-nowrap text-xs text-gray-400 opacity-0 transition-opacity group-hover:opacity-100">
-											Click outside to close
+											{dict?.home?.journey?.ui?.clickOutsideToClose ||
+												'Click outside to close'}
 										</span>
 									</button>
 								</motion.div>
@@ -747,7 +833,8 @@ export default function MyJourneySection({ dict }) {
 											<div>
 												<h2 className="mb-4 flex items-center gap-2 text-xl font-bold text-white md:text-2xl">
 													<MapPin className="h-5 w-5 text-purple-400" />
-													The Story
+													{dict?.home?.journey?.ui?.modalTheStory ||
+														'The Story'}
 												</h2>
 												<div className="rounded-xl border border-purple-500/20 bg-background/40 p-6 backdrop-blur-sm">
 													<p className="text-base leading-relaxed text-gray-100 md:text-lg">
@@ -760,26 +847,28 @@ export default function MyJourneySection({ dict }) {
 											<div>
 												<h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-white md:text-xl">
 													<Zap className="h-5 w-5 text-yellow-400" />
-													Key Achievements
+													{dict?.home?.journey?.ui?.modalKeyAchievements ||
+														'Key Achievements'}
 												</h3>
 												<div className="rounded-xl border border-purple-500/20 bg-slate-800/40 p-6 backdrop-blur-sm">
 													<ul className="space-y-3">
-														{activeNodeData.achievements.map(
-															(achievement, index) => (
-																<motion.li
-																	animate={{ opacity: 1, x: 0 }}
-																	className="flex items-start gap-3 text-gray-100"
-																	initial={{ opacity: 0, x: -20 }}
-																	key={index}
-																	transition={{ delay: 0.3 + index * 0.1 }}
-																>
-																	<div className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-gradient-to-r from-pink-400 to-purple-400" />
-																	<span className="text-sm md:text-base">
-																		{achievement}
-																	</span>
-																</motion.li>
-															)
-														)}
+														{Array.isArray(activeNodeData.achievements) &&
+															activeNodeData.achievements.map(
+																(achievement, index) => (
+																	<motion.li
+																		animate={{ opacity: 1, x: 0 }}
+																		className="flex items-start gap-3 text-gray-100"
+																		initial={{ opacity: 0, x: -20 }}
+																		key={index}
+																		transition={{ delay: 0.3 + index * 0.1 }}
+																	>
+																		<div className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-gradient-to-r from-pink-400 to-purple-400" />
+																		<span className="text-sm md:text-base">
+																			{achievement}
+																		</span>
+																	</motion.li>
+																)
+															)}
 													</ul>
 												</div>
 											</div>
@@ -791,39 +880,52 @@ export default function MyJourneySection({ dict }) {
 											<div>
 												<h3 className="mb-6 flex items-center gap-2 text-lg font-bold text-white md:text-xl">
 													<Code className="h-5 w-5 text-cyan-400" />
-													Technologies & Skills
+													{dict?.home?.journey?.ui?.modalTechnologiesSkills ||
+														'Technologies & Skills'}
 												</h3>
 												<div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-													{activeNodeData.technologies.map((tech, index) => (
-														<motion.div
-															animate={{ opacity: 1, scale: 1 }}
-															className="rounded-lg border border-purple-500/20 bg-background/60 px-4 py-3 text-center backdrop-blur-sm transition-colors hover:bg-background/60"
-															initial={{ scale: 0.8, opacity: 0 }}
-															key={index}
-															transition={{ delay: 0.4 + index * 0.05 }}
-															whileHover={{ scale: 1.05 }}
-														>
-															<span className="text-sm font-medium text-gray-100 md:text-base">
-																{tech}
-															</span>
-														</motion.div>
-													))}
+													{Array.isArray(activeNodeData.technologies) &&
+														activeNodeData.technologies.map((tech, index) => (
+															<motion.div
+																animate={{ opacity: 1, scale: 1 }}
+																className="rounded-lg border border-purple-500/20 bg-background/60 px-4 py-3 text-center backdrop-blur-sm transition-colors hover:bg-background/60"
+																initial={{ scale: 0.8, opacity: 0 }}
+																key={index}
+																transition={{ delay: 0.4 + index * 0.05 }}
+																whileHover={{ scale: 1.05 }}
+															>
+																<span className="text-sm font-medium text-gray-100 md:text-base">
+																	{tech}
+																</span>
+															</motion.div>
+														))}
 												</div>
 											</div>
 
 											{/* Progress Indicator */}
 											<div className="rounded-xl border border-purple-500/20 bg-background/40 p-6 backdrop-blur-sm">
 												<h4 className="mb-4 font-semibold text-white">
-													Journey Progress
+													{dict?.home?.journey?.ui?.modalJourneyProgress ||
+														'Journey Progress'}
 												</h4>
 												<div className="mb-2 flex items-center justify-between text-sm text-gray-300">
-													<span>Milestone {getCurrentNodeIndex() + 1}</span>
-													<span>{journeyNodes.length} Total</span>
+													<span>
+														{dict?.home?.journey?.ui?.modalMilestone?.replace(
+															'{current}',
+															getCurrentNodeIndex() + 1
+														) || `Milestone ${getCurrentNodeIndex() + 1}`}
+													</span>
+													<span>
+														{dict?.home?.journey?.ui?.modalTotal?.replace(
+															'{total}',
+															translatedJourneyNodes.length
+														) || `${translatedJourneyNodes.length} Total`}
+													</span>
 												</div>
 												<div className="h-2 w-full rounded-full bg-slate-700">
 													<motion.div
 														animate={{
-															width: `${((getCurrentNodeIndex() + 1) / journeyNodes.length) * 100}%`,
+															width: `${((getCurrentNodeIndex() + 1) / translatedJourneyNodes.length) * 100}%`,
 														}}
 														className={`h-2 rounded-full bg-gradient-to-r ${activeNodeData.color}`}
 														initial={{ width: 0 }}
@@ -842,9 +944,8 @@ export default function MyJourneySection({ dict }) {
 												<div className="text-center">
 													<Sparkles className="mx-auto mb-3 h-8 w-8 text-purple-400" />
 													<p className="text-sm italic text-gray-100 md:text-base">
-														{
-															'Every challenge was a stepping stone to the next adventure in technology.'
-														}
+														{dict?.home?.journey?.ui?.modalQuote ||
+															'Every challenge was a stepping stone to the next adventure in technology.'}
 													</p>
 												</div>
 											</motion.div>
@@ -861,20 +962,29 @@ export default function MyJourneySection({ dict }) {
 								>
 									<div className="flex items-center justify-between">
 										<button
-											aria-label="Previous milestone"
+											aria-label={
+												dict?.home?.journey?.ui?.modalPreviousMilestone ||
+												'Previous milestone'
+											}
 											className="hover:background flex items-center gap-3 rounded-xl bg-background/80 px-6 py-3 text-gray-300 backdrop-blur-sm transition-all duration-200 hover:text-white"
 											onClick={() => navigateToNode('prev')}
 										>
 											<ChevronLeft className="h-5 w-5" />
-											<span className="hidden sm:inline">Previous</span>
+											<span className="hidden sm:inline">
+												{dict?.home?.journey?.ui?.modalPreviousButton ||
+													'Previous'}
+											</span>
 										</button>
 
 										<div className="text-center">
 											<p className="mb-1 text-sm text-gray-400">
-												{getCurrentNodeIndex() + 1} of {journeyNodes.length}
+												{dict?.home?.journey?.ui?.modalProgressText
+													?.replace('{current}', getCurrentNodeIndex() + 1)
+													?.replace('{total}', translatedJourneyNodes.length) ||
+													`${getCurrentNodeIndex() + 1} of ${translatedJourneyNodes.length}`}
 											</p>
 											<div className="flex gap-2">
-												{journeyNodes.map((_, index) => (
+												{translatedJourneyNodes.map((_, index) => (
 													<div
 														className={`h-2 w-2 rounded-full transition-all duration-200 ${
 															index === getCurrentNodeIndex()
@@ -888,11 +998,16 @@ export default function MyJourneySection({ dict }) {
 										</div>
 
 										<button
-											aria-label="Next milestone"
+											aria-label={
+												dict?.home?.journey?.ui?.modalNextMilestone ||
+												'Next milestone'
+											}
 											className="flex items-center gap-3 rounded-xl bg-background/80 px-6 py-3 text-gray-300 backdrop-blur-sm transition-all duration-200 hover:bg-background hover:text-white"
 											onClick={() => navigateToNode('next')}
 										>
-											<span className="hidden sm:inline">Next</span>
+											<span className="hidden sm:inline">
+												{dict?.home?.journey?.ui?.modalNextButton || 'Next'}
+											</span>
 											<ChevronRight className="h-5 w-5" />
 										</button>
 									</div>
