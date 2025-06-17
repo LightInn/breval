@@ -13,9 +13,9 @@ export function Playground({
 				className="rounded-lg p-4 text-center shadow-xl"
 				style={{ background: data.lightVibrant }}
 			>
-				<p className="text-lg font-bold text-gray-800">
+				<h1 className="text-lg font-bold text-gray-800">
 					Everything looks oddly colored here, doesn&apos;t it?
-				</p>
+				</h1>
 				<p>Well, that&apos;s because I didn&apos;t choose the colors!</p>
 				<p>
 					The color theme is generated dynamically from the background image ⭐

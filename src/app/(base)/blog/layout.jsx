@@ -11,7 +11,7 @@ export const metadata = {
 		siteName: siteMetadata.title,
 		title: siteMetadata.title,
 		url: siteMetadata.siteUrl,
-		locale: 'fr_FR',
+		locale: 'en_US',
 		type: 'website',
 	},
 	robots: {
