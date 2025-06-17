@@ -81,9 +81,19 @@ export default function BlogClient({ blogs = [] }) {
 		return ['Blog Post']
 	}
 
+	// Sort blogs by date (newest first) before processing
+	const sortedBlogs = useMemo(() => {
+		if (!Array.isArray(blogs)) return []
+
+		return [...blogs].sort((a, b) => {
+			const dateA = new Date(a.publishedAt || a.createdAt || 0)
+			const dateB = new Date(b.publishedAt || b.createdAt || 0)
+			return dateB - dateA // Descending order (newest first)
+		})
+	}, [blogs])
+
 	// Get the first blog as featured, or use fallback
-	const featuredBlogData =
-		Array.isArray(blogs) && blogs.length > 0 ? blogs[0] : null
+	const featuredBlogData = sortedBlogs.length > 0 ? sortedBlogs[0] : null
 
 	const featuredPost = featuredBlogData
 		? {
@@ -113,8 +123,8 @@ export default function BlogClient({ blogs = [] }) {
 
 	// Process remaining blogs data
 	const processedBlogs =
-		Array.isArray(blogs) && blogs.length > 1
-			? blogs.slice(1).map(blog => ({
+		sortedBlogs.length > 1
+			? sortedBlogs.slice(1).map(blog => ({
 					image: blog.image
 						? `${blog.image}`
 						: '/placeholder.svg?height=300&width=500',
@@ -133,20 +143,18 @@ export default function BlogClient({ blogs = [] }) {
 		const allTags = new Set(['All Articles'])
 
 		// Add tags from all blogs
-		if (Array.isArray(blogs)) {
-			blogs.forEach(blog => {
-				const tags = processTags(blog.tags)
-				tags.forEach(tag => {
-					if (tag !== 'Blog Post') {
-						// Check against the new default tag
-						allTags.add(tag)
-					}
-				})
+		sortedBlogs.forEach(blog => {
+			const tags = processTags(blog.tags)
+			tags.forEach(tag => {
+				if (tag !== 'Blog Post') {
+					// Check against the new default tag
+					allTags.add(tag)
+				}
 			})
-		}
+		})
 
 		return Array.from(allTags)
-	}, [blogs])
+	}, [sortedBlogs])
 
 	// Filter blogs based on selected category
 	const filteredBlogs = useMemo(() => {
