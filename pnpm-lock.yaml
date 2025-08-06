@@ -31,7 +31,7 @@ importers:
         version: 12.23.12(@emotion/is-prop-valid@1.2.2)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       geist:
         specifier: 1.4.2
-        version: 1.4.2(next@15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.89.2))
+        version: 1.4.2(next@15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0))
       github-slugger:
         specifier: 2.0.0
         version: 2.0.0
@@ -43,10 +43,10 @@ importers:
         version: 0.532.0(react@19.1.1)
       next:
         specifier: 15.4.5
-        version: 15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.89.2)
+        version: 15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0)
       next-sitemap:
         specifier: 4.2.3
-        version: 4.2.3(next@15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.89.2))
+        version: 4.2.3(next@15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0))
       next-themes:
         specifier: 0.4.6
         version: 0.4.6(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -75,8 +75,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0
       sass:
-        specifier: 1.89.2
-        version: 1.89.2
+        specifier: 1.90.0
+        version: 1.90.0
       sharp:
         specifier: 0.34.3
         version: 0.34.3
@@ -3737,8 +3737,8 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  sass@1.89.2:
-    resolution: {integrity: sha512-xCmtksBKd/jdJ9Bt9p7nPKiuqrlBMBuuGkQlkhZjjQk3Ty48lv93k5Dq6OPkKt4XwxDJ7tvlfrTa1MPA9bf+QA==}
+  sass@1.90.0:
+    resolution: {integrity: sha512-9GUyuksjw70uNpb1MTYWsH9MQHOHY6kwfnkafC24+7aOMZn9+rVMBxRbLvw756mrBFbIsFg6Xw9IkR2Fnn3k+Q==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -6753,9 +6753,9 @@ snapshots:
 
   functions-have-names@1.2.3: {}
 
-  geist@1.4.2(next@15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.89.2)):
+  geist@1.4.2(next@15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0)):
     dependencies:
-      next: 15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.89.2)
+      next: 15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0)
 
   gensync@1.0.0-beta.2: {}
 
@@ -8070,20 +8070,20 @@ snapshots:
 
   natural-orderby@5.0.0: {}
 
-  next-sitemap@4.2.3(next@15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.89.2)):
+  next-sitemap@4.2.3(next@15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0)):
     dependencies:
       '@corex/deepmerge': 4.0.43
       '@next/env': 13.5.11
       fast-glob: 3.3.3
       minimist: 1.2.8
-      next: 15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.89.2)
+      next: 15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0)
 
   next-themes@0.4.6(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
     dependencies:
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
 
-  next@15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.89.2):
+  next@15.4.5(@babel/core@7.27.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0):
     dependencies:
       '@next/env': 15.4.5
       '@swc/helpers': 0.5.15
@@ -8101,7 +8101,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 15.4.5
       '@next/swc-win32-arm64-msvc': 15.4.5
       '@next/swc-win32-x64-msvc': 15.4.5
-      sass: 1.89.2
+      sass: 1.90.0
       sharp: 0.34.3
     transitivePeerDependencies:
       - '@babel/core'
@@ -8611,7 +8611,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  sass@1.89.2:
+  sass@1.90.0:
     dependencies:
       chokidar: 4.0.3
       immutable: 5.1.2
