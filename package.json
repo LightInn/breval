@@ -37,7 +37,7 @@
 		"react-palette": "1.0.2",
 		"react-slime-simulation": "1.0.2",
 		"rehype-raw": "7.0.0",
-		"remark-mdx": "3.1.0",
+		"remark-mdx": "3.1.1",
 		"sass": "1.91.0",
 		"sharp": "0.34.3",
 		"special-card": "2.1.4",
