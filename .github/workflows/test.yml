@@ -26,7 +26,7 @@ jobs:
           version: latest # You can specify a pnpm version, e.g., 8 or 9
 
       - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
