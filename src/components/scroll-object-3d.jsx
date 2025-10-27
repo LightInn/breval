@@ -6,7 +6,7 @@ import { useFrame } from '@react-three/fiber'
 import { useScroll } from 'framer-motion'
 import { Canvas } from '@react-three/fiber'
 import { useTheme } from 'next-themes'
-import { ThreeScene } from './projects/ThreeScene'
+import { Crow } from './projects/Crow_tree'
 
 export default function ScrollObject3D() {
 	const containerRef = useRef(null)
@@ -37,20 +37,16 @@ export default function ScrollObject3D() {
 		// <></>
 		<div
 			ref={containerRef}
-			className="pointer-events-none fixed right-0 top-0 z-20 h-32 w-32 md:h-48 md:w-48"
+			className="pointer-events-none fixed right-0 top-0 z-50 h-72 w-72 md:h-96 md:w-96"
 			style={{
 				top: '120px',
 				right: '5%',
 			}}
 		>
 			{use3D ? (
-				// <Canvas
-				// 	camera={{ position: [0, 0, 5], fov: 45 }}
-				// 	onError={() => setUse3D(false)}
-				// >
-				// 	<Scene />
-				// </Canvas>
-				<ThreeScene />
+				<Canvas camera={{ position: [0, 12, 32], fov: 40 }}>
+					<SceneSmall />
+				</Canvas>
 			) : (
 				<FallbackSVG />
 			)}
@@ -168,6 +164,44 @@ function Scene() {
 			<Float floatIntensity={0.8} rotationIntensity={0.3} speed={1.5}>
 				<FloatingObject scrollYProgress={scrollRef} />
 			</Float>
+			<Environment preset={theme === 'dark' ? 'night' : 'dawn'} />
+		</>
+	)
+}
+
+// Small scene used by the floating widget: shows only the tree (Crow) and rotates around it
+function SceneSmall() {
+	const { scrollYProgress } = useScroll()
+	const scrollRef = useRef(0)
+	const groupRef = useRef()
+	const { theme } = useTheme()
+
+	useEffect(() => {
+		const unsubscribe = scrollYProgress.onChange(latest => {
+			scrollRef.current = latest
+		})
+		return () => unsubscribe()
+	}, [scrollYProgress])
+
+	useFrame(() => {
+		if (!groupRef.current) return
+		// Rotate around the Y axis based on scroll (full rotation when scrolled to bottom)
+		groupRef.current.rotation.y = scrollRef.current * Math.PI * 2
+		// small idle bob (optional)
+		groupRef.current.position.y = -6 + Math.sin(Date.now() * 0.001) * 0.02
+	})
+
+	return (
+		<>
+			<ambientLight intensity={0.9} />
+			<directionalLight intensity={0.8} position={[10, 20, 10]} />
+
+			{/* group is positioned/scaled to frame the whole tree inside the small widget */}
+			<group ref={groupRef} position={[0, -6, 0]} scale={[0.6, 0.6, 0.6]}>
+				{/* Keep the crow/tree animations running by passing step=1 */}
+				<Crow step={1} />
+			</group>
+
 			<Environment preset={theme === 'dark' ? 'night' : 'dawn'} />
 		</>
 	)
