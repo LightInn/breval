@@ -5,22 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import '@/styles/crow.css'
-
-const fetchProjects = async () => {
-	const res = await fetch(
-		'https://breval-api.lightin.io/api/projets?sort=date%3Adesc&populate=*'
-	)
-	const data = await res.json()
-	return data.data.map(project => ({
-		imageUrl:
-			project.attributes.media?.data?.[0]?.attributes?.url ||
-			'/placeholder.jpg',
-		description: project.attributes.short_description,
-		link: `/projects/${project.attributes.title}`,
-		name: project.attributes.title,
-		id: project.id,
-	}))
-}
+import { getProjects } from '@/services/projects.services'
 
 const AllProjectSection = ({ step }) => {
 	const [isVisible, setIsVisible] = useState(false)
@@ -43,7 +28,8 @@ const AllProjectSection = ({ step }) => {
 
 	useEffect(() => {
 		const loadProjects = async () => {
-			const data = await fetchProjects()
+			const data = await getProjects()
+			console.log('Fetched projects:', data)
 			setProjects(data)
 		}
 		loadProjects()
