@@ -37,7 +37,7 @@ export default function ScrollObject3D() {
 		// <></>
 		<div
 			ref={containerRef}
-			className="pointer-events-none fixed right-0 top-0 z-50 h-72 w-72 md:h-96 md:w-96"
+			className="pointer-events-none fixed right-0 top-0 z-50 hidden h-72 w-72 md:h-96 md:w-96 lg:block"
 			style={{
 				top: '120px',
 				right: '5%',
