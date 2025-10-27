@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+
 import { ThreeScene } from '@/components/projects/ThreeScene'
 
 export default function Page() {

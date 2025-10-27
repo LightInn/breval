@@ -4,8 +4,9 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import '@/styles/crow.css'
 import { getProjects } from '@/services/projects.services'
+
+import '@/styles/crow.css'
 
 const AllProjectSection = ({ step }) => {
 	const [isVisible, setIsVisible] = useState(false)
@@ -15,20 +16,20 @@ const AllProjectSection = ({ step }) => {
 	// Normalize projects for rendering (choose main_media or first media item as image)
 	const processedProjects = Array.isArray(projects)
 		? projects.map(project => ({
-				id: project.id,
-				name: project.title || project.name || 'Untitled project',
-				description:
-					project.short_description ||
-					project.description ||
-					'Description not available.',
 				// Prefer main_media, then first media item, then placeholder
 				image:
 					project.main_media?.url ||
 					project.media?.[0]?.url ||
 					'/placeholder.svg?height=300&width=500',
+				description:
+					project.short_description ||
+					project.description ||
+					'Description not available.',
 				link: project.slug
 					? `/projects/${project.slug}`
 					: project.live_url || project.url || '#',
+				name: project.title || project.name || 'Untitled project',
+				id: project.id,
 			}))
 		: []
 
@@ -49,7 +50,7 @@ const AllProjectSection = ({ step }) => {
 	useEffect(() => {
 		const loadProjects = async () => {
 			const data = await getProjects()
-			console.log('Fetched projects:', data)
+			// console.log('Fetched projects:', data)
 			setProjects(data)
 		}
 		loadProjects()
@@ -90,8 +91,8 @@ const AllProjectSection = ({ step }) => {
 											className="h-auto w-full object-cover transition-all duration-300 group-hover:opacity-60 group-hover:blur-sm"
 											height={300}
 											src={project.image}
-											width={400}
 											unoptimized
+											width={400}
 										/>
 										<div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-t from-black/70 to-transparent p-4 transition-opacity duration-300">
 											<h2 className="text-xl font-bold text-white">
