@@ -37,8 +37,14 @@ export function Overlay({ setStep, step }) {
 		// if ((c >= 0.5 && step < 3) || (c < 0.5 && step > 3)) {
 		if ((c >= 0.2 && step < 3) || (c < 0.5 && step > 3)) {
 			setStep(3)
+
 			// data.el.scrollTop = data.el.scrollTopMax
-			data.el.scrollTop = 99999999
+			setTimeout(() => {
+				if (data.el) {
+					// wait 0.1s then scroll to bottom
+					data.el.scrollTop = data.el.scrollHeight
+				}
+			}, 100)
 		}
 
 		// console.debug(data)
@@ -103,7 +109,7 @@ export function Overlay({ setStep, step }) {
 					</div>
 				</section>
 
-				<section className="relative min-h-screen w-screen">
+				<section className="relative h-screen min-h-screen w-screen">
 					<AllProjectSection step={step} />
 				</section>
 			</>
