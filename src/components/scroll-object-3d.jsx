@@ -44,7 +44,7 @@ export default function ScrollObject3D() {
 			}}
 		>
 			{use3D ? (
-				<Canvas camera={{ position: [0, 12, 32], fov: 40 }}>
+				<Canvas camera={{ position: [0, 18, 48], fov: 40 }}>
 					<SceneSmall />
 				</Canvas>
 			) : (
@@ -103,78 +103,11 @@ function FallbackSVG() {
 	)
 }
 
-function FloatingObject({ scrollYProgress }) {
-	const meshRef = useRef(null)
-	const { theme } = useTheme()
-	const isDark = theme === 'dark'
-
-	useFrame(state => {
-		if (!meshRef.current) return
-
-		// Rotate based on scroll position
-		meshRef.current.rotation.y = scrollYProgress.current * Math.PI * 4
-		meshRef.current.rotation.x = scrollYProgress.current * Math.PI * 2
-
-		// Scale based on scroll position
-		const scale = 1 + scrollYProgress.current * 0.3
-		meshRef.current.scale.set(scale, scale, scale)
-
-		// Add floating animation
-		meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.8) * 0.3
-		meshRef.current.position.x = Math.cos(state.clock.elapsedTime * 0.5) * 0.2
-	})
-
-	return (
-		<mesh ref={meshRef}>
-			{/* Voxel-style diamond shape */}
-			<octahedronGeometry args={[1.2, 0]} />
-			<meshStandardMaterial
-				color={isDark ? '#ff69b4' : '#ff1493'}
-				emissive={isDark ? '#ff69b4' : '#ff1493'}
-				emissiveIntensity={isDark ? 0.3 : 0.2}
-				metalness={0.9}
-				roughness={0.2}
-			/>
-		</mesh>
-	)
-}
-
-function Scene() {
-	const { scrollYProgress } = useScroll()
-	const scrollRef = useRef(0)
-	const { theme } = useTheme()
-
-	useEffect(() => {
-		const unsubscribe = scrollYProgress.onChange(latest => {
-			scrollRef.current = latest
-		})
-		return () => unsubscribe()
-	}, [scrollYProgress])
-
-	return (
-		<>
-			<ambientLight intensity={0.6} />
-			<spotLight
-				angle={0.15}
-				castShadow
-				intensity={1.2}
-				penumbra={1}
-				position={[10, 10, 10]}
-			/>
-			<Float floatIntensity={0.8} rotationIntensity={0.3} speed={1.5}>
-				<FloatingObject scrollYProgress={scrollRef} />
-			</Float>
-			<Environment preset={theme === 'dark' ? 'night' : 'dawn'} />
-		</>
-	)
-}
-
 // Small scene used by the floating widget: shows only the tree (Crow) and rotates around it
 function SceneSmall() {
 	const { scrollYProgress } = useScroll()
 	const scrollRef = useRef(0)
 	const groupRef = useRef()
-	const { theme } = useTheme()
 
 	useEffect(() => {
 		const unsubscribe = scrollYProgress.onChange(latest => {
@@ -193,16 +126,22 @@ function SceneSmall() {
 
 	return (
 		<>
-			<ambientLight intensity={0.9} />
+			{/* <ambientLight intensity={0.9} /> */}
 			<directionalLight intensity={0.8} position={[10, 20, 10]} />
 
 			{/* group is positioned/scaled to frame the whole tree inside the small widget */}
-			<group ref={groupRef} position={[0, -6, 0]} scale={[0.6, 0.6, 0.6]}>
+			{/* scaled down and lowered so the full tree fits inside the widget */}
+			<group ref={groupRef} position={[0, -8, 0]} scale={[0.45, 0.45, 0.45]}>
 				{/* Keep the crow/tree animations running by passing step=1 */}
 				<Crow step={1} />
 			</group>
 
-			<Environment preset={theme === 'dark' ? 'night' : 'dawn'} />
+			{/* Use a neutral/studio environment without background to avoid extra HDRI brightness */}
+			<Environment
+				background={false}
+				preset={'dawn'}
+				environmentIntensity={0.3}
+			/>
 		</>
 	)
 }
