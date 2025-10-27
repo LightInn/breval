@@ -91,17 +91,17 @@ export default function ArtistPage() {
 		},
 
 		{
-			interactive:
-				'A 3D experience where a bird lives and and flies around my portfolio, responding to your scrolls.',
 			bgPattern:
 				'linear-gradient(45deg, rgba(74, 43, 102, 0.1) 0%, transparent 25%, rgba(236,72,153,0.1) 50%, transparent 75%)',
+			interactive:
+				'A 3D experience where a bird lives and and flies around my portfolio, responding to your scrolls.',
 			description:
 				'HAnd crafted 3D bird that interacts with scroll position, creating an immersive experience.',
 			tags: ['3D', 'Three.js', 'Scroll', 'Interactive'],
 			image: '/crow/crow.png?height=800&width=600',
 			color: 'from-purple-500/20 to-pink-600/20',
-			title: 'Crow Companion',
 			demo: '/experiment/crow',
+			title: 'Crow Companion',
 			theme: '3d',
 		},
 

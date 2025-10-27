@@ -2,10 +2,11 @@
 import { Environment, Float } from '@react-three/drei'
 import { useEffect, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 
 import { useScroll } from 'framer-motion'
-import { Canvas } from '@react-three/fiber'
 import { useTheme } from 'next-themes'
+
 import { Crow } from './projects/Crow_tree'
 
 export default function ScrollObject3D() {
@@ -36,8 +37,8 @@ export default function ScrollObject3D() {
 	return (
 		// <></>
 		<div
-			ref={containerRef}
 			className="pointer-events-none fixed right-0 top-0 z-50 hidden h-72 w-72 md:h-96 md:w-96 lg:block"
+			ref={containerRef}
 			style={{
 				top: '120px',
 				right: '5%',
@@ -131,7 +132,7 @@ function SceneSmall() {
 
 			{/* group is positioned/scaled to frame the whole tree inside the small widget */}
 			{/* scaled down and lowered so the full tree fits inside the widget */}
-			<group ref={groupRef} position={[0, -8, 0]} scale={[0.45, 0.45, 0.45]}>
+			<group position={[0, -8, 0]} ref={groupRef} scale={[0.45, 0.45, 0.45]}>
 				{/* Keep the crow/tree animations running by passing step=1 */}
 				<Crow step={1} />
 			</group>
@@ -139,8 +140,8 @@ function SceneSmall() {
 			{/* Use a neutral/studio environment without background to avoid extra HDRI brightness */}
 			<Environment
 				background={false}
-				preset={'dawn'}
 				environmentIntensity={0.3}
+				preset={'dawn'}
 			/>
 		</>
 	)
