@@ -39,7 +39,7 @@ export default async function RootLayout({ children }) {
 				defaultTheme="dark"
 				disableTransitionOnChange={false}
 				enableSystem={false}
-				forcedTheme={undefined}
+				forcedTheme={'dark'}
 			>
 				<CursorBlob />
 				<Navigation dict={dict} />

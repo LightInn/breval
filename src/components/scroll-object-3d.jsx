@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 
 import { useScroll } from 'framer-motion'
+import { Canvas } from '@react-three/fiber'
 import { useTheme } from 'next-themes'
 
 export default function ScrollObject3D() {
@@ -32,22 +33,26 @@ export default function ScrollObject3D() {
 	}
 
 	return (
-		<></>
-		// <div
-		//   ref={containerRef}
-		//   className="fixed top-0 right-0 w-32 h-32 md:w-48 md:h-48 z-20 pointer-events-none"
-		//   style={{
-		//     top: "120px",
-		//     right: "5%",
-		//   }}>
-		//   {use3D ? (
-		//     <Canvas camera={{ position: [0, 0, 5], fov: 45 }} onError={() => setUse3D(false)}>
-		//       <Scene />
-		//     </Canvas>
-		//   ) : (
-		//     <FallbackSVG />
-		//   )}
-		// </div>
+		// <></>
+		<div
+			ref={containerRef}
+			className="pointer-events-none fixed right-0 top-0 z-20 h-32 w-32 md:h-48 md:w-48"
+			style={{
+				top: '120px',
+				right: '5%',
+			}}
+		>
+			{use3D ? (
+				<Canvas
+					camera={{ position: [0, 0, 5], fov: 45 }}
+					onError={() => setUse3D(false)}
+				>
+					<Scene />
+				</Canvas>
+			) : (
+				<FallbackSVG />
+			)}
+		</div>
 	)
 }
 
