@@ -98,7 +98,7 @@ export default function ArtistPage() {
 			description:
 				'HAnd crafted 3D bird that interacts with scroll position, creating an immersive experience.',
 			tags: ['3D', 'Three.js', 'Scroll', 'Interactive'],
-			image: '/slime/thumb.webp?height=800&width=600',
+			image: '/crow/crow.png?height=800&width=600',
 			color: 'from-purple-500/20 to-pink-600/20',
 			title: 'Crow Companion',
 			demo: '/experiment/crow',
