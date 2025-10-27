@@ -6,6 +6,7 @@ import { useFrame } from '@react-three/fiber'
 import { useScroll } from 'framer-motion'
 import { Canvas } from '@react-three/fiber'
 import { useTheme } from 'next-themes'
+import { ThreeScene } from './projects/ThreeScene'
 
 export default function ScrollObject3D() {
 	const containerRef = useRef(null)
@@ -43,12 +44,13 @@ export default function ScrollObject3D() {
 			}}
 		>
 			{use3D ? (
-				<Canvas
-					camera={{ position: [0, 0, 5], fov: 45 }}
-					onError={() => setUse3D(false)}
-				>
-					<Scene />
-				</Canvas>
+				// <Canvas
+				// 	camera={{ position: [0, 0, 5], fov: 45 }}
+				// 	onError={() => setUse3D(false)}
+				// >
+				// 	<Scene />
+				// </Canvas>
+				<ThreeScene />
 			) : (
 				<FallbackSVG />
 			)}

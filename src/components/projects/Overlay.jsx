@@ -12,9 +12,6 @@ import AllProjectSection from '@/components/projects/AllProjectSection'
 import AnimatedTitle from '@/components/projects/TitleLetter'
 import MovingLogo from '@/components/projects/MovingLogo'
 
-const regular = import('@pmndrs/assets/fonts/inter_regular.woff')
-const medium = import('@pmndrs/assets/fonts/inter_medium.woff')
-
 export function Overlay({ setStep, step }) {
 	// const projects = await getProject()
 	const data = useScroll()
@@ -44,7 +41,7 @@ export function Overlay({ setStep, step }) {
 			data.el.scrollTop = 99999999
 		}
 
-		console.debug(data)
+		// console.debug(data)
 		// console.log(step)
 		// console.log(b, c)
 	})
