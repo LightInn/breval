@@ -74,7 +74,7 @@
 				"gaming": {
 					"title": "Digital Fascination",
 					"description": "Passion for gaming and digital universes sparked the desire to create my own worlds",
-					"detailedDescription": "My journey into technology began with an insatiable curiosity about digital worlds. Gaming wasn't just entertainment—it was a window into infinite possibilities. I spent countless hours exploring virtual universes, marveling at their complexity and dreaming of creating my own digital realms.",
+					"detailedDescription": "My journey into technology began with an insatiable curiosity about digital worlds. Gaming wasn't just entertainment, it was a window into infinite possibilities. I spent countless hours exploring virtual universes, marveling at their complexity and dreaming of creating my own digital realms.",
 					"period": "Collège",
 					"achievements": {
 						"0": "Discovered passion for digital creation",
@@ -90,7 +90,7 @@
 				"blender": {
 					"title": "3D Discovery",
 					"description": "First steps into 3D modeling with Blender and Python coding in BGE",
-					"detailedDescription": "At 13, I discovered Blender and fell in love with 3D modeling. This wasn't just about creating pretty pictures—it was about bringing imagination to life. I dove deep into the Blender Game Engine, learning Python to create interactive experiences. This was my first real taste of programming, and it was intoxicating.",
+					"detailedDescription": "At 13, I discovered Blender and fell in love with 3D modeling. This wasn't just about creating pretty pictures, it was about bringing imagination to life. I dove deep into the Blender Game Engine, learning Python to create interactive experiences. This was my first real taste of programming, and it was intoxicating.",
 					"period": "Age 13",
 					"achievements": {
 						"0": "Mastered 3D modeling fundamentals",
@@ -126,7 +126,7 @@
 				"security": {
 					"title": "Network Hacker",
 					"description": "Exploring network security, TCP/UDP, and gaining admin access",
-					"detailedDescription": "Our curiosity led us to explore network security. We attempted to hack the school's network so often that we eventually gained administrator passwords! This wasn't malicious—it was pure curiosity about how networks function. We learned about TCP/UDP protocols, packet transmission, and network addressing through hands-on experimentation.",
+					"detailedDescription": "Our curiosity led us to explore network security. We attempted to hack the school's network so often that we eventually gained administrator passwords! This wasn't malicious, it was pure curiosity about how networks function. We learned about TCP/UDP protocols, packet transmission, and network addressing through hands-on experimentation.",
 					"period": "Collège",
 					"achievements": {
 						"0": "Gained admin access to school network",
@@ -163,7 +163,7 @@
 				"ai": {
 					"title": "Neural Network Pioneer",
 					"description": "Fascination with brain function led to creating neural networks from scratch",
-					"detailedDescription": "I became fascinated with understanding how the human brain works and naturally gravitated toward neural networks. I attempted to recreate neural networks from scratch—admittedly quite crude, but I didn't care! I was captivated by the idea of creating 3D neural structures, moving beyond traditional 2D layer architectures to mimic real brain structures.",
+					"detailedDescription": "I became fascinated with understanding how the human brain works and naturally gravitated toward neural networks. I attempted to recreate neural networks from scratch, admittedly quite crude, but I didn't care! I was captivated by the idea of creating 3D neural structures, moving beyond traditional 2D layer architectures to mimic real brain structures.",
 					"period": "Lycée",
 					"achievements": {
 						"0": "Built neural networks from scratch",
@@ -240,7 +240,7 @@
 				"current": {
 					"title": "Front-Ops Specialist",
 					"description": "Specialized in frontend technologies and infrastructure management",
-					"detailedDescription": "Today, I specialize in front-ops—the intersection of frontend technologies and infrastructure management. I love switching between different competencies, from crafting beautiful user interfaces to managing complex deployment pipelines. When I'm not coding on exciting projects, you'll find me playing indie games or exploring the latest technologies.",
+					"detailedDescription": "Today, I specialize in front-ops, the intersection of frontend technologies and infrastructure management. I love switching between different competencies, from crafting beautiful user interfaces to managing complex deployment pipelines. When I'm not coding on exciting projects, you'll find me playing indie games or exploring the latest technologies.",
 					"period": "Today",
 					"achievements": {
 						"0": "Mastered front-ops specialization",

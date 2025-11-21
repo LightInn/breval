@@ -34,7 +34,7 @@ const journeyNodes = [
 	// Removed JourneyNode[] type
 	{
 		detailedDescription:
-			"My journey into technology began with an insatiable curiosity about digital worlds. Gaming wasn't just entertainment—it was a window into infinite possibilities. I spent countless hours exploring virtual universes, marveling at their complexity and dreaming of creating my own digital realms.",
+			"My journey into technology began with an insatiable curiosity about digital worlds. Gaming wasn't just entertainment, it was a window into infinite possibilities. I spent countless hours exploring virtual universes, marveling at their complexity and dreaming of creating my own digital realms.",
 		bgPattern:
 			'radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.3) 0%, transparent 50%)',
 		achievements: [
@@ -59,7 +59,7 @@ const journeyNodes = [
 	},
 	{
 		detailedDescription:
-			"At 13, I discovered Blender and fell in love with 3D modeling. This wasn't just about creating pretty pictures—it was about bringing imagination to life. I dove deep into the Blender Game Engine, learning Python to create interactive experiences. This was my first real taste of programming, and it was intoxicating.",
+			"At 13, I discovered Blender and fell in love with 3D modeling. This wasn't just about creating pretty pictures, it was about bringing imagination to life. I dove deep into the Blender Game Engine, learning Python to create interactive experiences. This was my first real taste of programming, and it was intoxicating.",
 		bgPattern:
 			'radial-gradient(circle at 30% 70%, rgba(249, 115, 22, 0.3) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(239, 68, 68, 0.3) 0%, transparent 50%)',
 		achievements: [
@@ -108,7 +108,7 @@ const journeyNodes = [
 	},
 	{
 		detailedDescription:
-			"Our curiosity led us to explore network security. We attempted to hack the school's network so often that we eventually gained administrator passwords! This wasn't malicious—it was pure curiosity about how networks function. We learned about TCP/UDP protocols, packet transmission, and network addressing through hands-on experimentation.",
+			"Our curiosity led us to explore network security. We attempted to hack the school's network so often that we eventually gained administrator passwords! This wasn't malicious, it was pure curiosity about how networks function. We learned about TCP/UDP protocols, packet transmission, and network addressing through hands-on experimentation.",
 		bgPattern:
 			'radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.3) 0%, transparent 50%)',
 		achievements: [
@@ -163,7 +163,7 @@ const journeyNodes = [
 	},
 	{
 		detailedDescription:
-			"I became fascinated with understanding how the human brain works and naturally gravitated toward neural networks. I attempted to recreate neural networks from scratch—admittedly quite crude, but I didn't care! I was captivated by the idea of creating 3D neural structures, moving beyond traditional 2D layer architectures to mimic real brain structures.",
+			"I became fascinated with understanding how the human brain works and naturally gravitated toward neural networks. I attempted to recreate neural networks from scratch, admittedly quite crude, but I didn't care! I was captivated by the idea of creating 3D neural structures, moving beyond traditional 2D layer architectures to mimic real brain structures.",
 		achievements: [
 			'Built neural networks from scratch',
 			'Explored 3D neural architectures',
@@ -276,7 +276,7 @@ const journeyNodes = [
 	},
 	{
 		detailedDescription:
-			"Today, I specialize in front-ops—the intersection of frontend technologies and infrastructure management. I love switching between different competencies, from crafting beautiful user interfaces to managing complex deployment pipelines. When I'm not coding on exciting projects, you'll find me playing indie games or exploring the latest technologies.",
+			"Today, I specialize in front-ops, the intersection of frontend technologies and infrastructure management. I love switching between different competencies, from crafting beautiful user interfaces to managing complex deployment pipelines. When I'm not coding on exciting projects, you'll find me playing indie games or exploring the latest technologies.",
 		achievements: [
 			'Mastered front-ops specialization',
 			'Expert in multiple technology stacks',
