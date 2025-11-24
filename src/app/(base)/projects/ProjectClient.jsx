@@ -16,8 +16,8 @@ export default function ProjectClient({ projects = [], dict }) {
 	const [selectedCategory, setSelectedCategory] = useState('All Projects') // Added state for selected category
 	const ref = useRef(null)
 	const featuredRef = useRef(null)
-	const isInView = useInView(ref, { once: false, amount: 0.1 })
-	const isFeaturedInView = useInView(featuredRef, { once: false, amount: 0.3 })
+	const isInView = useInView(ref, { once: false, amount: 0.0 })
+	const isFeaturedInView = useInView(featuredRef, { once: true, amount: 0.3 })
 
 	const container = {
 		show: {
@@ -174,7 +174,7 @@ export default function ProjectClient({ projects = [], dict }) {
 										? { opacity: 1, y: 0 }
 										: { opacity: 0, y: 20 }
 								}
-								className="mb-16"
+								className="mb-8"
 								initial={{ opacity: 0, y: 20 }}
 								ref={featuredRef}
 								transition={{ duration: 0.7 }}
