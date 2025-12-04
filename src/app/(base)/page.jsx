@@ -17,7 +17,7 @@ export default async function Home() {
 
 	return (
 		<main className="relative min-h-screen bg-background text-foreground">
-			<ScrollObject3D />
+			{/* <ScrollObject3D /> */}
 			<Suspense fallback={<LoadingScreen dict={dict} />}>
 				<div className="overflow-x-hidden">
 					<Hero dict={dict} />
