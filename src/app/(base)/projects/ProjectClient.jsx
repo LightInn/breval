@@ -17,7 +17,7 @@ export default function ProjectClient({ projects = [], dict }) {
 	const ref = useRef(null)
 	const featuredRef = useRef(null)
 	const isInView = useInView(ref, { once: false, amount: 0.0 })
-	const isFeaturedInView = useInView(featuredRef, { once: true, amount: 0.3 })
+	const isFeaturedInView = useInView(featuredRef, { amount: 0.3, once: true })
 
 	const container = {
 		show: {

@@ -50,7 +50,8 @@ describe('Home Page (src/app/page.jsx)', () => {
 		expect(mainElement).toBeInTheDocument()
 
 		// Check for the presence of mocked components
-		expect(screen.getByTestId('mock-scroll-object-3d')).toBeInTheDocument()
+		// ScrollObject3D is currently commented out in page.jsx
+		// expect(screen.getByTestId('mock-scroll-object-3d')).toBeInTheDocument()
 		// Suspense fallback (LoadingScreen) might not be directly testable here if content loads immediately
 		// expect(screen.getByTestId('mock-loading-screen')).toBeInTheDocument();
 		expect(screen.getByTestId('mock-hero')).toBeInTheDocument()
