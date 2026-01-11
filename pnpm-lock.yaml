@@ -87,8 +87,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       styled-components:
-        specifier: 6.3.1
-        version: 6.3.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: 6.3.3
+        version: 6.3.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       tailwind-merge:
         specifier: 3.4.0
         version: 3.4.0
@@ -3921,8 +3921,8 @@ packages:
   style-to-object@1.0.8:
     resolution: {integrity: sha512-xT47I/Eo0rwJmaXC4oilDGDWLohVhR6o/xAQcPQN8q6QBuZVL8qMYL85kLmST5cPjAorwvqIA4qXTRQoYHaL6g==}
 
-  styled-components@6.3.1:
-    resolution: {integrity: sha512-pXukizMJjnpxomNC4s85Uh+4VQn9vGg7Dj3vpz1biV0W+yB2qYkrzQ5j5T1PePdiei1SlHfb7yxmnfi2qy1yMA==}
+  styled-components@6.3.3:
+    resolution: {integrity: sha512-5jBZzBWCHeyEBF2+sBJZ2J9nFpYqB0hIuhvBz8WZ2rZpSvRCf9RlSRZ1RCJ/6613DUx8WD9x6RP5Qcs6hCXtCw==}
     engines: {node: '>= 16'}
     peerDependencies:
       react: '>= 16.8.0'
@@ -8840,7 +8840,7 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.4
 
-  styled-components@6.3.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  styled-components@6.3.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       '@emotion/is-prop-valid': 1.4.0
       '@emotion/unitless': 0.10.0
