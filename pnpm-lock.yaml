@@ -140,7 +140,7 @@ importers:
         version: 5.8.0(eslint@10.2.0(jiti@1.21.7))(typescript@5.9.3)
       eslint-plugin-prettier:
         specifier: 5.5.5
-        version: 5.5.5(eslint-config-prettier@10.1.8(eslint@10.2.0(jiti@1.21.7)))(eslint@10.2.0(jiti@1.21.7))(prettier@3.8.2)
+        version: 5.5.5(eslint-config-prettier@10.1.8(eslint@10.2.0(jiti@1.21.7)))(eslint@10.2.0(jiti@1.21.7))(prettier@3.8.3)
       eslint-plugin-promise:
         specifier: 7.2.1
         version: 7.2.1(eslint@10.2.0(jiti@1.21.7))
@@ -163,11 +163,11 @@ importers:
         specifier: 30.3.0
         version: 30.3.0
       prettier:
-        specifier: 3.8.2
-        version: 3.8.2
+        specifier: 3.8.3
+        version: 3.8.3
       prettier-plugin-tailwindcss:
         specifier: 0.7.2
-        version: 0.7.2(prettier@3.8.2)
+        version: 0.7.2(prettier@3.8.3)
       tailwindcss:
         specifier: 3.4.19
         version: 3.4.19
@@ -3585,8 +3585,8 @@ packages:
       prettier-plugin-svelte:
         optional: true
 
-  prettier@3.8.2:
-    resolution: {integrity: sha512-8c3mgTe0ASwWAJK+78dpviD+A8EqhndQPUBpNUIPt6+xWlIigCwfN01lWr9MAede4uqXGTEKeQWTvzb3vjia0Q==}
+  prettier@3.8.3:
+    resolution: {integrity: sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -6615,10 +6615,10 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-prettier@5.5.5(eslint-config-prettier@10.1.8(eslint@10.2.0(jiti@1.21.7)))(eslint@10.2.0(jiti@1.21.7))(prettier@3.8.2):
+  eslint-plugin-prettier@5.5.5(eslint-config-prettier@10.1.8(eslint@10.2.0(jiti@1.21.7)))(eslint@10.2.0(jiti@1.21.7))(prettier@3.8.3):
     dependencies:
       eslint: 10.2.0(jiti@1.21.7)
-      prettier: 3.8.2
+      prettier: 3.8.3
       prettier-linter-helpers: 1.0.1
       synckit: 0.11.12
     optionalDependencies:
@@ -8499,11 +8499,11 @@ snapshots:
     dependencies:
       fast-diff: 1.3.0
 
-  prettier-plugin-tailwindcss@0.7.2(prettier@3.8.2):
+  prettier-plugin-tailwindcss@0.7.2(prettier@3.8.3):
     dependencies:
-      prettier: 3.8.2
+      prettier: 3.8.3
 
-  prettier@3.8.2: {}
+  prettier@3.8.3: {}
 
   pretty-format@27.5.1:
     dependencies:
