@@ -1,325 +1,99 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Menu, Moon, X } from 'lucide-react'
+import { Menu, Moon, Sun, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
+
 export default function Navigation({ dict }) {
 	const [mounted, setMounted] = useState(false)
-	const { theme } = useTheme()
 	const [isOpen, setIsOpen] = useState(false)
-	const [scrolled, setScrolled] = useState(false)
+	const { resolvedTheme, setTheme } = useTheme()
 	const pathname = usePathname()
 	useEffect(() => {
 		setMounted(true)
 	}, [])
-	useEffect(() => {
-		const handleScroll = () => {
-			const isScrolled = window.scrollY > 10
-			setScrolled(isScrolled)
-		}
-		window.addEventListener('scroll', handleScroll)
-		return () => window.removeEventListener('scroll', handleScroll)
-	}, [])
-	const toggleMenu = () => setIsOpen(!isOpen)
-
-	// 🌙 ATTENTION: Light mode has been temporarily disabled due to reports
-	// of users spontaneously combusting when exposed to bright pixels.
-	// Our lawyers say we can't afford another lawsuit. Stay in the darkness! 🕶️
-	const handleThemeToggle = () => {
-		// Show a fun tooltip/toast message instead of switching themes
-		const message =
-			dict?.navigation?.themeLockTooltip || "🚫 Nice try! But we're stuck in the void until further notice."
-
-		// You can use either a tooltip library or a simple toast
-		// For now, using a temporary tooltip-like alert
-		const tooltip = document.createElement('div')
-		tooltip.textContent = message
-		tooltip.style.cssText = `
-			position: fixed;
-			top: 80px;
-			right: 20px;
-			background: rgba(0, 0, 0, 0.9);
-			color: white;
-			padding: 12px 16px;
-			border-radius: 8px;
-			border: 1px solid rgba(255, 255, 255, 0.2);
-			z-index: 9999;
-			font-size: 14px;
-			animation: slideIn 0.3s ease-out;
-		`
-
-		// Add animation
-		if (!document.querySelector('style[data-tooltip-styles]')) {
-			const style = document.createElement('style')
-			style.setAttribute('data-tooltip-styles', 'true')
-			style.textContent = `
-				@keyframes slideIn {
-					from { transform: translateX(100%); opacity: 0; }
-					to { transform: translateX(0); opacity: 1; }
-				}
-			`
-			document.head.appendChild(style)
-		}
-		document.body.appendChild(tooltip)
-
-		// Remove after 3 seconds
-		setTimeout(() => {
-			tooltip.remove()
-		}, 3000)
-		// setTheme(theme === 'dark' ? 'light' : 'dark')
-	}
 	const navItems = [
-		{
-			name: dict?.navigation?.home || 'HOME',
-			href: '/',
-		},
-		{
-			name: dict?.navigation?.projects || 'PROJECTS',
-			href: '/projects',
-		},
-		{
-			name: dict?.navigation?.blog || 'BLOG',
-			href: '/blog',
-		},
-		{
-			name: dict?.navigation?.art || 'ART',
-			href: '/artist',
-		},
+		{ name: dict?.navigation?.home || 'HOME', href: '/' },
+		{ name: dict?.navigation?.projects || 'PROJECTS', href: '/projects' },
+		{ name: dict?.navigation?.blog || 'BLOG', href: '/blog' },
+		{ name: dict?.navigation?.art || 'ART', href: '/artist' },
 	]
-	const isActive = path => {
-		return pathname === path
-	}
 	return (
-		<header className="fixed top-0 z-50 w-full px-4 py-4">
-			{/* Background overlay with gradient that appears on scroll */}
-			<div
-				className={`absolute inset-0 transition-all duration-300 ${scrolled ? 'bg-gradient-to-b from-black/70 to-transparent' : 'bg-gradient-to-b from-transparent to-transparent'}`}
-			/>
-			<div className="relative mx-auto max-w-7xl">
-				<nav className="flex items-center justify-between">
-					<div className="flex items-center">
-						<Link className="magnetic-button text-2xl font-bold text-primary" href="/">
-							<motion.div
-								animate={{
-									opacity: 1,
-									scale: 1,
-								}}
-								className="flex items-center"
-								initial={{
-									opacity: 0,
-									scale: 0.8,
-								}}
-								transition={{
-									duration: 0.5,
-								}}
-							>
-								<div className="relative">
-									<svg fill="currentColor" height="100" id="svg8" viewBox="0 0 210 297" width="100">
-										<defs id="defs2" />
+		<header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-md">
+			<nav
+				className="portfolio-shell flex h-20 items-center justify-between"
+				aria-label={dict?.navigation?.ariaOpenMenu || 'Navigation'}
+			>
+				<Link href="/" aria-label="Bréval Le Floch" className="text-primary">
+					<svg aria-hidden="true" fill="currentColor" height="48" id="svg8" viewBox="0 0 210 297" width="48">
+						<defs id="defs2" />
 
-										<g id="layer1">
-											<path
-												d="m 139.80404,116.9222 -12.57184,4.0845 -18.69808,25.7359 -18.207678,-25.06204 c -0.0312,0.0131 -1.84458,0.57745 -4.08813,1.27228 -2.2436,0.69485 -4.09354,1.26889 -4.16873,1.29346 l 21.324788,29.35169 2.48151,-3.41477 c 1.36861,-1.88342 2.50849,-3.43822 2.53318,-3.45509 0.0272,-0.0186 0.0661,-0.007 0.11524,0.0279 l -5.03691,6.93292 c -0.004,-0.004 -0.005,-0.003 -0.01,-0.007 l -0.0548,-0.0455 0.0512,0.0703 -21.570258,29.68914 -0.0227,-0.007 c -0.14592,0.25576 -4.41154,6.9797 -4.5284,7.13807 l 0.0248,0.008 12.38374,-4.02405 18.773018,-25.83873 18.17098,25.00984 c 0.0179,-0.006 0.0347,-0.0119 0.0605,-0.0196 0.0874,-0.0261 2.02716,-0.61525 4.31085,-1.30897 2.15444,-0.65445 3.72738,-1.12491 3.92844,-1.1777 l -21.3341,-29.3641 c -0.0166,0.0379 -4.96526,6.85612 -5.00641,6.89777 -0.0198,0.02 -0.0505,0.009 -0.12092,-0.0439 -10e-4,-7.4e-4 -0.002,-10e-4 -0.003,-0.002 l 5.04827,-6.94841 c 0.0119,0.009 0.0202,0.0175 0.0305,0.0264 l -0.0248,-0.0341 21.57023,-29.68914 0.0129,0.004 0.007,-0.0109 c 0.008,-0.0125 1.06525,-1.63529 2.3487,-3.60598 1.24519,-1.91197 2.20674,-3.38729 2.27014,-3.48299 z m 0.27182,0.0822 -2.2965,3.5264 c -1.26814,1.9472 -2.29714,3.52756 -2.33061,3.57911 l 34.61804,11.24841 v 0.03 c 0.001,-0.002 0.006,-0.0176 0.007,-0.0176 0.0138,0 7.87644,2.44309 8.18141,2.54196 v -0.005 l -8.08299,-11.12435 z m -63.338768,0.0832 -29.6845,9.64489 c 0.0116,0.0592 0.0867,1.82869 0.16692,3.93309 0.0803,2.10486 0.097,4.12231 0.11265,4.33669 -0.002,0.11256 -10e-4,0.18226 -0.005,0.25011 l 34.57619,-11.23445 0.0108,0.0155 c 0.0739,-0.0301 8.09736,-2.51456 8.26254,-2.5585 l -0.0196,-0.0269 h -5.2e-4 z m -29.91652,9.72085 -0.0233,0.007 -7.98298,10.98744 v 31.27096 c 0.13692,0.034 7.82536,2.56591 8.18762,2.69596 v -36.4117 l 0.007,-0.003 c -0.003,-0.0145 -0.007,-0.0236 -0.008,-0.0434 -0.015,-0.1884 0.0635,-2.39446 -0.0145,-4.43435 -0.0779,-2.0399 -0.15047,-3.83122 -0.16124,-3.98064 -0.003,-0.0381 -0.003,-0.0607 -0.005,-0.0889 z m 123.246218,8.84132 v 36.40604 l -0.003,0.001 -0.0134,1.09555 c -0.0148,1.24491 -0.0584,6.7366 -0.0584,7.33495 v 0.20205 l 0.008,-0.003 8.25479,-11.36158 v -31.13201 c -0.1267,-0.04 -8.02784,-2.4939 -8.18813,-2.543 z m -131.252448,33.6961 v 0.008 l 8.22689,11.32386 30.06741,9.76942 c 0.003,-0.007 0.005,-0.0132 0.009,-0.0212 0.0583,-0.0987 4.29712,-6.78772 4.51135,-7.11947 l -34.62734,-11.2507 v -0.006 c -0.0933,-0.0292 -1.85315,-0.60943 -4.11448,-1.35651 -2.23775,-0.7393 -3.94405,-1.30388 -4.07313,-1.34772 z m 130.986318,2.79621 -34.63561,11.25409 -0.0155,-0.0212 c -0.25623,0.0843 -7.96918,2.42572 -8.29148,2.51716 l 0.0145,0.0202 13.52269,4.39353 29.33723,-9.53224 10e-4,-0.54621 c 0.001,-0.57028 0.0619,-7.88987 0.0672,-8.0853 z"
-												id="path3338"
-											/>
-											<path d="" id="path158" transform="scale(0.26458333)" />
-										</g>
-									</svg>
-								</div>
-							</motion.div>
+						<g id="layer1">
+							<path
+								d="m 139.80404,116.9222 -12.57184,4.0845 -18.69808,25.7359 -18.207678,-25.06204 c -0.0312,0.0131 -1.84458,0.57745 -4.08813,1.27228 -2.2436,0.69485 -4.09354,1.26889 -4.16873,1.29346 l 21.324788,29.35169 2.48151,-3.41477 c 1.36861,-1.88342 2.50849,-3.43822 2.53318,-3.45509 0.0272,-0.0186 0.0661,-0.007 0.11524,0.0279 l -5.03691,6.93292 c -0.004,-0.004 -0.005,-0.003 -0.01,-0.007 l -0.0548,-0.0455 0.0512,0.0703 -21.570258,29.68914 -0.0227,-0.007 c -0.14592,0.25576 -4.41154,6.9797 -4.5284,7.13807 l 0.0248,0.008 12.38374,-4.02405 18.773018,-25.83873 18.17098,25.00984 c 0.0179,-0.006 0.0347,-0.0119 0.0605,-0.0196 0.0874,-0.0261 2.02716,-0.61525 4.31085,-1.30897 2.15444,-0.65445 3.72738,-1.12491 3.92844,-1.1777 l -21.3341,-29.3641 c -0.0166,0.0379 -4.96526,6.85612 -5.00641,6.89777 -0.0198,0.02 -0.0505,0.009 -0.12092,-0.0439 -10e-4,-7.4e-4 -0.002,-10e-4 -0.003,-0.002 l 5.04827,-6.94841 c 0.0119,0.009 0.0202,0.0175 0.0305,0.0264 l -0.0248,-0.0341 21.57023,-29.68914 0.0129,0.004 0.007,-0.0109 c 0.008,-0.0125 1.06525,-1.63529 2.3487,-3.60598 1.24519,-1.91197 2.20674,-3.38729 2.27014,-3.48299 z m 0.27182,0.0822 -2.2965,3.5264 c -1.26814,1.9472 -2.29714,3.52756 -2.33061,3.57911 l 34.61804,11.24841 v 0.03 c 0.001,-0.002 0.006,-0.0176 0.007,-0.0176 0.0138,0 7.87644,2.44309 8.18141,2.54196 v -0.005 l -8.08299,-11.12435 z m -63.338768,0.0832 -29.6845,9.64489 c 0.0116,0.0592 0.0867,1.82869 0.16692,3.93309 0.0803,2.10486 0.097,4.12231 0.11265,4.33669 -0.002,0.11256 -10e-4,0.18226 -0.005,0.25011 l 34.57619,-11.23445 0.0108,0.0155 c 0.0739,-0.0301 8.09736,-2.51456 8.26254,-2.5585 l -0.0196,-0.0269 h -5.2e-4 z m -29.91652,9.72085 -0.0233,0.007 -7.98298,10.98744 v 31.27096 c 0.13692,0.034 7.82536,2.56591 8.18762,2.69596 v -36.4117 l 0.007,-0.003 c -0.003,-0.0145 -0.007,-0.0236 -0.008,-0.0434 -0.015,-0.1884 0.0635,-2.39446 -0.0145,-4.43435 -0.0779,-2.0399 -0.15047,-3.83122 -0.16124,-3.98064 -0.003,-0.0381 -0.003,-0.0607 -0.005,-0.0889 z m 123.246218,8.84132 v 36.40604 l -0.003,0.001 -0.0134,1.09555 c -0.0148,1.24491 -0.0584,6.7366 -0.0584,7.33495 v 0.20205 l 0.008,-0.003 8.25479,-11.36158 v -31.13201 c -0.1267,-0.04 -8.02784,-2.4939 -8.18813,-2.543 z m -131.252448,33.6961 v 0.008 l 8.22689,11.32386 30.06741,9.76942 c 0.003,-0.007 0.005,-0.0132 0.009,-0.0212 0.0583,-0.0987 4.29712,-6.78772 4.51135,-7.11947 l -34.62734,-11.2507 v -0.006 c -0.0933,-0.0292 -1.85315,-0.60943 -4.11448,-1.35651 -2.23775,-0.7393 -3.94405,-1.30388 -4.07313,-1.34772 z m 130.986318,2.79621 -34.63561,11.25409 -0.0155,-0.0212 c -0.25623,0.0843 -7.96918,2.42572 -8.29148,2.51716 l 0.0145,0.0202 13.52269,4.39353 29.33723,-9.53224 10e-4,-0.54621 c 0.001,-0.57028 0.0619,-7.88987 0.0672,-8.0853 z"
+								id="path3338"
+							/>
+							<path d="" id="path158" transform="scale(0.26458333)" />
+						</g>
+					</svg>
+				</Link>
+				<div className="hidden items-center gap-2 md:flex">
+					{navItems.map(item => (
+						<Link
+							key={item.href}
+							href={item.href}
+							aria-current={pathname === item.href ? 'page' : undefined}
+							className={`rounded-md px-4 py-3 font-mono text-xs tracking-wider transition-colors hover:text-primary ${pathname === item.href ? 'text-primary' : 'text-muted-foreground'}`}
+						>
+							{item.name}
 						</Link>
-					</div>
-
-					{/* Mobile menu button */}
-					<div className="md:hidden">
-						<Button
-							aria-label={
-								isOpen
-									? dict?.navigation?.ariaCloseMenu || 'Close navigation menu'
-									: dict?.navigation?.ariaOpenMenu || 'Open navigation menu'
-							}
-							className="magnetic-button pixel-corners cursor-pointer rounded-full border border-primary/20 bg-card/80 backdrop-blur-md transition-all duration-300 hover:bg-card/90"
-							onClick={toggleMenu}
-							size="icon"
-							variant="ghost"
-						>
-							{isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-						</Button>
-					</div>
-
-					{/* Desktop navigation */}
-					<motion.div
-						animate={{
-							opacity: 1,
-							y: 0,
-						}}
-						className="hidden items-center md:flex"
-						initial={{
-							opacity: 0,
-							y: -20,
-						}}
-						transition={{
-							duration: 0.5,
-							delay: 0.2,
-						}}
+					))}
+				</div>
+				<div className="flex items-center gap-2">
+					<Button
+						size="icon"
+						variant="ghost"
+						disabled={!mounted}
+						aria-label={resolvedTheme === 'dark' ? 'Light theme' : 'Dark theme'}
+						onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
 					>
-						<div className="pixel-corners flex items-center space-x-6 rounded-full border border-primary/20 bg-card/80 px-6 py-3 backdrop-blur-md">
-							{navItems.map((item, index) => (
-								<motion.div
-									animate={{
-										opacity: 1,
-										y: 0,
-									}}
-									initial={{
-										opacity: 0,
-										y: -10,
-									}}
-									key={item.name}
-									transition={{
-										delay: 0.3 + index * 0.1,
-										duration: 0.3,
-									}}
-								>
-									<Link
-										className={`magnetic-button rounded-full px-3 py-1 text-sm font-medium transition-all duration-300 ${isActive(item.href) ? 'bg-primary/10 font-bold text-primary' : 'hover:bg-primary/5 hover:text-primary'}`}
-										href={item.href}
-									>
-										{item.name}
-									</Link>
-								</motion.div>
-							))}
-						</div>
-					</motion.div>
-
-					{/* Theme toggle */}
-					{mounted && (
-						<motion.div
-							animate={{
-								scale: 1,
-							}}
-							className="hidden md:block"
-							initial={{
-								scale: 0,
-							}}
-							transition={{
-								duration: 0.5,
-								delay: 0.4,
-							}}
-						>
-							<Button
-								aria-label={
-									dict?.navigation?.ariaThemeToggle || 'Toggle theme (currently disabled - light mode too dangerous!)'
-								}
-								className="magnetic-button pixel-corners ml-4 hidden cursor-not-allowed border border-primary/20 bg-card/80 opacity-50 backdrop-blur-md md:flex"
-								onClick={handleThemeToggle}
-								size="icon"
-								variant="ghost"
-								// disabled
-							>
-								<motion.div
-									animate={{
-										rotate: theme === 'dark' ? 180 : 0,
-									}}
-									initial={{
-										rotate: 0,
-									}}
-									transition={{
-										duration: 0.5,
-									}}
-								>
-									<Moon className="h-5 w-5 text-primary" />
-								</motion.div>
-							</Button>
-						</motion.div>
-					)}
-				</nav>
-				{/* Mobile menu */}
-				{isOpen && (
-					<motion.div
-						animate={{
-							opacity: 1,
-							scale: 1,
-							y: 0,
-						}}
-						className="pixel-corners dark:dithered-dark dithered-light mt-4 rounded-2xl border border-primary/20 bg-card/90 p-6 backdrop-blur-md md:hidden"
-						exit={{
-							scale: 0.95,
-							opacity: 0,
-							y: -20,
-						}}
-						initial={{
-							scale: 0.95,
-							opacity: 0,
-							y: -20,
-						}}
-						transition={{
-							duration: 0.3,
-						}}
+						{mounted && resolvedTheme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+					</Button>
+					<Button
+						size="icon"
+						variant="ghost"
+						className="md:hidden"
+						aria-expanded={isOpen}
+						aria-controls="mobile-navigation"
+						aria-label={
+							isOpen
+								? dict?.navigation?.ariaCloseMenu || 'Close navigation menu'
+								: dict?.navigation?.ariaOpenMenu || 'Open navigation menu'
+						}
+						onClick={() => setIsOpen(!isOpen)}
 					>
-						<div className="flex flex-col space-y-4">
-							{navItems.map((item, index) => (
-								<motion.div
-									animate={{
-										opacity: 1,
-										x: 0,
-									}}
-									initial={{
-										opacity: 0,
-										x: -20,
-									}}
-									key={item.name}
-									transition={{
-										delay: index * 0.1,
-										duration: 0.3,
-									}}
-								>
-									<Link
-										className={`magnetic-button block rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ${isActive(item.href) ? 'bg-primary/10 font-bold text-primary' : 'hover:bg-primary/5 hover:text-primary'}`}
-										href={item.href}
-										onClick={() => setIsOpen(false)}
-									>
-										{item.name}
-									</Link>
-								</motion.div>
-							))}
-							<div className="flex items-center justify-between border-t border-primary/20 pt-4">
-								<span className="text-xs text-muted-foreground">
-									{dict?.navigation?.themeLockedMobile || 'Theme locked in darkness 🌙'}
-								</span>
-								<Button
-									aria-label={
-										dict?.navigation?.ariaThemeToggleDisabledMobile ||
-										'Theme toggle disabled - light mode too dangerous!'
-									}
-									className="magnetic-button cursor-not-allowed opacity-50"
-									disabled
-									onClick={handleThemeToggle}
-									size="icon"
-									variant="ghost"
-								>
-									<motion.div
-										animate={{
-											rotate: 180,
-										}}
-										initial={{
-											rotate: 0,
-										}}
-										transition={{
-											duration: 0.5,
-										}}
-									>
-										<Moon className="h-4 w-4" />
-									</motion.div>
-								</Button>
-							</div>
-						</div>
-					</motion.div>
-				)}
-			</div>
+						{isOpen ? <X /> : <Menu />}
+					</Button>
+				</div>
+			</nav>
+			{isOpen && (
+				<div id="mobile-navigation" className="portfolio-shell flex flex-col gap-1 pb-4 md:hidden">
+					{navItems.map(item => (
+						<Link
+							key={item.href}
+							href={item.href}
+							aria-current={pathname === item.href ? 'page' : undefined}
+							className="rounded-md px-4 py-3 text-sm hover:bg-accent"
+							onClick={() => setIsOpen(false)}
+						>
+							{item.name}
+						</Link>
+					))}
+				</div>
+			)}
 		</header>
 	)
 }

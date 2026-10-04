@@ -1,14 +1,12 @@
 'use client'
 
+import { MotionConfig } from 'framer-motion'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import * as React from 'react'
+
 export function ThemeProvider({ children, ...props }) {
-	const [mounted, setMounted] = React.useState(false)
-	React.useEffect(() => {
-		setMounted(true)
-	}, [])
-	if (!mounted) {
-		return <>{children}</>
-	}
-	return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+	return (
+		<NextThemesProvider {...props}>
+			<MotionConfig reducedMotion="user">{children}</MotionConfig>
+		</NextThemesProvider>
+	)
 }

@@ -69,9 +69,9 @@ export default function About({ dict }) {
 		},
 	]
 	return (
-		<section className="relative overflow-hidden py-20" id="about">
-			<div className="dark:retro-grid-dark retro-grid-light absolute inset-0 opacity-20" />
-			<div className="dark:sakura-bg-dark sakura-bg-light absolute inset-0 opacity-10" />
+		<section className="relative overflow-hidden py-16 md:py-24" id="about">
+			<div className="dark:retro-grid-dark retro-grid-light absolute inset-0 opacity-5" />
+			<div className="dark:sakura-bg-dark sakura-bg-light absolute inset-0 opacity-5" />
 			{renderAboutContainer(isInView, ref, container, item, dict, roles)}
 		</section>
 	)
@@ -87,17 +87,14 @@ function renderAboutContent(isInView, ref, container, item, dict, roles) {
 		>
 			{/* Left Column - Introduction */}
 			<div className="order-2 lg:order-1">
-				<motion.h2 className="mb-6 text-3xl font-bold md:text-4xl" variants={item}>
+				<motion.h2 className="mb-6 text-3xl font-semibold leading-tight tracking-tight md:text-4xl" variants={item}>
 					{dict?.home?.about?.greeting || 'Hello, my name is'}{' '}
 					<span className="text-primary">{dict?.home?.about?.name || 'Bréval Le Floch'}</span>
 				</motion.h2>
 
 				<motion.div className="mb-8 space-y-4" variants={item}>
-					{roles.map((role, index) => (
-						<Card
-							className="border-primary/20 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/40"
-							key={index}
-						>
+					{roles.map(role => (
+						<Card className="rounded-none border-0 border-b border-border bg-transparent shadow-none" key={role.link}>
 							<CardContent className="p-4">
 								<div className="flex items-start">
 									<div className="mr-3 mt-1 text-primary">{role.icon}</div>
@@ -126,38 +123,26 @@ function renderAboutContent(isInView, ref, container, item, dict, roles) {
 				</motion.div>
 
 				<motion.div className="flex flex-wrap gap-4" variants={item}>
-					<Link
-						className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10"
-						href="https://github.com/LightInn/"
-						target="_blank"
-					>
-						<Button className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10" variant="outline">
+					<Button asChild variant="outline">
+						<Link href="https://github.com/LightInn/" target="_blank" rel="noopener noreferrer">
 							<Github className="mr-2 h-4 w-4" />
 							{dict?.home?.about?.githubButton || 'GitHub'}
-						</Button>
-					</Link>
+						</Link>
+					</Button>
 
-					<Link
-						className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10"
-						href="https://www.linkedin.com/in/breval-lefloch/"
-						target="_blank"
-					>
-						<Button className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10" variant="outline">
+					<Button asChild variant="outline">
+						<Link href="https://www.linkedin.com/in/breval-lefloch/" target="_blank" rel="noopener noreferrer">
 							<Linkedin className="mr-2 h-4 w-4" />
 							{dict?.home?.about?.linkedinButton || 'LinkedIn'}
-						</Button>
-					</Link>
+						</Link>
+					</Button>
 
-					<Link
-						className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10"
-						href="/Resume.pdf"
-						target="_blank"
-					>
-						<Button className="magnetic-button pixel-corners border-primary/30 hover:bg-primary/10" variant="outline">
+					<Button asChild variant="outline">
+						<Link href="/Resume.pdf" target="_blank" rel="noopener noreferrer">
 							<ExternalLink className="mr-2 h-4 w-4" />
 							{dict?.home?.about?.downloadResume || 'Resume'}
-						</Button>
-					</Link>
+						</Link>
+					</Button>
 				</motion.div>
 			</div>
 
@@ -165,8 +150,7 @@ function renderAboutContent(isInView, ref, container, item, dict, roles) {
 			<div className="order-1 space-y-8 lg:order-2">
 				<motion.div className="flex justify-center" variants={item}>
 					<div className="relative">
-						<div className="absolute -inset-4 rounded-full bg-primary/20 blur-xl" />
-						<div className="pixel-corners dark:dithered-dark dithered-light relative rounded-2xl border border-primary/30 bg-card/80 p-1 backdrop-blur-sm">
+						<div className="relative rounded-2xl border border-border bg-card p-1">
 							<div className="overflow-hidden rounded-xl bg-card/90 p-4">
 								<Image
 									alt="Bréval Le Floch"
@@ -190,5 +174,5 @@ function renderAboutContent(isInView, ref, container, item, dict, roles) {
 	)
 }
 function renderAboutContainer(isInView, ref, container, item, dict, roles) {
-	return <div className="container mx-auto px-4">{renderAboutContent(isInView, ref, container, item, dict, roles)}</div>
+	return <div className="portfolio-shell">{renderAboutContent(isInView, ref, container, item, dict, roles)}</div>
 }

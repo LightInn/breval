@@ -1,434 +1,83 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowDown, Linkedin, Mail, Play, X } from 'lucide-react'
+import { ArrowUpRight, Linkedin, Mail } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
-import SakuraFall from '@/components/sakura-fall'
 import { Button } from '@/components/ui/button'
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import siteMetaData from '@/utils/siteMetaData'
+
 export default function Hero({ dict }) {
-	const videoRef = useRef(null)
-	const [showContactPopup, setShowContactPopup] = useState(false)
-	useEffect(() => {
-		if (videoRef.current) {
-			videoRef.current.play().catch(() => {
-				// Fallback if autoplay fails
-				console.error('Autoplay prevented')
-			})
-		}
-	}, [])
-	return renderHeroSection(dict, setShowContactPopup, showContactPopup)
-}
-function renderHeroContent(dict, setShowContactPopup) {
+	const hero = dict?.home?.hero
 	return (
-		<motion.div
-			animate={{
-				opacity: 1,
-				y: 0,
-			}}
-			className="text-center"
-			initial={{
-				opacity: 0,
-				y: 30,
-			}}
-			transition={{
-				duration: 0.8,
-				delay: 0.2,
-			}}
-		>
-			{/* Greeting */}
-			<motion.div
-				animate={{
-					opacity: 1,
-					scale: 1,
-				}}
-				className="mb-6"
-				initial={{
-					opacity: 0,
-					scale: 0.8,
-				}}
-				transition={{
-					duration: 0.6,
-					delay: 0.4,
-				}}
-				whileHover="hover" // Add whileHover to trigger children's hover animation
-			>
-				<div className="pixel-corners inline-block rounded-full border border-primary/30 bg-card/80 px-6 py-2 text-sm font-medium text-muted-foreground backdrop-blur-md">
-					<motion.span
-						className="inline-block"
-						variants={{
-							hover: {
-								transition: {
-									times: [0, 0.2, 0.5, 0.8, 1],
-									ease: 'easeInOut',
-									duration: 0.7,
-								},
-								scale: [1, 1.5, 1.3, 1.5, 1],
-								rotate: [0, -15, 15, -15, 0],
-							},
-						}}
-					>
-						👋
-					</motion.span>{' '}
-					{dict?.home?.hero?.hello || "Hello, I'm"}
-				</div>
-			</motion.div>
-
-			{/* Main Title */}
-			<motion.h1
-				animate={{
-					opacity: 1,
-					y: 0,
-				}}
-				className="mb-6 text-5xl font-bold tracking-wider md:text-7xl lg:text-8xl"
-				initial={{
-					opacity: 0,
-					y: 20,
-				}}
-				transition={{
-					duration: 0.8,
-					delay: 0.6,
-				}}
-			>
-				<span className="dark:text-shadow-dark text-shadow-light">BRÉVAL</span>
-				<br />
-				<span className="dark:text-shadow-dark text-shadow-light text-primary">LE FLOCH</span>
-			</motion.h1>
-
-			{/* Subtitle */}
-			<motion.div
-				animate={{
-					opacity: 1,
-					y: 0,
-				}}
-				className="mb-8"
-				initial={{
-					opacity: 0,
-					y: 20,
-				}}
-				transition={{
-					duration: 0.8,
-					delay: 0.8,
-				}}
-			>
-				<div className="relative inline-block">
-					<div className="absolute inset-0 rounded-full bg-primary/20 blur-xl" />
-					<p className="pixel-corners relative rounded-full border border-primary/30 bg-card/60 px-8 py-3 text-lg backdrop-blur-sm md:text-xl">
-						{dict?.home?.hero?.title || 'Creative Developer & Digital Craftsman'}
+		<section className="portfolio-hero" aria-labelledby="hero-title">
+			<div className="portfolio-shell grid items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+				<div>
+					<p className="mb-6 font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+						{hero?.title || 'Creative Developer & Digital Craftsman'}
 					</p>
-				</div>
-			</motion.div>
-
-			{/* Description */}
-			<motion.p
-				animate={{
-					opacity: 1,
-					y: 0,
-				}}
-				className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground"
-				initial={{
-					opacity: 0,
-					y: 20,
-				}}
-				transition={{
-					duration: 0.8,
-					delay: 1,
-				}}
-			>
-				{dict?.home?.hero?.description ||
-					'CTO of ForMenu, Co-founder of multiple startups, and passionate about exploring the infinite possibilities of technology and creative development.'}
-			</motion.p>
-
-			{/* CTA Buttons */}
-			<motion.div
-				animate={{
-					opacity: 1,
-					y: 0,
-				}}
-				className="flex flex-col items-center justify-center gap-4 sm:flex-row"
-				initial={{
-					opacity: 0,
-					y: 20,
-				}}
-				transition={{
-					duration: 0.8,
-					delay: 1.2,
-				}}
-			>
-				<Link href="/projects" passHref>
-					<Button
-						className="magnetic-button pixel-corners rounded-full bg-primary px-8 py-3 text-primary-foreground hover:bg-primary/90"
-						size="lg"
-					>
-						<Play className="mr-2 h-5 w-5" />
-						{dict?.home?.hero?.ctaWork || 'View My Work'}
-					</Button>
-				</Link>
-				<Button
-					className="magnetic-button pixel-corners rounded-full border-primary/30 px-8 py-3 hover:bg-primary/10"
-					onClick={() => setShowContactPopup(true)}
-					size="lg"
-					variant="outline"
-				>
-					{dict?.home?.hero?.ctaContact || 'Get In Touch'}
-				</Button>
-			</motion.div>
-		</motion.div>
-	)
-}
-function renderHeroContainer(dict, setShowContactPopup) {
-	return <div className="container relative z-10 mx-auto px-4">{renderHeroContent(dict, setShowContactPopup)}</div>
-}
-function renderContactPanel(setShowContactPopup, dict) {
-	return (
-		<motion.div
-			animate={{
-				rotate: 0,
-				scale: 1,
-				y: 0,
-			}}
-			className="relative mx-4 max-w-md rounded-2xl border-2 border-primary/50 bg-gradient-to-br from-card/95 to-card/80 p-6 shadow-2xl backdrop-blur-xl"
-			exit={{
-				scale: 0.8,
-				rotate: 5,
-				y: 50,
-			}}
-			initial={{
-				scale: 0.8,
-				rotate: -5,
-				y: 50,
-			}}
-			onClick={e => e.stopPropagation()}
-			transition={{
-				type: 'spring',
-				stiffness: 300,
-				duration: 0.5,
-				damping: 20,
-			}}
-		>
-			{/* Close Button */}
-			<button
-				type="button"
-				className="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-colors hover:bg-primary/90"
-				onClick={() => setShowContactPopup(false)}
-			>
-				<X className="h-4 w-4" />
-			</button>
-
-			{/* Funny Header */}
-			<div className="mb-4 text-center">
-				<motion.div
-					animate={{
-						rotate: [0, -10, 10, -10, 0],
-					}}
-					className="mx-auto mb-2 text-4xl"
-					transition={{
-						ease: 'easeInOut',
-						repeat: Infinity,
-						duration: 2,
-					}}
-				>
-					🤖
-				</motion.div>
-				<h3 className="text-xl font-bold text-primary">
-					{dict?.home?.hero?.contactPopup?.contactProtocolsActivated || 'Contact Protocols Activated!'}
-				</h3>
-				<p className="mt-1 text-sm text-muted-foreground">
-					{dict?.home?.hero?.contactPopup?.beepBoop || '*Beep boop* Initializing human communication channels...'}
-				</p>
-			</div>
-
-			{/* Funny Description */}
-			<div className="mb-6 rounded-lg bg-primary/10 p-4 text-center">
-				<p className="text-sm leading-relaxed">
-					{/* The warningRealm key contains the full string. Styling of specific words might need to be handled differently if required, e.g. by splitting the string or using a component that can parse and style parts of the string. */}
-					{dict?.home?.hero?.contactPopup?.warningRealm ||
-						"Warning: You're about to enter the mysterious realm of professional networking! Choose your communication weapon wisely..."}
-				</p>
-			</div>
-
-			{/* Contact Options */}
-			<div className="space-y-3">
-				<motion.a
-					className="flex w-full items-center justify-between rounded-lg border border-primary/30 bg-card/50 p-4 transition-all hover:border-primary/50 hover:bg-primary/10"
-					href="mailto:breval.lefloch@google.com"
-					whileHover={{
-						scale: 1.02,
-						x: 5,
-					}}
-					whileTap={{
-						scale: 0.98,
-					}}
-				>
-					<div className="flex items-center gap-3">
-						<div className="rounded-full bg-primary/20 p-2">
-							<Mail className="h-5 w-5 text-primary" />
-						</div>
-						<div>
-							<div className="font-medium">
-								📧 {dict?.home?.hero?.contactPopup?.electronicMail || 'Electronic Mail'}
-							</div>
-							<div className="text-xs text-muted-foreground">
-								{dict?.home?.hero?.contactPopup?.classicApproach || 'The classic approach - 99.9% delivery rate*'}
-							</div>
-						</div>
+					<h1 id="hero-title" className="hero-title font-semibold">
+						BRÉVAL
+						<br />
+						<span className="text-primary">LE FLOCH</span>
+					</h1>
+					<p className="mb-8 mt-6 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
+						{hero?.description ||
+							'CTO of ForMenu, Co-founder of multiple startups, and passionate about exploring the infinite possibilities of technology and creative development.'}
+					</p>
+					<div className="flex flex-wrap gap-3">
+						<Button asChild size="lg" className="rounded-lg">
+							<Link href="/projects">
+								{hero?.ctaWork || 'View My Work'}
+								<ArrowUpRight aria-hidden="true" className="ml-2 h-4 w-4" />
+							</Link>
+						</Button>
+						<Dialog>
+							<DialogTrigger asChild>
+								<Button size="lg" variant="outline" className="rounded-lg">
+									{hero?.ctaContact || 'Get In Touch'}
+								</Button>
+							</DialogTrigger>
+							<DialogContent className="w-[calc(100%_-_2rem)] rounded-xl p-8">
+								<DialogTitle className="pr-6 text-2xl">
+									{hero?.contactPopup?.contactProtocolsActivated || 'Contact Protocols Activated!'}
+								</DialogTitle>
+								<DialogDescription>
+									{hero?.contactPopup?.beepBoop || '*Beep boop* Initializing human communication channels...'}
+								</DialogDescription>
+								<a className="contact-link" href={`mailto:${siteMetaData.email}`}>
+									<Mail aria-hidden="true" className="h-5 w-5 text-primary" />
+									<span>
+										{hero?.contactPopup?.electronicMail || 'Electronic Mail'}
+										<span className="block text-sm text-muted-foreground">{siteMetaData.email}</span>
+									</span>
+									<ArrowUpRight aria-hidden="true" className="ml-auto h-4 w-4" />
+								</a>
+								<a
+									className="contact-link"
+									href="https://linkedin.com/in/breval-lefloch"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<Linkedin aria-hidden="true" className="h-5 w-5 text-primary" />
+									<span>{hero?.contactPopup?.linkedInPortal || 'LinkedIn Portal'}</span>
+									<ArrowUpRight aria-hidden="true" className="ml-auto h-4 w-4" />
+								</a>
+							</DialogContent>
+						</Dialog>
 					</div>
-					<div className="text-xl">→</div>
-				</motion.a>
-
-				<motion.a
-					className="flex w-full items-center justify-between rounded-lg border border-primary/30 bg-card/50 p-4 transition-all hover:border-primary/50 hover:bg-primary/10"
-					href="https://linkedin.com/in/breval-lefloch" // Remplace par ton vrai LinkedIn
-					rel="noopener noreferrer"
-					target="_blank"
-					whileHover={{
-						scale: 1.02,
-						x: 5,
-					}}
-					whileTap={{
-						scale: 0.98,
-					}}
-				>
-					<div className="flex items-center gap-3">
-						<div className="rounded-full bg-blue-500/20 p-2">
-							<Linkedin className="h-5 w-5 text-blue-500" />
-						</div>
-						<div>
-							<div className="font-medium">
-								💼 {dict?.home?.hero?.contactPopup?.linkedInPortal || 'LinkedIn Portal'}
-							</div>
-							<div className="text-xs text-muted-foreground">
-								{dict?.home?.hero?.contactPopup?.businessCardsEvolve || 'Where business cards go to evolve'}
-							</div>
-						</div>
-					</div>
-					<div className="text-xl">→</div>
-				</motion.a>
-			</div>
-
-			{/* Funny Footer */}
-			<div className="mt-6 text-center">
-				<p className="text-xs text-muted-foreground">
-					<motion.span
-						animate={{
-							opacity: [1, 0.5, 1],
-						}}
-						transition={{
-							repeat: Infinity,
-							duration: 2,
-						}}
-					>
-						⚡
-					</motion.span>{' '}
-					{dict?.home?.hero?.contactPopup?.responseTime || 'Response time: Usually faster than a pizza delivery'}{' '}
-					<motion.span
-						animate={{
-							opacity: [1, 0.5, 1],
-						}}
-						transition={{
-							repeat: Infinity,
-							duration: 2,
-							delay: 1,
-						}}
-					>
-						⚡
-					</motion.span>
-				</p>
-			</div>
-		</motion.div>
-	)
-}
-function renderContactBackdrop(setShowContactPopup, dict) {
-	return (
-		<motion.div
-			animate={{
-				opacity: 1,
-			}}
-			className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
-			exit={{
-				opacity: 0,
-			}}
-			initial={{
-				opacity: 0,
-			}}
-			onClick={() => setShowContactPopup(false)}
-		>
-			{renderContactPanel(setShowContactPopup, dict)}
-		</motion.div>
-	)
-}
-function renderContactPopup(showContactPopup, setShowContactPopup, dict) {
-	return <AnimatePresence>{showContactPopup && renderContactBackdrop(setShowContactPopup, dict)}</AnimatePresence>
-}
-function renderHeroSection(dict, setShowContactPopup, showContactPopup) {
-	return (
-		<section className="relative clear-both m-0 flex h-[100vh] h-screen w-[100vw] max-w-[100vw] items-center justify-center overflow-hidden overflow-x-hidden p-0">
-			{/* Video Overlay Grid Pattern */}
-			<div className="video-overlay" />
-			{/* Video Background */}
-			<iframe
-				allow="autoplay"
-				allowFullScreen
-				className={
-					'absolute left-1/2 top-1/2 border-0 ' + 'animate-video bg-slate-900 opacity-75 dark:mix-blend-soft-light'
-				}
-				data-ready="true"
-				id="topHeroVideo"
-				loading="eager"
-				src="https://player.vimeo.com/video/879007060?background=1&autoplay=1&loop=1&muted=1&quality=720p"
-				style={{
-					height: 'max(100vh, calc(100vw * 9/16))',
-					width: 'max(100vw, calc(100vh * 16/9))',
-					transform: 'translate(-50%, -50%)',
-					transformOrigin: 'center center',
-				}}
-				title={'landing page background video'}
-			></iframe>
-			{/* Sakura Fall Effect */}
-			<SakuraFall />
-			{/* Background Patterns */}
-			<div className="retro-grid-dark absolute inset-0 opacity-30" />
-			<div className="dark:sakura-bg-dark sakura-bg-light absolute inset-0 opacity-20" />
-			<div className="dark:mountain-bg-dark mountain-bg-light absolute bottom-0 left-0 right-0 opacity-40" />
-			{renderHeroContainer(dict, setShowContactPopup)}
-
-			{/* Scroll Indicator */}
-			<motion.div
-				animate={{
-					opacity: 1,
-					y: 0,
-				}}
-				className="absolute inset-x-0 bottom-12 z-10 z-30 flex justify-center"
-				initial={{
-					opacity: 0,
-					y: 20,
-				}}
-				transition={{
-					duration: 0.5,
-					delay: 1.4,
-				}}
-			>
-				<div className="flex flex-col items-center">
-					<p className="mb-4 text-sm text-muted-foreground">{dict?.common?.scrollToExplore || 'Scroll to explore'}</p>
-					<motion.div
-						animate={{
-							y: [0, 10, 0],
-						}}
-						className="flex h-12 w-8 justify-center rounded-full border-2 border-primary/50 bg-card/30 p-2 backdrop-blur-sm"
-						transition={{
-							repeat: Number.POSITIVE_INFINITY,
-							duration: 2,
-						}}
-					>
-						<ArrowDown className="animate-bounce-slow h-4 w-4 text-primary" />
-					</motion.div>
 				</div>
-			</motion.div>
-			{/* Bottom Gradient */}
-			<div className="z-5 absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
-
-			{/* Contact Popup - Funny & Bizarre */}
-			{renderContactPopup(showContactPopup, setShowContactPopup, dict)}
+				<div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border sm:aspect-[5/4] lg:aspect-[4/5]">
+					<Image
+						src="/home/blured_video_frame.webp"
+						alt=""
+						fill
+						priority
+						sizes="(max-width: 1024px) 100vw, 45vw"
+						className="object-cover object-[65%_center]"
+					/>
+				</div>
+			</div>
 		</section>
 	)
 }
