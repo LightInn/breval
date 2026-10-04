@@ -1,11 +1,9 @@
 'use client'
-import { useEffect, useState } from 'react'
 
 import { motion } from 'framer-motion'
-
+import { useEffect, useState } from 'react'
 export default function SakuraFall() {
 	const [petals, setPetals] = useState([])
-
 	useEffect(() => {
 		const generatePetals = () => {
 			const newPetals = []
@@ -22,20 +20,15 @@ export default function SakuraFall() {
 					id: i,
 				})
 			}
-
 			setPetals(newPetals)
 		}
-
 		generatePetals()
-
 		const handleResize = () => {
 			generatePetals()
 		}
-
 		window.addEventListener('resize', handleResize)
 		return () => window.removeEventListener('resize', handleResize)
 	}, [])
-
 	return (
 		<div className="pointer-events-none fixed inset-0 z-10 overflow-hidden">
 			{petals.map(petal => (
@@ -46,10 +39,7 @@ export default function SakuraFall() {
 							`${petal.x + (Math.random() * 15 - 7.5)}vw`,
 							`${petal.x + (Math.random() * 30 - 15)}vw`,
 						],
-						rotate: [
-							petal.rotation,
-							petal.rotation + 360 * (Math.random() > 0.5 ? 1 : -1),
-						],
+						rotate: [petal.rotation, petal.rotation + 360 * (Math.random() > 0.5 ? 1 : -1)],
 						y: [`${petal.y}vh`, `${110 + Math.random() * 20}vh`],
 						opacity: [0, 0.7, 0],
 					}}

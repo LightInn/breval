@@ -1,15 +1,12 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+
+import { useEffect, useState } from 'react'
 import { usePalette } from 'react-palette'
-
 import { createGlobalStyle } from 'styled-components'
-
 import AboutCoverSection from '@/components/Experiments/About/AboutCoverSection'
-import { Playground } from '@/components/Experiments/About/Playground'
 import Navbar from '@/components/Experiments/About/Navbar'
-
+import { Playground } from '@/components/Experiments/About/Playground'
 import './App.css'
-
 export default function About() {
 	const bibiliothecqueDImage = [
 		// "/experiments/about/dynamic/0.webp",
@@ -39,19 +36,11 @@ export default function About() {
 		'/experiments/about/dynamic/24.webp',
 		'/experiments/about/dynamic/25.webp',
 	]
-
 	const [imgeUrl, setUrl] = useState('/experiments/about/dynamic/0.webp')
-
 	const [reload, setReload] = useState(0)
-
 	useEffect(() => {
-		setUrl(
-			bibiliothecqueDImage[
-				Math.floor(Math.random() * bibiliothecqueDImage.length)
-			]
-		)
+		setUrl(bibiliothecqueDImage[Math.floor(Math.random() * bibiliothecqueDImage.length)])
 	}, [reload])
-
 	const { data } = usePalette(imgeUrl)
 	const AppStyle = createGlobalStyle`html {
 
@@ -67,7 +56,6 @@ export default function About() {
         --muted-dark: ${data.darkMuted};
 
     }`
-
 	return (
 		<div className="w-full">
 			<AppStyle />

@@ -1,20 +1,21 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
 import { motion } from 'framer-motion'
-
+import { useEffect, useState } from 'react'
 export default function CursorBlob() {
-	const [position, setPosition] = useState({ x: 0, y: 0 })
+	const [position, setPosition] = useState({
+		x: 0,
+		y: 0,
+	})
 	const [isHovering, setIsHovering] = useState(false)
 	const [isMounted, setIsMounted] = useState(false)
-
 	useEffect(() => {
 		setIsMounted(true)
-
 		const updatePosition = e => {
-			setPosition({ x: e.clientX, y: e.clientY })
-
+			setPosition({
+				x: e.clientX,
+				y: e.clientY,
+			})
 			const target = e.target
 			const isInteractive =
 				target.tagName === 'BUTTON' ||
@@ -23,12 +24,9 @@ export default function CursorBlob() {
 				target.closest('a') ||
 				target.closest('.magnetic-button') ||
 				window.getComputedStyle(target).cursor === 'pointer'
-
 			setIsHovering(isInteractive)
 		}
-
 		window.addEventListener('mousemove', updatePosition)
-
 		return () => {
 			window.removeEventListener('mousemove', updatePosition)
 		}
@@ -38,13 +36,9 @@ export default function CursorBlob() {
 	if (!isMounted) return null
 
 	// Only hide on mobile devices
-	if (
-		typeof window !== 'undefined' &&
-		window.matchMedia('(max-width: 768px)').matches
-	) {
+	if (typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches) {
 		return null
 	}
-
 	return (
 		<>
 			{/* Main cursor blob */}
@@ -56,7 +50,9 @@ export default function CursorBlob() {
 				}}
 				className="pointer-events-none fixed left-0 top-0 z-50 mix-blend-luminosity"
 				// Force opacity to always be 1
-				style={{ opacity: 1 }}
+				style={{
+					opacity: 1,
+				}}
 				transition={{
 					type: 'spring',
 					stiffness: 200,
@@ -74,7 +70,9 @@ export default function CursorBlob() {
 				}}
 				className="pointer-events-none fixed left-0 top-0 z-50 mix-blend-difference"
 				// Force opacity to always be 1
-				style={{ opacity: 1 }}
+				style={{
+					opacity: 1,
+				}}
 				transition={{
 					type: 'spring',
 					stiffness: 400,
@@ -93,7 +91,9 @@ export default function CursorBlob() {
 					}}
 					className="pointer-events-none fixed left-0 top-0 z-40"
 					// Force opacity
-					style={{ opacity: 0.6 }}
+					style={{
+						opacity: 0.6,
+					}}
 					transition={{
 						type: 'spring',
 						stiffness: 150,

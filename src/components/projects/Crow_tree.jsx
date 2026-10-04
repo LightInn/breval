@@ -7,22 +7,16 @@ Files: .\public\crow_tree.glb [805.12KB] > C:\Users\breva\Desktop\repos\breval\c
 import { useAnimations, useGLTF } from '@react-three/drei'
 import { useGraph } from '@react-three/fiber'
 import React, { useEffect } from 'react'
-
 import { SkeletonUtils } from 'three-stdlib'
-
-export function Crow({ step }, props) {
+export function Crow({ step, ...props }) {
 	const group = React.useRef()
 	const { animations, scene } = useGLTF('/3D/crow_tree-transformed.glb')
 	const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
 	const { materials, nodes } = useGraph(clone)
 	const { actions } = useAnimations(animations, group)
-
 	useEffect(() => {
-		console.debug(actions)
 		actions.idle.play()
-		console.debug(materials)
 	})
-
 	useEffect(() => {
 		if (step === 1) {
 			actions.idle.paused = false
@@ -45,15 +39,10 @@ export function Crow({ step }, props) {
 			materials.PaletteMaterial001.opacity = 0 //
 		}
 	}, [step])
-
 	return (
 		<group ref={group} {...props} dispose={null}>
 			<group name="Scene">
-				<group
-					name="ArmatureBird"
-					position={[-1.843, 13.465, -3.064]}
-					scale={[1, 0.971, 1]}
-				>
+				<group name="ArmatureBird" position={[-1.843, 13.465, -3.064]} scale={[1, 0.971, 1]}>
 					<primitive object={nodes.center_bone} />
 					<primitive object={nodes.legR1_bone} />
 					<primitive object={nodes.legL1_bone} />
@@ -94,5 +83,4 @@ export function Crow({ step }, props) {
 		</group>
 	)
 }
-
 useGLTF.preload('/3D/crow_low_ploy-transformed.glb')

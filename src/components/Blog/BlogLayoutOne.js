@@ -1,11 +1,7 @@
-import React from 'react'
-
 import { slug } from 'github-slugger'
 import Image from 'next/image'
 import Link from 'next/link'
-
 import { rgbDataURL } from '@/services/dataurl.services'
-
 import Tag from '../Elements/Tag'
 
 const BlogLayoutOne = ({ blog }) => {
@@ -29,7 +25,7 @@ const BlogLayoutOne = ({ blog }) => {
 					link={`/blog/categories/${slug(blog.tags[0])}`}
 					name={blog.tags[0]}
 				/>
-				<Link className="mt-6 no-underline" href={'/blog/articles/' + blog.url}>
+				<Link className="mt-6 no-underline" href={`/blog/articles/${blog.url}`}>
 					<h2 className="text-light xs:text-base mt-2 text-sm font-bold capitalize sm:mt-4 sm:text-xl md:text-2xl">
 						<span className="bg-gradient-to-r from-accent to-accent bg-[length:0px_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[length:100%_6px]">
 							{blog.title}
@@ -40,5 +36,4 @@ const BlogLayoutOne = ({ blog }) => {
 		</div>
 	)
 }
-
 export default BlogLayoutOne

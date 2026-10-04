@@ -1,5 +1,4 @@
 import siteMetaData from '@/utils/siteMetaData'
-
 export const metadata = {
 	openGraph: {
 		images: [
@@ -20,7 +19,6 @@ export const metadata = {
 		'Explore an interactive SVG avatar experiment by Bréval Le Floch, showcasing dynamic animations and color palettes generated from images.',
 	title: 'Interactive Avatar Experiment | Bréval Le Floch',
 }
-
 export default function AboutLayout({ children }) {
 	return (
 		<main className="flex w-full flex-col items-center justify-between bg-white">

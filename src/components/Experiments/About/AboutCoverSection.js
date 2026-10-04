@@ -1,46 +1,27 @@
-import React from 'react'
-
 import Link from 'next/link'
-
-import {
-	DiscordIcon,
-	EmailIcon,
-	GithubIcon,
-	LinkedinIcon,
-	TwitterIcon,
-} from '@/components/Icons'
 import { ReloadCTA } from '@/components/Experiments/About/ReloadCTA'
-
+import { DiscordIcon, EmailIcon, GithubIcon, LinkedinIcon, TwitterIcon } from '@/components/Icons'
+import Avatar from '/src/components/Experiments/About/Avatar'
 import css from '/src/styles/Navbar.module.css'
 
-import Avatar from '/src/components/Experiments/About/Avatar'
-
-const AboutCoverSection = ({
-	background = null,
-	setReload = null,
-	data = {},
-}) => {
+const AboutCoverSection = ({ background = null, setReload = null, data = {} }) => {
 	return (
 		<section
 			className="text-dark flex h-screen w-screen flex-col items-center justify-center overflow-visible bg-cover md:flex-row"
-			style={{ backgroundImage: `var(--bg-img)` }}
+			style={{
+				backgroundImage: `var(--bg-img)`,
+			}}
 		>
 			<div className="flex h-full w-full flex-col-reverse items-center justify-center gap-4 overflow-visible p-20 backdrop-blur-lg xl:flex-row xl:justify-evenly">
 				<div className="flex w-full flex-col items-center justify-center md:w-1/4 md:items-end">
 					<h2
-						className={
-							css.messagebulle +
-							' text-center text-4xl font-bold capitalize text-white md:rounded-2xl md:bg-white/30 md:p-6 md:text-6xl lg:text-right'
-						}
+						className={`${css.messagebulle} text-center text-4xl font-bold capitalize text-white md:rounded-2xl md:bg-white/30 md:p-6 md:text-6xl lg:text-right`}
 					>
 						Hi, I&apos;m <br />
 						<strong>Bréval</strong>.
 					</h2>
 					<p
-						className={
-							css.messagebulle +
-							' font-medium capitalize text-white md:mt-8 md:rounded-2xl md:bg-white/30 md:p-20 md:text-right md:text-2xl'
-						}
+						className={`${css.messagebulle} font-medium capitalize text-white md:mt-8 md:rounded-2xl md:bg-white/30 md:p-20 md:text-right md:text-2xl`}
 					>
 						I&apos;m a creative developer <br />
 						from France, Loire Atlantique.
@@ -58,8 +39,10 @@ const AboutCoverSection = ({
 							title="Github"
 						>
 							<GithubIcon
-								className={css.messagebulle + ' w-[30px] rounded-2xl p-2'}
-								style={{ backgroundColor: data.lightVibrant }}
+								className={`${css.messagebulle} w-[30px] rounded-2xl p-2`}
+								style={{
+									backgroundColor: data.lightVibrant,
+								}}
 							/>
 							{/*<DribbbleIcon*/}
 							{/*    className="w-[30px] rounded-2xl bg-dynamic-vibrant-light hover:bg-dynamic-muted-light p-2 md:message-bulle"/>*/}
@@ -75,8 +58,10 @@ const AboutCoverSection = ({
 							title="Linkedin"
 						>
 							<LinkedinIcon
-								className={css.messagebulle + ' w-[30px] rounded-2xl p-2'}
-								style={{ backgroundColor: data.lightVibrant }}
+								className={`${css.messagebulle} w-[30px] rounded-2xl p-2`}
+								style={{
+									backgroundColor: data.lightVibrant,
+								}}
 							/>
 						</Link>
 						<Link
@@ -90,8 +75,10 @@ const AboutCoverSection = ({
 							title="Twitter"
 						>
 							<TwitterIcon
-								className={css.messagebulle + ' w-[30px] rounded-2xl p-2'}
-								style={{ backgroundColor: data.lightVibrant }}
+								className={`${css.messagebulle} w-[30px] rounded-2xl p-2`}
+								style={{
+									backgroundColor: data.lightVibrant,
+								}}
 							/>
 						</Link>
 						<Link
@@ -105,8 +92,10 @@ const AboutCoverSection = ({
 							title="Email"
 						>
 							<EmailIcon
-								className={css.messagebulle + ' w-[30px] rounded-2xl p-2'}
-								style={{ backgroundColor: data.lightVibrant }}
+								className={`${css.messagebulle} w-[30px] rounded-2xl p-2`}
+								style={{
+									backgroundColor: data.lightVibrant,
+								}}
 							/>
 						</Link>
 						<Link
@@ -120,8 +109,10 @@ const AboutCoverSection = ({
 							title="Discord"
 						>
 							<DiscordIcon
-								className={css.messagebulle + ' w-[30px] rounded-2xl p-2'}
-								style={{ backgroundColor: data.lightVibrant }}
+								className={`${css.messagebulle} w-[30px] rounded-2xl p-2`}
+								style={{
+									backgroundColor: data.lightVibrant,
+								}}
 							/>
 						</Link>
 						{/*Email*/}
@@ -142,5 +133,4 @@ const AboutCoverSection = ({
 		</section>
 	)
 }
-
 export default AboutCoverSection

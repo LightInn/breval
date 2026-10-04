@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic);
 
@@ -7,7 +7,7 @@
 @tailwind utilities;
 
 * {
-	font-family: 'Varela Round', sans-serif;
+	font-family: "Varela Round", sans-serif;
 	transition:
 		opacity,
 		z-index,
@@ -146,18 +146,17 @@ html {
 	55% {
 		filter: blur(var(--blur));
 	}
-	50%,
-	50.1% {
-		opacity: 0;
-	}
+
 	25%,
 	75% {
 		transform: translateX(0);
 	}
 	50% {
+		opacity: 0;
 		transform: translateX(var(--move));
 	}
 	50.1% {
+		opacity: 0;
 		transform: translateX(calc(var(--move) * -1));
 	}
 }
@@ -282,7 +281,7 @@ html {
 /* Neon effect */
 
 .neon {
-	font-family: 'Exo 2', sans-serif;
+	font-family: "Exo 2", sans-serif;
 	--neon-text-color: #ffc6d3;
 	font-weight: 200;
 	font-style: italic;
@@ -345,6 +344,7 @@ html {
 		transform: translatey(0px) rotate(0deg);
 	}
 	50% {
+		opacity: 0;
 		transform: translatey(-15px) rotate(5deg);
 	}
 	100% {
@@ -358,13 +358,13 @@ html {
 	--video-height: 100vh;
 }
 
-@media (min-aspect-ratio: 16/9) {
+@media (min-aspect-ratio: 16 / 9) {
 	:root {
 		--video-height: 56.25vw;
 	}
 }
 
-@media (max-aspect-ratio: 16/9) {
+@media (max-aspect-ratio: 16 / 9) {
 	:root {
 		--video-width: 177.78vh;
 	}
@@ -452,7 +452,7 @@ li {
 .shiny-button::after {
 	--m-i: linear-gradient(#000, #000);
 	--m-o: content-box, padding-box;
-	content: '';
+	content: "";
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -460,15 +460,7 @@ li {
 	height: 100%;
 	padding: var(--border-width);
 	border-radius: var(--border-radius);
-	background-image: conic-gradient(
-		#ff99b1,
-		#cc7a8d,
-		#995b69,
-		#995b69,
-		#cc7a8d,
-		#ffe343,
-		#ff99b1
-	);
+	background-image: conic-gradient(#ff99b1, #cc7a8d, #995b69, #995b69, #cc7a8d, #ffe343, #ff99b1);
 	-webkit-mask-image: var(--m-i), var(--m-i);
 	mask-image: var(--m-i), var(--m-i);
 	-webkit-mask-origin: var(--m-o);
@@ -522,7 +514,7 @@ li {
 
 .button::before,
 .button::after {
-	content: '';
+	content: "";
 	display: block;
 	width: 50px;
 	height: 50px;
@@ -567,7 +559,7 @@ html {
 h1 > a > .icon.icon-link:before,
 h2 > a > .icon.icon-link:before,
 h3 > a > .icon.icon-link:before {
-	content: '#';
+	content: "#";
 	font-size: 0.8rem;
 }
 
@@ -637,7 +629,7 @@ blockquote {
 	width: 100%;
 	margin-top: 5px;
 	margin-bottom: 50px;
-	font-family: Open Sans;
+	font-family: "Open Sans", sans-serif;
 	font-style: italic;
 	color: #1a1a1a;
 	padding: 1.2em 20px 0.5em 75px;
@@ -648,8 +640,8 @@ blockquote {
 }
 
 blockquote::before {
-	font-family: Arial;
-	content: '\201C';
+	font-family: Arial, sans-serif;
+	content: "\201C";
 	color: #ff99b1;
 	font-size: 4em;
 	position: absolute;
@@ -658,7 +650,7 @@ blockquote::before {
 }
 
 blockquote::after {
-	content: '';
+	content: "";
 }
 
 blockquote span {
@@ -682,7 +674,7 @@ blockquote span {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	content: 'Image';
+	content: "Image";
 	width: 100%;
 }
 

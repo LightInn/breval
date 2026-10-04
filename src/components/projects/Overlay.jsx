@@ -1,21 +1,17 @@
 'use client'
 
-import { Code, Database, Globe, Smartphone } from 'lucide-react'
 import { Scroll, useScroll } from '@react-three/drei'
-import React, { useEffect, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
-
 import { motion } from 'framer-motion'
-
-import FeaturedProjectsSection from '@/components/projects/FeaturedProjectsSection'
+import { Code, Database, Globe, Smartphone } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import AllProjectSection from '@/components/projects/AllProjectSection'
-import AnimatedTitle from '@/components/projects/TitleLetter'
+import FeaturedProjectsSection from '@/components/projects/FeaturedProjectsSection'
 import MovingLogo from '@/components/projects/MovingLogo'
-
+import AnimatedTitle from '@/components/projects/TitleLetter'
 export function Overlay({ setStep, step }) {
 	// const projects = await getProject()
 	const data = useScroll()
-
 	useFrame(() => {
 		// data.offset = current scroll position, between 0 and 1, dampened
 		// data.delta = current delta, between 0 and 1, dampened
@@ -51,16 +47,13 @@ export function Overlay({ setStep, step }) {
 		// console.log(step)
 		// console.log(b, c)
 	})
-
-	const width = 1
-	const height = 1.61803398875
-
-	const [projects, setProjects] = useState(null)
+	const _width = 1
+	const _height = 1.61803398875
+	const [_projects, setProjects] = useState(null)
 	useEffect(() => {
 		getProject()
 			.then(data => {
 				setProjects(data)
-				console.debug(data)
 			})
 			.catch(err => {
 				console.error('Error fetching projects:', err)
@@ -70,59 +63,66 @@ export function Overlay({ setStep, step }) {
 	// return null;
 	return (
 		<Scroll html>
-			<>
-				<MovingLogo icon={<Code size={24} />} />
-				<MovingLogo icon={<Database size={24} />} />
-				<MovingLogo icon={<Globe size={24} />} />
-				<MovingLogo icon={<Smartphone size={24} />} />
-				<section className="relative h-screen w-screen">
-					<div className="flex h-full items-center px-4">
-						{/* Conteneur du texte */}
-						<div className="mx-auto w-full max-w-4xl rounded-md bg-white/20 p-6 backdrop-blur-lg md:mx-0 md:ml-16 md:px-12 md:py-8">
-							<motion.div
-								animate={{ opacity: 1 }}
-								className="text-center"
-								initial={{ opacity: 0 }}
-								transition={{ duration: 1 }}
+			<MovingLogo icon={<Code size={24} />} />
+			<MovingLogo icon={<Database size={24} />} />
+			<MovingLogo icon={<Globe size={24} />} />
+			<MovingLogo icon={<Smartphone size={24} />} />
+			<section className="relative h-screen w-screen">
+				<div className="flex h-full items-center px-4">
+					{/* Conteneur du texte */}
+					<div className="mx-auto w-full max-w-4xl rounded-md bg-white/20 p-6 backdrop-blur-lg md:mx-0 md:ml-16 md:px-12 md:py-8">
+						<motion.div
+							animate={{
+								opacity: 1,
+							}}
+							className="text-center"
+							initial={{
+								opacity: 0,
+							}}
+							transition={{
+								duration: 1,
+							}}
+						>
+							<AnimatedTitle text="My Projects" />
+							<motion.p
+								animate={{
+									opacity: 1,
+									y: 0,
+								}}
+								className="mx-auto mt-6 max-w-2xl text-xl text-gray-600"
+								initial={{
+									opacity: 0,
+									y: 20,
+								}}
+								transition={{
+									duration: 0.8,
+									delay: 0.5,
+								}}
 							>
-								<AnimatedTitle text="My Projects" />
-								<motion.p
-									animate={{ opacity: 1, y: 0 }}
-									className="mx-auto mt-6 max-w-2xl text-xl text-gray-600"
-									initial={{ opacity: 0, y: 20 }}
-									transition={{ duration: 0.8, delay: 0.5 }}
-								>
-									As a web developer, I&apos;ve had the opportunity to work on
-									various exciting projects. Here&apos;s a showcase of my
-									achievements and creative solutions.
-								</motion.p>
-							</motion.div>
-						</div>
+								As a web developer, I&apos;ve had the opportunity to work on various exciting projects. Here&apos;s a
+								showcase of my achievements and creative solutions.
+							</motion.p>
+						</motion.div>
 					</div>
-				</section>
-				<section className="relative h-screen w-screen">
-					<div className="flex h-full items-center px-4">
-						{/* Conteneur du texte */}
-						<div className="mx-auto w-full overflow-hidden rounded-3xl backdrop-blur-lg md:mx-0 md:ml-auto md:mr-16 md:max-w-[75%] md:px-12 md:py-4 xl:max-w-[50%]">
-							<FeaturedProjectsSection step={step} />
-						</div>
+				</div>
+			</section>
+			<section className="relative h-screen w-screen">
+				<div className="flex h-full items-center px-4">
+					{/* Conteneur du texte */}
+					<div className="mx-auto w-full overflow-hidden rounded-3xl backdrop-blur-lg md:mx-0 md:ml-auto md:mr-16 md:max-w-[75%] md:px-12 md:py-4 xl:max-w-[50%]">
+						<FeaturedProjectsSection step={step} />
 					</div>
-				</section>
+				</div>
+			</section>
 
-				<section className="relative h-screen min-h-screen w-screen">
-					<AllProjectSection step={step} />
-				</section>
-			</>
+			<section className="relative h-screen min-h-screen w-screen">
+				<AllProjectSection step={step} />
+			</section>
 		</Scroll>
 	)
 }
-
 async function getProject() {
-	const res = await fetch(
-		'https://breval-api.lightin.io/api/projets?sort=date%3Adesc&populate=*'
-	)
+	const res = await fetch('https://breval-api.lightin.io/api/projets?sort=date%3Adesc&populate=*')
 	const data = await res.json()
-	console.debug(data)
-
 	return data.data
 }

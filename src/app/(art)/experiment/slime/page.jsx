@@ -1,12 +1,10 @@
 'use client'
-import SlimeSimulation from 'react-slime-simulation'
-import { useEffect, useState } from 'react'
-import React from 'react'
 
+import { useEffect, useState } from 'react'
+import SlimeSimulation from 'react-slime-simulation'
 export default function SlimePage() {
 	const [showOverlay, setShowOverlay] = useState(true)
 	const [overlayTimeout, setOverlayTimeout] = useState(null)
-
 	const handleMouseMove = () => {
 		setShowOverlay(true)
 		if (overlayTimeout) {
@@ -17,30 +15,30 @@ export default function SlimePage() {
 		}, 3000)
 		setOverlayTimeout(timeout)
 	}
-
 	const handleRefresh = () => {
 		window.location.reload()
 	}
-
 	const handleGoBack = () => {
 		window.history.back()
 	}
-
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			setShowOverlay(false)
 		}, 5000)
 		setOverlayTimeout(timeout)
-
 		return () => {
 			if (overlayTimeout) {
 				clearTimeout(overlayTimeout)
 			}
 		}
 	}, [])
-
 	return (
-		<div className="relative min-h-screen" onMouseMove={handleMouseMove}>
+		<div
+			className="relative min-h-screen"
+			role="application"
+			aria-label="Interactive animation"
+			onMouseMove={handleMouseMove}
+		>
 			<SlimeExperience />
 			{showOverlay && (
 				<div className="animate-fadeIn fixed bottom-8 right-8 max-w-md rounded-xl bg-gradient-to-br from-purple-600/20 to-pink-500/20 p-6 text-white shadow-2xl backdrop-blur-lg transition-all duration-500 ease-in-out">
@@ -82,6 +80,7 @@ export default function SlimePage() {
 						</p>
 						<div className="mt-6 flex flex-col space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
 							<button
+								type="button"
 								className="flex w-full transform items-center justify-center rounded-lg bg-pink-500/80 px-6 py-3 text-sm font-semibold shadow-lg transition-all hover:scale-105 hover:bg-pink-600/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-75"
 								onClick={handleRefresh}
 							>
@@ -105,6 +104,7 @@ export default function SlimePage() {
 								Refresh
 							</button>
 							<button
+								type="button"
 								className="flex w-full transform items-center justify-center rounded-lg bg-purple-500/80 px-6 py-3 text-sm font-semibold shadow-lg transition-all hover:scale-105 hover:bg-purple-600/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75"
 								onClick={handleGoBack}
 							>
@@ -132,10 +132,8 @@ export default function SlimePage() {
 		</div>
 	)
 }
-
 function SlimeExperience() {
 	const [isLargeView, setIsLargeView] = useState(null)
-
 	const CUSTOM_SVG = `
   <svg id="spawnShape" width="100%" height="100%" viewBox="0 0 200 350" preserveAspectRatio="xMidYMid meet">
           <path
@@ -144,7 +142,6 @@ function SlimeExperience() {
              id="path3338" />
           </svg>
 `
-
 	const handleResize = () => {
 		if (window.innerWidth > 768) {
 			setIsLargeView(true)
@@ -152,32 +149,13 @@ function SlimeExperience() {
 			setIsLargeView(false)
 		}
 	}
-
 	useEffect(() => {
 		handleResize()
 		window.addEventListener('resize', handleResize)
 		return () => window.removeEventListener('resize', handleResize)
 	}, [])
-
 	if (isLargeView === true) {
-		return (
-			<SlimeSimulation
-				reshuffleCount={5}
-				startDelay={500}
-				svgShape={CUSTOM_SVG}
-				useRandomDefaults={false}
-			/>
-		)
+		return <SlimeSimulation reshuffleCount={5} startDelay={500} svgShape={CUSTOM_SVG} useRandomDefaults={false} />
 	}
-
-	return (
-		<>
-			<SlimeSimulation
-				initialAgents={85}
-				reshuffleCount={1}
-				startDelay={1}
-				useRandomDefaults={false}
-			/>
-		</>
-	)
+	return <SlimeSimulation initialAgents={85} reshuffleCount={1} startDelay={1} useRandomDefaults={false} />
 }

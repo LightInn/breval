@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { cx } from '@/utils'
 
 const Category = ({ link = '#', active, name, ...props }) => {
@@ -16,5 +14,4 @@ const Category = ({ link = '#', active, name, ...props }) => {
 		</a>
 	)
 }
-
 export default Category

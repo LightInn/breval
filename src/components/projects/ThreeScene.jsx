@@ -1,52 +1,36 @@
 'use client'
 
 import { CameraControls, Environment, ScrollControls } from '@react-three/drei'
-import React, { useEffect, useRef, useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
-
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
-
 import { FlyingCrow } from '@/components/projects/Crow_fly'
-import { Overlay } from '@/components/projects/Overlay'
 import { Crow } from '@/components/projects/Crow_tree'
-
+import { Overlay } from '@/components/projects/Overlay'
 export function ThreeScene() {
 	const [step, setStep] = useState(0)
-
 	const testRef = useRef()
-
-	useEffect(() => {
-		console.debug('step', step)
-	}, [step])
-
 	return (
-		<>
-			<Canvas>
-				<Environment backgroundBlurriness={0.5} preset="dawn" />
-				{/* log camera position */}
-				<Rig step={step} />
+		<Canvas>
+			<Environment backgroundBlurriness={0.5} preset="dawn" />
+			{/* log camera position */}
+			<Rig step={step} />
 
-				{/*<ambientLight />*/}
+			{/*<ambientLight />*/}
 
-				<ScrollControls pages={3}>
-					<Overlay setStep={setStep} step={step} />
-					<Crow step={step} />
+			<ScrollControls pages={3}>
+				<Overlay setStep={setStep} step={step} />
+				<Crow step={step} />
 
-					{/*<PivotControls  ref={testRef} scale={8}>*/}
-					<FlyingCrow step={step} test={testRef} />
-					{/*</PivotControls>*/}
-				</ScrollControls>
-			</Canvas>
-		</>
+				{/*<PivotControls  ref={testRef} scale={8}>*/}
+				<FlyingCrow step={step} test={testRef} />
+				{/*</PivotControls>*/}
+			</ScrollControls>
+		</Canvas>
 	)
 }
-
-function Rig({
-	position = new THREE.Vector3(0, 0, 2),
-	focus = new THREE.Vector3(0, 0, 0),
-	step,
-}) {
-	const { controls, scene } = useThree()
+function Rig({ position = new THREE.Vector3(0, 0, 2), focus = new THREE.Vector3(0, 0, 0), step }) {
+	const { controls } = useThree()
 	const cameraRef = useRef()
 
 	// // All same options as the original "basic" example: https://yomotsu.github.io/camera-controls/examples/basic.html
@@ -161,59 +145,43 @@ function Rig({
 		const disableZoom = () => {
 			if (cameraRef.current) {
 				const camera = cameraRef.current
-
 				camera.mouseButtons.left = 1
 				camera.mouseButtons.middle = 0
 				camera.mouseButtons.right = 0
 				camera.mouseButtons.wheel = 0
-
 				camera.touches.one = 1
 				camera.touches.two = 2
 				camera.touches.three = 3
 			} else {
 				requestAnimationFrame(disableZoom)
-				console.debug('no controls', controls)
 			}
 		}
 		disableZoom()
 	}, [])
-
-	const bird = {
+	const _bird = {
 		y: 15.7,
 		z: -2.6,
 		x: 1.3,
 	}
-
 	const farView = {
 		y: 15.5,
 		z: -2.5,
 		x: 6.8,
 	}
-
 	const sideView = {
 		x: 50,
 		y: 15,
 		z: -3,
 	}
-
 	const origin = {
 		x: 0,
 		y: 0,
 		z: 0,
 	}
-
 	useEffect(() => {
 		// switch (step) for camera position
 		if (controls && step === 1) {
-			controls?.setLookAt(
-				2.5,
-				16.2,
-				-18.5,
-				farView.x,
-				farView.y,
-				farView.z,
-				true
-			)
+			controls?.setLookAt(2.5, 16.2, -18.5, farView.x, farView.y, farView.z, true)
 		}
 		if (controls && step === 2) {
 			controls?.setLookAt(43, 17, 120, sideView.x, sideView.y, sideView.z, true)
@@ -224,19 +192,17 @@ function Rig({
 			// controls.mouseButtons.left = 0;
 		}
 	}, [step])
-
 	const Bloup = () => {
 		// console.log( cameraControlRef.current._position0)
 		// console.log( cameraControlRef.current._target0)
 		// console.log(controls?.camera.position)
 	}
-
 	return (
 		<CameraControls
 			makeDefault
 			maxPolarAngle={Math.PI / 2}
 			minPolarAngle={0}
-			onChange={e => Bloup()}
+			onChange={_e => Bloup()}
 			ref={cameraRef}
 		/>
 	)

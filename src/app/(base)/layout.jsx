@@ -1,16 +1,15 @@
-import siteMetaData from '@/utils/siteMetaData'
-
-import { ThemeProvider } from '@/components/Global/theme-provider'
 import CursorBlob from '@/components/Global/cursor-blob'
-import Navigation from '@/components/Global/navigation'
 import Footer from '@/components/Global/footer'
-
+import Navigation from '@/components/Global/navigation'
+import { ThemeProvider } from '@/components/Global/theme-provider'
+import siteMetaData from '@/utils/siteMetaData'
 export const metadata = {
 	openGraph: {
 		images: [
 			{
 				alt: 'Bréval Le Floch - Creative Developer Portfolio Website',
-				url: siteMetaData.socialBanner || '/og-image.png', // Use socialBanner from metadata or fallback
+				url: siteMetaData.socialBanner || '/og-image.png',
+				// Use socialBanner from metadata or fallback
 				width: 1200,
 				height: 630,
 			},
@@ -22,30 +21,29 @@ export const metadata = {
 	},
 	metadataBase: new URL(siteMetaData.siteUrl),
 	description: siteMetaData.description,
-	alternates: { canonical: '/' },
+	alternates: {
+		canonical: '/',
+	},
 	title: siteMetaData.title,
 }
+
 import { getDictionary } from '@/lib/get-dictionary'
 import { getLocale } from '@/lib/get-locale'
-
 export default async function RootLayout({ children }) {
 	const locale = await getLocale()
 	const dict = await getDictionary(locale)
-
 	return (
-		<>
-			<ThemeProvider
-				attribute="class"
-				defaultTheme="dark"
-				disableTransitionOnChange={false}
-				enableSystem={false}
-				forcedTheme={'dark'}
-			>
-				<CursorBlob />
-				<Navigation dict={dict} />
-				{children}
-				<Footer />
-			</ThemeProvider>
-		</>
+		<ThemeProvider
+			attribute="class"
+			defaultTheme="dark"
+			disableTransitionOnChange={false}
+			enableSystem={false}
+			forcedTheme={'dark'}
+		>
+			<CursorBlob />
+			<Navigation dict={dict} />
+			{children}
+			<Footer />
+		</ThemeProvider>
 	)
 }

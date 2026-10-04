@@ -1,5 +1,3 @@
-import dynamic from 'next/dynamic'
-
 const config = {
 	darkMode: ['class'],
 	content: [

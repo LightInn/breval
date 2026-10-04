@@ -1,18 +1,12 @@
-import React from 'react'
-
 import { format } from 'date-fns'
 import Image from 'next/image'
 import Link from 'next/link'
-
 import { rgbDataURL } from '@/services/dataurl.services'
 
 const BlogLayoutTwo = ({ blog }) => {
 	return (
 		<div className="text-dark group grid grid-cols-12 items-center gap-4">
-			<Link
-				className="col-span-12 h-full overflow-hidden rounded-xl lg:col-span-4"
-				href={'/blog/articles/' + blog.url}
-			>
+			<Link className="col-span-12 h-full overflow-hidden rounded-xl lg:col-span-4" href={`/blog/articles/${blog.url}`}>
 				<Image
 					alt={blog.title}
 					blurDataURL={rgbDataURL(231, 183, 202)}
@@ -29,7 +23,7 @@ const BlogLayoutTwo = ({ blog }) => {
 				<span className="inline-block w-full text-xs font-semibold uppercase text-accent sm:text-sm">
 					{blog.tags[0]}
 				</span>
-				<Link className="my-1 inline-block" href={'/blog/articles/' + blog.url}>
+				<Link className="my-1 inline-block" href={`/blog/articles/${blog.url}`}>
 					<h2 className="text-base font-semibold capitalize sm:text-lg">
 						<span className="bg-gradient-to-r from-accent/50 to-accent/50 bg-[length:0px_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[length:100%_6px]">
 							{blog.title}
@@ -44,5 +38,4 @@ const BlogLayoutTwo = ({ blog }) => {
 		</div>
 	)
 }
-
 export default BlogLayoutTwo

@@ -1,19 +1,13 @@
-import React from 'react'
-
 import Link from 'next/link'
-
-import BlogLayoutThree from '../../../Blog/BlogLayoutThree'
-
 import { sortBlogs } from '/src/utils'
+import BlogLayoutThree from '../../../Blog/BlogLayoutThree'
 
 const RecentPosts = ({ blogs }) => {
 	const sortedBlogs = sortBlogs(blogs)
 	return (
 		<section className="sxl:px-32 mt-16 flex w-full flex-col items-center justify-center px-5 sm:mt-24 sm:px-10 md:mt-32 md:px-24">
 			<div className="flex w-full justify-between">
-				<h2 className="text-dark inline-block w-fit text-2xl font-bold capitalize md:text-4xl">
-					Recent Posts
-				</h2>
+				<h2 className="text-dark inline-block w-fit text-2xl font-bold capitalize md:text-4xl">Recent Posts</h2>
 				<Link
 					className="inline-block text-base font-medium text-accent underline underline-offset-2 md:text-lg"
 					href="/blog/categories/all"
@@ -34,5 +28,4 @@ const RecentPosts = ({ blogs }) => {
 		</section>
 	)
 }
-
 export default RecentPosts

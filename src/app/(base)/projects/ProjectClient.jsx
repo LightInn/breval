@@ -1,24 +1,26 @@
 'use client'
 
-import { ExternalLink } from 'lucide-react'
-import { useRef, useState } from 'react'
-
 import { motion, useInView } from 'framer-motion'
+import { ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-
-import { Card, CardContent, CardFooter } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { useRef, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
-
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
 export default function ProjectClient({ projects = [], dict }) {
 	// Default to empty array
 	const [selectedCategory, setSelectedCategory] = useState('All Projects') // Added state for selected category
 	const ref = useRef(null)
 	const featuredRef = useRef(null)
-	const isInView = useInView(ref, { once: false, amount: 0.0 })
-	const isFeaturedInView = useInView(featuredRef, { amount: 0.3, once: true })
-
+	const isInView = useInView(ref, {
+		once: false,
+		amount: 0.0,
+	})
+	const isFeaturedInView = useInView(featuredRef, {
+		amount: 0.3,
+		once: true,
+	})
 	const container = {
 		show: {
 			transition: {
@@ -27,12 +29,22 @@ export default function ProjectClient({ projects = [], dict }) {
 			},
 			opacity: 1,
 		},
-		hidden: { opacity: 0 },
+		hidden: {
+			opacity: 0,
+		},
 	}
-
 	const item = {
-		show: { transition: { duration: 0.5 }, opacity: 1, y: 0 },
-		hidden: { opacity: 0, y: 20 },
+		show: {
+			transition: {
+				duration: 0.5,
+			},
+			opacity: 1,
+			y: 0,
+		},
+		hidden: {
+			opacity: 0,
+			y: 20,
+		},
 	}
 
 	// Process all projects data to match the component structure
@@ -48,10 +60,7 @@ export default function ProjectClient({ projects = [], dict }) {
 					tags: project.skills
 						? project.skills.slice(0, 3) // Limit to 3 tags for grid display
 						: ['Web Development'],
-					description:
-						project.short_description ||
-						project.description ||
-						'Description not available.',
+					description: project.short_description || project.description || 'Description not available.',
 					title: project.title || 'Title not available',
 					slug: project.slug ? project.slug : '#',
 					category: project.category || 'Other',
@@ -62,43 +71,31 @@ export default function ProjectClient({ projects = [], dict }) {
 			: []
 
 	// Generate dynamic categories from projects
-	const projectCategories = Array.isArray(projects)
-		? [...new Set(projects.map(p => p.category).filter(Boolean))]
-		: []
-
+	const projectCategories = Array.isArray(projects) ? [...new Set(projects.map(p => p.category).filter(Boolean))] : []
 	const categories = [
 		'All Projects',
 		...projectCategories,
 		// Add some default categories if not present
-		...[
-			'Web Development',
-			'Mobile Apps',
-			'UI/UX Design',
-			'3D & Interactive',
-			'SaaS',
-		].filter(cat => !projectCategories.includes(cat)),
+		...['Web Development', 'Mobile Apps', 'UI/UX Design', '3D & Interactive', 'SaaS'].filter(
+			cat => !projectCategories.includes(cat)
+		),
 	].slice(0, 6) // Limit to 6 categories for UI
 
 	const handleCategoryClick = category => {
 		setSelectedCategory(category)
 	}
-
 	const filteredProjects =
 		selectedCategory === 'All Projects'
 			? processedProjects
-			: processedProjects.filter(
-					project => project.category === selectedCategory
-				)
+			: processedProjects.filter(project => project.category === selectedCategory)
 
 	// Get the featured project based on the selected category
 	const featuredProject =
 		filteredProjects.length > 0
 			? {
 					...filteredProjects[0],
-					image: filteredProjects[0].image.replace(
-						'height=300&width=500',
-						'height=600&width=1200'
-					), // Higher resolution for featured
+					image: filteredProjects[0].image.replace('height=300&width=500', 'height=600&width=1200'),
+					// Higher resolution for featured
 					tags: filteredProjects[0].tags.slice(0, 5), // Extend to 5 tags for featured display
 				}
 			: {
@@ -115,7 +112,6 @@ export default function ProjectClient({ projects = [], dict }) {
 
 	// Remove the featured project from the grid to avoid duplication
 	const gridProjects = filteredProjects.slice(1)
-
 	return (
 		<main className="from-gray-150 min-h-screen bg-gradient-to-b to-gray-200 pt-20 dark:from-gray-950 dark:to-gray-900 dark:text-white">
 			<div className="relative">
@@ -127,20 +123,25 @@ export default function ProjectClient({ projects = [], dict }) {
 
 					<div className="container mx-auto px-4">
 						<motion.div
-							animate={{ opacity: 1, y: 0 }}
+							animate={{
+								opacity: 1,
+								y: 0,
+							}}
 							className="mb-12 text-center"
-							initial={{ opacity: 0, y: 20 }}
-							transition={{ duration: 0.5 }}
+							initial={{
+								opacity: 0,
+								y: 20,
+							}}
+							transition={{
+								duration: 0.5,
+							}}
 						>
 							<h1 className="text-shadow mb-4 text-4xl font-bold md:text-6xl">
-								<span className="text-primary">
-									{dict?.projects?.title || 'Gallery of'}{' '}
-								</span>
+								<span className="text-primary">{dict?.projects?.title || 'Gallery of'} </span>
 								{dict?.projects?.name || 'Projects'}{' '}
 							</h1>
 							<p className="mx-auto max-w-2xl text-muted-foreground">
-								{dict?.projects?.description ||
-									'A showcase of my creative work'}
+								{dict?.projects?.description || 'A showcase of my creative work'}
 							</p>
 						</motion.div>
 
@@ -156,9 +157,7 @@ export default function ProjectClient({ projects = [], dict }) {
 										key={index}
 										onClick={() => handleCategoryClick(category)} // Added onClick handler
 										size="sm"
-										variant={
-											selectedCategory === category ? 'default' : 'outline'
-										} // Updated variant based on selectedCategory
+										variant={selectedCategory === category ? 'default' : 'outline'} // Updated variant based on selectedCategory
 									>
 										{category}
 									</Button>
@@ -171,13 +170,24 @@ export default function ProjectClient({ projects = [], dict }) {
 							<motion.div
 								animate={
 									isFeaturedInView
-										? { opacity: 1, y: 0 }
-										: { opacity: 0, y: 20 }
+										? {
+												opacity: 1,
+												y: 0,
+											}
+										: {
+												opacity: 0,
+												y: 20,
+											}
 								}
 								className="mb-8"
-								initial={{ opacity: 0, y: 20 }}
+								initial={{
+									opacity: 0,
+									y: 20,
+								}}
 								ref={featuredRef}
-								transition={{ duration: 0.7 }}
+								transition={{
+									duration: 0.7,
+								}}
 							>
 								<div className="relative overflow-hidden rounded-lg border border-primary/30 bg-gray-200/60 backdrop-blur-sm dark:bg-gray-900/60">
 									<div className="md:flex">
@@ -190,26 +200,16 @@ export default function ProjectClient({ projects = [], dict }) {
 												unoptimized // Si les images viennent d'une API externe et ne sont pas optimisées par Next/Image
 											/>
 											<div className="absolute left-4 top-4">
-												<Badge className="bg-primary text-white">
-													Featured Project
-												</Badge>
+												<Badge className="bg-primary text-white">Featured Project</Badge>
 											</div>
 										</div>
 										<div className="flex flex-col justify-between p-6 md:w-1/2 md:p-8">
 											<div>
-												<h2 className="mb-4 text-2xl font-bold md:text-3xl">
-													{featuredProject.title}
-												</h2>
-												<p className="mb-6 text-muted-foreground">
-													{featuredProject.description}
-												</p>
+												<h2 className="mb-4 text-2xl font-bold md:text-3xl">{featuredProject.title}</h2>
+												<p className="mb-6 text-muted-foreground">{featuredProject.description}</p>
 												<div className="mb-6 flex flex-wrap gap-2">
 													{featuredProject.tags.map((tag, tagIndex) => (
-														<Badge
-															className="border-primary/30 bg-primary/10"
-															key={tagIndex}
-															variant="outline"
-														>
+														<Badge className="border-primary/30 bg-primary/10" key={tagIndex} variant="outline">
 															{tag}
 														</Badge>
 													))}
@@ -217,39 +217,23 @@ export default function ProjectClient({ projects = [], dict }) {
 											</div>
 											<div className="flex gap-4">
 												{featuredProject.liveUrl && (
-													<Link
-														href={featuredProject.liveUrl}
-														rel="noopener noreferrer"
-														target="_blank"
-													>
+													<Link href={featuredProject.liveUrl} rel="noopener noreferrer" target="_blank">
 														<Button className="bg-primary hover:bg-primary/80">
 															<ExternalLink className="mr-2 h-4 w-4" />
 															Live Demo
 														</Button>
 													</Link>
 												)}
-												{featuredProject.githubUrl &&
-													featuredProject.githubUrl !==
-														featuredProject.liveUrl && (
-														<Link
-															href={featuredProject.githubUrl}
-															rel="noopener noreferrer"
-															target="_blank"
-														>
-															<Button
-																className="border-primary/30 hover:bg-primary/20"
-																variant="outline"
-															>
-																<ExternalLink className="mr-2 h-4 w-4" />
-																GitHub
-															</Button>
-														</Link>
-													)}
+												{featuredProject.githubUrl && featuredProject.githubUrl !== featuredProject.liveUrl && (
+													<Link href={featuredProject.githubUrl} rel="noopener noreferrer" target="_blank">
+														<Button className="border-primary/30 hover:bg-primary/20" variant="outline">
+															<ExternalLink className="mr-2 h-4 w-4" />
+															GitHub
+														</Button>
+													</Link>
+												)}
 												<Link href={`/projects/${featuredProject.slug}`}>
-													<Button
-														className="border-primary hover:bg-primary/20"
-														variant="outline"
-													>
+													<Button className="border-primary hover:bg-primary/20" variant="outline">
 														View Details
 													</Button>
 												</Link>
@@ -285,35 +269,24 @@ export default function ProjectClient({ projects = [], dict }) {
 												/>
 												{project.category && (
 													<div className="absolute right-4 top-4">
-														<Badge className="bg-primary/80 text-white">
-															{project.category}
-														</Badge>
+														<Badge className="bg-primary/80 text-white">{project.category}</Badge>
 													</div>
 												)}
 											</div>
 
 											<CardContent className="flex-grow pt-6">
-												<h3 className="mb-2 text-xl font-bold">
-													{project.title}
-												</h3>
+												<h3 className="mb-2 text-xl font-bold">{project.title}</h3>
 												<p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
 													{project.description}
 												</p>
 												<div className="flex flex-wrap gap-2">
 													{project.tags.slice(0, 3).map((tag, tagIndex) => (
-														<Badge
-															className="border-primary/30 bg-primary/10"
-															key={tagIndex}
-															variant="outline"
-														>
+														<Badge className="border-primary/30 bg-primary/10" key={tagIndex} variant="outline">
 															{tag}
 														</Badge>
 													))}
 													{project.tags.length > 3 && (
-														<Badge
-															className="border-primary/30 bg-primary/10"
-															variant="outline"
-														>
+														<Badge className="border-primary/30 bg-primary/10" variant="outline">
 															+{project.tags.length - 3}
 														</Badge>
 													)}
@@ -322,48 +295,27 @@ export default function ProjectClient({ projects = [], dict }) {
 
 											<CardFooter className="flex items-center justify-between pt-4">
 												<Link href={`/projects/${project.slug}`}>
-													<Button
-														className="text-primary hover:bg-primary/20"
-														size="sm"
-														variant="ghost"
-													>
+													<Button className="text-primary hover:bg-primary/20" size="sm" variant="ghost">
 														View Details
 													</Button>
 												</Link>
 												<div className="flex gap-2">
 													{project.liveUrl && (
-														<Link
-															href={project.liveUrl}
-															rel="noopener noreferrer"
-															target="_blank"
-														>
-															<Button
-																className="border-primary hover:bg-primary/20"
-																size="sm"
-																variant="outline"
-															>
+														<Link href={project.liveUrl} rel="noopener noreferrer" target="_blank">
+															<Button className="border-primary hover:bg-primary/20" size="sm" variant="outline">
 																<ExternalLink className="mr-2 h-4 w-4" />
 																Live
 															</Button>
 														</Link>
 													)}
-													{project.githubUrl &&
-														project.githubUrl !== project.liveUrl && (
-															<Link
-																href={project.githubUrl}
-																rel="noopener noreferrer"
-																target="_blank"
-															>
-																<Button
-																	className="border-primary/30 hover:bg-primary/20"
-																	size="sm"
-																	variant="outline"
-																>
-																	<ExternalLink className="mr-2 h-4 w-4" />
-																	Code
-																</Button>
-															</Link>
-														)}
+													{project.githubUrl && project.githubUrl !== project.liveUrl && (
+														<Link href={project.githubUrl} rel="noopener noreferrer" target="_blank">
+															<Button className="border-primary/30 hover:bg-primary/20" size="sm" variant="outline">
+																<ExternalLink className="mr-2 h-4 w-4" />
+																Code
+															</Button>
+														</Link>
+													)}
 												</div>
 											</CardFooter>
 										</Card>

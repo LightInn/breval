@@ -1,8 +1,7 @@
-import React from 'react'
-
 import { format, parseISO } from 'date-fns'
 import { slug } from 'github-slugger'
 import Link from 'next/link'
+
 // import ViewCounter from "./ViewCounter";
 
 const BlogDetails = ({ slug: blogSlug, blog }) => {
@@ -10,11 +9,7 @@ const BlogDetails = ({ slug: blogSlug, blog }) => {
 		<div className="pixel-corners flex flex-wrap items-center justify-around rounded-lg border border-border bg-card/50 px-2 py-2 text-lg font-medium text-foreground backdrop-blur-sm sm:text-xl md:px-10">
 			<address className="author">
 				By{' '}
-				<Link
-					className="text-primary transition-colors hover:text-primary/80"
-					href="/"
-					rel="author"
-				>
+				<Link className="text-primary transition-colors hover:text-primary/80" href="/" rel="author">
 					Bréval LE FLOCH
 				</Link>
 			</address>
@@ -45,5 +40,4 @@ const BlogDetails = ({ slug: blogSlug, blog }) => {
 		</div>
 	)
 }
-
 export default BlogDetails

@@ -7,11 +7,13 @@ const siteMetadata = {
 	github: 'https://github.com/LighInn',
 	// socialBanner: '/social-banner.png', // add social banner in the public folder
 	email: 'breval.lefloch@gmail.com',
-	siteUrl: 'https://brev.al', // your website URL
+	siteUrl: 'https://brev.al',
+	// your website URL
 	author: 'Bréval Le Floch',
 	siteLogo: '/logo.png',
 	language: 'EN-en',
-	theme: 'system', // system, dark or light
+	theme: 'system',
+	// system, dark or light
 	// twitter: 'https://twitter.com/code_bucks',
 	// facebook: 'https://facebook.com',
 	// youtube: 'https://youtube.com/codebucks',
@@ -19,5 +21,4 @@ const siteMetadata = {
 	// dribbble: 'https://www.dribbble.com',
 	locale: 'en-EN',
 }
-
 module.exports = siteMetadata

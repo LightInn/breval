@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { cx } from '@/utils'
 
 const Tag = ({ link = '#', name, ...props }) => {
@@ -15,5 +13,4 @@ const Tag = ({ link = '#', name, ...props }) => {
 		</a>
 	)
 }
-
 export default Tag

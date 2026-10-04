@@ -1,11 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-
 export function useThemeSwitch() {
 	const preferDarkQuery = '(prefers-color-schema:dark)'
 	const storageKey = 'theme'
-
 	const toggleTheme = theme => {
 		if (theme === 'dark') {
 			document.documentElement.classList.add('dark')
@@ -14,7 +12,6 @@ export function useThemeSwitch() {
 		}
 		window.localStorage.setItem(storageKey, theme)
 	}
-
 	const getUserPreference = () => {
 		const userPref = window.localStorage.getItem(storageKey)
 		if (userPref) {
@@ -22,9 +19,7 @@ export function useThemeSwitch() {
 		}
 		return window.matchMedia(preferDarkQuery).matches ? 'dark' : 'light'
 	}
-
 	const [mode, setMode] = useState('dark')
-
 	useEffect(() => {
 		const mediaQuery = window.matchMedia(preferDarkQuery)
 		const handleChange = () => {
@@ -32,19 +27,14 @@ export function useThemeSwitch() {
 			setMode(newMode)
 			toggleTheme(newMode)
 		}
-
 		handleChange()
-
 		mediaQuery.addEventListener('change', handleChange)
-
 		return () => {
 			mediaQuery.removeEventListener('change', handleChange)
 		}
 	}, [])
-
 	useEffect(() => {
 		toggleTheme(mode)
 	}, [mode])
-
 	return [mode, setMode]
 }

@@ -1,16 +1,13 @@
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react'
-
+import Link from 'next/link'
 import { getDictionary } from '@/lib/get-dictionary'
 import { getLocale } from '@/lib/get-locale' // Assuming getLocale is synchronous or handled by middleware
-import Link from 'next/link'
 
 export default async function Footer() {
 	const locale = getLocale()
 	const dict = await getDictionary(locale)
 	const currentYear = new Date().getFullYear()
-
 	const footerDict = dict?.footer || {}
-
 	return (
 		<footer className="relative overflow-hidden border-t border-primary/20 py-10">
 			<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-10"></div>
@@ -19,13 +16,7 @@ export default async function Footer() {
 					<div className="mb-6 md:mb-0">
 						<Link className="text-2xl font-bold text-primary" href="/">
 							<div className="flex items-center">
-								<svg
-									fill="currentColor"
-									height="100"
-									id="svg8"
-									viewBox="0 0 210 297"
-									width="70"
-								>
+								<svg fill="currentColor" height="100" id="svg8" viewBox="0 0 210 297" width="70">
 									<defs id="defs2" />
 
 									<g id="layer1">
@@ -61,9 +52,7 @@ export default async function Footer() {
 							target="_blank"
 						>
 							<Linkedin className="h-5 w-5" />
-							<span className="sr-only">
-								{footerDict.srLinkedIn || 'LinkedIn'}
-							</span>
+							<span className="sr-only">{footerDict.srLinkedIn || 'LinkedIn'}</span>
 						</Link>
 						<Link
 							className="text-muted-foreground transition-colors hover:text-primary"
@@ -72,9 +61,7 @@ export default async function Footer() {
 							target="_blank"
 						>
 							<Twitter className="h-5 w-5" />
-							<span className="sr-only">
-								{footerDict.srTwitter || 'Twitter'}
-							</span>
+							<span className="sr-only">{footerDict.srTwitter || 'Twitter'}</span>
 						</Link>
 						<Link
 							className="text-muted-foreground transition-colors hover:text-primary"
@@ -88,10 +75,10 @@ export default async function Footer() {
 
 				<div className="mt-8 flex flex-col items-center justify-between border-t border-primary/10 pt-8 md:flex-row">
 					<p className="text-sm text-muted-foreground">
-						{(
-							footerDict.copyright ||
-							'&copy; {currentYear} Bréval Le Floch. All rights reserved.'
-						).replace('{currentYear}', currentYear.toString())}
+						{(footerDict.copyright || '&copy; {currentYear} Bréval Le Floch. All rights reserved.').replace(
+							'{currentYear}',
+							currentYear.toString()
+						)}
 					</p>
 
 					<div className="mt-4 flex space-x-6 md:mt-0">

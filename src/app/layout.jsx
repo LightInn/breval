@@ -1,11 +1,10 @@
-import { Exo_2, Open_Sans, Varela_Round } from 'next/font/google'
-import siteMetaData from '@/utils/siteMetaData'
-import { getLocale } from '@/lib/get-locale'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import Script from 'next/script'
+import { Exo_2, Open_Sans, Varela_Round } from 'next/font/google'
 import Head from 'next/head'
-
+import Script from 'next/script'
+import { getLocale } from '@/lib/get-locale'
+import siteMetaData from '@/utils/siteMetaData'
 import '@/styles/globals.css'
 
 const varelaRound = Varela_Round({
@@ -14,7 +13,6 @@ const varelaRound = Varela_Round({
 	display: 'swap',
 	weight: '400',
 })
-
 const exo2 = Exo_2({
 	variable: '--font-exo-2',
 	subsets: ['latin'],
@@ -22,7 +20,6 @@ const exo2 = Exo_2({
 	display: 'swap',
 	weight: '200',
 })
-
 const openSans = Open_Sans({
 	variable: '--font-open-sans',
 	subsets: ['latin'],
@@ -30,7 +27,6 @@ const openSans = Open_Sans({
 	display: 'swap',
 	weight: '400',
 })
-
 export const metadata = {
 	openGraph: {
 		images: [
@@ -50,10 +46,8 @@ export const metadata = {
 	description: siteMetaData.description,
 	title: siteMetaData.title,
 }
-
 export default async function RootLayout({ children }) {
 	const locale = await getLocale()
-
 	return (
 		<html
 			className={`light ${varelaRound.variable} ${exo2.variable} ${openSans.variable}`}
@@ -79,10 +73,7 @@ export default async function RootLayout({ children }) {
 				<link href="https://fonts.googleapis.com" rel="preconnect" />
 				<link crossOrigin href="https://fonts.gstatic.com" rel="preconnect" />
 
-				<link
-					href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
-					rel="stylesheet"
-				/>
+				<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
 			</Head>
 			<Script
 				async
@@ -92,10 +83,7 @@ export default async function RootLayout({ children }) {
 				strategy="afterInteractive"
 			></Script>
 			{/*Google tag (gtag.js)*/}
-			<Script
-				src="https://www.googletagmanager.com/gtag/js?id=G-455V2M6DD1"
-				strategy="afterInteractive"
-			/>
+			<Script src="https://www.googletagmanager.com/gtag/js?id=G-455V2M6DD1" strategy="afterInteractive" />
 			<Script
 				dangerouslySetInnerHTML={{
 					__html: `
@@ -109,11 +97,7 @@ export default async function RootLayout({ children }) {
 				id="google-analytics"
 				strategy="afterInteractive"
 			/>
-			<body
-				className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}
-			>
-				{children}
-			</body>
+			<body className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}>{children}</body>
 		</html>
 	)
 }

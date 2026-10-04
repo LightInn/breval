@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react'
-
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-
+import { useEffect, useState } from 'react'
 import { getProjects } from '@/services/projects.services'
-
 import '@/styles/crow.css'
 
 const AllProjectSection = ({ step }) => {
@@ -17,22 +14,13 @@ const AllProjectSection = ({ step }) => {
 	const processedProjects = Array.isArray(projects)
 		? projects.map(project => ({
 				// Prefer main_media, then first media item, then placeholder
-				image:
-					project.main_media?.url ||
-					project.media?.[0]?.url ||
-					'/placeholder.svg?height=300&width=500',
-				description:
-					project.short_description ||
-					project.description ||
-					'Description not available.',
-				link: project.slug
-					? `/projects/${project.slug}`
-					: project.live_url || project.url || '#',
+				image: project.main_media?.url || project.media?.[0]?.url || '/placeholder.svg?height=300&width=500',
+				description: project.short_description || project.description || 'Description not available.',
+				link: project.slug ? `/projects/${project.slug}` : project.live_url || project.url || '#',
 				name: project.title || project.name || 'Untitled project',
 				id: project.id,
 			}))
 		: []
-
 	useEffect(() => {
 		if (step === 3) {
 			setTimeout(() => {
@@ -46,7 +34,6 @@ const AllProjectSection = ({ step }) => {
 			setShowProjects(false)
 		}
 	}, [step])
-
 	useEffect(() => {
 		const loadProjects = async () => {
 			const data = await getProjects()
@@ -55,36 +42,46 @@ const AllProjectSection = ({ step }) => {
 		}
 		loadProjects()
 	}, [])
-
 	return (
 		<div className="relative h-screen min-h-screen w-screen overflow-scroll">
-			{isVisible && (
-				<div className="bg-layer absolute left-0 top-0 h-full w-full bg-red-200"></div>
-			)}
+			{isVisible && <div className="bg-layer absolute left-0 top-0 h-full w-full bg-red-200"></div>}
 
 			{showProjects && (
 				<motion.div
-					animate={{ opacity: 1 }}
+					animate={{
+						opacity: 1,
+					}}
 					className="t-lauyer flex w-screen flex-col items-center justify-center text-[#e4dcca]"
-					initial={{ opacity: 0 }}
-					transition={{ duration: 0.8 }}
+					initial={{
+						opacity: 0,
+					}}
+					transition={{
+						duration: 0.8,
+					}}
 				>
-					<h2 className="mt-24 p-4">
-						Take a look at what I&apos;ve done before
-					</h2>
+					<h2 className="mt-24 p-4">Take a look at what I&apos;ve done before</h2>
 
 					<div className="min-h-screen p-8">
 						<motion.div
-							animate={{ opacity: 1 }}
+							animate={{
+								opacity: 1,
+							}}
 							className="min-h-screen columns-1 gap-6 space-y-6 sm:columns-2 lg:columns-3"
-							initial={{ opacity: 0 }}
-							transition={{ duration: 0.8, delay: 0.8 }}
+							initial={{
+								opacity: 0,
+							}}
+							transition={{
+								duration: 0.8,
+								delay: 0.8,
+							}}
 						>
 							{processedProjects.map(project => (
 								<Link href={project.link} key={project.id}>
 									<motion.div
 										className="group relative mb-4 transform cursor-pointer overflow-hidden rounded-lg shadow-lg transition duration-300 ease-in-out"
-										whileHover={{ scale: 1.05 }}
+										whileHover={{
+											scale: 1.05,
+										}}
 									>
 										<Image
 											alt={project.name}
@@ -95,9 +92,7 @@ const AllProjectSection = ({ step }) => {
 											width={400}
 										/>
 										<div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-t from-black/70 to-transparent p-4 transition-opacity duration-300">
-											<h2 className="text-xl font-bold text-white">
-												{project.name}
-											</h2>
+											<h2 className="text-xl font-bold text-white">{project.name}</h2>
 											<div className="description translate-y-[20px] text-sm text-white opacity-0 transition-all duration-300">
 												{project.description}
 											</div>
@@ -112,5 +107,4 @@ const AllProjectSection = ({ step }) => {
 		</div>
 	)
 }
-
 export default AllProjectSection

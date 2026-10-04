@@ -1,20 +1,18 @@
 'use client'
-import React, { useState } from 'react'
 
 import Image from 'next/image'
-
+import { useState } from 'react'
 import { rgbDataURL } from '@/services/dataurl.services'
 
 function ImageWithFallback(props) {
 	const { alt = 'Image', fallbackSrc, src, ...rest } = props
 	const [imgSrc, setImgSrc] = useState(src)
-
 	return (
 		<Image
 			{...rest}
 			alt={alt}
 			blurDataURL={rgbDataURL(231, 183, 202)}
-			onError={e => {
+			onError={_e => {
 				setImgSrc(fallbackSrc)
 			}}
 			placeholder="blur"
@@ -22,5 +20,4 @@ function ImageWithFallback(props) {
 		/>
 	)
 }
-
 export default ImageWithFallback

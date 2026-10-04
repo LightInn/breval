@@ -1,5 +1,5 @@
 .bg-layer {
-	background: url('/global/ink.png') no-repeat 0 0;
+	background: url("/global/ink.png") no-repeat 0 0;
 	background-size: 2500% 100%;
 	animation: ani2 0.7s steps(24) forwards;
 	animation-delay: 0.5s;
@@ -16,7 +16,7 @@
 }
 
 .t-lauyer {
-	background: url('/global/modal-bg.webp') 0 0;
+	background: url("/global/modal-bg.webp") 0 0;
 	background-attachment: fixed;
 	z-index: 0;
 }

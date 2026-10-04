@@ -356,7 +356,7 @@
 .messagebulle:after {
 	transform: translatey(0px);
 	animation: float2 5s ease-in-out infinite;
-	content: '.';
+	content: ".";
 	font-weight: bold;
 	/*// -webkit-text-stroke: 0.5px $color-green;*/
 	-webkit-text-fill-color: var(--vibrant-light);

@@ -1,5 +1,3 @@
-import React from 'react'
-
 const InsightRoll = ({ insights }) => {
 	return (
 		<div className="text-light w-full overflow-hidden whitespace-nowrap bg-accent">
@@ -13,5 +11,4 @@ const InsightRoll = ({ insights }) => {
 		</div>
 	)
 }
-
 export default InsightRoll

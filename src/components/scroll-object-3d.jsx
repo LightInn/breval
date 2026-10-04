@@ -1,39 +1,32 @@
 'use client'
-import { Environment, Float } from '@react-three/drei'
-import { useEffect, useRef, useState } from 'react'
-import { useFrame } from '@react-three/fiber'
-import { Canvas } from '@react-three/fiber'
 
+import { Environment } from '@react-three/drei'
+import { Canvas, useFrame } from '@react-three/fiber'
 import { useScroll } from 'framer-motion'
 import { useTheme } from 'next-themes'
-
+import { useEffect, useRef, useState } from 'react'
 import { Crow } from './projects/Crow_tree'
-
 export default function ScrollObject3D() {
 	const containerRef = useRef(null)
 	const [isMounted, setIsMounted] = useState(false)
 	const [use3D, setUse3D] = useState(true)
-
 	useEffect(() => {
 		setIsMounted(true)
 
 		// Check if WebGL is supported
 		try {
 			const canvas = document.createElement('canvas')
-			const gl =
-				canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+			const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
 			if (!gl) {
 				setUse3D(false)
 			}
-		} catch (e) {
+		} catch (_e) {
 			setUse3D(false)
 		}
 	}, [])
-
 	if (!isMounted) {
 		return null
 	}
-
 	return (
 		// <></>
 		<div
@@ -45,7 +38,12 @@ export default function ScrollObject3D() {
 			}}
 		>
 			{use3D ? (
-				<Canvas camera={{ position: [0, 18, 48], fov: 40 }}>
+				<Canvas
+					camera={{
+						position: [0, 18, 48],
+						fov: 40,
+					}}
+				>
 					<SceneSmall />
 				</Canvas>
 			) : (
@@ -61,33 +59,27 @@ function FallbackSVG() {
 	const [rotation, setRotation] = useState(0)
 	const { theme } = useTheme()
 	const isDark = theme === 'dark'
-
 	useEffect(() => {
 		const unsubscribe = scrollY.onChange(latest => {
 			setRotation(latest * 0.5)
 		})
 		return () => unsubscribe()
 	}, [scrollY])
-
 	return (
 		<div className="flex h-full w-full items-center justify-center">
 			<svg
 				className="animate-float"
 				fill="none"
 				height="80"
-				style={{ transform: `rotate(${rotation}deg)` }}
+				style={{
+					transform: `rotate(${rotation}deg)`,
+				}}
 				viewBox="0 0 80 80"
 				width="80"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<defs>
-					<linearGradient
-						id="diamondGradient"
-						x1="0%"
-						x2="100%"
-						y1="0%"
-						y2="100%"
-					>
+					<linearGradient id="diamondGradient" x1="0%" x2="100%" y1="0%" y2="100%">
 						<stop offset="0%" stopColor={isDark ? '#ff69b4' : '#ff1493'} />
 						<stop offset="100%" stopColor={isDark ? '#ff1493' : '#ff69b4'} />
 					</linearGradient>
@@ -109,14 +101,12 @@ function SceneSmall() {
 	const { scrollYProgress } = useScroll()
 	const scrollRef = useRef(0)
 	const groupRef = useRef()
-
 	useEffect(() => {
 		const unsubscribe = scrollYProgress.onChange(latest => {
 			scrollRef.current = latest
 		})
 		return () => unsubscribe()
 	}, [scrollYProgress])
-
 	useFrame(() => {
 		if (!groupRef.current) return
 		// Rotate around the Y axis based on scroll (full rotation when scrolled to bottom)
@@ -124,7 +114,6 @@ function SceneSmall() {
 		// small idle bob (optional)
 		groupRef.current.position.y = -6 + Math.sin(Date.now() * 0.001) * 0.02
 	})
-
 	return (
 		<>
 			{/* <ambientLight intensity={0.9} /> */}
@@ -138,11 +127,7 @@ function SceneSmall() {
 			</group>
 
 			{/* Use a neutral/studio environment without background to avoid extra HDRI brightness */}
-			<Environment
-				background={false}
-				environmentIntensity={0.3}
-				preset={'dawn'}
-			/>
+			<Environment background={false} environmentIntensity={0.3} preset={'dawn'} />
 		</>
 	)
 }

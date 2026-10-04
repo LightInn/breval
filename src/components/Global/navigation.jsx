@@ -1,36 +1,29 @@
 'use client'
 
-import { Menu, Moon, X } from 'lucide-react'
-import { useEffect, useState } from 'react'
-
-import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { useTheme } from 'next-themes'
+import { Menu, Moon, X } from 'lucide-react'
 import Link from 'next/link'
-
+import { usePathname } from 'next/navigation'
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
-
 export default function Navigation({ dict }) {
 	const [mounted, setMounted] = useState(false)
-	const { setTheme, theme } = useTheme()
+	const { theme } = useTheme()
 	const [isOpen, setIsOpen] = useState(false)
 	const [scrolled, setScrolled] = useState(false)
 	const pathname = usePathname()
-
 	useEffect(() => {
 		setMounted(true)
 	}, [])
-
 	useEffect(() => {
 		const handleScroll = () => {
 			const isScrolled = window.scrollY > 10
 			setScrolled(isScrolled)
 		}
-
 		window.addEventListener('scroll', handleScroll)
 		return () => window.removeEventListener('scroll', handleScroll)
 	}, [])
-
 	const toggleMenu = () => setIsOpen(!isOpen)
 
 	// 🌙 ATTENTION: Light mode has been temporarily disabled due to reports
@@ -39,8 +32,7 @@ export default function Navigation({ dict }) {
 	const handleThemeToggle = () => {
 		// Show a fun tooltip/toast message instead of switching themes
 		const message =
-			dict?.navigation?.themeLockTooltip ||
-			"🚫 Nice try! But we're stuck in the void until further notice."
+			dict?.navigation?.themeLockTooltip || "🚫 Nice try! But we're stuck in the void until further notice."
 
 		// You can use either a tooltip library or a simple toast
 		// For now, using a temporary tooltip-like alert
@@ -72,7 +64,6 @@ export default function Navigation({ dict }) {
 			`
 			document.head.appendChild(style)
 		}
-
 		document.body.appendChild(tooltip)
 
 		// Remove after 3 seconds
@@ -81,49 +72,53 @@ export default function Navigation({ dict }) {
 		}, 3000)
 		// setTheme(theme === 'dark' ? 'light' : 'dark')
 	}
-
 	const navItems = [
-		{ name: dict?.navigation?.home || 'HOME', href: '/' },
-		{ name: dict?.navigation?.projects || 'PROJECTS', href: '/projects' },
-		{ name: dict?.navigation?.blog || 'BLOG', href: '/blog' },
-		{ name: dict?.navigation?.art || 'ART', href: '/artist' },
+		{
+			name: dict?.navigation?.home || 'HOME',
+			href: '/',
+		},
+		{
+			name: dict?.navigation?.projects || 'PROJECTS',
+			href: '/projects',
+		},
+		{
+			name: dict?.navigation?.blog || 'BLOG',
+			href: '/blog',
+		},
+		{
+			name: dict?.navigation?.art || 'ART',
+			href: '/artist',
+		},
 	]
-
 	const isActive = path => {
 		return pathname === path
 	}
-
 	return (
 		<header className="fixed top-0 z-50 w-full px-4 py-4">
 			{/* Background overlay with gradient that appears on scroll */}
 			<div
-				className={`absolute inset-0 transition-all duration-300 ${
-					scrolled
-						? 'bg-gradient-to-b from-black/70 to-transparent'
-						: 'bg-gradient-to-b from-transparent to-transparent'
-				}`}
+				className={`absolute inset-0 transition-all duration-300 ${scrolled ? 'bg-gradient-to-b from-black/70 to-transparent' : 'bg-gradient-to-b from-transparent to-transparent'}`}
 			/>
 			<div className="relative mx-auto max-w-7xl">
 				<nav className="flex items-center justify-between">
 					<div className="flex items-center">
-						<Link
-							className="magnetic-button text-2xl font-bold text-primary"
-							href="/"
-						>
+						<Link className="magnetic-button text-2xl font-bold text-primary" href="/">
 							<motion.div
-								animate={{ opacity: 1, scale: 1 }}
+								animate={{
+									opacity: 1,
+									scale: 1,
+								}}
 								className="flex items-center"
-								initial={{ opacity: 0, scale: 0.8 }}
-								transition={{ duration: 0.5 }}
+								initial={{
+									opacity: 0,
+									scale: 0.8,
+								}}
+								transition={{
+									duration: 0.5,
+								}}
 							>
 								<div className="relative">
-									<svg
-										fill="currentColor"
-										height="100"
-										id="svg8"
-										viewBox="0 0 210 297"
-										width="100"
-									>
+									<svg fill="currentColor" height="100" id="svg8" viewBox="0 0 210 297" width="100">
 										<defs id="defs2" />
 
 										<g id="layer1">
@@ -152,35 +147,45 @@ export default function Navigation({ dict }) {
 							size="icon"
 							variant="ghost"
 						>
-							{isOpen ? (
-								<X className="h-6 w-6" />
-							) : (
-								<Menu className="h-6 w-6" />
-							)}
+							{isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
 						</Button>
 					</div>
 
 					{/* Desktop navigation */}
 					<motion.div
-						animate={{ opacity: 1, y: 0 }}
+						animate={{
+							opacity: 1,
+							y: 0,
+						}}
 						className="hidden items-center md:flex"
-						initial={{ opacity: 0, y: -20 }}
-						transition={{ duration: 0.5, delay: 0.2 }}
+						initial={{
+							opacity: 0,
+							y: -20,
+						}}
+						transition={{
+							duration: 0.5,
+							delay: 0.2,
+						}}
 					>
 						<div className="pixel-corners flex items-center space-x-6 rounded-full border border-primary/20 bg-card/80 px-6 py-3 backdrop-blur-md">
 							{navItems.map((item, index) => (
 								<motion.div
-									animate={{ opacity: 1, y: 0 }}
-									initial={{ opacity: 0, y: -10 }}
+									animate={{
+										opacity: 1,
+										y: 0,
+									}}
+									initial={{
+										opacity: 0,
+										y: -10,
+									}}
 									key={item.name}
-									transition={{ delay: 0.3 + index * 0.1, duration: 0.3 }}
+									transition={{
+										delay: 0.3 + index * 0.1,
+										duration: 0.3,
+									}}
 								>
 									<Link
-										className={`magnetic-button rounded-full px-3 py-1 text-sm font-medium transition-all duration-300 ${
-											isActive(item.href)
-												? 'bg-primary/10 font-bold text-primary'
-												: 'hover:bg-primary/5 hover:text-primary'
-										}`}
+										className={`magnetic-button rounded-full px-3 py-1 text-sm font-medium transition-all duration-300 ${isActive(item.href) ? 'bg-primary/10 font-bold text-primary' : 'hover:bg-primary/5 hover:text-primary'}`}
 										href={item.href}
 									>
 										{item.name}
@@ -193,15 +198,21 @@ export default function Navigation({ dict }) {
 					{/* Theme toggle */}
 					{mounted && (
 						<motion.div
-							animate={{ scale: 1 }}
+							animate={{
+								scale: 1,
+							}}
 							className="hidden md:block"
-							initial={{ scale: 0 }}
-							transition={{ duration: 0.5, delay: 0.4 }}
+							initial={{
+								scale: 0,
+							}}
+							transition={{
+								duration: 0.5,
+								delay: 0.4,
+							}}
 						>
 							<Button
 								aria-label={
-									dict?.navigation?.ariaThemeToggle ||
-									'Toggle theme (currently disabled - light mode too dangerous!)'
+									dict?.navigation?.ariaThemeToggle || 'Toggle theme (currently disabled - light mode too dangerous!)'
 								}
 								className="magnetic-button pixel-corners ml-4 hidden cursor-not-allowed border border-primary/20 bg-card/80 opacity-50 backdrop-blur-md md:flex"
 								onClick={handleThemeToggle}
@@ -210,9 +221,15 @@ export default function Navigation({ dict }) {
 								// disabled
 							>
 								<motion.div
-									animate={{ rotate: theme === 'dark' ? 180 : 0 }}
-									initial={{ rotate: 0 }}
-									transition={{ duration: 0.5 }}
+									animate={{
+										rotate: theme === 'dark' ? 180 : 0,
+									}}
+									initial={{
+										rotate: 0,
+									}}
+									transition={{
+										duration: 0.5,
+									}}
 								>
 									<Moon className="h-5 w-5 text-primary" />
 								</motion.div>
@@ -223,26 +240,45 @@ export default function Navigation({ dict }) {
 				{/* Mobile menu */}
 				{isOpen && (
 					<motion.div
-						animate={{ opacity: 1, scale: 1, y: 0 }}
+						animate={{
+							opacity: 1,
+							scale: 1,
+							y: 0,
+						}}
 						className="pixel-corners dark:dithered-dark dithered-light mt-4 rounded-2xl border border-primary/20 bg-card/90 p-6 backdrop-blur-md md:hidden"
-						exit={{ scale: 0.95, opacity: 0, y: -20 }}
-						initial={{ scale: 0.95, opacity: 0, y: -20 }}
-						transition={{ duration: 0.3 }}
+						exit={{
+							scale: 0.95,
+							opacity: 0,
+							y: -20,
+						}}
+						initial={{
+							scale: 0.95,
+							opacity: 0,
+							y: -20,
+						}}
+						transition={{
+							duration: 0.3,
+						}}
 					>
 						<div className="flex flex-col space-y-4">
 							{navItems.map((item, index) => (
 								<motion.div
-									animate={{ opacity: 1, x: 0 }}
-									initial={{ opacity: 0, x: -20 }}
+									animate={{
+										opacity: 1,
+										x: 0,
+									}}
+									initial={{
+										opacity: 0,
+										x: -20,
+									}}
 									key={item.name}
-									transition={{ delay: index * 0.1, duration: 0.3 }}
+									transition={{
+										delay: index * 0.1,
+										duration: 0.3,
+									}}
 								>
 									<Link
-										className={`magnetic-button block rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ${
-											isActive(item.href)
-												? 'bg-primary/10 font-bold text-primary'
-												: 'hover:bg-primary/5 hover:text-primary'
-										}`}
+										className={`magnetic-button block rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ${isActive(item.href) ? 'bg-primary/10 font-bold text-primary' : 'hover:bg-primary/5 hover:text-primary'}`}
 										href={item.href}
 										onClick={() => setIsOpen(false)}
 									>
@@ -252,8 +288,7 @@ export default function Navigation({ dict }) {
 							))}
 							<div className="flex items-center justify-between border-t border-primary/20 pt-4">
 								<span className="text-xs text-muted-foreground">
-									{dict?.navigation?.themeLockedMobile ||
-										'Theme locked in darkness 🌙'}
+									{dict?.navigation?.themeLockedMobile || 'Theme locked in darkness 🌙'}
 								</span>
 								<Button
 									aria-label={
@@ -267,9 +302,15 @@ export default function Navigation({ dict }) {
 									variant="ghost"
 								>
 									<motion.div
-										animate={{ rotate: 180 }}
-										initial={{ rotate: 0 }}
-										transition={{ duration: 0.5 }}
+										animate={{
+											rotate: 180,
+										}}
+										initial={{
+											rotate: 0,
+										}}
+										transition={{
+											duration: 0.5,
+										}}
 									>
 										<Moon className="h-4 w-4" />
 									</motion.div>

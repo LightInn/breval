@@ -1,6 +1,4 @@
 import { render, screen } from '@testing-library/react'
-import React from 'react'
-
 import Tag from '@/components/Elements/Tag'
 
 describe('Tag Component', () => {
@@ -11,7 +9,6 @@ describe('Tag Component', () => {
 		expect(anchorElement).toHaveAttribute('href', '/test-link')
 		expect(anchorElement).toHaveTextContent('Test Tag')
 	})
-
 	test('renders with default classes', () => {
 		render(<Tag link="/test-link" name="Test Tag" />)
 		const anchorElement = screen.getByRole('link')
@@ -39,20 +36,16 @@ describe('Tag Component', () => {
 			'sm:py-3',
 			'sm:text-base',
 		]
-		expectedClasses.forEach(className => {
+		for (const className of expectedClasses) {
 			expect(anchorElement).toHaveClass(className)
-		})
+		}
 	})
-
 	test('applies additional classes from className prop', () => {
 		const additionalClass = 'my-custom-class'
-		render(
-			<Tag className={additionalClass} link="/test-link" name="Test Tag" />
-		)
+		render(<Tag className={additionalClass} link="/test-link" name="Test Tag" />)
 		const anchorElement = screen.getByRole('link')
 		expect(anchorElement).toHaveClass(additionalClass)
 	})
-
 	test('renders with default href "#" when link prop is not provided', () => {
 		render(<Tag name="Test Tag" />)
 		const anchorElement = screen.getByRole('link')

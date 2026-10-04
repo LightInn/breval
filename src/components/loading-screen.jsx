@@ -1,27 +1,30 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
 import { motion } from 'framer-motion'
-
+import { useEffect, useState } from 'react'
 export default function LoadingScreen({ dict }) {
 	const [progress, setProgress] = useState(0)
-
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setProgress(100)
 		}, 2000)
-
 		return () => clearTimeout(timer)
 	}, [])
-
 	return (
 		<div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gray-950">
 			<motion.div
-				animate={{ opacity: 1, y: 0 }}
+				animate={{
+					opacity: 1,
+					y: 0,
+				}}
 				className="text-center"
-				initial={{ opacity: 0, y: 20 }}
-				transition={{ duration: 0.5 }}
+				initial={{
+					opacity: 0,
+					y: 20,
+				}}
+				transition={{
+					duration: 0.5,
+				}}
 			>
 				<svg
 					className="mx-auto mb-6"
@@ -31,34 +34,39 @@ export default function LoadingScreen({ dict }) {
 					width="80"
 					xmlns="http://www.w3.org/2000/svg"
 				>
-					<rect
-						className="stroke-primary"
-						height="24"
-						rx="2"
-						strokeWidth="2"
-						width="24"
-						x="4"
-						y="4"
-					/>
+					<rect className="stroke-primary" height="24" rx="2" strokeWidth="2" width="24" x="4" y="4" />
 					<motion.path
-						animate={{ opacity: 1, scale: 1 }}
+						animate={{
+							opacity: 1,
+							scale: 1,
+						}}
 						className="fill-primary"
 						d="M16 8L24 16L16 24L8 16L16 8Z"
-						initial={{ opacity: 0, scale: 0 }}
-						transition={{ duration: 0.5, delay: 0.3 }}
+						initial={{
+							opacity: 0,
+							scale: 0,
+						}}
+						transition={{
+							duration: 0.5,
+							delay: 0.3,
+						}}
 					/>
 				</svg>
 
-				<h2 className="mb-4 text-2xl font-bold text-primary">
-					{dict?.common?.loading || 'Loading Experience'}
-				</h2>
+				<h2 className="mb-4 text-2xl font-bold text-primary">{dict?.common?.loading || 'Loading Experience'}</h2>
 
 				<div className="h-2 w-64 overflow-hidden rounded-full bg-gray-800">
 					<motion.div
-						animate={{ width: `${progress}%` }}
+						animate={{
+							width: `${progress}%`,
+						}}
 						className="h-full bg-primary"
-						initial={{ width: '0%' }}
-						transition={{ duration: 2 }}
+						initial={{
+							width: '0%',
+						}}
+						transition={{
+							duration: 2,
+						}}
 					/>
 				</div>
 

@@ -1,10 +1,7 @@
 import { Suspense } from 'react'
-
 import siteMetaData from '@/utils/siteMetaData'
-
 import getAllBlogs from '../../../services/blog.services'
 import BlogClient from './BlogClient'
-
 export const metadata = {
 	openGraph: {
 		images: [
@@ -24,21 +21,17 @@ export const metadata = {
 	description:
 		'Explore insightful articles and tutorials on web development, creative coding, UI/UX design, and tech by Bréval Le Floch.',
 	title: 'Blog | Bréval Le Floch - Creative Developer',
-	alternates: { canonical: '/blog' },
+	alternates: {
+		canonical: '/blog',
+	},
 }
-
 export default async function BlogPage() {
 	try {
 		const allBlogs = await getAllBlogs()
 		const blogs = Array.isArray(allBlogs) ? allBlogs : []
-
 		if (!Array.isArray(allBlogs)) {
-			console.warn(
-				'getAllBlogs did not return an array as expected. Received:',
-				allBlogs
-			)
+			console.warn('getAllBlogs did not return an array as expected. Received:', allBlogs)
 		}
-
 		return (
 			<Suspense fallback={<BlogSkeleton />}>
 				<BlogClient blogs={blogs} />
@@ -51,8 +44,8 @@ export default async function BlogPage() {
 				<div className="container mx-auto px-4 py-20 text-center">
 					<h1 className="mb-4 text-4xl font-bold">Error loading articles</h1>
 					<p className="text-red-400">
-						Sorry, an error occurred while trying to load the blog articles.
-						Sorry, an error occurred while trying to load the blog articles.
+						Sorry, an error occurred while trying to load the blog articles. Sorry, an error occurred while trying to
+						load the blog articles.
 					</p>
 					{/* For debugging: <p className="text-xs text-gray-500 mt-2">Detail: {error.message}</p> */}
 				</div>
@@ -60,7 +53,6 @@ export default async function BlogPage() {
 		)
 	}
 }
-
 function BlogSkeleton() {
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
@@ -70,11 +62,10 @@ function BlogSkeleton() {
 					<div className="mx-auto h-4 w-1/2 animate-pulse rounded bg-gray-800"></div>
 				</div>
 				<div className="mb-8 flex flex-wrap justify-center gap-3">
-					{Array.from({ length: 5 }).map((_, i) => (
-						<div
-							className="h-8 w-24 animate-pulse rounded bg-gray-800"
-							key={i}
-						/>
+					{Array.from({
+						length: 5,
+					}).map((_, i) => (
+						<div className="h-8 w-24 animate-pulse rounded bg-gray-800" key={i} />
 					))}
 				</div>
 				<div className="mb-16 animate-pulse rounded-lg border border-gray-700 bg-gray-800/50 p-6 md:p-8">
@@ -93,7 +84,9 @@ function BlogSkeleton() {
 					</div>
 				</div>
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-					{Array.from({ length: 6 }).map((_, i) => (
+					{Array.from({
+						length: 6,
+					}).map((_, i) => (
 						<div className="h-80 animate-pulse rounded-lg bg-gray-800" key={i}>
 							<div className="h-48 rounded-t-lg bg-gray-700"></div>
 							<div className="p-6">

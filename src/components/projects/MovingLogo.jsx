@@ -1,23 +1,24 @@
+import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
-import { motion } from 'framer-motion'
-
 const MovingLogo = ({ size = 40, icon }) => {
-	const [position, setPosition] = useState({ x: 0, y: 0 })
-
+	const [position, setPosition] = useState({
+		x: 0,
+		y: 0,
+	})
 	useEffect(() => {
 		const updatePosition = () => {
 			const x = Math.random() * window.innerWidth
 			const y = Math.random() * window.innerHeight
-			setPosition({ x, y })
+			setPosition({
+				x,
+				y,
+			})
 		}
-
 		updatePosition()
 		const interval = setInterval(updatePosition, 5000)
-
 		return () => clearInterval(interval)
 	}, [])
-
 	return (
 		<motion.div
 			animate={{
@@ -40,5 +41,4 @@ const MovingLogo = ({ size = 40, icon }) => {
 		</motion.div>
 	)
 }
-
 export default MovingLogo

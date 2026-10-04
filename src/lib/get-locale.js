@@ -1,6 +1,6 @@
 'use server'
-import { headers } from 'next/headers'
 
+import { headers } from 'next/headers'
 export async function getLocale() {
 	try {
 		// Get the Accept-Language header from the request
@@ -28,9 +28,8 @@ export async function getLocale() {
 				return lang.code
 			}
 		}
-
 		return 'en'
-	} catch (error) {
+	} catch (_error) {
 		// During static generation, headers() might not be available
 		// Return default locale
 		return 'en'

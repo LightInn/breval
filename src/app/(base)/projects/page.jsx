@@ -1,8 +1,6 @@
 import { Suspense } from 'react'
-
 import { getDictionary } from '@/lib/get-dictionary'
 import { getLocale } from '@/lib/get-locale'
-
 import { getProjects } from '../../../services/projects.services' // Make sure this path is correct
 import ProjectClient from './ProjectClient' // The new client component
 
@@ -10,18 +8,12 @@ export default async function ProjectsPage() {
 	try {
 		const locale = await getLocale()
 		const dict = await getDictionary(locale)
-
 		const projectsData = await getProjects()
 		// getProjects directly returns the array of projects (data.data)
 		const projects = Array.isArray(projectsData) ? projectsData : []
-
 		if (!Array.isArray(projectsData)) {
-			console.warn(
-				'getProjects did not return an array as expected. Received:',
-				projectsData
-			)
+			console.warn('getProjects did not return an array as expected. Received:', projectsData)
 		}
-
 		return (
 			<Suspense fallback={<ProjectSkeleton />}>
 				<ProjectClient dict={dict} projects={projects} />
@@ -33,16 +25,13 @@ export default async function ProjectsPage() {
 			<div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
 				<div className="container mx-auto px-4 py-20 text-center">
 					<h1 className="mb-4 text-4xl font-bold">Error loading projects</h1>
-					<p className="text-red-400">
-						Sorry, an error occurred while trying to load the projects.
-					</p>
+					<p className="text-red-400">Sorry, an error occurred while trying to load the projects.</p>
 					{/* For debugging: <p className="text-xs text-gray-500 mt-2">Detail: {error.message}</p> */}
 				</div>
 			</div>
 		)
 	}
 }
-
 function ProjectSkeleton() {
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
@@ -53,11 +42,10 @@ function ProjectSkeleton() {
 				</div>
 				<div className="mb-8 flex items-center justify-between">
 					<div className="flex flex-wrap gap-3">
-						{Array.from({ length: 4 }).map((_, i) => (
-							<div
-								className="h-8 w-24 animate-pulse rounded bg-gray-800"
-								key={i}
-							/>
+						{Array.from({
+							length: 4,
+						}).map((_, i) => (
+							<div className="h-8 w-24 animate-pulse rounded bg-gray-800" key={i} />
 						))}
 					</div>
 					<div className="h-8 w-20 animate-pulse rounded bg-gray-800" />
@@ -79,7 +67,9 @@ function ProjectSkeleton() {
 					</div>
 				</div>
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-					{Array.from({ length: 6 }).map((_, i) => (
+					{Array.from({
+						length: 6,
+					}).map((_, i) => (
 						<div className="h-80 animate-pulse rounded-lg bg-gray-800" key={i}>
 							<div className="h-48 rounded-t-lg bg-gray-700"></div>
 							<div className="p-6">

@@ -1,45 +1,29 @@
-import React from 'react'
-import { render, screen, act } from '@testing-library/react'
+import { act, render, screen } from '@testing-library/react'
 import Home from '@/app/(base)/page'
 
 // Mock async functions
 jest.mock('@/lib/get-locale', () => ({
 	getLocale: jest.fn(() => Promise.resolve('en')),
 }))
-
 jest.mock('@/lib/get-dictionary', () => ({
 	getDictionary: jest.fn(() => Promise.resolve({})),
 }))
 
 // Mock child components
-jest.mock('@/components/scroll-object-3d', () => () => (
-	<div data-testid="mock-scroll-object-3d" />
-))
-jest.mock('@/components/loading-screen', () => () => (
-	<div data-testid="mock-loading-screen" />
-))
+jest.mock('@/components/scroll-object-3d', () => () => <div data-testid="mock-scroll-object-3d" />)
+jest.mock('@/components/loading-screen', () => () => <div data-testid="mock-loading-screen" />)
 jest.mock('@/components/Home/hero', () => () => <div data-testid="mock-hero" />)
-jest.mock('@/components/Home/about', () => () => (
-	<div data-testid="mock-about" />
-))
-jest.mock('@/components/Home/projects', () => () => (
-	<div data-testid="mock-projects" />
-))
-jest.mock('@/components/Home/journey', () => () => (
-	<div data-testid="mock-journey" />
-))
+jest.mock('@/components/Home/about', () => () => <div data-testid="mock-about" />)
+jest.mock('@/components/Home/projects', () => () => <div data-testid="mock-projects" />)
+jest.mock('@/components/Home/journey', () => () => <div data-testid="mock-journey" />)
 jest.mock('@/components/Home/svg-stickers', () => ({
-	SectionDivider: jest.fn(({ direction }) => (
-		<div data-testid={`mock-section-divider-${direction || 'default'}`} />
-	)),
+	SectionDivider: jest.fn(({ direction }) => <div data-testid={`mock-section-divider-${direction || 'default'}`} />),
 }))
-
 describe('Home Page (src/app/page.jsx)', () => {
 	beforeEach(() => {
 		// Clear all mocks before each test if SectionDivider needs specific call counts per test
 		jest.clearAllMocks()
 	})
-
 	test('renders the main page structure and all mocked child components', async () => {
 		await act(async () => {
 			render(await Home())
@@ -62,16 +46,13 @@ describe('Home Page (src/app/page.jsx)', () => {
 		// Check for SectionDividers
 		// The component renders 3 SectionDividers
 		expect(screen.getByTestId('mock-section-divider-up')).toBeInTheDocument()
-		expect(
-			screen.getByTestId('mock-section-divider-default')
-		).toBeInTheDocument()
+		expect(screen.getByTestId('mock-section-divider-default')).toBeInTheDocument()
 		expect(screen.getByTestId('mock-section-divider-down')).toBeInTheDocument()
 
 		// Verify SectionDivider mock was called 3 times (optional, but good for checking interactions)
 		// const { SectionDivider } = jest.requireMock('@/components/Home/svg-stickers');
 		// expect(SectionDivider).toHaveBeenCalledTimes(3);
 	})
-
 	test('main element has correct default classes', async () => {
 		await act(async () => {
 			render(await Home())
