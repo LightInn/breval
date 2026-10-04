@@ -66,7 +66,7 @@ export default function Projects({ dict }) {
 
 	// Skeleton component for loading state
 	const ProjectSkeleton = () => (
-		<Card className="h-full overflow-hidden border-border bg-card">
+		<Card className="h-full overflow-hidden border-primary/20 bg-card/60 backdrop-blur-sm">
 			<div className="relative h-48 overflow-hidden">
 				<div className="h-full w-full animate-pulse bg-muted" />
 			</div>
@@ -89,7 +89,8 @@ export default function Projects({ dict }) {
 		</Card>
 	)
 	return (
-		<section className="relative py-16 md:py-24" id="projects">
+		<section className="relative py-20" id="projects">
+			<div className="absolute inset-0 bg-gradient-to-b from-background/0 via-primary/5 to-background/0" />
 			{renderProjectsContent(isInView, dict, ref, container, loading, item, ProjectSkeleton, projects)}
 		</section>
 	)
@@ -97,7 +98,7 @@ export default function Projects({ dict }) {
 function renderProjectCard(project, dict) {
 	return (
 		<Card
-			className={`h-full overflow-hidden border-border bg-card transition-all duration-300 hover:border-primary/50 ${project.featured ? 'md:col-span-2' : ''}`}
+			className={`h-full overflow-hidden border-primary/20 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 ${project.featured ? 'md:col-span-2' : ''}`}
 		>
 			<div className={`relative overflow-hidden ${project.featured ? 'h-64' : 'h-48'}`}>
 				<div className="dark:dithered-dark dithered-light absolute inset-0 opacity-30" />
@@ -218,7 +219,7 @@ function renderProjectGrid(isInView, ref, container, loading, item, ProjectSkele
 				return (
 					// Display a message if no projects are available
 					<motion.div className="md:col-span-2" variants={item}>
-						<Card className="h-full overflow-hidden border-border bg-card">
+						<Card className="h-full overflow-hidden border-primary/20 bg-card/60 backdrop-blur-sm">
 							<CardContent className="pt-6 text-center">
 								<p className="text-muted-foreground">
 									{dict?.home?.projects?.noProjectsAvailable || 'No projects available at the moment.'}
@@ -233,7 +234,7 @@ function renderProjectGrid(isInView, ref, container, loading, item, ProjectSkele
 }
 function renderProjectsContent(isInView, dict, ref, container, loading, item, ProjectSkeleton, projects) {
 	return (
-		<div className="portfolio-shell">
+		<div className="container mx-auto px-4">
 			<motion.div
 				animate={
 					isInView
@@ -246,7 +247,7 @@ function renderProjectsContent(isInView, dict, ref, container, loading, item, Pr
 								y: 20,
 							}
 				}
-				className="mb-12 text-left"
+				className="mb-12 text-center"
 				initial={{
 					opacity: 0,
 					y: 20,
@@ -255,11 +256,11 @@ function renderProjectsContent(isInView, dict, ref, container, loading, item, Pr
 					duration: 0.5,
 				}}
 			>
-				<h2 className="mb-4 text-3xl font-semibold tracking-tight md:text-4xl">
+				<h2 className="mb-4 text-3xl font-bold md:text-4xl">
 					{dict?.home?.projects?.title || 'Featured'}{' '}
 					<span className="text-primary">{dict?.home?.projects?.name || 'Projects'}</span>
 				</h2>
-				<p className="max-w-2xl text-muted-foreground">
+				<p className="mx-auto max-w-2xl text-muted-foreground">
 					{dict?.home?.projects?.description ||
 						'A showcase of my creative work and technical projects. Each project represents a unique challenge and learning experience.'}
 				</p>

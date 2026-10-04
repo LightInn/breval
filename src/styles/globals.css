@@ -4,13 +4,13 @@
 
 @layer base {
 	:root {
-		--background: 240 10% 98%;
+		--background: 240 60% 88%;
 		--foreground: 240 10% 15%;
-		--card: 0 0% 100%;
+		--card: 255 100% 95%;
 		--card-foreground: 240 10% 15%;
 		--popover: 255 100% 100%;
 		--popover-foreground: 240 10% 15%;
-		--primary: 330 65% 38%;
+		--primary: 330 100% 65%;
 		--primary-foreground: 255 100% 98%;
 		--secondary: 320 20% 95%;
 		--secondary-foreground: 240 5.9% 20%;
@@ -22,7 +22,7 @@
 		--destructive-foreground: 0 0% 98%;
 		--border: 320 20% 90%;
 		--input: 320 20% 90%;
-		--ring: 330 65% 38%;
+		--ring: 330 100% 70%;
 		--radius: 0.75rem;
 		--sakura-primary: 330 100% 85%;
 		--sakura-secondary: 340 80% 90%;
@@ -44,7 +44,7 @@
 		--secondary: 240 3.7% 15.9%;
 		--secondary-foreground: 0 0% 98%;
 		--muted: 240 3.7% 15.9%;
-		--muted-foreground: 240 5% 72%;
+		--muted-foreground: 240 5% 64.9%;
 		--accent: 240 3.7% 15.9%;
 		--accent-foreground: 0 0% 98%;
 		--destructive: 0 62.8% 30.6%;
@@ -75,7 +75,7 @@
 
 	body {
 		@apply bg-background text-foreground;
-		font-family: var(--font-geist-sans), sans-serif;
+		font-family: var(--font-open-sans), sans-serif;
 		transition:
 			background-color 0.3s ease,
 			color 0.3s ease;
@@ -440,59 +440,4 @@ li {
 	margin-bottom: 0.25rem;
 	/* round decoration */
 	list-style-type: disc;
-}
-
-/* Shared portfolio rhythm: a quiet frame for the existing rose identity. */
-.portfolio-shell {
-	width: min(100% - 3rem, 1200px);
-	margin-inline: auto;
-}
-.portfolio-hero {
-	min-height: calc(100dvh - 5rem);
-	display: flex;
-	align-items: center;
-	padding-block: 4rem;
-}
-.hero-title {
-	font-size: clamp(3.25rem, 7vw, 6.5rem);
-	line-height: 0.98;
-	letter-spacing: -0.055em;
-}
-.contact-link {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-	padding: 1rem;
-	border: 1px solid hsl(var(--border));
-	border-radius: 0.5rem;
-}
-.contact-link:hover {
-	background: hsl(var(--accent));
-}
-:where(a, button, input, textarea, select):focus-visible {
-	outline: 2px solid hsl(var(--ring));
-	outline-offset: 4px;
-}
-section[id] {
-	scroll-margin-top: 6rem;
-}
-@media (max-width: 640px) {
-	.portfolio-shell {
-		width: calc(100% - 2rem);
-	}
-	.portfolio-hero {
-		padding-block: 2.5rem;
-	}
-}
-@media (prefers-reduced-motion: reduce) {
-	html {
-		scroll-behavior: auto;
-	}
-	*,
-	*::before,
-	*::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-	}
 }

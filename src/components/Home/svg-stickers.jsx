@@ -4,13 +4,33 @@ import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import { useMemo } from 'react'
 export function SectionDivider({ direction = null }) {
+	const isDown = direction === 'down'
+	const isUp = direction === 'up'
 	return (
-		<div aria-hidden="true" data-direction={direction} className="portfolio-shell py-4">
-			<div className="border-t border-border" />
+		<div className="relative z-20 overflow-visible py-20">
+			{/* Container avec débordement vers le haut et coins arrondis */}
+			<div
+				className={`absolute inset-0 -mx-8 -my-16 overflow-visible rounded-[150px] bg-gradient-to-b ${(() => {
+					if (isDown) {
+						return ' from-transparent via-white to-white dark:via-black dark:to-black'
+					}
+					if (isUp) {
+						return ' from-white via-white to-transparent dark:from-black dark:via-black'
+					}
+					return ' from-transparent via-transparent to-transparent'
+				})()}`}
+			>
+				{/* Effet de dégradé pour le fond */}
+
+				<SvgSticker className="left-8 top-4" size="md" type="sakura" />
+				<SvgSticker className="right-16 top-8" size="lg" type="mountain" />
+				<SvgSticker className="bottom-4 left-1/4" size="sm" type="star" />
+				<SvgSticker className="left-1/2 top-12 -translate-x-1/2 transform" size="md" type="cloud" />
+				<SvgSticker className="bottom-8 right-8" size="sm" type="diamond" />
+			</div>
 		</div>
 	)
 }
-
 export function SvgSticker({ className = '', size = 'md', type }) {
 	const { theme } = useTheme()
 	const isDark = theme === 'dark'
