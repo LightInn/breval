@@ -76,7 +76,7 @@
 		"rehype-raw": "7.0.0",
 		"remark-mdx": "3.1.1",
 		"sass": "1.105.1",
-		"sharp": "0.34.5",
+		"sharp": "0.35.5",
 		"sonner": "2.0.8",
 		"special-card": "2.1.4",
 		"strapi-sdk-js": "3.1.0",
