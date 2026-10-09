@@ -81,7 +81,7 @@
 		"special-card": "2.1.4",
 		"strapi-sdk-js": "3.1.0",
 		"styled-components": "6.5.3",
-		"tailwind-merge": "3.5.0",
+		"tailwind-merge": "3.7.0",
 		"tailwindcss-animate": "1.0.7",
 		"three": "0.184.0",
 		"three-stdlib": "2.36.1",
