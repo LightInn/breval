@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import LocalizedText from '@/components/Global/localized-text'
 export function Playground({ image = '/dynamic/0.webp', setReload = null, data = {} }) {
 	return (
 		<div className="flex min-h-screen w-full flex-col items-center justify-center space-y-12 px-8 py-4 md:ml-20">
@@ -8,14 +9,24 @@ export function Playground({ image = '/dynamic/0.webp', setReload = null, data =
 					background: data.lightVibrant,
 				}}
 			>
-				<h1 className="text-lg font-bold text-gray-800">Everything looks oddly colored here, doesn&apos;t it?</h1>
-				<p>Well, that&apos;s because I didn&apos;t choose the colors!</p>
-				<p>The color theme is generated dynamically from the background image ⭐</p>
-				<p>You can reload the page to try with a different image and theme!</p>
+				<h1 className="text-lg font-bold text-gray-800">
+					<LocalizedText id="paletteTitle" />
+				</h1>
+				<p>
+					<LocalizedText id="paletteIntro" />
+				</p>
+				<p>
+					<LocalizedText id="paletteDescription" />
+				</p>
+				<p>
+					<LocalizedText id="paletteReload" />
+				</p>
 			</div>
 
 			<div className="p-4">
-				<p className="text-xl font-semibold text-black">Actual Theme</p>
+				<p className="text-xl font-semibold text-black">
+					<LocalizedText id="currentTheme" />
+				</p>
 
 				<div className="flex flex-col items-center justify-center gap-2 md:flex-row">
 					<div className="grid w-[25vw] min-w-80 grid-cols-3 gap-4">
@@ -25,7 +36,7 @@ export function Playground({ image = '/dynamic/0.webp', setReload = null, data =
 								background: data.lightVibrant,
 							}}
 						>
-							Vibrant Light
+							<LocalizedText id="vibrantLight" />
 						</div>
 						<div
 							className="flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110"
@@ -33,7 +44,7 @@ export function Playground({ image = '/dynamic/0.webp', setReload = null, data =
 								background: data.vibrant,
 							}}
 						>
-							Vibrant
+							<LocalizedText id="vibrant" />
 						</div>
 						<div
 							className="flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110"
@@ -41,7 +52,7 @@ export function Playground({ image = '/dynamic/0.webp', setReload = null, data =
 								background: data.darkVibrant,
 							}}
 						>
-							Vibrant Dark
+							<LocalizedText id="vibrantDark" />
 						</div>
 						<div
 							className="flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110"
@@ -49,7 +60,7 @@ export function Playground({ image = '/dynamic/0.webp', setReload = null, data =
 								background: data.lightMuted,
 							}}
 						>
-							Muted Light
+							<LocalizedText id="mutedLight" />
 						</div>
 						<div
 							className="flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110"
@@ -57,7 +68,7 @@ export function Playground({ image = '/dynamic/0.webp', setReload = null, data =
 								background: data.muted,
 							}}
 						>
-							Muted
+							<LocalizedText id="muted" />
 						</div>
 						<div
 							className="flex aspect-square w-full max-w-48 transform items-center justify-center rounded-lg text-sm font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-110"
@@ -65,11 +76,13 @@ export function Playground({ image = '/dynamic/0.webp', setReload = null, data =
 								background: data.darkMuted,
 							}}
 						>
-							Muted Dark
+							<LocalizedText id="mutedDark" />
 						</div>
 					</div>
 
-					<p className="text-xl font-semibold text-black md:hidden">Based on Image</p>
+					<p className="text-xl font-semibold text-black md:hidden">
+						<LocalizedText id="basedOnImage" />
+					</p>
 					<Image
 						alt="image of a landscape to generate the theme"
 						className="rounded-2xl md:mx-10 md:w-1/2"
@@ -89,7 +102,7 @@ export function Playground({ image = '/dynamic/0.webp', setReload = null, data =
 				}}
 				type="button"
 			>
-				Reload Page
+				<LocalizedText id="reloadPage" />
 			</button>
 		</div>
 	)

@@ -18,10 +18,15 @@ jobs:
           version: 11.28.5
       - uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 24.22.1
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: cp .env.example .env.local
       - run: pnpm check
       - run: pnpm typecheck
       - run: pnpm test:ci
+      - run: pnpm test:cms
+      - run: pnpm test:i18n
       - run: pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:e2e

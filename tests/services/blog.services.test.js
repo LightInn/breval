@@ -1,106 +1,61 @@
-import Strapi from 'strapi-sdk-js'
+import { getCMS } from '@/lib/cms'
+import { getLocale } from '@/lib/get-locale'
 import getAllBlogs from '@/services/blog.services'
 
-// Mock the Strapi SDK
-const mockStrapiFind = jest.fn()
-jest.mock('strapi-sdk-js', () => {
-	return jest.fn().mockImplementation(() => {
-		return {
-			find: mockStrapiFind,
-		}
-	})
+jest.mock('@/lib/cms', () => ({ getCMS: jest.fn() }))
+jest.mock('@/lib/get-locale', () => ({ getLocale: jest.fn() }))
+const find = jest.fn()
+beforeEach(() => {
+	getCMS.mockResolvedValue({ find })
+	getLocale.mockResolvedValue('fr')
 })
-describe('Blog Services (src/services/blog.services.js)', () => {
-	beforeEach(() => {
-		// Clear mock history before each test
-		Strapi.mockClear()
-		mockStrapiFind.mockClear()
+
+test('reads all published articles in the requested locale with access control enabled', async () => {
+	find.mockResolvedValue({ docs: [] })
+	expect(await getAllBlogs()).toEqual([])
+	expect(find).toHaveBeenCalledWith(
+		expect.objectContaining({
+			collection: 'blogs',
+			locale: 'fr',
+			fallbackLocale: 'en',
+			pagination: false,
+			overrideAccess: false,
+			where: { _status: { equals: 'published' } },
+		})
+	)
+})
+test('maps uploaded media and Markdown to the existing article view model', async () => {
+	find.mockResolvedValue({
+		docs: [
+			{
+				id: 1,
+				slug: 'article',
+				title: 'Article',
+				publishedAt: '2026-10-24T00:00:00Z',
+				updatedAt: '2026-10-24T00:00:00Z',
+				tags: ['web'],
+				describe: 'Summary',
+				content: '# Markdown',
+				image: { url: '/api/media/file/test.png' },
+			},
+		],
 	})
-	describe('getAllBlogs', () => {
-		test('should initialize Strapi and call find with correct parameters', async () => {
-			mockStrapiFind.mockResolvedValueOnce({
-				data: [],
-			}) // Return empty data for this test
-			await getAllBlogs()
-			expect(Strapi).toHaveBeenCalledTimes(1)
-			expect(Strapi).toHaveBeenCalledWith({
-				url: 'https://breval-api.lightin.io',
-			})
-			expect(mockStrapiFind).toHaveBeenCalledTimes(1)
-			expect(mockStrapiFind).toHaveBeenCalledWith('blogs', {
-				populate: 'image',
-			})
-		})
-		test('should correctly map blog data from Strapi response', async () => {
-			const mockRawBlogData = [
-				{
-					id: 1,
-					// Strapi v4 typically wraps data in attributes
-					publishedAt: '2023-01-01T00:00:00.000Z',
-					image: {
-						url: '/uploads/image1.jpg',
-					},
-					// Nested structure for image
-					describe: 'Test Description 1',
-					content: 'Test Content 1',
-					title: 'Test Title 1',
-					tags: ['tag1', 'tag2'],
-					url: '/blog/test-title-1',
-				},
-				{
-					id: 2,
-					publishedAt: '2023-01-02T00:00:00.000Z',
-					image: null,
-					// Test case for missing image
-					describe: 'Test Description 2',
-					content: 'Test Content 2',
-					title: 'Test Title 2',
-					tags: ['tag3'],
-					url: '/blog/test-title-2',
-				},
-			]
-			// The service seems to expect data directly, not nested in attributes, let's adjust mock response
-			const mockServiceInputData = mockRawBlogData.map(item => ({
-				...item,
-				id: item.id,
-			}))
-			mockStrapiFind.mockResolvedValueOnce({
-				data: mockServiceInputData,
-			})
-			const blogs = await getAllBlogs()
-			expect(blogs).toHaveLength(2)
-			expect(blogs[0]).toEqual({
-				publishedAt: '2023-01-01T00:00:00.000Z',
-				image: '/uploads/image1.jpg',
-				describe: 'Test Description 1',
-				content: 'Test Content 1',
-				title: 'Test Title 1',
-				tags: ['tag1', 'tag2'],
-				url: '/blog/test-title-1',
-			})
-			expect(blogs[1]).toEqual({
-				publishedAt: '2023-01-02T00:00:00.000Z',
-				image: '',
-				// Expect empty string for missing image
-				describe: 'Test Description 2',
-				content: 'Test Content 2',
-				title: 'Test Title 2',
-				tags: ['tag3'],
-				url: '/blog/test-title-2',
-			})
-		})
-		test('should handle empty data array from Strapi', async () => {
-			mockStrapiFind.mockResolvedValueOnce({
-				data: [],
-			})
-			const blogs = await getAllBlogs()
-			expect(blogs).toEqual([])
-		})
-		test('should handle Strapi find error gracefully (e.g., return empty array or throw)', async () => {
-			// The actual implementation catches errors and returns an empty array
-			mockStrapiFind.mockRejectedValueOnce(new Error('Strapi API error'))
-			const blogs = await getAllBlogs()
-			expect(blogs).toEqual([])
-		})
-	})
+	expect(await getAllBlogs()).toEqual([
+		{
+			id: 1,
+			url: 'article',
+			title: 'Article',
+			publishedAt: '2026-10-24T00:00:00Z',
+			updatedAt: '2026-10-24T00:00:00Z',
+			tags: ['web'],
+			describe: 'Summary',
+			content: '# Markdown',
+			image: '/api/media/file/test.png',
+			isPublished: true,
+		},
+	])
+})
+test('propagates database failures instead of silently replacing the site content with an empty list', async () => {
+	find.mockRejectedValue(new Error('Database unavailable'))
+	await expect(getAllBlogs()).rejects.toThrow('Database unavailable')
 })

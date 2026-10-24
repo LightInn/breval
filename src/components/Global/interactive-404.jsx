@@ -1,9 +1,9 @@
 'use client'
 
 import { ArrowLeft, Home } from 'lucide-react'
-import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { Link } from '@/i18n/navigation'
 
 // Note: This component is marked 'use client', so it cannot directly fetch server-side data.
 // It will expect 'dict' to be passed as a prop from a parent server component.

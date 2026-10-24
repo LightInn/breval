@@ -1,9 +1,4 @@
-const dictionaries = {
-	en: () => import('./dictionaries/en.json').then(module => module.default),
-	fr: () => import('./dictionaries/fr.json').then(module => module.default),
-}
-export const getDictionary = locale => {
-	// Default to 'en' if locale is not supported
-	const supportedLocale = dictionaries[locale] ? locale : 'en'
-	return dictionaries[supportedLocale]()
-}
+import { getMessages } from 'next-intl/server'
+
+// Existing presentational components can keep their dictionary props during migration.
+export const getDictionary = locale => getMessages({ locale })

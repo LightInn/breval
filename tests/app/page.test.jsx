@@ -1,5 +1,9 @@
+jest.mock('@/i18n/metadata', () => ({ sectionMetadata: jest.fn() }))
+
+jest.mock('@/services/projects.services', () => ({ getFeaturedProjects: jest.fn(() => Promise.resolve([])) }))
+
 import { act, render, screen } from '@testing-library/react'
-import Home from '@/app/(base)/page'
+import Home from '@/app/(frontend)/[locale]/(base)/page'
 
 // Mock async functions
 jest.mock('@/lib/get-locale', () => ({

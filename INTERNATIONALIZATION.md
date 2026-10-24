@@ -1,85 +1,71 @@
-# Internationalization Implementation Summary
+# Internationalization
 
-## ✅ Completed Implementation
+The website uses `next-intl` and the Next.js App Router. Supported languages and
+the default are declared once in `src/i18n/locales.ts`, also used by Payload's
+content-localization configuration.
 
-### 1. Removed Legacy i18n Configuration
+## Routing and preferences
 
-- Removed the unsupported `i18n` configuration from `next.config.mjs`
-- The old configuration was causing the warning about App Router incompatibility
+Every website URL has a language prefix: `/en/projects`, `/fr/projects`,
+`/fr/blog/articles/mon-article`. An explicit prefix is authoritative. Legacy links
+such as `/projects` redirect through next-intl's locale negotiation: saved
+`NEXT_LOCALE` cookie, then the browser's `Accept-Language`, then English.
 
-### 2. Created Invisible i18n System
+`src/proxy.ts` excludes `/admin`, `/api`, Next internals and static files. Payload
+URLs and uploaded file URLs are never prefixed or redirected by website i18n.
+The site and Payload have separate HTML root layouts. Because Next.js cannot
+expose a shared `locale` root parameter across these layouts, `i18n/request.ts`
+uses next-intl's middleware-provided `requestLocale` rather than `next/root-params`.
+There is no custom parsing of language headers and no deprecated locale setter.
 
-- **Language Detection**: Automatically detects browser language from `Accept-Language` header
-- **No URL Changes**: No sub-paths (like `/fr/`) or domain changes - completely invisible to users
-- **Default to English**: Falls back to English if the user's language isn't supported
-- **Supported Languages**: English (en) and French (fr)
+`src/i18n/navigation.ts` exports the locale-aware `Link`, `useRouter` and
+`usePathname` APIs. Use these for website links. Use `next/link` for CMS navigation.
+The language selector preserves query parameters and fragments. For article and
+project detail pages, its server action resolves the same published document in
+the target language before navigating, so translated slugs do not lead to 404s.
 
-### 3. Server-Side Translation System
+## Messages and formatting
 
-- `src/lib/get-locale.js` - Detects user's preferred language from browser headers
-- `src/lib/get-dictionary.js` - Loads appropriate translation dictionary
-- `src/lib/dictionaries/en.json` - English translations
-- `src/lib/dictionaries/fr.json` - French translations
+Catalogs are in `src/lib/dictionaries/en.json` and `fr.json`, with identical keys.
+Use `getTranslations` in server code and `useTranslations` in client components.
+Use next-intl's formatter for dates and numbers; the request timezone is
+`Europe/Paris` so server and client produce matching output.
 
-### 4. Client-Side Translation Hook
+The small `get-locale` and `get-dictionary` modules are compatibility adapters to
+next-intl for existing presentational components. They do not negotiate language,
+parse headers or implement their own fallback. The client provider receives only
+shared UI namespaces; existing home-section dictionaries remain server-loaded.
 
-- `src/hooks/use-translations.js` - React hook for client components
-- Automatically detects browser language on the client side
-- Provides `t()` function for accessing translations
+## Content and performance
 
-### 5. Updated Components
+Payload's content locale is always explicit, with English fallback. Only published
+documents are returned by website services and access checks remain enabled.
+React `cache` deduplicates CMS reads within a server render, with locale included
+in every cache key. There is no cross-user mutable locale state or permanent
+content cache. Featured projects are fetched with the server-rendered home page,
+instead of waiting for browser hydration and a second action request.
 
-- **Hero Component**: Title, description, buttons translated
-- **About Component**: All text content including role descriptions
-- **Projects Component**: Title, description, button labels
-- **Journey Component**: Title and description
-- **Loading Screen**: Loading messages
-- **Root Layout**: Dynamic `lang` attribute based on detected language
+Payload's interface language and content language are separate standard features.
+The UI supports English/French; the content picker displays full language names.
+Studio shortcuts preserve the selected content locale in their URLs.
 
-### 6. Translation Structure
+## Search engines and verification
 
-```json
-{
-  "navigation": { ... },
-  "hero": { ... },
-  "about": { ... },
-  "projects": { ... },
-  "journey": { ... },
-  "common": { ... }
-}
-```
+Canonical links, language alternates and the XML sitemap include the locale and
+translated article slug. Existing unprefixed links still work through redirects.
+The admin and API are excluded from indexing.
 
-## 🔄 How It Works
+Run `pnpm test:i18n` for negotiation, cookie priority, catalog parity and ICU
+formatting. `pnpm test:e2e` checks actual language switching, translated slugs,
+query preservation, canonical links, Payload boundaries and the studio UI.
 
-1. **Server-Side**: When a page loads, the server reads the `Accept-Language` header
-2. **Language Detection**: Extracts the preferred language (en, fr, or defaults to en)
-3. **Dictionary Loading**: Loads the appropriate translation file
-4. **Component Rendering**: Server components receive the `dict` prop with translations
-5. **Client Components**: Use the `useTranslations()` hook for dynamic content
+## Translating interface copy
 
-## 🎯 Key Features
-
-- **Zero Configuration**: Works automatically based on browser settings
-- **No Persistence**: Doesn't use localStorage or cookies (as requested)
-- **Graceful Fallbacks**: Always falls back to English if translations are missing
-- **Type-Safe**: Uses consistent key structure across languages
-- **Performance**: Server-side translations, minimal client-side JavaScript
-- **SEO Friendly**: Proper `lang` attribute set dynamically
-
-## 🌐 Testing
-
-The application now automatically detects your browser's language preference:
-
-- If your browser is set to French: You'll see French content
-- If your browser is set to any other language: You'll see English content
-- No manual switching required - it's completely invisible and automatic
-
-## 📝 Adding New Translations
-
-To add new content for translation:
-
-1. Add the key to both `en.json` and `fr.json`
-2. Use `dict?.section?.key || "fallback text"` in server components
-3. Use `t('section.key')` in client components with the `useTranslations()` hook
-
-The system is designed to be simple, maintainable, and invisible to the end user.
+Both catalogs contain real translations, including the hero, journey dialogs,
+footer, empty/error states and experiment instructions. `ui` holds shared page
+labels. `LocalizedText` is a small next-intl client component for text-only slots
+inside presentation helpers; interactive components use `useTranslations`.
+Keep product names, technology names and CMS category identifiers stable, and
+translate their displayed labels rather than changing filtering keys or routes.
+Browser tests visit the home, art, projects, category and experiment pages in
+both languages and assert visible localized content, not just the URL.

@@ -1,9 +1,10 @@
-import { format } from 'date-fns'
 import Image from 'next/image'
-import Link from 'next/link'
+import { useFormatter } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 import { rgbDataURL } from '@/services/dataurl.services'
 
 const BlogLayoutThree = ({ blog }) => {
+	const formatter = useFormatter()
 	return (
 		<div className="text-dark group flex flex-col items-center">
 			<Link className="h-full overflow-hidden rounded-xl" href={`/blog/articles/${blog.url}`}>
@@ -30,7 +31,7 @@ const BlogLayoutThree = ({ blog }) => {
 				</Link>
 
 				<span className="text-gray text-sm font-semibold capitalize sm:text-base">
-					{format(new Date(blog.publishedAt), 'MMMM dd, yyyy')}
+					{formatter.dateTime(new Date(blog.publishedAt), { dateStyle: 'long' })}
 				</span>
 			</div>
 		</div>

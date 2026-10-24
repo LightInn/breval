@@ -1,6 +1,7 @@
-import Link from 'next/link'
 import { ReloadCTA } from '@/components/Experiments/About/ReloadCTA'
+import LocalizedText from '@/components/Global/localized-text'
 import { DiscordIcon, EmailIcon, GithubIcon, LinkedinIcon, TwitterIcon } from '@/components/Icons'
+import { Link } from '@/i18n/navigation'
 import Avatar from '/src/components/Experiments/About/Avatar'
 import css from '/src/styles/Navbar.module.css'
 
@@ -17,14 +18,14 @@ const AboutCoverSection = ({ background = null, setReload = null, data = {} }) =
 					<h2
 						className={`${css.messagebulle} text-center text-4xl font-bold capitalize text-white md:rounded-2xl md:bg-white/30 md:p-6 md:text-6xl lg:text-right`}
 					>
-						Hi, I&apos;m <br />
+						<LocalizedText id="aboutHello" /> <br />
 						<strong>Bréval</strong>.
 					</h2>
 					<p
 						className={`${css.messagebulle} font-medium capitalize text-white md:mt-8 md:rounded-2xl md:bg-white/30 md:p-20 md:text-right md:text-2xl`}
 					>
-						I&apos;m a creative developer <br />
-						from France, Loire Atlantique.
+						<LocalizedText id="aboutRole" /> <br />
+						<LocalizedText id="aboutLocation" />
 					</p>
 
 					<div className="mt-20 flex h-full w-full gap-2 p-2">

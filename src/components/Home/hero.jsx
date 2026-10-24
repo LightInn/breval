@@ -2,10 +2,10 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowDown, Linkedin, Mail, Play, X } from 'lucide-react'
-import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import SakuraFall from '@/components/sakura-fall'
 import { Button } from '@/components/ui/button'
+import { Link } from '@/i18n/navigation'
 export default function Hero({ dict }) {
 	const videoRef = useRef(null)
 	const [showContactPopup, setShowContactPopup] = useState(false)

@@ -1,0 +1,519 @@
+'use client'
+
+import { useFormatter, useTranslations } from 'next-intl'
+
+const pattern1 = /\s+/g
+const pattern2 = /\s+/g
+
+import { motion, useInView } from 'framer-motion'
+import { ArrowRight, Calendar, Clock } from 'lucide-react'
+import Image from 'next/image'
+import { useMemo, useRef, useState } from 'react'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
+import { Link } from '@/i18n/navigation'
+export default function BlogClient({ blogs = [] }) {
+	const t = useTranslations('common')
+	const formatter = useFormatter()
+	const ref = useRef(null)
+	const featuredRef = useRef(null)
+	const isInView = useInView(ref, {
+		amount: 0.1,
+		once: true,
+	})
+	const isFeaturedInView = useInView(featuredRef, {
+		amount: 0.3,
+		once: true,
+	})
+
+	// State for category filtering
+	const [selectedCategory, setSelectedCategory] = useState('all')
+	const container = {
+		show: {
+			transition: {
+				staggerChildren: 0.1,
+				delayChildren: 0.2,
+			},
+			opacity: 1,
+		},
+		hidden: {
+			opacity: 0,
+		},
+	}
+	const item = {
+		show: {
+			transition: {
+				duration: 0.5,
+			},
+			opacity: 1,
+			y: 0,
+		},
+		hidden: {
+			opacity: 0,
+			y: 20,
+		},
+	}
+
+	// Format dates and process blog data
+	const formatDate = dateString => {
+		if (!dateString) return t('dateUnavailable')
+		try {
+			const date = new Date(dateString)
+			return formatter.dateTime(date, {
+				// Format with the active locale
+				year: 'numeric',
+				day: 'numeric',
+				month: 'long',
+			})
+		} catch (_error) {
+			return t('dateUnavailable')
+		}
+	}
+	const calculateReadTime = content => {
+		if (!content) return t('minRead', { minutes: 5 })
+		const wordsPerMinute = 200
+		const wordCount = content.split(' ').length
+		const readTime = Math.ceil(wordCount / wordsPerMinute)
+		return t('minRead', { minutes: readTime })
+	}
+
+	// Utility function to safely process tags
+	const processTags = tags => {
+		if (!tags) return ['Blog']
+
+		// If tags is already an array
+		if (Array.isArray(tags)) {
+			return tags.length > 0 ? tags : ['Blog']
+		}
+
+		// If tags is a string
+		if (typeof tags === 'string') {
+			return tags
+				.split(',')
+				.map(tag => tag.trim())
+				.filter(tag => tag.length > 0)
+		}
+
+		// Fallback
+		return ['Blog']
+	}
+
+	// Sort blogs by date (newest first) before processing
+	const sortedBlogs = useMemo(() => {
+		if (!Array.isArray(blogs)) return []
+		return [...blogs].sort((a, b) => {
+			const dateA = new Date(a.publishedAt || a.createdAt || 0)
+			const dateB = new Date(b.publishedAt || b.createdAt || 0)
+			return dateB - dateA // Descending order (newest first)
+		})
+	}, [blogs])
+
+	// Get the first blog as featured, or use fallback
+	const featuredBlogData = sortedBlogs.length > 0 ? sortedBlogs[0] : null
+	const featuredPost = featuredBlogData
+		? {
+				image: featuredBlogData.image ? `${featuredBlogData.image}` : '/placeholder.svg',
+				slug: featuredBlogData.url || `#${featuredBlogData.title?.toLowerCase().replace(pattern1, '-')}`,
+				date: formatDate(featuredBlogData.publishedAt || featuredBlogData.createdAt),
+				excerpt: featuredBlogData.describe || t('descriptionUnavailable'),
+				readTime: calculateReadTime(featuredBlogData.body),
+				title: featuredBlogData.title || t('featured'),
+				tags: processTags(featuredBlogData.tags),
+			}
+		: {
+				excerpt: t('noArticles'),
+				image: '/placeholder.svg',
+				title: t('titleUnavailable'),
+				date: t('dateUnavailable'),
+				readTime: t('minRead', { minutes: 5 }),
+				tags: ['Blog'],
+				slug: '#',
+			}
+
+	// Process remaining blogs data
+	const processedBlogs =
+		sortedBlogs.length > 1
+			? sortedBlogs.slice(1).map(blog => ({
+					image: blog.image ? `${blog.image}` : '/placeholder.svg',
+					slug: blog.url || `#${blog.title?.toLowerCase().replace(pattern2, '-')}`,
+					excerpt: blog.describe || t('descriptionUnavailable'),
+					date: formatDate(blog.publishedAt || blog.createdAt),
+					title: blog.title || t('titleUnavailable'),
+					readTime: calculateReadTime(blog.body),
+					tags: processTags(blog.tags),
+				}))
+			: []
+
+	// Extract unique categories from all blog tags
+	const categories = useMemo(() => {
+		const allTags = new Set(['all'])
+
+		// Add tags from all blogs
+		for (const blog of sortedBlogs) {
+			const tags = processTags(blog.tags)
+			for (const tag of tags) {
+				if (tag !== 'Blog') {
+					// Check against the new default tag
+					allTags.add(tag)
+				}
+			}
+		}
+		return Array.from(allTags)
+	}, [sortedBlogs])
+
+	// Filter blogs based on selected category
+	const filteredBlogs = useMemo(() => {
+		if (selectedCategory === 'all') {
+			return processedBlogs
+		}
+		return processedBlogs.filter(blog => blog.tags.some(tag => tag === selectedCategory))
+	}, [processedBlogs, selectedCategory])
+
+	// Filter featured post as well
+	const shouldShowFeatured = useMemo(() => {
+		if (selectedCategory === 'all') {
+			return true
+		}
+		return featuredBlogData && featuredPost.tags.some(tag => tag === selectedCategory)
+	}, [selectedCategory, featuredBlogData, featuredPost])
+	const handleCategoryClick = category => {
+		setSelectedCategory(category)
+	}
+	return (
+		<main className="from-gray-150 min-h-screen bg-gradient-to-b to-gray-200 pt-20 dark:from-gray-950 dark:to-gray-900 dark:text-white">
+			{renderBlogPage(
+				t,
+				selectedCategory,
+				filteredBlogs,
+				shouldShowFeatured,
+				categories,
+				handleCategoryClick,
+				featuredBlogData,
+				isFeaturedInView,
+				featuredRef,
+				featuredPost,
+				isInView,
+				ref,
+				container,
+				item
+			)}
+		</main>
+	)
+}
+function renderBlogContent(
+	t,
+	selectedCategory,
+	filteredBlogs,
+	shouldShowFeatured,
+	categories,
+	handleCategoryClick,
+	featuredBlogData,
+	isFeaturedInView,
+	featuredRef,
+	featuredPost,
+	isInView,
+	ref,
+	container,
+	item
+) {
+	return (
+		<div className="container mx-auto px-4">
+			<motion.div
+				animate={{
+					opacity: 1,
+					y: 0,
+				}}
+				className="mb-12 text-center"
+				initial={{
+					opacity: 0,
+					y: 20,
+				}}
+				transition={{
+					duration: 0.5,
+				}}
+			>
+				<h1 className="text-shadow mb-4 text-4xl font-bold md:text-6xl">
+					<span className="text-primary">{t('blogTitle')}</span>
+				</h1>
+				<p className="mx-auto max-w-2xl text-muted-foreground">{t('blogDescription')}</p>
+				{selectedCategory !== 'all' && (
+					<p className="mt-4 text-sm text-primary">
+						{t('categoryCount', {
+							category: selectedCategory,
+							count: filteredBlogs.length + (shouldShowFeatured ? 1 : 0),
+						})}
+					</p>
+				)}
+			</motion.div>
+
+			<div className="mb-12 flex flex-wrap justify-center gap-3">
+				{categories.map((category, index) => (
+					<Button
+						className={
+							selectedCategory === category ? 'bg-primary hover:bg-primary/80' : 'border-primary/30 hover:bg-primary/20'
+						}
+						key={index}
+						onClick={() => handleCategoryClick(category)}
+						size="sm"
+						variant={selectedCategory === category ? 'default' : 'outline'}
+					>
+						{category === 'all' ? t('allArticles') : category}
+					</Button>
+				))}
+			</div>
+
+			{/* Featured Post */}
+			{featuredBlogData && shouldShowFeatured && (
+				<motion.div
+					animate={
+						isFeaturedInView
+							? {
+									opacity: 1,
+									y: 0,
+								}
+							: {
+									opacity: 0,
+									y: 20,
+								}
+					}
+					className="mb-16"
+					initial={{
+						opacity: 0,
+						y: 20,
+					}}
+					ref={featuredRef}
+					transition={{
+						duration: 0.7,
+					}}
+				>
+					<div className="relative overflow-hidden rounded-lg border border-primary/30 bg-gray-200/60 backdrop-blur-sm dark:bg-gray-900/60">
+						<div className="md:flex">
+							<div className="relative h-64 md:h-auto md:w-1/2">
+								<Image alt={featuredPost.title} className="object-cover" fill src={featuredPost.image} unoptimized />
+								<div className="absolute left-4 top-4">
+									<Badge className="bg-primary text-white">{t('featured')}</Badge>
+								</div>
+							</div>
+							<div className="flex flex-col justify-between p-6 md:w-1/2 md:p-8">
+								<div>
+									<div className="mb-4 flex flex-wrap gap-2">
+										{featuredPost.tags.map((tag, index) => (
+											<Badge className="border-primary/30 bg-primary/10" key={index} variant="outline">
+												{tag}
+											</Badge>
+										))}
+									</div>
+									<h2 className="mb-4 text-2xl font-bold md:text-3xl">{featuredPost.title}</h2>
+									<p className="mb-6 text-muted-foreground">{featuredPost.excerpt}</p>
+								</div>
+								<div>
+									<div className="mb-4 flex items-center text-sm text-muted-foreground">
+										<Calendar className="mr-2 h-4 w-4" />
+										<span>{featuredPost.date}</span>
+										<span className="mx-2">•</span>
+										<Clock className="mr-2 h-4 w-4" />
+										<span>{featuredPost.readTime}</span>
+									</div>
+									<Link href={`/blog/articles/${featuredPost.slug}`}>
+										<Button className="w-full bg-primary hover:bg-primary/80 md:w-auto">
+											{t('readArticle')}
+											<ArrowRight className="ml-2 h-4 w-4" />
+										</Button>
+									</Link>
+								</div>
+							</div>
+						</div>
+					</div>
+				</motion.div>
+			)}
+
+			{/* Blog Posts Grid */}
+			{filteredBlogs.length > 0 ? (
+				<motion.div
+					animate={isInView ? 'show' : 'hidden'}
+					className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+					initial="hidden"
+					ref={ref}
+					variants={container}
+				>
+					{filteredBlogs.map((post, index) => (
+						<motion.div key={post.slug || index} variants={item}>
+							<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-200/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 dark:bg-gray-900/60">
+								<div className="relative h-48 overflow-hidden">
+									<Image
+										alt={post.title}
+										className="object-cover transition-transform duration-500 hover:scale-105"
+										fill
+										src={post.image}
+										unoptimized
+									/>
+								</div>
+
+								<CardContent className="flex-grow pt-6">
+									<div className="mb-3 flex flex-wrap gap-2">
+										{post.tags.slice(0, 2).map((tag, tagIndex) => (
+											<Badge className="border-primary/30 bg-primary/10" key={tagIndex} variant="outline">
+												{tag}
+											</Badge>
+										))}
+									</div>
+									<h3 className="mb-2 text-xl font-bold">{post.title}</h3>
+									<p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
+									<div className="flex items-center text-sm text-muted-foreground">
+										<Calendar className="mr-2 h-4 w-4" />
+										<span>{post.date}</span>
+										<span className="mx-2">•</span>
+										<Clock className="mr-2 h-4 w-4" />
+										<span>{post.readTime}</span>
+									</div>
+								</CardContent>
+
+								<CardFooter className="pt-0">
+									<Link className="w-full" href={`/blog/articles/${post.slug}`}>
+										<Button className="w-full justify-between hover:bg-primary/20 hover:text-white" variant="ghost">
+											{t('readArticle')}
+											<ArrowRight className="ml-2 h-4 w-4" />
+										</Button>
+									</Link>
+								</CardFooter>
+							</Card>
+						</motion.div>
+					))}
+				</motion.div>
+			) : (
+				renderEmptyState(t, shouldShowFeatured, selectedCategory, handleCategoryClick, isInView, ref)
+			)}
+
+			{/* Load More Button - Commented out for now */}
+			{/* <motion.div
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="text-center mt-12"
+            >
+              <Button variant="default" className="bg-primary hover:bg-primary/80">
+                Load more articles
+              </Button>
+            </motion.div> */}
+		</div>
+	)
+}
+function renderBlogSection(
+	t,
+	selectedCategory,
+	filteredBlogs,
+	shouldShowFeatured,
+	categories,
+	handleCategoryClick,
+	featuredBlogData,
+	isFeaturedInView,
+	featuredRef,
+	featuredPost,
+	isInView,
+	ref,
+	container,
+	item
+) {
+	return (
+		<section className="relative py-20">
+			<div className="retro-grid-light pointer-events-none absolute inset-0 z-0 opacity-30"></div>
+			{/* <div className="sakura-bg-light absolute inset-0 opacity-10"></div> */}
+
+			{renderBlogContent(
+				t,
+				selectedCategory,
+				filteredBlogs,
+				shouldShowFeatured,
+				categories,
+				handleCategoryClick,
+				featuredBlogData,
+				isFeaturedInView,
+				featuredRef,
+				featuredPost,
+				isInView,
+				ref,
+				container,
+				item
+			)}
+		</section>
+	)
+}
+function renderBlogPage(
+	t,
+	selectedCategory,
+	filteredBlogs,
+	shouldShowFeatured,
+	categories,
+	handleCategoryClick,
+	featuredBlogData,
+	isFeaturedInView,
+	featuredRef,
+	featuredPost,
+	isInView,
+	ref,
+	container,
+	item
+) {
+	return (
+		<div className="relative">
+			{renderBlogSection(
+				t,
+				selectedCategory,
+				filteredBlogs,
+				shouldShowFeatured,
+				categories,
+				handleCategoryClick,
+				featuredBlogData,
+				isFeaturedInView,
+				featuredRef,
+				featuredPost,
+				isInView,
+				ref,
+				container,
+				item
+			)}
+		</div>
+	)
+}
+
+function renderEmptyState(t, shouldShowFeatured, selectedCategory, handleCategoryClick, isInView, ref) {
+	if (shouldShowFeatured) return null
+	const categoryLabel = selectedCategory === 'all' ? t('allArticles') : selectedCategory
+	return (
+		<motion.div
+			animate={
+				isInView
+					? {
+							opacity: 1,
+							y: 0,
+						}
+					: {
+							opacity: 0,
+							y: 20,
+						}
+			}
+			className="py-16 text-center"
+			initial={{
+				opacity: 0,
+				y: 20,
+			}}
+			ref={ref}
+			transition={{
+				duration: 0.5,
+			}}
+		>
+			<div className="mx-auto max-w-md">
+				<h3 className="mb-2 text-xl font-semibold">{t('noArticles')}</h3>
+				<p className="mb-4 text-muted-foreground">{t('emptyCategory', { category: categoryLabel })}</p>
+				<Button
+					className="border-primary/30 hover:bg-primary/20"
+					onClick={() => handleCategoryClick('all')}
+					variant="outline"
+				>
+					{t('allArticles')}
+				</Button>
+			</div>
+		</motion.div>
+	)
+}

@@ -2,11 +2,11 @@
 
 import { motion } from 'framer-motion'
 import { Menu, Moon, X } from 'lucide-react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
+import LocaleSwitcher from '@/components/Global/locale-switcher'
 import { Button } from '@/components/ui/button'
+import { Link, usePathname } from '@/i18n/navigation'
 export default function Navigation({ dict }) {
 	const [mounted, setMounted] = useState(false)
 	const { theme } = useTheme()
@@ -195,6 +195,7 @@ export default function Navigation({ dict }) {
 						</div>
 					</motion.div>
 
+					<LocaleSwitcher />
 					{/* Theme toggle */}
 					{mounted && (
 						<motion.div

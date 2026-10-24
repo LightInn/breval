@@ -3,41 +3,22 @@
 import { motion, useInView } from 'framer-motion'
 import { ArrowRight, ExternalLink, Github } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useMemo, useRef } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
-import { getFeaturedProjects } from '@/services/projects.services'
-export default function Projects({ dict }) {
+import { Link } from '@/i18n/navigation'
+export default function Projects({ dict, projects: sourceProjects = [] }) {
 	const ref = useRef(null)
 	const isInView = useInView(ref, {
 		amount: 0.1,
 		once: true,
 	})
-	const [projects, setProjects] = useState([])
-	const [loading, setLoading] = useState(true)
-
-	// Load featured projects from the API
-	useEffect(() => {
-		const fetchProjects = async () => {
-			try {
-				setLoading(true)
-				const data = await getFeaturedProjects()
-
-				// Transform API data to the format expected by the component
-				const transformedProjects = data.map((project, index) => normalizeProject(project, index, dict))
-				setProjects(transformedProjects)
-			} catch (error) {
-				console.error('Error loading projects:', error)
-				// In case of error, use default data
-				setProjects([])
-			} finally {
-				setLoading(false)
-			}
-		}
-		fetchProjects()
-	}, [])
+	const projects = useMemo(
+		() => sourceProjects.map((project, index) => normalizeProject(project, index, dict)),
+		[sourceProjects, dict]
+	)
+	const loading = false
 	const container = {
 		show: {
 			transition: {
@@ -302,7 +283,7 @@ function normalizeProject(project, index, dict) {
 	return {
 		image:
 			project.main_media?.url ||
-			(project.media && project.media.length > 0 ? project.media[0].url : '/placeholder.svg?height=300&width=500'),
+			(project.media && project.media.length > 0 ? project.media[0].url : '/placeholder.svg'),
 		description:
 			project.short_description ||
 			project.description ||

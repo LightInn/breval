@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { Link } from '@/i18n/navigation'
 import { getProjects } from '@/services/projects.services'
 import '@/styles/crow.css'
 
@@ -14,7 +14,7 @@ const AllProjectSection = ({ step }) => {
 	const processedProjects = Array.isArray(projects)
 		? projects.map(project => ({
 				// Prefer main_media, then first media item, then placeholder
-				image: project.main_media?.url || project.media?.[0]?.url || '/placeholder.svg?height=300&width=500',
+				image: project.main_media?.url || project.media?.[0]?.url || '/placeholder.svg',
 				description: project.short_description || project.description || 'Description not available.',
 				link: project.slug ? `/projects/${project.slug}` : project.live_url || project.url || '#',
 				name: project.title || project.name || 'Untitled project',

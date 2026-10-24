@@ -3,10 +3,10 @@
 import { motion, useInView } from 'framer-motion'
 import { Code, Cpu, ExternalLink, Github, Globe, Linkedin } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { Link } from '@/i18n/navigation'
 export default function About({ dict }) {
 	const ref = useRef(null)
 	const isInView = useInView(ref, {
@@ -172,7 +172,7 @@ function renderAboutContent(isInView, ref, container, item, dict, roles) {
 									alt="Bréval Le Floch"
 									className="rounded-xl"
 									height={400}
-									src="/home/breval_long_wood.webp?height=400&width=400"
+									src="/home/breval_long_wood.webp"
 									width={400}
 								/>
 								<div className="absolute bottom-8 left-8 right-8 rounded-lg border border-primary/30 bg-card/90 p-3 backdrop-blur-sm">

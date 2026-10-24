@@ -1,6 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import Category from '@/components/Blog/Category' // Assuming Category.js is in ../
 
+jest.mock('next-intl', () => ({
+	useTranslations: () => key => require('../../../src/lib/dictionaries/en.json').ui[key],
+}))
+
 // Mock next/link
 jest.mock('next/link', () => {
 	return ({ children, href, ...rest }) => {
@@ -90,4 +94,9 @@ describe('Category Component', () => {
 			expect(linkElement).toHaveClass(className)
 		}
 	})
+})
+
+test('the all category uses a translated label and preserves its route', () => {
+	render(<Category name="all" link="/blog/categories/all" />)
+	expect(screen.getByRole('link', { name: 'All articles' })).toHaveAttribute('href', '/blog/categories/all')
 })

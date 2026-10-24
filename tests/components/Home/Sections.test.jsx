@@ -1,3 +1,5 @@
+jest.mock('@/services/projects.services', () => ({ getFeaturedProjects: jest.fn() }))
+
 import { renderToStaticMarkup } from 'react-dom/server.node'
 import About from '@/components/Home/about'
 import Hero from '@/components/Home/hero'

@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://brev.al
-
-# Sitemaps
-Sitemap: https://brev.al/sitemap.xml

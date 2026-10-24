@@ -1,14 +1,16 @@
-import { format, parseISO } from 'date-fns'
 import { slug } from 'github-slugger'
-import Link from 'next/link'
+import { useFormatter, useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 
 // import ViewCounter from "./ViewCounter";
 
-const BlogDetails = ({ slug: blogSlug, blog }) => {
+const BlogDetails = ({ slug: _blogSlug, blog }) => {
+	const formatter = useFormatter()
+	const t = useTranslations('common')
 	return (
 		<div className="pixel-corners flex flex-wrap items-center justify-around rounded-lg border border-border bg-card/50 px-2 py-2 text-lg font-medium text-foreground backdrop-blur-sm sm:text-xl md:px-10">
 			<address className="author">
-				By{' '}
+				{t('by')}{' '}
 				<Link className="text-primary transition-colors hover:text-primary/80" href="/" rel="author">
 					Bréval LE FLOCH
 				</Link>
@@ -30,11 +32,11 @@ const BlogDetails = ({ slug: blogSlug, blog }) => {
 			<p className="m-3">
 				<time
 					className="text-muted-foreground"
-					dateTime={parseISO(blog.publishedAt)}
+					dateTime={blog.publishedAt}
 					pubdate="true"
-					title={format(parseISO(blog.publishedAt), 'LLLL d, yyyy, h:mm a')}
+					title={formatter.dateTime(new Date(blog.publishedAt), { dateStyle: 'long', timeStyle: 'short' })}
 				>
-					{format(parseISO(blog.publishedAt), 'LLLL d, yyyy, h:mm a')}
+					{formatter.dateTime(new Date(blog.publishedAt), { dateStyle: 'long', timeStyle: 'short' })}
 				</time>
 			</p>
 		</div>

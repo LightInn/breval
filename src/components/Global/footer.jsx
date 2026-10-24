@@ -1,10 +1,10 @@
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import { getDictionary } from '@/lib/get-dictionary'
 import { getLocale } from '@/lib/get-locale' // Assuming getLocale is synchronous or handled by middleware
 
 export default async function Footer() {
-	const locale = getLocale()
+	const locale = await getLocale()
 	const dict = await getDictionary(locale)
 	const currentYear = new Date().getFullYear()
 	const footerDict = dict?.footer || {}

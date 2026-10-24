@@ -38,3 +38,8 @@ yarn-error.log*
 
 .idea/
 .unlighthouse/
+
+# Local CMS databases, uploads and migration exports
+.data/
+.tmp/
+.env

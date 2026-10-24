@@ -1,27 +1,26 @@
-FROM node:24-slim AS base
-
-ENV PNPM_HOME="/pnpm"
+FROM node:24.22.1-bookworm-slim AS base
+ENV PNPM_HOME=/pnpm
 ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
-COPY . /app
 WORKDIR /app
-
-
-FROM base AS prod-deps
-RUN pnpm install --prod --frozen-lockfile
-
+RUN npm install --global pnpm@11.28.5
 
 FROM base AS build
-COPY --from=prod-deps /app/node_modules /app/node_modules
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
-RUN pnpm run build
+COPY . .
+RUN pnpm build
+RUN pnpm prune --prod
 
-
-FROM base
-COPY --from=prod-deps /app/node_modules /app/node_modules
-COPY --from=build /app/.next /app/.next
-ENV PATH /app/node_modules/.bin:$PATH
-ENV NODE_ENV production
-ENV PORT 3000
+FROM base AS release
+ENV NODE_ENV=production
+ENV HOSTNAME=0.0.0.0
+ENV PORT=3000
+COPY --from=build --chown=node:node /app/node_modules ./node_modules
+COPY --from=build --chown=node:node /app/.next ./.next
+COPY --from=build --chown=node:node /app/public ./public
+COPY --from=build --chown=node:node /app/src ./src
+COPY --from=build --chown=node:node /app/package.json /app/tsconfig.json /app/next.config.mjs ./
+RUN mkdir -p .data/media && chown -R node:node .data
+USER node
 EXPOSE 3000
-CMD [ "pnpm", "start" ]
+CMD ["sh", "-c", "pnpm cms:migrate && pnpm start"]

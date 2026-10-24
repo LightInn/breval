@@ -9,6 +9,7 @@ import AllProjectSection from '@/components/projects/AllProjectSection'
 import FeaturedProjectsSection from '@/components/projects/FeaturedProjectsSection'
 import MovingLogo from '@/components/projects/MovingLogo'
 import AnimatedTitle from '@/components/projects/TitleLetter'
+import { getProjects } from '@/services/projects.services'
 export function Overlay({ setStep, step }) {
 	// const projects = await getProject()
 	const data = useScroll()
@@ -121,8 +122,6 @@ export function Overlay({ setStep, step }) {
 		</Scroll>
 	)
 }
-async function getProject() {
-	const res = await fetch('https://breval-api.lightin.io/api/projets?sort=date%3Adesc&populate=*')
-	const data = await res.json()
-	return data.data
+function getProject() {
+	return getProjects()
 }

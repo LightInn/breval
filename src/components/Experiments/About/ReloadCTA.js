@@ -1,4 +1,6 @@
+import { useTranslations } from 'next-intl'
 export function ReloadCTA({ setReload = null, data = {} }) {
+	const t = useTranslations('ui')
 	return (
 		<div className="absolute right-0 top-0 z-20 mt-14 flex flex-col items-center justify-evenly gap-8 p-4 xl:mt-0 xl:gap-10 xl:p-16">
 			{/* todo change social networks */}
@@ -30,7 +32,7 @@ export function ReloadCTA({ setReload = null, data = {} }) {
 			{/*</a>*/}
 
 			<button
-				aria-label="Reload"
+				aria-label={t('reload')}
 				className="animated-image message-bulle rounded-full p-6 text-slate-300 no-underline hover:rotate-180"
 				data-umami-event="reload floating"
 				onClick={() => setReload(Math.random())}

@@ -1,43 +1,33 @@
-const pattern1 = /\s+/g
+import { cache } from 'react'
+import { getCMS } from '@/lib/cms'
+import { getLocale } from '@/lib/get-locale'
 
-import Strapi from 'strapi-sdk-js'
+const findBlogs = cache(async locale => {
+	const cms = await getCMS()
+	const { docs } = await cms.find({
+		collection: 'blogs',
+		locale,
+		fallbackLocale: 'en',
+		depth: 1,
+		pagination: false,
+		sort: '-publishedAt',
+		overrideAccess: false,
+		where: { _status: { equals: 'published' } },
+	})
+	return docs.map(blog => ({
+		id: blog.id,
+		url: blog.slug,
+		title: blog.title,
+		publishedAt: blog.publishedAt || blog.createdAt,
+		updatedAt: blog.updatedAt,
+		tags: Array.isArray(blog.tags) ? blog.tags : [],
+		describe: blog.describe || '',
+		image: typeof blog.image === 'object' ? blog.image?.url || '' : '',
+		content: blog.content || '',
+		isPublished: true,
+	}))
+})
 
-// function getAllBlog
-
-async function getAllBlogs() {
-	try {
-		const strapi = new Strapi({
-			url: 'https://breval-api.lightin.io',
-		})
-		const blo = await strapi.find('blogs', {
-			populate: 'image',
-		})
-		if (!(blo?.data && Array.isArray(blo.data))) {
-			console.warn('Invalid API response:', blo)
-			return []
-		}
-		const bloa = blo.data
-			.map(data => {
-				if (!data?.title) {
-					console.warn('Invalid blog data:', data)
-					return null
-				}
-				return {
-					url: data.url || data.title?.toLowerCase().replace(pattern1, '-'),
-					publishedAt: data.publishedAt || new Date().toISOString(),
-					tags: Array.isArray(data.tags) ? data.tags : [],
-					describe: data.describe || '',
-					image: data.image?.url ?? '',
-					content: data.content || '',
-					title: data.title,
-				}
-			})
-			.filter(Boolean) // Remove null entries
-
-		return bloa
-	} catch (error) {
-		console.error('Error fetching blogs:', error)
-		return []
-	}
+export default async function getAllBlogs(locale) {
+	return await findBlogs(locale || (await getLocale()))
 }
-export default getAllBlogs

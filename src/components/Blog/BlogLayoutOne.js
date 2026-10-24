@@ -1,6 +1,6 @@
 import { slug } from 'github-slugger'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import { rgbDataURL } from '@/services/dataurl.services'
 import Tag from '../Elements/Tag'
 

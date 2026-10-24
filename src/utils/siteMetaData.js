@@ -7,7 +7,7 @@ const siteMetadata = {
 	github: 'https://github.com/LighInn',
 	// socialBanner: '/social-banner.png', // add social banner in the public folder
 	email: 'breval.lefloch@gmail.com',
-	siteUrl: 'https://brev.al',
+	siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://brev.al',
 	// your website URL
 	author: 'Bréval Le Floch',
 	siteLogo: '/logo.png',
@@ -21,4 +21,4 @@ const siteMetadata = {
 	// dribbble: 'https://www.dribbble.com',
 	locale: 'en-EN',
 }
-module.exports = siteMetadata
+export default siteMetadata

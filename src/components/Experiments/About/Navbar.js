@@ -1,8 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { useState } from 'react'
+import LocalizedText from '@/components/Global/localized-text'
+import { Link } from '@/i18n/navigation'
 import { rgbDataURL } from '@/services/dataurl.services'
 import css from '/src/styles/Navbar.module.css'
 
@@ -57,7 +58,9 @@ function Navbar() {
 							></svg>
 						</div>
 
-						<div className={css.content}>Projects</div>
+						<div className={css.content}>
+							<LocalizedText id="projects" />
+						</div>
 					</Link>
 					<Link className={`${css.navElement} mt-4`} href="/blog">
 						<div className={css.logo}>
@@ -102,7 +105,9 @@ function Navbar() {
 						>
 							<span className="absolute -inset-0.5"></span>
 
-							<span className="sr-only">Open main menu</span>
+							<span className="sr-only">
+								<LocalizedText id="openMenu" />
+							</span>
 
 							<svg
 								aria-hidden="true"
@@ -137,7 +142,7 @@ function Navbar() {
 					<div className={`h-screen ${isMobileOpen ? 'block' : 'hidden'}`}>
 						<div className={'space-y-1 px-2 pb-3 pt-2'} id="mobile-menu">
 							<Link className={'block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white'} href="/">
-								Home
+								<LocalizedText id="home" />
 							</Link>
 							<Link
 								className={
@@ -145,7 +150,7 @@ function Navbar() {
 								}
 								href="/projects"
 							>
-								Projects
+								<LocalizedText id="projects" />
 							</Link>
 							<Link
 								className={
@@ -161,7 +166,7 @@ function Navbar() {
 								}
 								href="/experiments/about"
 							>
-								About
+								<LocalizedText id="about" />
 							</Link>
 						</div>
 					</div>
