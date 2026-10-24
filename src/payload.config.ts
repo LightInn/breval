@@ -13,7 +13,18 @@ import { defaultLocale, localeLabels, locales } from './i18n/locales'
 
 const publicStorageURL = process.env.S3_PUBLIC_ENDPOINT?.replace(/\/$/, '')
 const dirname = path.dirname(fileURLToPath(import.meta.url))
-mkdirSync(path.resolve(dirname, '../.data'), { recursive: true })
+const isPostgres = process.env.DATABASE_URL?.startsWith('postgres')
+if (process.env.VERCEL) {
+	if (!isPostgres)
+		throw new Error(
+			'Vercel requires a PostgreSQL DATABASE_URL; SQLite is only supported locally or on persistent storage.'
+		)
+	const requiredStorage = ['S3_BUCKET', 'S3_ENDPOINT', 'S3_PUBLIC_ENDPOINT', 'S3_ACCESS_KEY_ID', 'S3_ACCESS_SECRET']
+	const missing = requiredStorage.filter(key => !process.env[key])
+	if (missing.length) throw new Error(`Vercel requires R2 storage configuration: ${missing.join(', ')}`)
+}
+// Vercel functions must never create folders in the deployment bundle.
+if (!isPostgres) mkdirSync(path.resolve(process.cwd(), '.data'), { recursive: true })
 
 export default buildConfig({
 	secret: process.env.PAYLOAD_SECRET || '',
@@ -31,7 +42,7 @@ export default buildConfig({
 	i18n: { supportedLanguages: { en, fr }, fallbackLanguage: 'en' },
 	collections: [Users, Media, Blogs, Projects],
 	localization: { locales: locales.map(code => ({ code, label: localeLabels[code] })), defaultLocale, fallback: true },
-	db: process.env.DATABASE_URL?.startsWith('postgres')
+	db: isPostgres
 		? postgresAdapter({
 				pool: { connectionString: process.env.DATABASE_URL, max: 10, connectionTimeoutMillis: 15000 },
 				push: false,

@@ -27,6 +27,7 @@ jobs:
       - run: pnpm test:ci
       - run: pnpm test:cms
       - run: pnpm test:i18n
+      - run: pnpm test:serverless
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e

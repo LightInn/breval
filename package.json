@@ -27,7 +27,8 @@
 		"cms:migrate": "payload migrate",
 		"test:e2e": "playwright test",
 		"test:i18n": "node --import tsx --test tests/i18n.integration.ts",
-		"start:production": "pnpm cms:migrate && next start"
+		"start:production": "pnpm cms:migrate && next start",
+		"test:serverless": "node --import tsx --test tests/serverless.integration.ts"
 	},
 	"dependencies": {
 		"@libsql/client": "0.14.0",

@@ -44,3 +44,15 @@ The import retained 26 published articles, 21 published projects with their Fren
 translations, 2 unpublished projects and 171 media records. The two unpublished
 projects reused the published neova slug in Strapi; their draft slugs were changed
 to inter-planetary-content-delivery and received. Published slugs were unchanged.
+
+## Vercel
+
+Set DATABASE_URL and every S3_* variable for both Preview (if used) and Production,
+at build time and runtime. PostgreSQL/R2 requires no writable .data directory.
+The config rejects missing serverless database/storage settings instead of
+silently falling back to local files. Vercel does not run the Nixpacks start
+command; apply PostgreSQL migrations as a separate deployment step when the
+schema changes. The initial production migration has already been applied.
+
+`pnpm test:serverless` loads the actual PostgreSQL/R2 configuration while denying
+all mkdir calls, and verifies explicit diagnostics for missing configuration.

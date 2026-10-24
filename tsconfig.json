@@ -34,7 +34,8 @@
 		"tests/cms.integration.ts",
 		"playwright.config.ts",
 		"e2e/**/*.ts",
-		"tests/i18n.integration.ts"
+		"tests/i18n.integration.ts",
+		"tests/serverless.integration.ts"
 	],
 	"exclude": ["node_modules"]
 }
