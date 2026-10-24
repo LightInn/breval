@@ -625,3 +625,19 @@ textarea:focus {
 	background: var(--theme-elevation-50);
 	color: var(--theme-text);
 }
+
+.studio-logo__mark {
+	background: transparent;
+	color: var(--studio-accent);
+}
+.studio-logo__mark svg {
+	width: 43px;
+	height: 36px;
+}
+.studio-brand-icon {
+	display: block;
+	width: 28px;
+	height: 28px;
+	color: var(--studio-accent);
+	flex-shrink: 0;
+}

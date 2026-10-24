@@ -26,9 +26,6 @@ export default async function Home() {
 						<SectionDivider />
 					</div>
 					<Projects dict={dict} projects={projects} />
-					<div className="sticker-container">
-						<SectionDivider direction="down" />
-					</div>
 					<MyJourneySection dict={dict} />
 				</div>
 			</Suspense>

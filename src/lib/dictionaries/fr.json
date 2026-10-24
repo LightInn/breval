@@ -277,6 +277,34 @@
 				"modalProgressText": "{current} sur {total}",
 				"modalNextMilestone": "Étape suivante",
 				"modalNextButton": "Suivant"
+			},
+			"editorial": {
+				"eyebrow": "Parcours",
+				"description": "D’abord expérimenter, puis construire. Quelques étapes qui ont façonné ma façon de travailler.",
+				"readMore": "Dans le détail",
+				"readLess": "Réduire",
+				"chapters": {
+					"beginnings": {
+						"period": "Les débuts",
+						"title": "Les premiers projets.",
+						"description": "Les jeux vidéo ont éveillé ma curiosité. À treize ans, Blender et Python m’ont donné les outils pour commencer à créer mes propres projets."
+					},
+					"exploration": {
+						"period": "Collège & lycée",
+						"title": "Apprendre en faisant.",
+						"description": "Linux, les réseaux, un robot fait maison, les premiers réseaux de neurones. Des essais concrets pour comprendre comment les choses fonctionnent."
+					},
+					"building": {
+						"period": "Études & startups",
+						"title": "Études et entrepreneuriat.",
+						"description": "L’école d’informatique a consolidé mes bases. Créer ForMenu, My-Makeup et Forvoyez avec des amis m’a appris à transformer ces connaissances en produits utiles."
+					},
+					"today": {
+						"period": "Aujourd’hui",
+						"title": "Frontend et infrastructure.",
+						"description": "Mon travail se situe entre le développement frontend et l’infrastructure. J’aime autant soigner une interface que concevoir ce qui la fait fonctionner."
+					}
+				}
 			}
 		}
 	},

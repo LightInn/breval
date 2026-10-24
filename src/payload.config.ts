@@ -31,7 +31,7 @@ export default buildConfig({
 	admin: {
 		user: 'users',
 		importMap: { baseDir: dirname },
-		meta: { titleSuffix: ' · brev.al Studio' },
+		meta: { titleSuffix: ' · brev.al Studio', icons: { icon: '/brand-icon.svg' } },
 		components: {
 			graphics: { Logo: '/cms/admin/Brand#StudioLogo', Icon: '/cms/admin/Brand#StudioIcon' },
 			beforeLogin: ['/cms/admin/Brand#StudioWelcome'],

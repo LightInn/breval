@@ -48,10 +48,10 @@ describe('Home Page (src/app/page.jsx)', () => {
 		expect(screen.getByTestId('mock-journey')).toBeInTheDocument()
 
 		// Check for SectionDividers
-		// The component renders 3 SectionDividers
+		// The journey begins with a plain transition.
 		expect(screen.getByTestId('mock-section-divider-up')).toBeInTheDocument()
 		expect(screen.getByTestId('mock-section-divider-default')).toBeInTheDocument()
-		expect(screen.getByTestId('mock-section-divider-down')).toBeInTheDocument()
+		expect(screen.queryByTestId('mock-section-divider-down')).not.toBeInTheDocument()
 
 		// Verify SectionDivider mock was called 3 times (optional, but good for checking interactions)
 		// const { SectionDivider } = jest.requireMock('@/components/Home/svg-stickers');

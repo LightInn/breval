@@ -277,6 +277,34 @@
 				"modalProgressText": "{current} of {total}",
 				"modalNextMilestone": "Next milestone",
 				"modalNextButton": "Next"
+			},
+			"editorial": {
+				"eyebrow": "Background",
+				"description": "First, experimenting. Then, building. A few steps that shaped the way I work.",
+				"readMore": "A closer look",
+				"readLess": "Show less",
+				"chapters": {
+					"beginnings": {
+						"period": "Early years",
+						"title": "First projects.",
+						"description": "Video games sparked my curiosity. At thirteen, Blender and Python gave me the tools to start making things of my own."
+					},
+					"exploration": {
+						"period": "School years",
+						"title": "Learning by doing.",
+						"description": "Linux, networks, a homemade robot, early neural networks. Small experiments, and a growing understanding of how things work."
+					},
+					"building": {
+						"period": "Studies & startups",
+						"title": "Studies & entrepreneurship.",
+						"description": "Computer science studies gave me a stronger foundation. Building ForMenu, My-Makeup and Forvoyez with friends taught me how to turn that knowledge into useful products."
+					},
+					"today": {
+						"period": "Today",
+						"title": "Frontend & infrastructure.",
+						"description": "My work sits between frontend development and infrastructure. I enjoy both the detail of an interface and the engineering that keeps it running."
+					}
+				}
 			}
 		}
 	},

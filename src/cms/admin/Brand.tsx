@@ -1,8 +1,9 @@
+import BrandMark from '@/components/Global/brand-mark'
 export function StudioLogo() {
 	return (
 		<span className="studio-logo">
 			<span className="studio-logo__mark" aria-hidden="true">
-				b.
+				<BrandMark />
 			</span>
 			<span>
 				brev.al<span className="studio-logo__sub">CONTENT STUDIO</span>
@@ -11,11 +12,7 @@ export function StudioLogo() {
 	)
 }
 export function StudioIcon() {
-	return (
-		<span className="studio-logo__mark studio-logo__mark--small" role="img" aria-label="brev.al Studio">
-			b.
-		</span>
-	)
+	return <BrandMark className="studio-brand-icon" label="brev.al" />
 }
 export function StudioWelcome({ i18n }: { i18n: { language: string } }) {
 	const fr = i18n.language === 'fr'
