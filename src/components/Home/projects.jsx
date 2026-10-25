@@ -4,6 +4,7 @@ import { motion, useInView } from 'framer-motion'
 import { ArrowRight, ExternalLink, Github } from 'lucide-react'
 import Image from 'next/image'
 import { useMemo, useRef } from 'react'
+import SharedContent from '@/components/Global/shared-content'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
@@ -83,14 +84,23 @@ function renderProjectCard(project, dict) {
 		>
 			<div className={`relative overflow-hidden ${project.featured ? 'h-64' : 'h-48'}`}>
 				<div className="dark:dithered-dark dithered-light absolute inset-0 opacity-30" />
-				<Image
-					alt={project.title}
-					className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-					fill
-					priority={project.featured}
-					sizes={project.featured ? '(max-width: 768px) 100vw, 800px' : '(max-width: 768px) 100vw, 500px'}
-					src={project.image || '/placeholder.svg'}
-				/>
+				<Link
+					className="absolute inset-0"
+					href={`/projects/${project.slug}`}
+					prefetch={true}
+					aria-label={project.title}
+				>
+					<SharedContent kind="project" id={project.id} part="image">
+						<Image
+							alt={project.title}
+							className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+							fill
+							priority={project.featured}
+							sizes={project.featured ? '(max-width: 768px) 100vw, 800px' : '(max-width: 768px) 100vw, 500px'}
+							src={project.image || '/placeholder.svg'}
+						/>
+					</SharedContent>
+				</Link>
 				<div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
 				{project.featured && (
 					<div className="absolute left-4 top-4">
@@ -100,12 +110,20 @@ function renderProjectCard(project, dict) {
 					</div>
 				)}
 				<div className="absolute bottom-4 left-4">
-					<h3 className={`font-bold dark:text-white ${project.featured ? 'text-2xl' : 'text-xl'}`}>{project.title}</h3>
+					<Link href={`/projects/${project.slug}`} prefetch={true}>
+						<SharedContent kind="project" id={project.id} part="title">
+							<h3 className={`font-bold dark:text-white ${project.featured ? 'text-2xl' : 'text-xl'}`}>
+								{project.title}
+							</h3>
+						</SharedContent>
+					</Link>
 				</div>
 			</div>
 
 			<CardContent className="pt-6">
-				<p className="mb-4 text-muted-foreground">{project.description}</p>
+				<SharedContent kind="project" id={project.id} part="summary">
+					<p className="mb-4 text-muted-foreground">{project.description}</p>
+				</SharedContent>
 				<div className="flex flex-wrap gap-2">
 					{project.tags.map((tag, tagIndex) => (
 						<Badge className="pixel-corners border-primary/30 bg-primary/10" key={tagIndex} variant="outline">
@@ -281,6 +299,8 @@ function renderProjectsContent(isInView, dict, ref, container, loading, item, Pr
 function normalizeProject(project, index, dict) {
 	const tags = projectTags(project.skills, dict?.home?.projects?.defaultTagWebDev || 'Web Development')
 	return {
+		id: project.id,
+		slug: project.slug,
 		image:
 			project.main_media?.url ||
 			(project.media && project.media.length > 0 ? project.media[0].url : '/placeholder.svg'),
@@ -293,9 +313,9 @@ function normalizeProject(project, index, dict) {
 		title: project.title || dict?.home?.projects?.untitledProject || 'Untitled project',
 		demo: project.live_url || '#',
 		github: project.url || '#',
-		rank: project.rank || 0,
+		priorityScore: project.priorityScore || 0,
 		featured: index === 0,
-		// The first project (highest rank) is featured
+		// The first project (highest automatic priority) is featured
 		tags,
 	}
 }

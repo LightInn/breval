@@ -4,6 +4,10 @@ import createNextIntlPlugin from 'next-intl/plugin'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: true,
+	cacheComponents: true,
+	partialPrefetching: true,
+	// Resolve content metadata before streaming so missing/draft URLs keep a true HTTP 404.
+	htmlLimitedBots: /.*/,
 	serverExternalPackages: ['@libsql/client'],
 	images: {
 		remotePatterns: [

@@ -1,6 +1,7 @@
 'use client'
 
 import { useFormatter, useTranslations } from 'next-intl'
+import SharedContent from '@/components/Global/shared-content'
 
 const pattern1 = /\s+/g
 const pattern2 = /\s+/g
@@ -113,6 +114,7 @@ export default function BlogClient({ blogs = [] }) {
 	const featuredBlogData = sortedBlogs.length > 0 ? sortedBlogs[0] : null
 	const featuredPost = featuredBlogData
 		? {
+				id: featuredBlogData.id,
 				image: featuredBlogData.image ? `${featuredBlogData.image}` : '/placeholder.svg',
 				slug: featuredBlogData.url || `#${featuredBlogData.title?.toLowerCase().replace(pattern1, '-')}`,
 				date: formatDate(featuredBlogData.publishedAt || featuredBlogData.createdAt),
@@ -135,6 +137,7 @@ export default function BlogClient({ blogs = [] }) {
 	const processedBlogs =
 		sortedBlogs.length > 1
 			? sortedBlogs.slice(1).map(blog => ({
+					id: blog.id,
 					image: blog.image ? `${blog.image}` : '/placeholder.svg',
 					slug: blog.url || `#${blog.title?.toLowerCase().replace(pattern2, '-')}`,
 					excerpt: blog.describe || t('descriptionUnavailable'),
@@ -290,7 +293,9 @@ function renderBlogContent(
 					<div className="relative overflow-hidden rounded-lg border border-primary/30 bg-gray-200/60 backdrop-blur-sm dark:bg-gray-900/60">
 						<div className="md:flex">
 							<div className="relative h-64 md:h-auto md:w-1/2">
-								<Image alt={featuredPost.title} className="object-cover" fill src={featuredPost.image} unoptimized />
+								<SharedContent kind="article" id={featuredPost.id} part="image">
+									<Image alt={featuredPost.title} className="object-cover" fill src={featuredPost.image} unoptimized />
+								</SharedContent>
 								<div className="absolute left-4 top-4">
 									<Badge className="bg-primary text-white">{t('featured')}</Badge>
 								</div>
@@ -304,7 +309,9 @@ function renderBlogContent(
 											</Badge>
 										))}
 									</div>
-									<h2 className="mb-4 text-2xl font-bold md:text-3xl">{featuredPost.title}</h2>
+									<SharedContent kind="article" id={featuredPost.id} part="title">
+										<h2 className="mb-4 text-2xl font-bold md:text-3xl">{featuredPost.title}</h2>
+									</SharedContent>
 									<p className="mb-6 text-muted-foreground">{featuredPost.excerpt}</p>
 								</div>
 								<div>
@@ -341,13 +348,15 @@ function renderBlogContent(
 						<motion.div key={post.slug || index} variants={item}>
 							<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-200/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 dark:bg-gray-900/60">
 								<div className="relative h-48 overflow-hidden">
-									<Image
-										alt={post.title}
-										className="object-cover transition-transform duration-500 hover:scale-105"
-										fill
-										src={post.image}
-										unoptimized
-									/>
+									<SharedContent kind="article" id={post.id} part="image">
+										<Image
+											alt={post.title}
+											className="object-cover transition-transform duration-500 hover:scale-105"
+											fill
+											src={post.image}
+											unoptimized
+										/>
+									</SharedContent>
 								</div>
 
 								<CardContent className="flex-grow pt-6">
@@ -358,7 +367,9 @@ function renderBlogContent(
 											</Badge>
 										))}
 									</div>
-									<h3 className="mb-2 text-xl font-bold">{post.title}</h3>
+									<SharedContent kind="article" id={post.id} part="title">
+										<h3 className="mb-2 text-xl font-bold">{post.title}</h3>
+									</SharedContent>
 									<p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
 									<div className="flex items-center text-sm text-muted-foreground">
 										<Calendar className="mr-2 h-4 w-4" />

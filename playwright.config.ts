@@ -14,11 +14,12 @@ export default defineConfig({
 	webServer: {
 		command:
 			'node node_modules/payload/bin.js migrate && node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3100',
-		url: 'http://127.0.0.1:3100/api/blogs',
+		url: 'http://127.0.0.1:3100/robots.txt',
 		timeout: 120000,
 		reuseExistingServer: false,
 		env: {
 			NODE_ENV: 'production',
+			NEXT_PUBLIC_SITE_URL: 'http://127.0.0.1:3100',
 			PAYLOAD_SECRET: 'isolated-end-to-end-test-secret-at-least-32-characters',
 			DATABASE_URL: `file:${path.join(directory, 'test.db').replaceAll('\\', '/')}`,
 			PAYLOAD_MEDIA_DIR: path.join(directory, 'media'),

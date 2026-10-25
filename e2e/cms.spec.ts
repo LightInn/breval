@@ -1,4 +1,5 @@
 import { request as createRequest, expect, test } from '@playwright/test'
+import sharp from 'sharp'
 
 const credentials = { email: 'e2e@example.invalid', password: 'Local-E2E-Password-123!' }
 
@@ -6,9 +7,23 @@ test.beforeAll(async () => {
 	const api = await createRequest.newContext({ baseURL: 'http://127.0.0.1:3100' })
 	try {
 		const registered = await api.post('/api/users/first-register', { data: credentials })
-		expect(registered.ok()).toBeTruthy()
+		if (!registered.ok()) {
+			const login = await api.post('/api/users/login', { data: credentials })
+			expect(login.ok()).toBeTruthy()
+			return
+		}
 		const { token } = await registered.json()
 		const headers = { Authorization: `JWT ${token}` }
+		const buffer = await sharp({ create: { width: 320, height: 200, channels: 3, background: '#d6d6d8' } })
+			.png()
+			.toBuffer()
+		const uploaded = await api.post('/api/media', {
+			headers,
+			multipart: { file: { name: 'project-cover.png', mimeType: 'image/png', buffer } },
+		})
+		expect(uploaded.status()).toBe(201)
+		const cover = (await uploaded.json()).doc.id
+
 		for (const [slug, status] of [
 			['e2e-article', 'published'],
 			['e2e-draft', 'draft'],
@@ -41,6 +56,7 @@ test.beforeAll(async () => {
 			headers,
 			data: {
 				title: 'Payload test project',
+				main_media: cover,
 				slug: 'e2e-project',
 				description: 'Project from local SQLite',
 				skills: ['Next.js'],
@@ -53,10 +69,11 @@ test.beforeAll(async () => {
 	}
 })
 
-test('public REST reads published content and rejects anonymous writes', async ({ request }) => {
+test('public website data stays internal and REST rejects anonymous reads and writes', async ({ request }) => {
 	const blogs = await request.get('/api/blogs')
-	expect(blogs.ok()).toBeTruthy()
-	expect((await blogs.json()).docs.map(doc => doc.slug)).toEqual(['e2e-article'])
+	expect(blogs.status()).toBe(403)
+	expect((await request.get('/api/projects')).status()).toBe(403)
+	expect((await request.get('/api/media')).status()).toBe(403)
 	const forbidden = await request.post('/api/projects', { data: { title: 'Forbidden', slug: 'forbidden' } })
 	expect(forbidden.status()).toBe(403)
 	const sitemap = await request.get('/sitemap.xml')
@@ -103,7 +120,7 @@ test('language switching preserves article identity, query and preference', asyn
 	const redirect = await page.request.get('/projects', { maxRedirects: 0 })
 	expect(redirect.status()).toBe(307)
 	expect(redirect.headers().location).toContain('/fr/projects')
-	expect((await page.request.get('/api/blogs', { maxRedirects: 0 })).status()).toBe(200)
+	expect((await page.request.get('/api/blogs', { maxRedirects: 0 })).status()).toBe(403)
 	expect((await page.request.get('/admin/login', { maxRedirects: 0 })).status()).toBe(200)
 })
 
@@ -125,6 +142,22 @@ test('admin studio supports Markdown preview and keyboard-friendly topics', asyn
 	await page.screenshot({ path: '.tmp/studio-dashboard.png', fullPage: true })
 	await page.locator('.studio-recent').getByRole('link').first().click()
 	await expect(page.locator('.studio-editor')).toBeVisible()
+	await expect(page.getByRole('link', { name: 'API', exact: true })).toHaveCount(0)
+	const icon = await page.locator('.step-nav__home:visible .studio-brand-icon').boundingBox()
+	const slot = await page.locator('.step-nav__home:visible').boundingBox()
+	expect(icon.width).toBeLessThanOrEqual(slot.width)
+	expect(icon.height).toBeLessThanOrEqual(slot.height)
+	await page.screenshot({ path: '.tmp/admin-header-fixed.png' })
+	const editURL = new URL(page.url())
+	const apiURL = new URL(editURL)
+	apiURL.pathname += '/api'
+	apiURL.search = '?locale=en'
+	await page.goto(apiURL.href)
+	editURL.search = '?locale=en'
+	await expect(page.getByRole('heading', { name: 'Nothing found', exact: true })).toBeVisible()
+	await page.goto(editURL.href)
+	await expect(page.locator('.studio-editor')).toBeVisible()
+
 	await page.locator('.studio-editor textarea').fill('# A clearer writing experience')
 	await page.getByRole('button', { name: 'Preview', exact: true }).click()
 	await expect(
@@ -237,3 +270,97 @@ for (const [locale, greeting, role, projects, art] of [
 		).toBeVisible()
 	})
 }
+
+test('project navigation uses native shared element transitions', async ({ page }) => {
+	await page.addInitScript(() => {
+		if (!document.startViewTransition) return
+		const start = document.startViewTransition.bind(document)
+		Object.assign(window, { nativeTransitionCount: 0 })
+		document.startViewTransition = (...args) => {
+			Object.assign(window, { nativeTransitionCount: Reflect.get(window, 'nativeTransitionCount') + 1 })
+			return start(...args)
+		}
+	})
+	await page.goto('/en/projects')
+	const link = page.getByRole('link', { name: 'Payload test project', exact: true }).last()
+	await expect(link).toBeVisible()
+	await link.hover()
+	await link.click()
+	await expect(page).toHaveURL(/\/en\/projects\/e2e-project$/)
+	await expect(page.getByRole('heading', { name: 'Payload test project', exact: true })).toBeVisible()
+	await expect.poll(() => page.evaluate(() => Reflect.get(window, 'nativeTransitionCount'))).toBeGreaterThan(0)
+})
+
+test('CMS edits invalidate cached content and depublishing removes it', async ({ request }) => {
+	const auth = await request.post('/api/users/login', { data: credentials })
+	expect(auth.status()).toBe(200)
+	const { token } = await auth.json()
+	const headers = { Authorization: `JWT ${token}` }
+	const projects = await (await request.get('/api/projects?locale=en', { headers })).json()
+	const project = projects.docs.find(doc => doc.slug === 'e2e-project')
+	expect(await (await request.get('/en/projects/e2e-project')).text()).toContain('Payload test project')
+	const edited = await request.patch(`/api/projects/${project.id}?locale=en`, {
+		headers,
+		data: { title: 'Updated cached project' },
+	})
+	expect(edited.status()).toBe(200)
+	const refreshed = await (await request.get('/en/projects/e2e-project')).text()
+	expect(refreshed).toContain('Updated cached project')
+	const unpublished = await request.patch(`/api/projects/${project.id}?locale=en`, {
+		headers,
+		data: { _status: 'draft' },
+	})
+	expect(unpublished.status()).toBe(200)
+	const removed = await request.get('/en/projects/e2e-project')
+	expect(removed.status()).toBe(404)
+	expect(await removed.text()).not.toContain('Updated cached project')
+})
+
+test('appearance follows system changes and remembers explicit choices', async ({ page }) => {
+	await page.emulateMedia({ colorScheme: 'light' })
+	await page.goto('/en/projects')
+	await expect(page.locator('html')).toHaveClass(/light/)
+	const choose = async (name: string) => {
+		await page.getByRole('button', { name: 'Appearance', exact: true }).click()
+		await page.getByRole('menuitemradio', { name, exact: true }).click()
+	}
+	await choose('Dark')
+	await expect(page.locator('html')).toHaveClass(/dark/)
+	await page.reload()
+	await expect(page.locator('html')).toHaveClass(/dark/)
+	await choose('Light')
+	await expect(page.locator('html')).toHaveClass(/light/)
+	await choose('System')
+	await page.emulateMedia({ colorScheme: 'dark' })
+	await expect(page.locator('html')).toHaveClass(/dark/)
+	await page.emulateMedia({ colorScheme: 'light' })
+	await expect(page.locator('html')).toHaveClass(/light/)
+})
+
+test('mobile pages keep readable margins and working legal links', async ({ page }) => {
+	for (const width of [320, 390]) {
+		await page.setViewportSize({ width, height: 844 })
+		for (const path of [
+			'/fr',
+			'/fr/projects',
+			'/fr/blog',
+			'/fr/blog/articles/article-payload',
+			'/fr/privacy',
+			'/fr/terms',
+		]) {
+			const response = await page.goto(path)
+			expect(response.status()).toBe(200)
+			await expect(page.getByRole('button', { name: 'Apparence', exact: true })).toBeVisible()
+			expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy()
+		}
+	}
+	await page.getByRole('contentinfo').getByRole('link', { name: 'Confidentialité', exact: true }).click()
+	await expect(page).toHaveURL(/\/fr\/privacy$/)
+	await expect(page.getByRole('heading', { name: 'Confidentialité', exact: true })).toBeVisible()
+	await page.getByRole('contentinfo').getByRole('link', { name: 'Conditions d’utilisation', exact: true }).click()
+	await expect(page).toHaveURL(/\/fr\/terms$/)
+	await expect(page.getByRole('heading', { name: 'Conditions d’utilisation', exact: true })).toBeVisible()
+	await page.screenshot({ path: '.tmp/mobile-legal.png', fullPage: true })
+	await page.goto('/fr/projects')
+	await page.screenshot({ path: '.tmp/mobile-projects.png', fullPage: true })
+})

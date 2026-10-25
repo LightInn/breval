@@ -9,8 +9,8 @@ const catalogs = {
 }
 // Payload and the site have separate HTML roots, so Next cannot expose a shared root locale param.
 // Use next-intl’s supported middleware handoff, cached once per request.
-export default getRequestConfig(async ({ locale, requestLocale }) => {
-	const resolved = locale || (await requestLocale)
+export default getRequestConfig(async options => {
+	const resolved = options.locale || (await options.requestLocale)
 	if (!hasLocale(routing.locales, resolved)) notFound()
 	return { locale: resolved, messages: await catalogs[resolved](), timeZone: 'Europe/Paris' }
 })

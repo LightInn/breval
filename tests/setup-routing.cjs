@@ -3,3 +3,6 @@ jest.mock('@/i18n/navigation', () => ({
 	usePathname: jest.fn(() => '/'),
 	useRouter: jest.fn(() => ({ replace: jest.fn(), push: jest.fn() })),
 }))
+
+jest.mock('server-only', () => ({}))
+jest.mock('next/cache', () => ({ cacheLife: jest.fn(), cacheTag: jest.fn(), revalidateTag: jest.fn() }))

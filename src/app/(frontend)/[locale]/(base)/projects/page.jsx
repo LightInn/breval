@@ -1,16 +1,16 @@
+import { unstable_rethrow } from 'next/navigation'
 import { Suspense } from 'react'
 import LocalizedText from '@/components/Global/localized-text'
 import { sectionMetadata } from '@/i18n/metadata'
 import { getDictionary } from '@/lib/get-dictionary'
-import { getLocale } from '@/lib/get-locale'
 import { getProjects } from '@/services/projects.services' // Make sure this path is correct
 import ProjectClient from './ProjectClient' // The new client component
 
-export default async function ProjectsPage() {
+async function ProjectsContent({ params }) {
 	try {
-		const locale = await getLocale()
+		const { locale } = await params
 		const dict = await getDictionary(locale)
-		const projectsData = await getProjects()
+		const projectsData = await getProjects(locale)
 		// getProjects directly returns the array of projects (data.data)
 		const projects = Array.isArray(projectsData) ? projectsData : []
 		if (!Array.isArray(projectsData)) {
@@ -22,6 +22,7 @@ export default async function ProjectsPage() {
 			</Suspense>
 		)
 	} catch (error) {
+		unstable_rethrow(error)
 		console.error('Error fetching projects in ProjectsPage:', error)
 		return (
 			<div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
@@ -97,4 +98,12 @@ function ProjectSkeleton() {
 
 export async function generateMetadata({ params }) {
 	return sectionMetadata('/projects', (await params).locale, 'projectsTitle')
+}
+
+export default function ProjectsPage(props) {
+	return (
+		<Suspense fallback={<ProjectSkeleton />}>
+			<ProjectsContent {...props} />
+		</Suspense>
+	)
 }

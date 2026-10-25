@@ -1,11 +1,14 @@
+import { unstable_rethrow } from 'next/navigation'
 import { Suspense } from 'react'
 import LocalizedText from '@/components/Global/localized-text'
 import { sectionMetadata } from '@/i18n/metadata'
 import getAllBlogs from '@/services/blog.services'
 import BlogClient from './BlogClient'
-export default async function BlogPage() {
+
+async function BlogsContent({ params }) {
 	try {
-		const allBlogs = await getAllBlogs()
+		const { locale } = await params
+		const allBlogs = await getAllBlogs(locale)
 		const blogs = Array.isArray(allBlogs) ? allBlogs : []
 		if (!Array.isArray(allBlogs)) {
 			console.warn('getAllBlogs did not return an array as expected. Received:', allBlogs)
@@ -16,6 +19,7 @@ export default async function BlogPage() {
 			</Suspense>
 		)
 	} catch (error) {
+		unstable_rethrow(error)
 		console.error('Error fetching blogs in BlogPage:', error)
 		return (
 			<div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 pt-20 text-white">
@@ -87,4 +91,12 @@ function BlogSkeleton() {
 
 export async function generateMetadata({ params }) {
 	return sectionMetadata('/blog', (await params).locale, 'blogTitle')
+}
+
+export default function BlogPage(props) {
+	return (
+		<Suspense fallback={<BlogSkeleton />}>
+			<BlogsContent {...props} />
+		</Suspense>
+	)
 }

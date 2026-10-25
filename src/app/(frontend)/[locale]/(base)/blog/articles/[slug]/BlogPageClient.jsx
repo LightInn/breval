@@ -9,6 +9,7 @@ import BlogDetails from '@/components/Blog/BlogDetails'
 import RenderMdx from '@/components/Blog/RenderMdx'
 import Tag from '@/components/Elements/Tag'
 import LocalizedText from '@/components/Global/localized-text'
+import SharedContent from '@/components/Global/shared-content'
 import Highlight from '@/components/Highlight'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -36,17 +37,13 @@ export default function BlogPageClient({ similarArticles, slug: pageSlug, jsonLd
 					y: 0,
 				}}
 				className="relative z-10"
-				initial={{
-					opacity: 0,
-					y: 20,
-				}}
 				transition={{
 					duration: 0.5,
 				}}
 			>
 				{/* Navigation */}
 				<nav aria-label={ui('breadcrumb')} className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-					<ol className="flex items-center space-x-4">
+					<ol className="flex flex-wrap items-center gap-y-2">
 						<li className="list-none">
 							<div className="flex items-center">
 								<Link
@@ -76,26 +73,18 @@ export default function BlogPageClient({ similarArticles, slug: pageSlug, jsonLd
 							opacity: 1,
 							scale: 1,
 						}}
-						className="pixel-corners relative mx-auto mb-12 h-[70vh] w-full max-w-7xl overflow-hidden px-4 sm:px-6 lg:px-8"
-						initial={{
-							scale: 0.95,
-							opacity: 0,
-						}}
+						className="pixel-corners relative mx-auto mb-12 min-h-[28rem] w-full sm:min-h-[32rem] max-w-7xl overflow-hidden px-4 sm:px-6 lg:px-8"
 						transition={{
 							duration: 0.6,
 						}}
 					>
-						<div className="absolute inset-0 z-10 flex items-center justify-center">
+						<div className="relative z-10 flex min-h-[28rem] items-center justify-center py-8 sm:min-h-[32rem]">
 							<motion.div
 								animate={{
 									opacity: 1,
 									y: 0,
 								}}
-								className="pixel-corners flex h-1/2 w-full flex-col justify-center gap-8 rounded-2xl border border-border bg-background/80 p-8 backdrop-blur-xl md:max-w-[70vw]"
-								initial={{
-									opacity: 0,
-									y: 30,
-								}}
+								className="pixel-corners flex w-full flex-col justify-center gap-4 sm:gap-8 rounded-2xl border border-border bg-background/90 p-5 sm:p-8 backdrop-blur-xl md:max-w-[70vw]"
 								transition={{
 									duration: 0.6,
 									delay: 0.2,
@@ -117,23 +106,21 @@ export default function BlogPageClient({ similarArticles, slug: pageSlug, jsonLd
 									))}
 								</div>
 
-								<motion.h1
-									animate={{
-										opacity: 1,
-										y: 0,
-									}}
-									className="text-center text-2xl font-semibold !leading-normal text-foreground md:text-3xl lg:text-5xl"
-									initial={{
-										opacity: 0,
-										y: 20,
-									}}
-									transition={{
-										duration: 0.6,
-										delay: 0.4,
-									}}
-								>
-									{blog.title}
-								</motion.h1>
+								<SharedContent kind="article" id={blog.id} part="title">
+									<motion.h1
+										animate={{
+											opacity: 1,
+											y: 0,
+										}}
+										className="text-center text-2xl font-semibold !leading-normal text-foreground md:text-3xl lg:text-5xl"
+										transition={{
+											duration: 0.6,
+											delay: 0.4,
+										}}
+									>
+										{blog.title}
+									</motion.h1>
+								</SharedContent>
 
 								<motion.div
 									animate={{
@@ -141,10 +128,6 @@ export default function BlogPageClient({ similarArticles, slug: pageSlug, jsonLd
 										y: 0,
 									}}
 									className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground"
-									initial={{
-										opacity: 0,
-										y: 20,
-									}}
 									transition={{
 										duration: 0.6,
 										delay: 0.6,
@@ -170,17 +153,19 @@ export default function BlogPageClient({ similarArticles, slug: pageSlug, jsonLd
 							</motion.div>
 						</div>
 
-						<Image
-							alt={blog.title}
-							blurDataURL={rgbDataURL(231, 183, 202)}
-							className="h-full w-full rounded-lg object-cover object-center"
-							height={1024}
-							placeholder="blur"
-							priority
-							sizes="100vw"
-							src={blog.image}
-							width={1792}
-						/>
+						<SharedContent kind="article" id={blog.id} part="image">
+							<Image
+								alt={blog.title}
+								blurDataURL={rgbDataURL(231, 183, 202)}
+								className="absolute inset-0 h-full w-full rounded-lg object-cover object-center"
+								height={1024}
+								placeholder="blur"
+								priority
+								sizes="100vw"
+								src={blog.image || '/placeholder.svg'}
+								width={1792}
+							/>
+						</SharedContent>
 					</motion.div>
 
 					<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -193,11 +178,7 @@ export default function BlogPageClient({ similarArticles, slug: pageSlug, jsonLd
 									opacity: 1,
 									x: 0,
 								}}
-								className="sticky top-8 col-span-12 lg:col-span-3"
-								initial={{
-									opacity: 0,
-									x: -20,
-								}}
+								className="order-2 col-span-12 min-w-0 lg:order-1 lg:sticky lg:top-24 lg:col-span-3 lg:self-start"
 								transition={{
 									duration: 0.5,
 									delay: 0.3,
@@ -220,10 +201,6 @@ export default function BlogPageClient({ similarArticles, slug: pageSlug, jsonLd
 															opacity: 1,
 															y: 0,
 														}}
-														initial={{
-															opacity: 0,
-															y: 10,
-														}}
 														key={article.url}
 														transition={{
 															delay: 0.1 * idx,
@@ -232,12 +209,14 @@ export default function BlogPageClient({ similarArticles, slug: pageSlug, jsonLd
 													>
 														<Button
 															asChild
-															className="h-auto w-full justify-start p-2 text-left hover:bg-accent/10"
+															className="h-auto w-full justify-start whitespace-normal p-2 text-left hover:bg-accent/10"
 															variant="ghost"
 														>
 															<Link href={`/blog/articles/${article.url}`}>
-																<div className="space-y-1">
-																	<p className="line-clamp-2 text-sm font-medium text-foreground">{article.title}</p>
+																<div className="min-w-0 space-y-1">
+																	<p className="line-clamp-2 break-words text-sm font-medium text-foreground">
+																		{article.title}
+																	</p>
 																	<p className="text-xs text-muted-foreground">
 																		{formatter.dateTime(new Date(article.publishedAt), { dateStyle: 'long' })}
 																	</p>
@@ -262,18 +241,14 @@ export default function BlogPageClient({ similarArticles, slug: pageSlug, jsonLd
 									opacity: 1,
 									x: 0,
 								}}
-								className="col-span-12 lg:col-span-9"
-								initial={{
-									opacity: 0,
-									x: 20,
-								}}
+								className="order-1 col-span-12 min-w-0 lg:order-2 lg:col-span-9"
 								transition={{
 									duration: 0.5,
 									delay: 0.4,
 								}}
 							>
 								<Card className="pixel-corners border-border bg-card/50 backdrop-blur-sm">
-									<CardContent className="p-6 lg:p-8">
+									<CardContent className="p-4 sm:p-6 lg:p-8">
 										<RenderMdx blog={blog} />
 									</CardContent>
 								</Card>

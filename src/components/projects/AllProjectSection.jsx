@@ -2,13 +2,11 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { Link } from '@/i18n/navigation'
-import { getProjects } from '@/services/projects.services'
 import '@/styles/crow.css'
 
-const AllProjectSection = ({ step }) => {
+const AllProjectSection = ({ step, projects = [] }) => {
 	const [isVisible, setIsVisible] = useState(false)
 	const [showProjects, setShowProjects] = useState(false)
-	const [projects, setProjects] = useState([])
 
 	// Normalize projects for rendering (choose main_media or first media item as image)
 	const processedProjects = Array.isArray(projects)
@@ -34,14 +32,7 @@ const AllProjectSection = ({ step }) => {
 			setShowProjects(false)
 		}
 	}, [step])
-	useEffect(() => {
-		const loadProjects = async () => {
-			const data = await getProjects()
-			// console.log('Fetched projects:', data)
-			setProjects(data)
-		}
-		loadProjects()
-	}, [])
+
 	return (
 		<div className="relative h-screen min-h-screen w-screen overflow-scroll">
 			{isVisible && <div className="bg-layer absolute left-0 top-0 h-full w-full bg-red-200"></div>}

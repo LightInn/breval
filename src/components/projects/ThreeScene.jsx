@@ -7,7 +7,7 @@ import * as THREE from 'three'
 import { FlyingCrow } from '@/components/projects/Crow_fly'
 import { Crow } from '@/components/projects/Crow_tree'
 import { Overlay } from '@/components/projects/Overlay'
-export function ThreeScene() {
+export function ThreeScene({ projects }) {
 	const [step, setStep] = useState(0)
 	const testRef = useRef()
 	return (
@@ -19,7 +19,7 @@ export function ThreeScene() {
 			{/*<ambientLight />*/}
 
 			<ScrollControls pages={3}>
-				<Overlay setStep={setStep} step={step} />
+				<Overlay projects={projects} setStep={setStep} step={step} />
 				<Crow step={step} />
 
 				{/*<PivotControls  ref={testRef} scale={8}>*/}

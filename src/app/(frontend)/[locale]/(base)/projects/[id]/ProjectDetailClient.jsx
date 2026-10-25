@@ -6,6 +6,7 @@ import { useFormatter, useTranslations } from 'next-intl'
 import Markdown from 'react-markdown'
 import ImageWithFallback from '@/components/Global/ImageWithFallback'
 import LocalizedText from '@/components/Global/localized-text'
+import SharedContent from '@/components/Global/shared-content'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
@@ -32,17 +33,13 @@ export default function ProjectDetailClient({ project }) {
 					opacity: 1,
 					y: 0,
 				}}
-				className="relative z-10 pb-16 pt-16 sm:pb-24"
-				initial={{
-					opacity: 0,
-					y: 20,
-				}}
+				className="relative z-10 pb-16 pt-20 sm:pb-24"
 				transition={{
 					duration: 0.5,
 				}}
 			>
 				<nav aria-label={ui('breadcrumb')} className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-					<ol className="flex items-center space-x-4">
+					<ol className="flex flex-wrap items-center gap-y-2">
 						<li className="list-none">
 							<div className="flex items-center">
 								<Link
@@ -75,17 +72,16 @@ export default function ProjectDetailClient({ project }) {
 									x: 0,
 								}}
 								className="flex flex-col space-y-4"
-								initial={{
-									opacity: 0,
-									x: 20,
-								}}
 								transition={{
 									duration: 0.5,
 									delay: 0.2,
 								}}
 							>
-								<div className="flex items-center justify-between">
-									<h1 className="text-2xl font-semibold text-foreground">{project?.title}</h1>
+								<div className="flex flex-wrap items-start justify-between gap-3">
+									<SharedContent kind="project" id={project.id} part="title">
+										<h1 className="text-2xl font-semibold text-foreground">{project?.title}</h1>
+									</SharedContent>
+
 									{project?.date && (
 										<Badge className="flex items-center gap-2" variant="secondary">
 											<Calendar className="h-4 w-4" />
@@ -94,6 +90,11 @@ export default function ProjectDetailClient({ project }) {
 									)}
 								</div>
 
+								{project.short_description && (
+									<SharedContent kind="project" id={project.id} part="summary">
+										<p className="text-muted-foreground leading-relaxed">{project.short_description}</p>
+									</SharedContent>
+								)}
 								{/* Category and Skills */}
 								<div className="flex flex-wrap gap-2">
 									{project?.category && (
@@ -109,7 +110,7 @@ export default function ProjectDetailClient({ project }) {
 									))}
 									{project?.skills?.length > 5 && (
 										<Badge className="text-xs" variant="secondary">
-											+{project.skills.length - 5} more
+											{ui('moreSkills', { count: project.skills.length - 5 })}
 										</Badge>
 									)}
 								</div>
@@ -123,10 +124,6 @@ export default function ProjectDetailClient({ project }) {
 								x: 0,
 							}}
 							className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0"
-							initial={{
-								opacity: 0,
-								x: -20,
-							}}
 							transition={{
 								duration: 0.5,
 								delay: 0.1,
@@ -146,26 +143,24 @@ export default function ProjectDetailClient({ project }) {
 											idx === 0 ? 'lg:col-span-2 lg:row-span-2' : 'hidden lg:block',
 											'relative overflow-hidden rounded-lg border border-border'
 										)}
-										initial={{
-											scale: 0.95,
-											opacity: 0,
-										}}
 										key={image.id}
 										transition={{
 											delay: 0.1 * idx,
 											duration: 0.5,
 										}}
 									>
-										<ImageWithFallback
-											alt={image.name || `Project image ${idx + 1}`}
-											blurDataURL={rgbDataURL(231, 183, 202)}
-											className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-											fallbackSrc="/projets.png"
-											height={image.height}
-											placeholder="blur"
-											src={image.url}
-											width={image.width}
-										/>
+										<SharedContent kind="project" id={idx === 0 ? project.id : undefined} part="image">
+											<ImageWithFallback
+												alt={image.name || `Project image ${idx + 1}`}
+												blurDataURL={rgbDataURL(231, 183, 202)}
+												className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+												fallbackSrc="/projets.png"
+												height={image.height}
+												placeholder="blur"
+												src={image.url}
+												width={image.width}
+											/>
+										</SharedContent>
 									</motion.div>
 								))}
 							</div>
@@ -177,10 +172,6 @@ export default function ProjectDetailClient({ project }) {
 								x: 0,
 							}}
 							className="mt-2 lg:col-span-5"
-							initial={{
-								opacity: 0,
-								x: 20,
-							}}
 							transition={{
 								duration: 0.5,
 								delay: 0.3,
@@ -265,10 +256,6 @@ export default function ProjectDetailClient({ project }) {
 														opacity: 1,
 														scale: 1,
 													}}
-													initial={{
-														opacity: 0,
-														scale: 0.9,
-													}}
 													key={idx}
 													transition={{
 														delay: 0.05 * idx,
@@ -300,10 +287,6 @@ export default function ProjectDetailClient({ project }) {
 													animate={{
 														opacity: 1,
 														y: 0,
-													}}
-													initial={{
-														opacity: 0,
-														y: 20,
 													}}
 													key={idx}
 													transition={{

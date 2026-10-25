@@ -1,14 +1,15 @@
 import type { MetadataRoute } from 'next'
+import { connection } from 'next/server'
 import { type Locale, locales } from '@/i18n/locales'
 import { getPathname } from '@/i18n/navigation'
 import { getCMS } from '@/lib/cms'
 import siteMetadata from '@/utils/siteMetaData'
 
-export const dynamic = 'force-dynamic'
 const absolute = (path: string, locale: Locale) =>
 	new URL(getPathname({ locale, href: path }), siteMetadata.siteUrl).href
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+	await connection()
 	const cms = await getCMS()
 	const entries: MetadataRoute.Sitemap = []
 	for (const route of [
@@ -16,6 +17,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		'/projects',
 		'/blog',
 		'/artist',
+		'/privacy',
+		'/terms',
 		'/experiment/about',
 		'/experiment/crow',
 		'/experiment/slime',

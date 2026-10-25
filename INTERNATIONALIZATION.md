@@ -41,8 +41,8 @@ shared UI namespaces; existing home-section dictionaries remain server-loaded.
 Payload's content locale is always explicit, with English fallback. Only published
 documents are returned by website services and access checks remain enabled.
 React `cache` deduplicates CMS reads within a server render, with locale included
-in every cache key. There is no cross-user mutable locale state or permanent
-content cache. Featured projects are fetched with the server-rendered home page,
+in every cache key. Tagged Next.js data caches also reuse published content between requests,
+partitioned by locale. Admin changes expire the affected entries immediately. Featured projects are fetched with the server-rendered home page,
 instead of waiting for browser hydration and a second action request.
 
 Payload's interface language and content language are separate standard features.
@@ -69,3 +69,8 @@ Keep product names, technology names and CMS category identifiers stable, and
 translate their displayed labels rather than changing filtering keys or routes.
 Browser tests visit the home, art, projects, category and experiment pages in
 both languages and assert visible localized content, not just the URL.
+
+Cache Components pages pass the URL locale explicitly rather than reading request
+headers. Request configuration only resolves the middleware locale when there is
+no explicit override. The website client provider receives locale, messages and
+timezone directly so static layouts do not invoke request-based server defaults.

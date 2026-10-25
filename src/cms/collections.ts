@@ -1,6 +1,8 @@
 import path from 'node:path'
 import type { CollectionConfig, Field } from 'payload'
-import { authenticated, publishedOrAuthenticated } from './access'
+import { projectPriority } from '@/lib/project-priority'
+import { authenticated, mediaRead, publishedOrAuthenticated } from './access'
+import { invalidateContent } from './revalidate'
 
 const slugPattern = /[^a-z0-9]+/g
 const edgeHyphens = /^-+|-+$/g
@@ -60,7 +62,7 @@ export const Media: CollectionConfig = {
 	slug: 'media',
 	labels: { singular: { en: 'Media', fr: 'Média' }, plural: { en: 'Media library', fr: 'Médiathèque' } },
 	admin: { group: { en: 'Library', fr: 'Bibliothèque' } },
-	access: { read: () => true, create: authenticated, update: authenticated, delete: authenticated },
+	access: { read: mediaRead, create: authenticated, update: authenticated, delete: authenticated },
 	upload: {
 		staticDir: path.resolve(process.env.PAYLOAD_MEDIA_DIR || path.join(process.cwd(), '.data/media')),
 		mimeTypes: ['image/*', 'video/*', 'audio/*', 'application/pdf'],
@@ -117,7 +119,7 @@ export const Projects: CollectionConfig = {
 		useAsTitle: 'title',
 		group: { en: 'Create & publish', fr: 'Créer et publier' },
 		description: { en: 'Give your work a place to shine.', fr: 'Un espace pour mettre votre travail en valeur.' },
-		defaultColumns: ['title', 'category', '_status', 'rank'],
+		defaultColumns: ['title', 'category', '_status', 'priorityScore'],
 	},
 	access: contentAccess,
 	versions: { drafts: true },
@@ -147,7 +149,21 @@ export const Projects: CollectionConfig = {
 			defaultValue: 'Web Development',
 			options: ['Web Development', 'Mobile App', 'UI/UX Design', 'Interactive & 3D', 'SaaS'],
 		},
-		{ name: 'rank', type: 'number', localized: true, defaultValue: 10, min: 0, max: 20 },
+		{ name: 'rank', type: 'number', localized: true, defaultValue: 10, min: 0, max: 20, admin: { hidden: true } },
+		{
+			name: 'priorityScore',
+			type: 'number',
+			virtual: true,
+			admin: {
+				readOnly: true,
+				disableListColumn: false,
+				description: {
+					en: 'Calculated from recency, public links, contributors, skills and presentation. No manual input.',
+					fr: 'Calculé à partir de la récence, des liens publics, de l’équipe, des compétences et de la présentation. Aucune saisie manuelle.',
+				},
+			},
+			hooks: { afterRead: [({ siblingData }) => projectPriority(siblingData)] },
+		},
 		{ name: 'legacyId', type: 'text', unique: true, index: true, admin: { hidden: true } },
 	],
 }
@@ -181,7 +197,7 @@ organiseEditor(
 		{ label: { en: 'Visuals', fr: 'Visuels' }, names: ['main_media', 'media'] },
 		{ label: { en: 'Details', fr: 'Détails' }, names: ['date', 'url', 'live_url', 'skills', 'creators'] },
 	],
-	['slug', 'category', 'rank']
+	['slug', 'category', 'priorityScore', 'rank']
 )
 
 const fieldLabels: Record<string, { en: string; fr: string }> = {
@@ -200,7 +216,7 @@ const fieldLabels: Record<string, { en: string; fr: string }> = {
 	live_url: { en: 'Live website', fr: 'Site en ligne' },
 	creators: { en: 'Contributors', fr: 'Équipe' },
 	category: { en: 'Category', fr: 'Catégorie' },
-	rank: { en: 'Featured priority', fr: 'Priorité de mise en avant' },
+	priorityScore: { en: 'Automatic priority', fr: 'Priorité automatique' },
 }
 function translateFieldLabels(fields: Field[]) {
 	for (const field of fields) {
@@ -210,3 +226,10 @@ function translateFieldLabels(fields: Field[]) {
 }
 translateFieldLabels(Blogs.fields)
 translateFieldLabels(Projects.fields)
+
+for (const collection of [Users, Media, Blogs, Projects]) {
+	collection.admin = { ...collection.admin, hideAPIURL: true }
+}
+for (const collection of [Blogs, Projects, Media]) {
+	collection.hooks = { ...collection.hooks, afterChange: [invalidateContent], afterDelete: [invalidateContent] }
+}

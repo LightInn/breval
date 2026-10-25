@@ -10,20 +10,22 @@ beforeEach(() => {
 	getLocale.mockResolvedValue('fr')
 	find.mockResolvedValue({ docs: [] })
 })
-test('lists published projects by rank in the current locale', async () => {
+test('lists published projects by automatic priority in the current locale', async () => {
 	await getProjects()
 	expect(find).toHaveBeenCalledWith(
-		expect.objectContaining({ collection: 'projects', locale: 'fr', sort: '-rank', overrideAccess: false })
+		expect.objectContaining({ collection: 'projects', locale: 'fr', sort: 'id', overrideAccess: false })
 	)
 })
 test('returns at most four featured projects', async () => {
-	find.mockResolvedValue({ docs: [1, 2, 3, 4, 5] })
-	expect(await getFeaturedProjects()).toEqual([1, 2, 3, 4])
+	find.mockResolvedValue({ docs: [1, 2, 3, 4, 5].map(id => ({ id })) })
+	expect((await getFeaturedProjects()).map(project => project.id)).toEqual([1, 2, 3, 4])
 })
 test('filters a project by slug and explicit locale', async () => {
-	find.mockResolvedValue({ docs: [{ title: 'Projet' }] })
-	expect(await getProject('projet', 'fr')).toEqual({ title: 'Projet' })
-	expect(find.mock.calls[0][0].where.and).toContainEqual({ slug: { equals: 'projet' } })
+	find.mockResolvedValue({ docs: [{ title: 'Projet', slug: 'projet' }] })
+	expect(await getProject('projet', 'fr')).toEqual(
+		expect.objectContaining({ title: 'Projet', priorityScore: expect.any(Number) })
+	)
+	expect(find.mock.calls[0][0].locale).toBe('fr')
 })
 test('returns null for an unknown slug', async () => {
 	expect(await getProject('missing', 'en')).toBeNull()

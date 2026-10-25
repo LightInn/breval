@@ -241,6 +241,10 @@ export interface Project {
   slug: string;
   category?: ('Web Development' | 'Mobile App' | 'UI/UX Design' | 'Interactive & 3D' | 'SaaS') | null;
   rank?: number | null;
+  /**
+   * Calculated from recency, public links, contributors, skills and presentation. No manual input.
+   */
+  priorityScore?: number | null;
   legacyId?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -408,6 +412,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   slug?: T;
   category?: T;
   rank?: T;
+  priorityScore?: T;
   legacyId?: T;
   updatedAt?: T;
   createdAt?: T;

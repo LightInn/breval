@@ -1,3 +1,5 @@
+export const instant = false
+
 import { notFound } from 'next/navigation'
 import { localizedAlternates } from '@/i18n/metadata'
 import getAllBlogs from '@/services/blog.services'
@@ -9,8 +11,8 @@ function articleImage(blog) {
 }
 
 export default async function BlogPage({ params }) {
-	const { slug } = await params
-	const allBlogs = await getAllBlogs()
+	const { slug, locale } = await params
+	const allBlogs = await getAllBlogs(locale)
 	const blog = allBlogs.find(article => article.url === slug)
 	if (!blog) notFound()
 	const similarArticles = allBlogs.filter(
@@ -33,7 +35,7 @@ export async function generateMetadata({ params }) {
 	const { slug, locale } = await params
 	const blogs = await getAllBlogs(locale)
 	const blog = blogs.find(article => article.url === slug)
-	if (!blog) return { title: 'Article not found', robots: { index: false } }
+	if (!blog) notFound()
 	const [english, french] = await Promise.all([getAllBlogs('en'), getAllBlogs('fr')])
 	const paths = {
 		en: `/blog/articles/${english.find(article => article.id === blog.id)?.url || blog.url}`,

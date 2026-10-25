@@ -53,7 +53,6 @@ export default buildConfig({
 				client: { url: process.env.DATABASE_URL || 'file:./.data/payload.db' },
 				migrationDir: path.resolve(dirname, 'migrations'),
 			}),
-	serverURL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
 	plugins: [
 		s3Storage({
 			enabled: Boolean(process.env.S3_BUCKET),

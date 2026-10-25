@@ -1,19 +1,18 @@
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react'
+import { cacheLife } from 'next/cache'
 import { Link } from '@/i18n/navigation'
 import { getDictionary } from '@/lib/get-dictionary'
-import { getLocale } from '@/lib/get-locale' // Assuming getLocale is synchronous or handled by middleware
 
-export default async function Footer() {
-	const locale = await getLocale()
+export default async function Footer({ locale }) {
 	const dict = await getDictionary(locale)
-	const currentYear = new Date().getFullYear()
+	const currentYear = await currentYearValue()
 	const footerDict = dict?.footer || {}
 	return (
 		<footer className="relative overflow-hidden border-t border-primary/20 py-10">
 			<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-10"></div>
 			<div className="container mx-auto px-4">
 				<div className="flex flex-col items-center justify-between md:flex-row">
-					<div className="mb-6 md:mb-0">
+					<div className="mb-6 text-center md:mb-0 md:text-left">
 						<Link className="text-2xl font-bold text-primary" href="/">
 							<div className="flex items-center">
 								<svg fill="currentColor" height="100" id="svg8" viewBox="0 0 210 297" width="70">
@@ -74,24 +73,18 @@ export default async function Footer() {
 				</div>
 
 				<div className="mt-8 flex flex-col items-center justify-between border-t border-primary/10 pt-8 md:flex-row">
-					<p className="text-sm text-muted-foreground">
+					<p className="text-center text-sm text-muted-foreground md:text-left">
 						{(footerDict.copyright || '&copy; {currentYear} Bréval Le Floch. All rights reserved.').replace(
 							'{currentYear}',
 							currentYear.toString()
 						)}
 					</p>
 
-					<div className="mt-4 flex space-x-6 md:mt-0">
-						<Link
-							className="text-sm text-muted-foreground transition-colors hover:text-primary"
-							href="#" // Assuming these links might become dynamic or configurable later
-						>
+					<div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-3 md:mt-0">
+						<Link className="text-sm text-muted-foreground transition-colors hover:text-primary" href="/privacy">
 							{footerDict.privacyPolicy || 'Privacy Policy'}
 						</Link>
-						<Link
-							className="text-sm text-muted-foreground transition-colors hover:text-primary"
-							href="#" // Assuming these links might become dynamic or configurable later
-						>
+						<Link className="text-sm text-muted-foreground transition-colors hover:text-primary" href="/terms">
 							{footerDict.termsOfService || 'Terms of Service'}
 						</Link>
 					</div>
@@ -99,4 +92,11 @@ export default async function Footer() {
 			</div>
 		</footer>
 	)
+}
+
+// biome-ignore lint/suspicious/useAwait: Next.js requires every use-cache function to be async.
+async function currentYearValue() {
+	'use cache'
+	cacheLife('days')
+	return new Date().getFullYear()
 }

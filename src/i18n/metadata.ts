@@ -17,7 +17,7 @@ export function localizedAlternates(pathname: string, locale: Locale, paths?: Pa
 
 export async function sectionMetadata(
 	pathname: string,
-	locale: Locale,
+	locale: Locale = 'en',
 	titleKey: 'metadataHome' | 'blogTitle' | 'projectsTitle' = 'metadataHome'
 ) {
 	const t = await getTranslations({ locale, namespace: 'common' })

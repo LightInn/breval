@@ -1,9 +1,12 @@
 import { notFound } from 'next/navigation'
-import { hasLocale, NextIntlClientProvider } from 'next-intl'
+import { hasLocale } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { sectionMetadata } from '@/i18n/metadata'
+import WebsiteIntl from '@/i18n/provider'
 import { routing } from '@/i18n/routing'
-export const dynamic = 'force-dynamic'
+export function generateStaticParams() {
+	return [{ locale: 'en' }, { locale: 'fr' }]
+}
 
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
@@ -90,12 +93,17 @@ export default async function RootLayout({ children, params }) {
 				strategy="afterInteractive"
 			/>
 			<body className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}>
-				<NextIntlClientProvider
+				<WebsiteIntl
 					locale={locale}
-					messages={{ common: messages.common, navigation: messages.navigation, ui: messages.ui }}
+					messages={{
+						common: messages.common,
+						navigation: messages.navigation,
+						ui: messages.ui,
+						notFound: messages.notFound,
+					}}
 				>
 					{children}
-				</NextIntlClientProvider>
+				</WebsiteIntl>
 			</body>
 		</html>
 	)

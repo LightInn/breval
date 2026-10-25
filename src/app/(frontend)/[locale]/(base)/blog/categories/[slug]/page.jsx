@@ -1,3 +1,5 @@
+export const instant = false
+
 import { getTranslations } from 'next-intl/server'
 import { localizedAlternates } from '@/i18n/metadata'
 
@@ -35,7 +37,7 @@ export async function generateMetadata(props) {
 }
 const CategoryPage = async props => {
 	const params = await props.params
-	const allBlogs = await getAllBlogs()
+	const allBlogs = await getAllBlogs(params.locale)
 	const allCategories = new Set(['all'])
 	for (const blog of allBlogs) {
 		for (const tag of blog.tags) {
@@ -45,7 +47,7 @@ const CategoryPage = async props => {
 	const sortedCategories = Array.from(allCategories).sort()
 	const blogs = allBlogs.filter(blog => params.slug === 'all' || blog.tags.some(tag => slugify(tag) === params.slug))
 	return (
-		<article className="text-dark mt-12 flex flex-col">
+		<article className="text-foreground flex flex-col pb-16 pt-24 sm:pt-32">
 			<div className="sxl:px-32 flex flex-col px-5 sm:px-10 md:px-24">
 				<h1 className="mt-6 text-2xl font-semibold md:text-4xl lg:text-5xl">
 					{params.slug === 'all' ? <LocalizedText id="allArticles" /> : `#${params.slug}`}

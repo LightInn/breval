@@ -80,7 +80,7 @@ function renderHeroContent(dict, setShowContactPopup) {
 					opacity: 1,
 					y: 0,
 				}}
-				className="mb-6 text-5xl font-bold tracking-wider md:text-7xl lg:text-8xl"
+				className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-7xl lg:text-8xl"
 				initial={{
 					opacity: 0,
 					y: 20,
@@ -113,7 +113,7 @@ function renderHeroContent(dict, setShowContactPopup) {
 			>
 				<div className="relative inline-block">
 					<div className="absolute inset-0 rounded-full bg-primary/20 blur-xl" />
-					<p className="pixel-corners relative rounded-full border border-primary/30 bg-card/60 px-8 py-3 text-lg backdrop-blur-sm md:text-xl">
+					<p className="pixel-corners relative rounded-full border border-primary/30 bg-card/60 px-4 py-3 text-base sm:px-8 sm:text-lg backdrop-blur-sm md:text-xl">
 						{dict?.home?.hero?.title || 'Creative Developer & Digital Craftsman'}
 					</p>
 				</div>
@@ -362,7 +362,7 @@ function renderContactPopup(showContactPopup, setShowContactPopup, dict) {
 }
 function renderHeroSection(dict, setShowContactPopup, showContactPopup) {
 	return (
-		<section className="relative clear-both m-0 flex h-[100vh] h-screen w-[100vw] max-w-[100vw] items-center justify-center overflow-hidden overflow-x-hidden p-0">
+		<section className="relative clear-both m-0 flex min-h-svh w-full items-center justify-center overflow-hidden overflow-x-hidden px-0 pb-20 pt-28">
 			{/* Video Overlay Grid Pattern */}
 			<div className="video-overlay" />
 			{/* Video Background */}

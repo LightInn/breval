@@ -27,7 +27,7 @@ the entire `.data` directory to preserve both content and uploaded files.
 ## Content
 
 - `/admin`: authenticated management of users, articles, projects and media.
-- `/api/blogs`, `/api/projects`, `/api/media`: Payload REST endpoints.
+- The website reads content directly on the server. Payload REST content endpoints require an authenticated editor; they are used by the admin, not by the website.
 - English and French content, with English fallback for missing translations.
 - Articles and projects support drafts and publication. Visitors can only read
   published content; creating, editing and deleting require an authenticated user.
@@ -118,3 +118,29 @@ Payload has a dedicated light/dark Content Studio theme, an editorial dashboard,
 localized forms, Markdown writing/preview tabs and keyboard-friendly topic fields.
 These customizations use Payload's extension points and do not change stored
 content schemas. Website styles and CMS styles remain separate.
+
+## Data cache and navigation
+
+Cache Components and Partial Prefetching are enabled. Public CMS queries use
+`use cache: remote`, keyed by language. Only published content is
+cached; authentication and the admin UI are never cached. Metadata resolves before
+streaming to preserve real HTTP 404 responses for missing or unpublished documents. Content/media hooks
+expire the relevant tags immediately on admin changes or deletion. Cache entries
+also revalidate after five minutes as a fallback for offline imports. Remote
+storage is provided by the hosting platform when available (Next's default
+handler is used for local/self-hosted runs).
+
+React 19.3 ViewTransition boundaries match project/article images and titles
+across routes by document ID. Project summaries also share identity. Full
+prefetching is enabled for project detail links to let both views commit together.
+Animations respect reduced-motion preferences and degrade to normal navigation
+when unsupported. Payload keeps its authenticated editing endpoints, while the
+API/JSON tab and API URL metadata are hidden from editors.
+
+### Appearance, legal pages and project priority
+
+The website supports light, dark and system appearance via next-themes. The default follows the system; explicit choices persist in local storage. The header exposes the same selector on mobile and desktop. Footer links open localized /privacy and /terms pages.
+
+Project order is calculated at read time by src/lib/project-priority.ts, independently of the old manual rank field (retained hidden for migration history). The score is out of 100: recency 40 (three-year half-life), public link 30 (product), 18 (package/docs), or 8 (prototype/video), collaboration 10, distinct skills 10, and presentation completeness 10. A source-only link contributes at most 8. Missing legacy dates use a neutral three-year age because the migration timestamp is not the project date. Scores use canonical English records for consistent order across locales, with stable ID ties. All projects are scored before selecting the four featured items.
+
+This preserves the broad editorial priorities; identical factual records receive identical scores even when historical manual ranks differ. A configured public URL is a signal, not a live uptime probe: rendering never makes requests to arbitrary project hosts. The admin shows an automatic read-only score. No schema migration is required for this virtual field.

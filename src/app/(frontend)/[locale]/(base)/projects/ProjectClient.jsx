@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { useRef, useState } from 'react'
 import LocalizedText from '@/components/Global/localized-text'
+import SharedContent from '@/components/Global/shared-content'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
@@ -55,6 +56,7 @@ export default function ProjectClient({ projects = [], dict }) {
 	const processedProjects =
 		Array.isArray(projects) && projects.length > 0
 			? projects.map(project => ({
+					id: project.id,
 					// Use main_media first, then fallback to first media item
 					image:
 						project.main_media?.url ||
@@ -110,11 +112,11 @@ export default function ProjectClient({ projects = [], dict }) {
 	// Remove the featured project from the grid to avoid duplication
 	const gridProjects = filteredProjects.slice(1)
 	return (
-		<main className="from-gray-150 min-h-screen bg-gradient-to-b to-gray-200 pt-20 dark:from-gray-950 dark:to-gray-900 dark:text-white">
+		<main className="min-h-screen bg-background pt-20 text-foreground">
 			<div className="relative">
 				{/* <ScrollObject3D /> */}
 
-				<section className="relative py-20">
+				<section className="relative py-10 sm:py-20">
 					<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-30"></div>
 					{/* <div className="sakura-bg absolute inset-0 opacity-10"></div> */}
 
@@ -189,21 +191,36 @@ export default function ProjectClient({ projects = [], dict }) {
 								<div className="relative overflow-hidden rounded-lg border border-primary/30 bg-gray-200/60 backdrop-blur-sm dark:bg-gray-900/60">
 									<div className="md:flex">
 										<div className="relative h-64 md:h-auto md:w-1/2">
-											<Image
-												alt={featuredProject.title}
-												className="object-cover"
-												fill
-												src={featuredProject.image}
-												unoptimized // Si les images viennent d'une API externe et ne sont pas optimisées par Next/Image
-											/>
+											<Link
+												className="absolute inset-0"
+												href={`/projects/${featuredProject.slug}`}
+												prefetch={true}
+												aria-label={featuredProject.title}
+											>
+												<SharedContent kind="project" id={featuredProject.id} part="image">
+													<Image
+														alt={featuredProject.title}
+														className="object-cover"
+														fill
+														src={featuredProject.image}
+														sizes="(max-width: 768px) 100vw, 50vw"
+													/>
+												</SharedContent>
+											</Link>
 											<div className="absolute left-4 top-4">
 												<Badge className="bg-primary text-white">{t('featured')}</Badge>
 											</div>
 										</div>
-										<div className="flex flex-col justify-between p-6 md:w-1/2 md:p-8">
+										<div className="flex flex-col justify-between p-5 sm:p-6 md:w-1/2 md:p-8">
 											<div>
-												<h2 className="mb-4 text-2xl font-bold md:text-3xl">{featuredProject.title}</h2>
-												<p className="mb-6 text-muted-foreground">{featuredProject.description}</p>
+												<Link href={`/projects/${featuredProject.slug}`} prefetch={true}>
+													<SharedContent kind="project" id={featuredProject.id} part="title">
+														<h2 className="mb-4 text-2xl font-bold md:text-3xl">{featuredProject.title}</h2>
+													</SharedContent>
+												</Link>
+												<SharedContent kind="project" id={featuredProject.id} part="summary">
+													<p className="mb-6 text-muted-foreground">{featuredProject.description}</p>
+												</SharedContent>
 												<div className="mb-6 flex flex-wrap gap-2">
 													{featuredProject.tags.map((tag, tagIndex) => (
 														<Badge className="border-primary/30 bg-primary/10" key={tagIndex} variant="outline">
@@ -257,13 +274,22 @@ export default function ProjectClient({ projects = [], dict }) {
 									<motion.div key={project.slug || index} variants={item}>
 										<Card className="flex h-full flex-col overflow-hidden border-primary/20 bg-gray-200/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 dark:bg-gray-900/60">
 											<div className="relative h-48 overflow-hidden">
-												<Image
-													alt={project.title}
-													className="object-cover transition-transform duration-500 hover:scale-105"
-													fill
-													src={project.image}
-													unoptimized
-												/>
+												<Link
+													className="absolute inset-0"
+													href={`/projects/${project.slug}`}
+													prefetch={true}
+													aria-label={project.title}
+												>
+													<SharedContent kind="project" id={project.id} part="image">
+														<Image
+															alt={project.title}
+															className="object-cover transition-transform duration-500 hover:scale-105"
+															fill
+															src={project.image}
+															sizes="(max-width: 768px) 100vw, 50vw"
+														/>
+													</SharedContent>
+												</Link>
 												{project.category && (
 													<div className="absolute right-4 top-4">
 														<Badge className="bg-primary/80 text-white">{project.category}</Badge>
@@ -272,10 +298,16 @@ export default function ProjectClient({ projects = [], dict }) {
 											</div>
 
 											<CardContent className="flex-grow pt-6">
-												<h3 className="mb-2 text-xl font-bold">{project.title}</h3>
-												<p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-													{project.description}
-												</p>
+												<Link href={`/projects/${project.slug}`} prefetch={true}>
+													<SharedContent kind="project" id={project.id} part="title">
+														<h3 className="mb-2 text-xl font-bold">{project.title}</h3>
+													</SharedContent>
+												</Link>
+												<SharedContent kind="project" id={project.id} part="summary">
+													<p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+														{project.description}
+													</p>
+												</SharedContent>
 												<div className="flex flex-wrap gap-2">
 													{project.tags.slice(0, 3).map((tag, tagIndex) => (
 														<Badge className="border-primary/30 bg-primary/10" key={tagIndex} variant="outline">
@@ -291,7 +323,7 @@ export default function ProjectClient({ projects = [], dict }) {
 											</CardContent>
 
 											<CardFooter className="flex items-center justify-between pt-4">
-												<Link href={`/projects/${project.slug}`}>
+												<Link href={`/projects/${project.slug}`} prefetch={true}>
 													<Button className="text-primary hover:bg-primary/20" size="sm" variant="ghost">
 														{t('viewProject')}
 													</Button>

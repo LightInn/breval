@@ -10,7 +10,11 @@
 		"ariaThemeToggle": "Toggle theme (currently disabled - light mode too dangerous!)",
 		"themeLockedMobile": "Theme locked in darkness 🌙",
 		"ariaThemeToggleDisabledMobile": "Theme toggle disabled - light mode too dangerous!",
-		"language": "Language"
+		"language": "Language",
+		"appearance": "Appearance",
+		"light": "Light",
+		"dark": "Dark",
+		"system": "System"
 	},
 	"home": {
 		"hero": {
@@ -345,7 +349,8 @@
 		"titleUnavailable": "Untitled article",
 		"featured": "Featured",
 		"emptyCategory": "No articles are available in “{category}”.",
-		"categoryCount": "{category} · {count, plural, one {# article} other {# articles}}"
+		"categoryCount": "{category} · {count, plural, one {# article} other {# articles}}",
+		"scrollToExplore": "Scroll to explore"
 	},
 	"footer": {
 		"subtitle": "Creative Developer & Digital Craftsman",
@@ -436,6 +441,7 @@
 		"live": "Live site",
 		"code": "Code",
 		"reloadPage": "Reload page",
-		"allArticles": "All articles"
+		"allArticles": "All articles",
+		"moreSkills": "+{count} more"
 	}
 }

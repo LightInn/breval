@@ -4,13 +4,11 @@ import { Scroll, useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { motion } from 'framer-motion'
 import { Code, Database, Globe, Smartphone } from 'lucide-react'
-import { useEffect, useState } from 'react'
 import AllProjectSection from '@/components/projects/AllProjectSection'
 import FeaturedProjectsSection from '@/components/projects/FeaturedProjectsSection'
 import MovingLogo from '@/components/projects/MovingLogo'
 import AnimatedTitle from '@/components/projects/TitleLetter'
-import { getProjects } from '@/services/projects.services'
-export function Overlay({ setStep, step }) {
+export function Overlay({ setStep, step, projects }) {
 	// const projects = await getProject()
 	const data = useScroll()
 	useFrame(() => {
@@ -50,16 +48,6 @@ export function Overlay({ setStep, step }) {
 	})
 	const _width = 1
 	const _height = 1.61803398875
-	const [_projects, setProjects] = useState(null)
-	useEffect(() => {
-		getProject()
-			.then(data => {
-				setProjects(data)
-			})
-			.catch(err => {
-				console.error('Error fetching projects:', err)
-			})
-	}, [])
 
 	// return null;
 	return (
@@ -117,11 +105,8 @@ export function Overlay({ setStep, step }) {
 			</section>
 
 			<section className="relative h-screen min-h-screen w-screen">
-				<AllProjectSection step={step} />
+				<AllProjectSection projects={projects} step={step} />
 			</section>
 		</Scroll>
 	)
-}
-function getProject() {
-	return getProjects()
 }

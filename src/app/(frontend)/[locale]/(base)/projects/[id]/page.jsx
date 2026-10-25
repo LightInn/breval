@@ -1,12 +1,13 @@
+export const instant = false
+
 import { notFound } from 'next/navigation'
 import { localizedAlternates } from '@/i18n/metadata'
-import { getLocale } from '@/lib/get-locale'
 import { getProject } from '@/services/projects.services'
 import ProjectDetailClient from './ProjectDetailClient'
 export async function generateMetadata({ params }) {
 	const { id, locale } = await params
 	const project = await getProject(id, locale)
-	if (!project) return { title: 'Project not found', robots: { index: false } }
+	if (!project) notFound()
 	const alternates = localizedAlternates(`/projects/${project.slug}`, locale)
 	const image = project.main_media?.url || project.media?.[0]?.url || '/logo.png'
 	return {
@@ -24,8 +25,7 @@ export async function generateMetadata({ params }) {
 }
 export default async function ProjectDetail(props) {
 	const params = await props.params
-	const { id } = params
-	const locale = await getLocale()
+	const { id, locale } = params
 	const project = await getProject(id, locale)
 
 	// Add proper error handling

@@ -4,9 +4,9 @@
 
 @layer base {
 	:root {
-		--background: 240 60% 88%;
+		--background: 240 20% 98%;
 		--foreground: 240 10% 15%;
-		--card: 255 100% 95%;
+		--card: 0 0% 100%;
 		--card-foreground: 240 10% 15%;
 		--popover: 255 100% 100%;
 		--popover-foreground: 240 10% 15%;
@@ -20,7 +20,7 @@
 		--accent-foreground: 240 5.9% 20%;
 		--destructive: 0 84.2% 60.2%;
 		--destructive-foreground: 0 0% 98%;
-		--border: 320 20% 90%;
+		--border: 240 10% 86%;
 		--input: 320 20% 90%;
 		--ring: 330 100% 70%;
 		--radius: 0.75rem;
@@ -440,4 +440,37 @@ li {
 	margin-bottom: 0.25rem;
 	/* round decoration */
 	list-style-type: disc;
+}
+
+/* Shared elements only: other page content stays still during navigation. */
+::view-transition-group(.content-image),
+::view-transition-group(.content-text) {
+	animation-duration: 280ms;
+	animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+::view-transition-old(.content-image),
+::view-transition-new(.content-image) {
+	height: 100%;
+	object-fit: cover;
+}
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation-duration: 0.001ms !important;
+		animation-delay: 0ms !important;
+	}
+}
+
+/* Markdown and long links must stay inside the mobile article column. */
+#mdx-content {
+	overflow-wrap: anywhere;
+}
+#mdx-content pre,
+#mdx-content table {
+	max-width: 100%;
+	overflow-x: auto;
+}
+#mdx-content table {
+	display: block;
 }

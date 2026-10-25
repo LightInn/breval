@@ -90,9 +90,10 @@ test('Payload SQLite access, translations and local uploads', async t => {
 			locale: 'fr',
 			data: { title: 'Projet', _status: 'published' },
 		})
-		const result = await payload.find({ collection: 'projects', locale: 'fr', sort: '-rank', overrideAccess: false })
+		const result = await payload.find({ collection: 'projects', locale: 'fr', sort: 'id', overrideAccess: false })
 		assert.equal(result.docs[0].slug, 'project')
 		assert.equal(result.docs[0].title, 'Projet')
+		assert.equal(typeof result.docs[0].priorityScore, 'number')
 		assert.deepEqual(result.docs[0].skills, ['Next.js'])
 	})
 	await t.test('local uploads populate article relationships', async () => {

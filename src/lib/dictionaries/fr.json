@@ -10,7 +10,11 @@
 		"ariaThemeToggle": "Changer le thème (actuellement désactivé)",
 		"themeLockedMobile": "Thème sombre activé 🌙",
 		"ariaThemeToggleDisabledMobile": "Changement de thème désactivé",
-		"language": "Langue"
+		"language": "Langue",
+		"appearance": "Apparence",
+		"light": "Clair",
+		"dark": "Sombre",
+		"system": "Système"
 	},
 	"home": {
 		"hero": {
@@ -345,7 +349,8 @@
 		"titleUnavailable": "Article sans titre",
 		"featured": "À la une",
 		"emptyCategory": "Aucun article dans « {category} ».",
-		"categoryCount": "{category} · {count, plural, one {# article} other {# articles}}"
+		"categoryCount": "{category} · {count, plural, one {# article} other {# articles}}",
+		"scrollToExplore": "Faire défiler pour explorer"
 	},
 	"footer": {
 		"subtitle": "Développeur créatif & artisan numérique",
@@ -436,6 +441,7 @@
 		"live": "Voir le site",
 		"code": "Code",
 		"reloadPage": "Actualiser la page",
-		"allArticles": "Tous les articles"
+		"allArticles": "Tous les articles",
+		"moreSkills": "+{count} autres"
 	}
 }
