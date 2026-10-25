@@ -10,14 +10,14 @@
 		--card-foreground: 240 10% 15%;
 		--popover: 255 100% 100%;
 		--popover-foreground: 240 10% 15%;
-		--primary: 330 100% 65%;
-		--primary-foreground: 255 100% 98%;
+		--primary: 333 78% 37%;
+		--primary-foreground: 0 0% 100%;
 		--secondary: 320 20% 95%;
 		--secondary-foreground: 240 5.9% 20%;
 		--muted: 320 15% 96%;
-		--muted-foreground: 240 4.8% 26.1%;
-		--accent: 320 15% 94%;
-		--accent-foreground: 240 5.9% 20%;
+		--muted-foreground: 240 5% 35%;
+		--accent: 333 30% 93%;
+		--accent-foreground: 240 10% 15%;
 		--destructive: 0 84.2% 60.2%;
 		--destructive-foreground: 0 0% 98%;
 		--border: 240 10% 86%;
@@ -473,4 +473,189 @@ li {
 }
 #mdx-content table {
 	display: block;
+}
+
+/* A contained, quiet navigation surface on desktop and mobile. */
+.site-header {
+	position: fixed;
+	inset: 16px 20px auto;
+	z-index: 50;
+	pointer-events: none;
+}
+.site-header__surface {
+	max-width: 1120px;
+	margin-inline: auto;
+	padding: 10px 16px;
+	border: 1px solid transparent;
+	border-radius: 12px;
+	pointer-events: auto;
+	transition:
+		background-color 0.2s,
+		border-color 0.2s,
+		box-shadow 0.2s;
+}
+.site-header[data-scrolled="true"] .site-header__surface {
+	background: transparent;
+}
+.site-header__bar {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	min-height: 48px;
+}
+.site-header__brand {
+	color: hsl(var(--primary));
+	flex-shrink: 0;
+}
+.site-header__links {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 6px 12px;
+	border: 1px solid hsl(var(--primary) / 0.22);
+	border-radius: 9999px;
+	background: hsl(var(--card) / 0.92);
+	box-shadow: 0 4px 20px #00000005;
+	backdrop-filter: blur(16px);
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	white-space: nowrap;
+}
+.site-header__links a {
+	color: hsl(var(--muted-foreground));
+	padding: 8px 14px;
+	border-radius: 9999px;
+	transition:
+		color 0.18s,
+		background-color 0.18s;
+}
+.site-header__links a:hover {
+	color: hsl(var(--foreground));
+	background: hsl(var(--muted));
+}
+.site-header__links a[aria-current] {
+	color: hsl(var(--primary));
+	background: hsl(var(--primary) / 0.09);
+}
+.site-header__tools {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-left: auto;
+}
+.site-header__menu {
+	display: none;
+}
+.site-header__mobile {
+	display: none;
+}
+.route-art {
+	--hairline-plate: hsl(var(--background));
+	--hairline-hi: hsl(var(--foreground));
+	--hairline-edge: hsl(var(--muted-foreground));
+	--hairline-mid: #8b8b95;
+	--hairline-lo: hsl(var(--border));
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 32px;
+	padding: 48px max(24px, calc((100vw - 1120px) / 2));
+	background: hsl(var(--background));
+	border-top: 1px solid hsl(var(--border));
+	color: hsl(var(--foreground));
+}
+.route-art__heading span {
+	color: hsl(var(--muted-foreground));
+	font:
+		11px var(--font-geist-mono),
+		monospace;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+.route-art__heading p {
+	max-width: 300px;
+	margin-top: 16px;
+	font-size: clamp(22px, 3vw, 32px);
+	line-height: 1.4;
+	letter-spacing: -0.03em;
+}
+.route-art__figure {
+	width: 320px;
+	max-width: 50%;
+	aspect-ratio: 5 / 4;
+	flex-shrink: 0;
+}
+.dark .route-art {
+	--hairline-mid: #62626d;
+}
+.hero-scrim {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background: hsl(var(--background) / 0.9);
+}
+.dark .hero-scrim {
+	background: hsl(var(--background) / 0.8);
+}
+@media (max-width: 767px) {
+	.site-header {
+		inset: 8px 8px auto;
+	}
+	.site-header__surface {
+		padding: 8px;
+		background: hsl(var(--background) / 0.96);
+		border-color: hsl(var(--border));
+	}
+	.site-header__bar {
+		justify-content: space-between;
+		gap: 8px;
+	}
+	.site-header__links {
+		display: none;
+	}
+	.site-header__tools {
+		gap: 8px;
+	}
+	.site-header__menu {
+		display: inline-flex;
+	}
+	.site-header__mobile {
+		display: grid;
+		gap: 4px;
+		padding-top: 12px;
+		border-top: 1px solid hsl(var(--border));
+		margin-top: 12px;
+	}
+	.site-header__mobile a {
+		padding: 10px 12px;
+		color: hsl(var(--muted-foreground));
+		font-size: 13px;
+	}
+	.site-header__mobile a[aria-current] {
+		background: hsl(var(--muted));
+		color: hsl(var(--foreground));
+	}
+	.route-art {
+		padding: 40px 24px;
+		gap: 16px;
+	}
+	.route-art__figure {
+		width: 220px;
+		max-width: 55%;
+	}
+	.route-art__heading p {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 767px) {
+	.site-header[data-scrolled="true"] .site-header__surface {
+		background: hsl(var(--background) / 0.96);
+	}
 }

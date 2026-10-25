@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 import ImageWithFallback from '@/components/Global/ImageWithFallback'
 import LocalizedText from '@/components/Global/localized-text'
+import RouteArt from '@/components/Global/route-art'
 import ScrollObject3D from '@/components/scroll-object-3d'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -118,21 +119,26 @@ export default function ArtistPage() {
 		// },
 	]
 	return (
-		<main className="from-gray-150 min-h-screen overflow-hidden bg-gradient-to-b to-gray-200 pt-20 dark:from-gray-950 dark:to-gray-900 dark:text-white">
-			{renderArtistPage(
-				t,
-				ref,
-				isPlaying,
-				setIsPlaying,
-				setCurrentIndex,
-				artExperiments,
-				currentIndex,
-				setSelectedExperiment
-			)}
+		<>
+			{
+				<main className="min-h-screen overflow-hidden bg-background pt-20 text-foreground">
+					{renderArtistPage(
+						t,
+						ref,
+						isPlaying,
+						setIsPlaying,
+						setCurrentIndex,
+						artExperiments,
+						currentIndex,
+						setSelectedExperiment
+					)}
 
-			{/* Full Screen Experience Modal */}
-			{renderExperimentModal(t, selectedExperiment, setSelectedExperiment)}
-		</main>
+					{/* Full Screen Experience Modal */}
+					{renderExperimentModal(t, selectedExperiment, setSelectedExperiment)}
+				</main>
+			}
+			<RouteArt kind="artist" />
+		</>
 	)
 }
 function renderFloatingShapes(t) {
@@ -318,7 +324,6 @@ function renderArtistBackground(t, isPlaying) {
 	return (
 		<div className="absolute inset-0 overflow-hidden">
 			{/* Base grid */}
-			<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-30"></div>
 
 			{/* Procedural animated shapes - Enhanced */}
 			{isPlaying && renderFloatingShapes(t)}

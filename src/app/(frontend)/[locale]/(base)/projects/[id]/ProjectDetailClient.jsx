@@ -26,8 +26,6 @@ export default function ProjectDetailClient({ project }) {
 		: mediaArray
 	return (
 		<div className="relative min-h-screen bg-background text-foreground">
-			<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-20"></div>
-
 			<motion.div
 				animate={{
 					opacity: 1,

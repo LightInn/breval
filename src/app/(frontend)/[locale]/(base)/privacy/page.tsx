@@ -1,4 +1,5 @@
 import LegalPage from '@/components/Global/legal-page'
+import RouteArt from '@/components/Global/route-art'
 import { localizedAlternates } from '@/i18n/metadata'
 import { legalCopy } from '@/lib/legal-copy'
 
@@ -10,5 +11,10 @@ export async function generateMetadata({ params }: Props) {
 }
 export default async function Page({ params }: Props) {
 	const { locale } = await params
-	return <LegalPage locale={locale} kind="privacy" />
+	return (
+		<>
+			{<LegalPage locale={locale} kind="privacy" />}
+			<RouteArt kind="privacy" />
+		</>
+	)
 }

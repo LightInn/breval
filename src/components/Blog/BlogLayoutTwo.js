@@ -21,7 +21,7 @@ const BlogLayoutTwo = ({ blog }) => {
 			</Link>
 
 			<div className="col-span-12 w-full lg:col-span-8">
-				<span className="inline-block w-full text-xs font-semibold uppercase text-accent sm:text-sm">
+				<span className="inline-block w-full text-xs font-semibold uppercase text-primary sm:text-sm">
 					{blog.tags[0]}
 				</span>
 				<Link className="my-1 inline-block" href={`/blog/articles/${blog.url}`}>

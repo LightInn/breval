@@ -184,7 +184,7 @@ export default function BlogClient({ blogs = [] }) {
 		setSelectedCategory(category)
 	}
 	return (
-		<main className="from-gray-150 min-h-screen bg-gradient-to-b to-gray-200 pt-20 dark:from-gray-950 dark:to-gray-900 dark:text-white">
+		<main className="min-h-screen bg-background pt-20 text-foreground">
 			{renderBlogPage(
 				t,
 				selectedCategory,
@@ -382,7 +382,10 @@ function renderBlogContent(
 
 								<CardFooter className="pt-0">
 									<Link className="w-full" href={`/blog/articles/${post.slug}`}>
-										<Button className="w-full justify-between hover:bg-primary/20 hover:text-white" variant="ghost">
+										<Button
+											className="w-full justify-between hover:bg-primary/20 hover:text-foreground"
+											variant="ghost"
+										>
 											{t('readArticle')}
 											<ArrowRight className="ml-2 h-4 w-4" />
 										</Button>
@@ -428,9 +431,6 @@ function renderBlogSection(
 ) {
 	return (
 		<section className="relative py-20">
-			<div className="retro-grid-light pointer-events-none absolute inset-0 z-0 opacity-30"></div>
-			{/* <div className="sakura-bg-light absolute inset-0 opacity-10"></div> */}
-
 			{renderBlogContent(
 				t,
 				selectedCategory,

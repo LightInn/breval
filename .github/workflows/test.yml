@@ -23,6 +23,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: cp .env.example .env.local
       - run: pnpm check
+      - run: pnpm check:complexity
       - run: pnpm typecheck
       - run: pnpm test:ci
       - run: pnpm test:cms

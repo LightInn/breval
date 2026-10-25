@@ -1,3 +1,4 @@
+import RouteArt from '@/components/Global/route-art'
 export const instant = false
 
 import { notFound } from 'next/navigation'
@@ -32,5 +33,10 @@ export default async function ProjectDetail(props) {
 	if (!project) {
 		notFound()
 	}
-	return <ProjectDetailClient project={project} />
+	return (
+		<>
+			{<ProjectDetailClient project={project} />}
+			<RouteArt kind="project" />
+		</>
+	)
 }

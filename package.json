@@ -28,10 +28,12 @@
 		"test:e2e": "playwright test",
 		"test:i18n": "node --import tsx --test tests/i18n.integration.ts",
 		"start:production": "pnpm cms:migrate && next start",
-		"test:serverless": "node --import tsx --test tests/serverless.integration.ts"
+		"test:serverless": "node --import tsx --test tests/serverless.integration.ts",
+		"check:complexity": "node scripts/check-complexity.mjs"
 	},
 	"dependencies": {
 		"@libsql/client": "0.14.0",
+		"@lucasmarkes/hairline": "0.5.1",
 		"@payloadcms/db-postgres": "3.92.0",
 		"@payloadcms/db-sqlite": "3.92.0",
 		"@payloadcms/next": "3.92.0",

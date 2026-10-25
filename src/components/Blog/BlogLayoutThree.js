@@ -24,7 +24,7 @@ const BlogLayoutThree = ({ blog }) => {
 			</Link>
 
 			<div className="mt-4 flex w-full flex-col">
-				<span className="text-xs font-semibold uppercase text-accent sm:text-sm">{blog.tags[0]}</span>
+				<span className="text-xs font-semibold uppercase text-primary sm:text-sm">{blog.tags[0]}</span>
 				<Link className="my-1 inline-block" href={`/blog/articles/${blog.url}`}>
 					<SharedContent kind="article" id={blog.id} part="title">
 						<h2 className="text-base font-semibold capitalize sm:text-lg">

@@ -2,21 +2,11 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowDown, Linkedin, Mail, Play, X } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
-import SakuraFall from '@/components/sakura-fall'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/navigation'
 export default function Hero({ dict }) {
-	const videoRef = useRef(null)
 	const [showContactPopup, setShowContactPopup] = useState(false)
-	useEffect(() => {
-		if (videoRef.current) {
-			videoRef.current.play().catch(() => {
-				// Fallback if autoplay fails
-				console.error('Autoplay prevented')
-			})
-		}
-	}, [])
 	return renderHeroSection(dict, setShowContactPopup, showContactPopup)
 }
 function renderHeroContent(dict, setShowContactPopup) {
@@ -363,9 +353,6 @@ function renderContactPopup(showContactPopup, setShowContactPopup, dict) {
 function renderHeroSection(dict, setShowContactPopup, showContactPopup) {
 	return (
 		<section className="relative clear-both m-0 flex min-h-svh w-full items-center justify-center overflow-hidden overflow-x-hidden px-0 pb-20 pt-28">
-			{/* Video Overlay Grid Pattern */}
-			<div className="video-overlay" />
-			{/* Video Background */}
 			<iframe
 				allow="autoplay"
 				allowFullScreen
@@ -384,12 +371,7 @@ function renderHeroSection(dict, setShowContactPopup, showContactPopup) {
 				}}
 				title={'landing page background video'}
 			></iframe>
-			{/* Sakura Fall Effect */}
-			<SakuraFall />
-			{/* Background Patterns */}
-			<div className="retro-grid-dark absolute inset-0 opacity-30" />
-			<div className="dark:sakura-bg-dark sakura-bg-light absolute inset-0 opacity-20" />
-			<div className="dark:mountain-bg-dark mountain-bg-light absolute bottom-0 left-0 right-0 opacity-40" />
+			<div className="hero-scrim" aria-hidden="true" />
 			{renderHeroContainer(dict, setShowContactPopup)}
 
 			{/* Scroll Indicator */}

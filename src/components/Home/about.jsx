@@ -70,8 +70,6 @@ export default function About({ dict }) {
 	]
 	return (
 		<section className="relative overflow-hidden py-20" id="about">
-			<div className="dark:retro-grid-dark retro-grid-light absolute inset-0 opacity-20" />
-			<div className="dark:sakura-bg-dark sakura-bg-light absolute inset-0 opacity-10" />
 			{renderAboutContainer(isInView, ref, container, item, dict, roles)}
 		</section>
 	)

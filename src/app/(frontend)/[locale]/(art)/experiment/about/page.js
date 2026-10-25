@@ -6,6 +6,7 @@ import { createGlobalStyle } from 'styled-components'
 import AboutCoverSection from '@/components/Experiments/About/AboutCoverSection'
 import Navbar from '@/components/Experiments/About/Navbar'
 import { Playground } from '@/components/Experiments/About/Playground'
+import RouteArt from '@/components/Global/route-art'
 import './App.css'
 export default function About() {
 	const bibiliothecqueDImage = [
@@ -57,15 +58,20 @@ export default function About() {
 
     }`
 	return (
-		<div className="w-full">
-			<AppStyle />
-			<Navbar />
+		<>
+			{
+				<div className="w-full">
+					<AppStyle />
+					<Navbar />
 
-			<div className="">
-				<AboutCoverSection data={data} setReload={setReload} />
+					<div className="">
+						<AboutCoverSection data={data} setReload={setReload} />
 
-				<Playground data={data} image={imgeUrl} setReload={setReload} />
-			</div>
-		</div>
+						<Playground data={data} image={imgeUrl} setReload={setReload} />
+					</div>
+				</div>
+			}
+			<RouteArt kind="terrain" />
+		</>
 	)
 }

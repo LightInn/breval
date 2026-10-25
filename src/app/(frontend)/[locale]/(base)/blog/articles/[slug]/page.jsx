@@ -1,3 +1,4 @@
+import RouteArt from '@/components/Global/route-art'
 export const instant = false
 
 import { notFound } from 'next/navigation'
@@ -28,7 +29,12 @@ export default async function BlogPage({ params }) {
 		dateModified: blog.updatedAt || blog.publishedAt,
 		author: [{ '@type': 'Person', name: siteMetadata.author, url: siteMetadata.siteUrl }],
 	}
-	return <BlogPageClient blog={blog} jsonLd={jsonLd} similarArticles={similarArticles} slug={slug} />
+	return (
+		<>
+			{<BlogPageClient blog={blog} jsonLd={jsonLd} similarArticles={similarArticles} slug={slug} />}
+			<RouteArt kind="article" />
+		</>
+	)
 }
 
 export async function generateMetadata({ params }) {

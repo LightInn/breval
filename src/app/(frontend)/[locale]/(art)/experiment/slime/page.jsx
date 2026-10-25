@@ -1,10 +1,10 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-
 import { useEffect, useState } from 'react'
 import SlimeSimulation from 'react-slime-simulation'
 import LocalizedText from '@/components/Global/localized-text'
+import RouteArt from '@/components/Global/route-art'
 export default function SlimePage() {
 	const t = useTranslations('ui')
 	const [showOverlay, setShowOverlay] = useState(true)
@@ -37,102 +37,112 @@ export default function SlimePage() {
 		}
 	}, [])
 	return (
-		<div className="relative min-h-screen" role="application" aria-label={t('animation')} onMouseMove={handleMouseMove}>
-			<SlimeExperience />
-			{showOverlay && (
-				<div className="animate-fadeIn fixed bottom-8 right-8 max-w-md rounded-xl bg-gradient-to-br from-purple-600/20 to-pink-500/20 p-6 text-white shadow-2xl backdrop-blur-lg transition-all duration-500 ease-in-out">
-					<div className="space-y-4">
-						<p className="flex items-center text-base">
-							<svg
-								className="mr-3 flex-shrink-0 text-pink-400"
-								fill="none"
-								height="20"
-								stroke="currentColor"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth="2"
-								viewBox="0 0 24 24"
-								width="20"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path d="M21 12a9 9 0 1 1-6.219-8.56" />
-							</svg>
-							<span>
-								<LocalizedText id="slimeRefresh" />
-							</span>
-						</p>
-						<p className="flex items-center text-base">
-							<svg
-								className="mr-3 flex-shrink-0 text-purple-400"
-								fill="none"
-								height="20"
-								stroke="currentColor"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth="2"
-								viewBox="0 0 24 24"
-								width="20"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-								<polyline points="22 4 12 14.01 9 11.01" />
-							</svg>
-							<span>
-								<LocalizedText id="slimeMouse" />
-							</span>
-						</p>
-						<div className="mt-6 flex flex-col space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
-							<button
-								type="button"
-								className="flex w-full transform items-center justify-center rounded-lg bg-pink-500/80 px-6 py-3 text-sm font-semibold shadow-lg transition-all hover:scale-105 hover:bg-pink-600/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-75"
-								onClick={handleRefresh}
-							>
-								<svg
-									className="mr-2.5"
-									fill="none"
-									height="18"
-									stroke="currentColor"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									viewBox="0 0 24 24"
-									width="18"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path d="M3 2v6h6" />
-									<path d="M21 12A9 9 0 0 0 6 5.3L3 8" />
-									<path d="M21 22v-6h-6" />
-									<path d="M3 12a9 9 0 0 0 15 6.7l3-2.7" />
-								</svg>
-								<LocalizedText id="refresh" />
-							</button>
-							<button
-								type="button"
-								className="flex w-full transform items-center justify-center rounded-lg bg-purple-500/80 px-6 py-3 text-sm font-semibold shadow-lg transition-all hover:scale-105 hover:bg-purple-600/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75"
-								onClick={handleGoBack}
-							>
-								<svg
-									className="mr-2.5"
-									fill="none"
-									height="18"
-									stroke="currentColor"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									viewBox="0 0 24 24"
-									width="18"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path d="m12 19-7-7 7-7" />
-									<path d="M19 12H5" />
-								</svg>
-								<LocalizedText id="back" />
-							</button>
+		<>
+			{
+				<div
+					className="relative min-h-screen"
+					role="application"
+					aria-label={t('animation')}
+					onMouseMove={handleMouseMove}
+				>
+					<SlimeExperience />
+					{showOverlay && (
+						<div className="animate-fadeIn fixed bottom-8 right-8 max-w-md rounded-xl bg-gradient-to-br from-purple-600/20 to-pink-500/20 p-6 text-white shadow-2xl backdrop-blur-lg transition-all duration-500 ease-in-out">
+							<div className="space-y-4">
+								<p className="flex items-center text-base">
+									<svg
+										className="mr-3 flex-shrink-0 text-pink-400"
+										fill="none"
+										height="20"
+										stroke="currentColor"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
+										viewBox="0 0 24 24"
+										width="20"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path d="M21 12a9 9 0 1 1-6.219-8.56" />
+									</svg>
+									<span>
+										<LocalizedText id="slimeRefresh" />
+									</span>
+								</p>
+								<p className="flex items-center text-base">
+									<svg
+										className="mr-3 flex-shrink-0 text-purple-400"
+										fill="none"
+										height="20"
+										stroke="currentColor"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
+										viewBox="0 0 24 24"
+										width="20"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+										<polyline points="22 4 12 14.01 9 11.01" />
+									</svg>
+									<span>
+										<LocalizedText id="slimeMouse" />
+									</span>
+								</p>
+								<div className="mt-6 flex flex-col space-y-3 sm:flex-row sm:space-x-3 sm:space-y-0">
+									<button
+										type="button"
+										className="flex w-full transform items-center justify-center rounded-lg bg-pink-500/80 px-6 py-3 text-sm font-semibold shadow-lg transition-all hover:scale-105 hover:bg-pink-600/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-75"
+										onClick={handleRefresh}
+									>
+										<svg
+											className="mr-2.5"
+											fill="none"
+											height="18"
+											stroke="currentColor"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth="2"
+											viewBox="0 0 24 24"
+											width="18"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path d="M3 2v6h6" />
+											<path d="M21 12A9 9 0 0 0 6 5.3L3 8" />
+											<path d="M21 22v-6h-6" />
+											<path d="M3 12a9 9 0 0 0 15 6.7l3-2.7" />
+										</svg>
+										<LocalizedText id="refresh" />
+									</button>
+									<button
+										type="button"
+										className="flex w-full transform items-center justify-center rounded-lg bg-purple-500/80 px-6 py-3 text-sm font-semibold shadow-lg transition-all hover:scale-105 hover:bg-purple-600/90 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75"
+										onClick={handleGoBack}
+									>
+										<svg
+											className="mr-2.5"
+											fill="none"
+											height="18"
+											stroke="currentColor"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth="2"
+											viewBox="0 0 24 24"
+											width="18"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path d="m12 19-7-7 7-7" />
+											<path d="M19 12H5" />
+										</svg>
+										<LocalizedText id="back" />
+									</button>
+								</div>
+							</div>
 						</div>
-					</div>
+					)}
 				</div>
-			)}
-		</div>
+			}
+			<RouteArt kind="artist" />
+		</>
 	)
 }
 function SlimeExperience() {

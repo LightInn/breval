@@ -14,9 +14,7 @@ export default async function RootLayout({ children, params }) {
 				<Navigation dict={dict} />
 			</Suspense>
 			{children}
-			<Suspense fallback={null}>
-				<Footer locale={locale} />
-			</Suspense>
+			<Footer locale={locale} />
 		</ThemeProvider>
 	)
 }

@@ -22,8 +22,6 @@ export default function BlogPageClient({ similarArticles, slug: pageSlug, jsonLd
 	const formatter = useFormatter()
 	return (
 		<div className="relative mt-20 min-h-screen bg-background text-foreground">
-			<div className="retro-grid-dark pointer-events-none absolute inset-0 opacity-20"></div>
-
 			<script
 				dangerouslySetInnerHTML={{
 					__html: JSON.stringify(jsonLd),

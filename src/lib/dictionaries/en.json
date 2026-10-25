@@ -14,7 +14,9 @@
 		"appearance": "Appearance",
 		"light": "Light",
 		"dark": "Dark",
-		"system": "System"
+		"system": "System",
+		"primaryNavigation": "Primary navigation",
+		"mobileNavigation": "Mobile navigation"
 	},
 	"home": {
 		"hero": {
